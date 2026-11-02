@@ -1,0 +1,20 @@
+# Models for "Buy or rent a GPU?": the same models on every rented GPU (machine runpod), so speed, cost and
+# the verdict can be compared card by card. `name` is what the server receives in "model" (llama-server preset).
+
+[[model]]
+name = "gemma4-12b"
+gguf = "gemma-4-12B-it-qat-UD-Q4_K_XL.gguf"
+group = "16gb"
+machines = ["runpod"]
+
+[[model]]
+name = "qwen3.8-27b-q3"
+gguf = "Qwen3.8-27B-UD-Q3_K_XL.gguf"
+group = "24gb"
+machines = ["runpod"]
+
+[[model]]
+name = "qwen3.8-27b-q4"
+gguf = "Qwen3.8-27B-UD-Q4_K_M.gguf"
+group = "24gb"
+machines = ["runpod"]

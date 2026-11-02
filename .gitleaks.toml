@@ -1,0 +1,22 @@
+# gitleaks configuration for scripts/pre-publish-check.sh. Uses the default rules and adds the services the tests use.
+# Private terms are not here (PRIVATE_TERMS_FILE).
+title = "ai-bench"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "openrouter-api-key"
+description = "OpenRouter API key"
+regex = '''sk-or-v1-[a-f0-9]{32,}'''
+keywords = ["sk-or-v1-"]
+
+[[rules]]
+id = "runpod-api-key"
+description = "RunPod API key"
+regex = '''rpa_[A-Za-z0-9]{20,}'''
+keywords = ["rpa_"]
+
+[allowlist]
+description = "Generated files, not in git"
+paths = ['''(^|/)__pycache__/''', '''\.pyc$''']

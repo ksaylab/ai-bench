@@ -1,0 +1,147 @@
+"""CLI: python3 -m aibench <command>. See HOW-TO-RUN.md."""
+import argparse
+import csv
+import json
+import sys
+import tomllib
+from datetime import datetime
+from pathlib import Path
+
+from aibench import cases, client, cost, env, run, speed
+
+EPISODES = run.EPISODES
+COST_EPISODE = "01-buy-or-rent-gpu"
+
+
+def episode_models(episode, machine, group=None):
+    path = EPISODES / episode / "models.toml"
+    if not path.exists():
+        return []
+    with open(path, "rb") as f:
+        cfg = tomllib.load(f)
+    return [m for m in cfg.get("model", []) if machine in m.get("machines", [])
+            and (group is None or m.get("group") == group)]
+
+
+def _rel(p):
+    return p.relative_to(run.ROOT) if p.is_relative_to(run.ROOT) else p
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(prog="python3 -m aibench")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    machines = list(client.TARGETS)
+
+    p = sub.add_parser("env", help="record the machine environment as JSON")
+    p.add_argument("--machine", required=True, choices=machines)
+    p.add_argument("--url")
+    p.add_argument("--out")
+
+    p = sub.add_parser("run", help="run the use-case batteries (score, verdict, time, cost)")
+    p.add_argument("--episode", required=True)
+    p.add_argument("--machine", required=True, choices=machines)
+    p.add_argument("--models", help="comma separated; default: the episode's models.toml entries for the machine")
+    p.add_argument("--group", help="only the models.toml models in this group")
+    p.add_argument("--runs", type=int, default=run.MIN_RUNS)
+    p.add_argument("--url")
+    p.add_argument("--use-cases", help=f"comma separated, from {','.join(cases.USE_CASES)} (default: all)")
+    p.add_argument("--judge", help="OpenRouter model that scores the cases with a rubric (cannot be a compared model)")
+    p.add_argument("--judge-url", help="OpenRouter-compatible address for the judge (default: OpenRouter)")
+    p.add_argument("--context-words", type=int, default=3000, help="size of the long RAG documents")
+    p.add_argument("--max-tokens", type=int, default=8192)
+    p.add_argument("--label", default="run")
+    p.add_argument("--simulate", action="store_true", help="no network: answer with the cases' examples")
+    p.add_argument("--smoke", action="store_true", help="allow fewer than 3 runs; the run cannot be published")
+    p.add_argument("--skip-code", action="store_true", help="do not execute code written by the models")
+    p.add_argument("--out")
+
+    p = sub.add_parser("speed", help="llama-bench (pp and tg) at several context depths")
+    p.add_argument("--episode", required=True)
+    p.add_argument("--machine", required=True, choices=machines)
+    p.add_argument("--model", help="model name; with --gguf measures only that one")
+    p.add_argument("--gguf", help="GGUF path; without it, uses models.toml (gguf field + --models-dir)")
+    p.add_argument("--models-dir", help="folder with the GGUF files (the path does not go to the CSV)")
+    p.add_argument("--depths", default="0,16384")
+    p.add_argument("--repetitions", type=int, default=3)
+    p.add_argument("--label", default="speed")
+
+    p = sub.add_parser("cost", help="episode 1: monthly cost of buying vs renting")
+    p.add_argument("--prices")
+    p.add_argument("--assumptions")
+    p.add_argument("--reference", help="id of the rental used for the break-even")
+    p.add_argument("--example", action="store_true", help="use the fictional values in prices.example.csv")
+    p.add_argument("--out")
+
+    p = sub.add_parser("verdict", help="merge an episode's publishable runs into scores and verdicts")
+    p.add_argument("--episode", required=True)
+
+    sub.add_parser("cases", help="list the cases of each use-case battery")
+
+    a = ap.parse_args(argv)
+    try:
+        if a.cmd == "env":
+            text = json.dumps(env.capture(a.machine, a.url), ensure_ascii=False, indent=2)
+            if a.out:
+                Path(a.out).write_text(text + "\n", encoding="utf-8")
+            print(text)
+        elif a.cmd == "run":
+            models = a.models.split(",") if a.models else \
+                [m["name"] for m in episode_models(a.episode, a.machine, a.group)]
+            use_cases = set(a.use_cases.split(",")) if a.use_cases else None
+            if use_cases and use_cases - set(cases.USE_CASES):
+                raise ValueError(f"unknown use case(s): {','.join(sorted(use_cases - set(cases.USE_CASES)))}")
+            dest = run.run(a.episode, a.machine, models, a.runs, a.url, use_cases, a.judge, a.context_words, a.label,
+                           a.simulate, a.smoke, a.skip_code, a.max_tokens, a.out, judge_url=a.judge_url)
+            print(f"run written to {_rel(dest)}")
+            print((dest / "verdicts.md").read_text(encoding="utf-8"))
+        elif a.cmd == "speed":
+            if a.gguf:
+                targets = [{"name": a.model or Path(a.gguf).stem, "path": a.gguf}]
+            else:
+                if not a.models_dir:
+                    raise SystemExit("error: pass --gguf or --models-dir")
+                targets = [{"name": m["name"], "path": str(Path(a.models_dir).expanduser() / m["gguf"])}
+                           for m in episode_models(a.episode, a.machine) if m.get("gguf")
+                           and (a.model is None or m["name"] == a.model)]
+            if not targets:
+                raise SystemExit("error: no model with a gguf in models.toml for this machine")
+            depths = [int(x) for x in a.depths.split(",")]
+            rows = []
+            for m in targets:
+                print(f"measuring {m['name']}…", file=sys.stderr)
+                rows += speed.measure(a.machine, m["name"], m["path"], depths, a.repetitions)
+            path = (EPISODES / a.episode / "results" / "runs" /
+                    f"{datetime.now():%Y-%m-%d-%H%M}-{a.machine}-{a.label}" / "speed.csv")
+            run.write_csv(path, speed.COLUMNS, rows)
+            (path.parent / "env.json").write_text(
+                json.dumps(env.capture(a.machine), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            print(f"written to {_rel(path)}")
+        elif a.cmd == "cost":
+            ep = EPISODES / COST_EPISODE
+            prices = Path(a.prices) if a.prices else ep / ("prices.example.csv" if a.example else "prices.csv")
+            assumptions = Path(a.assumptions) if a.assumptions else \
+                ep / ("assumptions.example.csv" if a.example else "assumptions.csv")
+            rows = cost.calculate(cost.read_prices(prices), cost.read_assumptions(assumptions), a.reference)
+            out = Path(a.out) if a.out else ep / "results" / ("cost.EXAMPLE.csv" if a.example else "cost.csv")
+            cost.write(out, rows)
+            w = csv.DictWriter(sys.stdout, fieldnames=cost.COLUMNS)
+            w.writeheader()
+            w.writerows(rows)
+            if a.example or any(r["data_status"] != "CONFIRMED" for r in rows):
+                print("\nWARNING: some prices are not CONFIRMED: do not publish these numbers.", file=sys.stderr)
+        elif a.cmd == "verdict":
+            path, n, v = run.consolidate(a.episode)
+            print(f"{n} publishable executions → {_rel(path)}")
+            if v:
+                print((path.parent / "verdicts.md").read_text(encoding="utf-8"))
+        elif a.cmd == "cases":
+            for c in cases.load():
+                print(f"{c['use_case']:8} {c['id']:20} {c['kind']}")
+    except (run.RunError, client.ClientError, cost.CostError, FileNotFoundError, ValueError) as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

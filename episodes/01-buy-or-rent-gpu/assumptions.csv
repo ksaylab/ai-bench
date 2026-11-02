@@ -1,0 +1,10 @@
+key,value,unit,source,status
+brl_per_usd,,BRL/USD,exchange rate on the day the prices were checked,FILL_IN
+brl_per_kwh,,BRL/kWh,electricity rate from the power bill (taxes included),FILL_IN
+hours_used_per_month,150,h/month,hours generating with the model per month,REVIEW
+hours_on_per_month,220,h/month,PC on during business hours (~10 h x 22 working days),REVIEW
+pc_idle_watts,60,W,PC without the GPU at idle (estimate; replace with a plug meter reading),REVIEW
+months,36,months,amortization of the purchase,REVIEW
+sessions_per_month,22,sessions/month,times the pod is started per month (rent on demand),REVIEW
+setup_minutes_per_session,4.4,min,start the pod and download the model (measured),REVIEW
+new_psu_price_brl,,BRL,850 W PSU for the cards that need a new one,FILL_IN

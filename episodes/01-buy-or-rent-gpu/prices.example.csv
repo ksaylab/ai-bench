@@ -1,0 +1,5 @@
+id,name,kind,price_brl,price_usd_per_hour,needs_new_psu,load_watts,idle_watts,source,checked_on,status
+example-card-24gb,EXAMPLE CARD 24 GB (fictional value),buy,1000,,yes,300,20,fictional value to test the formula,,EXAMPLE
+example-card-16gb,EXAMPLE CARD 16 GB (fictional value),buy,2000,,no,150,10,fictional value to test the formula,,EXAMPLE
+example-rental-a,EXAMPLE RENTAL A (fictional value),rent,,0.10,,,,fictional value to test the formula,,EXAMPLE
+example-rental-b,EXAMPLE RENTAL B (fictional value),rent,,0.20,,,,fictional value to test the formula,,EXAMPLE

@@ -1,0 +1,12 @@
+ai-bench data and text: Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 KSay Lab
+
+Applies to the test cases (cases/), the results (episodes/*/results/), the episodes' input files (CSV and TOML) and
+the documentation (*.md). The code (aibench/, tests/, scripts/) is under the MIT license in the LICENSE file.
+
+You may copy, redistribute, adapt and use it for any purpose, including commercially, as long as you give credit
+("KSay Lab, ai-bench"), link to the license and indicate whether you made changes.
+
+Summary: https://creativecommons.org/licenses/by/4.0/
+Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode

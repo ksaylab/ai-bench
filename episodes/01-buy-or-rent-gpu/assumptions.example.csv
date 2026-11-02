@@ -1,0 +1,10 @@
+key,value,unit,source,status
+brl_per_usd,5,BRL/USD,fictional value,EXAMPLE
+brl_per_kwh,1,BRL/kWh,fictional value,EXAMPLE
+hours_used_per_month,100,h/month,fictional value,EXAMPLE
+hours_on_per_month,200,h/month,fictional value,EXAMPLE
+pc_idle_watts,50,W,fictional value,EXAMPLE
+months,36,months,fictional value,EXAMPLE
+sessions_per_month,20,sessions/month,fictional value,EXAMPLE
+setup_minutes_per_session,5,min,fictional value,EXAMPLE
+new_psu_price_brl,500,BRL,fictional value,EXAMPLE

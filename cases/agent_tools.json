@@ -1,0 +1,107 @@
+{
+  "get_weather": {
+    "name": "get_weather",
+    "description": "Current weather for a city.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "celsius",
+            "fahrenheit"
+          ]
+        }
+      },
+      "required": [
+        "city",
+        "unit"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "create_ticket": {
+    "name": "create_ticket",
+    "description": "Open a support ticket.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "title",
+        "priority",
+        "tags"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "convert_currency": {
+    "name": "convert_currency",
+    "description": "Convert an amount between currencies (ISO 4217 codes).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "from_currency": {
+          "type": "string"
+        },
+        "to_currency": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount",
+        "from_currency",
+        "to_currency"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "search_orders": {
+    "name": "search_orders",
+    "description": "Search a customer's orders.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "shipped",
+            "delivered",
+            "cancelled"
+          ]
+        }
+      },
+      "required": [
+        "customer_id"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

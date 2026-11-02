@@ -1,0 +1,10 @@
+id,name,kind,price_brl,price_usd_per_hour,needs_new_psu,load_watts,idle_watts,source,checked_on,status
+rtx-3090-used,RTX 3090 24 GB (used),buy,,,yes,350,21,,,FILL_IN
+rtx-4060-ti-16gb,RTX 4060 Ti 16 GB,buy,,,no,165,13,,,FILL_IN
+rtx-5060-ti-16gb,RTX 5060 Ti 16 GB,buy,,,no,180,15,,,FILL_IN
+rtx-4070-ti-super,RTX 4070 Ti Super 16 GB,buy,,,yes,285,13,,,FILL_IN
+rtx-5070-ti,RTX 5070 Ti 16 GB,buy,,,yes,300,17,,,FILL_IN
+runpod-a5000-community,RunPod RTX A5000 24 GB (Community),rent,,,,,,,,FILL_IN
+runpod-a5000-secure,RunPod RTX A5000 24 GB (Secure),rent,,,,,,,,FILL_IN
+runpod-3090-community,RunPod RTX 3090 24 GB (Community),rent,,,,,,,,FILL_IN
+runpod-4090-secure,RunPod RTX 4090 24 GB (Secure),rent,,,,,,,,FILL_IN
