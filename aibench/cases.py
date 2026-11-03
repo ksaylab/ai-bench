@@ -187,8 +187,12 @@ def citations(text):
 CITATION = re.compile(r"\[\d+(?:\s*[,;]\s*\d+)*\]")
 
 
+EMPHASIS = re.compile(r"\*{1,3}|_{2,3}")  # markdown bold/italic: "**not** in the document" says "not in the document"
+
+
 def _rag(c, text):
-    ok, why = _regex(c, CITATION.sub(" ", text))  # a citation like [6] is not an answer of 6
+    # a citation like [6] is not an answer of 6
+    ok, why = _regex(c, EMPHASIS.sub("", CITATION.sub(" ", text)))
     if not ok:
         return ok, why
     cited = citations(text)

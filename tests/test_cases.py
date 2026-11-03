@@ -102,6 +102,12 @@ class TestCheckers(unittest.TestCase):
                "[2][8], support desk hours [4] and office parking [5].")
         self.assertEqual(cases.check(c, glm), (True, ""))
 
+    def test_rag_ignores_markdown_emphasis(self):
+        # ministral-3b in the rag screening: right answer, failed only because "**not**" broke the phrase
+        c = self.case("answer_absent")
+        self.assertEqual(cases.check(c, "The maximum hotel rate per night is **not** in the document."), (True, ""))
+        self.assertEqual(cases.check(c, "It is *not mentioned* in the passages."), (True, ""))
+
     def test_rag_absent_answer_with_an_invented_value_fails_even_when_it_says_absent(self):
         c = self.case("answer_absent")
         self.assertFalse(cases.check(c, "It is not stated, but passage [1] suggests 250 per night.")[0])
