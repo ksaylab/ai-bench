@@ -1,1 +1,16 @@
 use_case,battery,model,role,passed,executions,runs,score_pct,min_run_pct,max_run_pct,cost_usd
+agent,ad5a4bd8d1b7,deepseek/deepseek-v4-pro,ceiling,21,21,3,100.0,100.0,100.0,0.008889
+agent,ad5a4bd8d1b7,mistralai/ministral-3b-2512,floor,21,21,3,100.0,100.0,100.0,0.000324
+agent,ad5a4bd8d1b7,z-ai/glm-5.3-flash,ceiling,21,21,3,100.0,100.0,100.0,0.001251
+chat_pt,e266eed67933,deepseek/deepseek-v4-pro,ceiling,18,18,3,100.0,100.0,100.0,0.021369
+chat_pt,e266eed67933,mistralai/ministral-3b-2512,floor,17,18,3,94.4,83.3,100.0,0.000346
+chat_pt,e266eed67933,z-ai/glm-5.3-flash,ceiling,17,18,3,94.4,83.3,100.0,0.004292
+coding,0ad3ef9d9ace,deepseek/deepseek-v4-pro,ceiling,18,18,3,100.0,100.0,100.0,0.043696
+coding,0ad3ef9d9ace,mistralai/ministral-3b-2512,floor,15,18,3,83.3,83.3,83.3,0.000305
+coding,0ad3ef9d9ace,z-ai/glm-5.3-flash,ceiling,17,18,3,94.4,83.3,100.0,0.01127
+coding_public,0c6092d78c55,deepseek/deepseek-v4-pro,ceiling,27,30,3,90.0,80.0,100.0,0.216095
+coding_public,0c6092d78c55,mistralai/ministral-3b-2512,floor,20,30,3,66.7,60.0,70.0,0.000801
+coding_public,0c6092d78c55,z-ai/glm-5.3-flash,ceiling,30,30,3,100.0,100.0,100.0,0.011915
+rag,b1d9f31df0ca,deepseek/deepseek-v4-pro,ceiling,24,24,3,100.0,100.0,100.0,0.029492
+rag,b1d9f31df0ca,mistralai/ministral-3b-2512,floor,21,24,3,87.5,87.5,87.5,0.002265
+rag,b1d9f31df0ca,z-ai/glm-5.3-flash,ceiling,21,24,3,87.5,87.5,87.5,0.001959

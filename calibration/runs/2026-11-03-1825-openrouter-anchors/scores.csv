@@ -1,0 +1,16 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+openrouter,deepseek/deepseek-v4-pro,agent,ad5a4bd8d1b7,21,21,7,3,100.0,100.0,100.0,100.0,100.0,,0,0,80.0,Good for,,0,,,,,,2.4,38.16,1.767,3313.44,,,,0.008889
+openrouter,deepseek/deepseek-v4-pro,chat_pt,e266eed67933,18,18,6,3,100.0,100.0,100.0,100.0,100.0,,0,0,80.0,Good for,,0,,,,,,4.8,63.82,1.665,109.07,,,,0.021369
+openrouter,deepseek/deepseek-v4-pro,coding,0ad3ef9d9ace,18,18,6,3,100.0,100.0,100.0,100.0,100.0,,0,0,80.0,Good for,,0,,,,,,10.06,78.56,1.853,112.0,,,,0.043696
+openrouter,deepseek/deepseek-v4-pro,coding_public,0c6092d78c55,27,30,10,3,90.0,80.0,100.0,100.0,91.7,33.3,2,0,80.0,Reference only,,0,,,,,,19.32,96.37,1.864,120.76,,,,0.216095
+openrouter,deepseek/deepseek-v4-pro,rag,b1d9f31df0ca,24,24,8,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,,,,,,2.87,36.6,2.152,139.72,,,,0.029492
+openrouter,mistralai/ministral-3b-2512,agent,ad5a4bd8d1b7,21,21,7,3,100.0,100.0,100.0,100.0,100.0,,0,0,80.0,Good for,,0,,,,,,1.66,32.38,0.938,13547.97,,,,0.000324
+openrouter,mistralai/ministral-3b-2512,chat_pt,e266eed67933,17,18,6,3,94.4,83.3,100.0,83.3,100.0,,1,0,80.0,Good for,,1,,,,,,7.53,53.61,1.246,139.71,,,,0.000346
+openrouter,mistralai/ministral-3b-2512,coding,0ad3ef9d9ace,15,18,6,3,83.3,83.3,83.3,100.0,66.7,,0,0,80.0,Good for,easy only,1,,,,,,4.55,70.11,0.991,122.65,,,,0.000305
+openrouter,mistralai/ministral-3b-2512,coding_public,0c6092d78c55,20,30,10,3,66.7,60.0,70.0,100.0,41.7,0.0,1,0,80.0,Reference only,,0,,,,,,2.9,86.74,0.671,171.31,,,,0.000801
+openrouter,mistralai/ministral-3b-2512,rag,b1d9f31df0ca,21,24,8,3,87.5,87.5,87.5,100.0,100.0,0.0,0,0,80.0,Good for,easy and medium,1,,,,,,1.06,28.0,0.689,218.04,,,,0.002265
+openrouter,z-ai/glm-5.3-flash,agent,ad5a4bd8d1b7,21,21,7,3,100.0,100.0,100.0,100.0,100.0,,0,0,80.0,Good for,,0,,,,,,4.6,23.14,3.597,118.17,,,,0.001251
+openrouter,z-ai/glm-5.3-flash,chat_pt,e266eed67933,17,18,6,3,94.4,83.3,100.0,100.0,91.7,,1,0,80.0,Good for,,1,,,,,,11.38,72.17,1.817,94.38,,,,0.004292
+openrouter,z-ai/glm-5.3-flash,coding,0ad3ef9d9ace,17,18,6,3,94.4,83.3,100.0,100.0,88.9,,1,0,80.0,Good for,,1,,,,,,27.27,81.18,1.782,95.23,,,,0.01127
+openrouter,z-ai/glm-5.3-flash,coding_public,0c6092d78c55,30,30,10,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Reference only,,0,,,,,,16.18,81.33,1.668,104.88,,,,0.011915
+openrouter,z-ai/glm-5.3-flash,rag,b1d9f31df0ca,21,24,8,3,87.5,87.5,87.5,100.0,80.0,100.0,0,0,80.0,Good for,,1,,,,,,2.84,33.62,1.929,111.62,,,,0.001959

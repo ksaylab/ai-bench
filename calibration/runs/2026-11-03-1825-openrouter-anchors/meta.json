@@ -1,0 +1,177 @@
+{
+  "run_id": "2026-11-03-1825-openrouter-anchors",
+  "episode": "",
+  "machine": "openrouter",
+  "models": [
+    "deepseek/deepseek-v4-pro",
+    "z-ai/glm-5.3-flash",
+    "mistralai/ministral-3b-2512"
+  ],
+  "runs": 3,
+  "use_cases": [
+    "agent",
+    "chat_pt",
+    "coding",
+    "coding_public",
+    "rag"
+  ],
+  "cases": [
+    "is_palindrome",
+    "merge_intervals",
+    "word_count",
+    "fizzbuzz",
+    "parse_duration",
+    "top_k_frequent",
+    "single_passage",
+    "newer_rule_wins",
+    "answer_absent",
+    "similar_entity",
+    "two_facts",
+    "password_length",
+    "long_needle",
+    "long_two_hops",
+    "weather_call",
+    "ticket_call",
+    "currency_call",
+    "orders_call",
+    "no_tool_needed",
+    "contact_schema",
+    "priority_schema",
+    "email_summary",
+    "incident_summary",
+    "meeting_owners",
+    "explain_vpn",
+    "false_premise_pt",
+    "formal_rewrite",
+    "humaneval_0",
+    "humaneval_12",
+    "humaneval_46",
+    "humaneval_108",
+    "humaneval_129",
+    "mbpp_3",
+    "mbpp_4",
+    "mbpp_9",
+    "mbpp_11",
+    "mbpp_20"
+  ],
+  "context_words": 3000,
+  "judge": "",
+  "start": "2026-11-03T18:25:24",
+  "smoke": false,
+  "simulated": false,
+  "max_tokens": 8192,
+  "publishable": true,
+  "thresholds_pct": {
+    "coding": 80.0,
+    "rag": 80.0,
+    "agent": 80.0,
+    "chat_pt": 80.0
+  },
+  "sampling": {
+    "deepseek/deepseek-v4-pro": {
+      "sent": {
+        "temperature": 1.0,
+        "top_p": 1.0
+      },
+      "base_seed": 2000,
+      "seeds": [
+        2000,
+        2001,
+        2002
+      ],
+      "source": "DeepSeek-V4-Pro card: temperature = 1.0, top_p = 1.0 (same in generation_config.json)",
+      "card": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "verified": true
+    },
+    "z-ai/glm-5.3-flash": {
+      "sent": {
+        "temperature": 1.0,
+        "top_p": 0.95
+      },
+      "base_seed": 2000,
+      "seeds": [
+        2000,
+        2001,
+        2002
+      ],
+      "source": "Z.AI GLM-5.3-Flash doc: temperature 1, top_p 0.95 (same in generation_config.json)",
+      "card": "https://docs.z.ai/guides/llm/glm-5.3-flash",
+      "verified": true
+    },
+    "mistralai/ministral-3b-2512": {
+      "sent": {
+        "temperature": 0.1,
+        "top_p": 1.0
+      },
+      "base_seed": 2000,
+      "seeds": [
+        2000,
+        2001,
+        2002
+      ],
+      "source": "Ministral 3 3B card: start with temperature 0.1 (its code examples use 0.15); top_p not stated, API default 1.0",
+      "card": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512",
+      "verified": true
+    }
+  },
+  "server_args": "",
+  "battery": {
+    "agent": "ad5a4bd8d1b7",
+    "chat_pt": "e266eed67933",
+    "coding": "0ad3ef9d9ace",
+    "coding_public": "0c6092d78c55",
+    "rag": "b1d9f31df0ca"
+  },
+  "anchors": {
+    "deepseek/deepseek-v4-pro": {
+      "role": "ceiling",
+      "provider": {
+        "order": [
+          "novita/fp8"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      },
+      "reasoning": {
+        "effort": "high"
+      }
+    },
+    "z-ai/glm-5.3-flash": {
+      "role": "ceiling",
+      "provider": {
+        "order": [
+          "novita/fp8"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      },
+      "reasoning": {
+        "effort": "max"
+      }
+    },
+    "mistralai/ministral-3b-2512": {
+      "role": "floor",
+      "provider": {
+        "order": [
+          "mistral"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    }
+  },
+  "anchors_checked": "2026-11-03",
+  "stream": true,
+  "gpu_sampling": {
+    "deepseek/deepseek-v4-pro": {
+      "status": "not sampled: cloud model"
+    },
+    "z-ai/glm-5.3-flash": {
+      "status": "not sampled: cloud model"
+    },
+    "mistralai/ministral-3b-2512": {
+      "status": "not sampled: cloud model"
+    }
+  },
+  "end": "2026-11-03T19:10:18"
+}
