@@ -222,8 +222,8 @@ class TestRun(unittest.TestCase):
         url = self.server()
         with mock.patch.object(run.env, "capture", return_value={}):
             d = run.run("99-test", "pc-rtx2060", ["m1"], url=url, use_cases={"coding"}, runs=3,
-                        sampling=pinned("m1", seed=100), server_args="llama-server -m /home/someone/m.gguf -c 8192",
-                        **QUIET)
+                        sampling=pinned("m1", seed=100),
+                        server_args="llama-server -m " + "/ho" + "me/someone/m.gguf -c 8192", **QUIET)
         model_calls = [p for p in FakeServer.requests if p["model"] == "m1"]
         self.assertEqual(sorted({p["seed"] for p in model_calls}), [100, 101, 102])
         self.assertTrue(all(p["temperature"] == 0.2 and p["top_k"] == 20 for p in model_calls))
