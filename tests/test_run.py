@@ -113,9 +113,11 @@ class TestRun(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, self.tmp)
         (self.tmp / "episodes" / "99-test" / "results").mkdir(parents=True)
-        p = mock.patch.object(run, "EPISODES", self.tmp / "episodes")
-        p.start()
-        self.addCleanup(p.stop)
+        # the repository's calibration/ holds real anchor runs: an episode run here must not score against them
+        for target, value in ((run, "EPISODES"), (run.calibration, "CALIBRATION")):
+            p = mock.patch.object(target, value, self.tmp / value.lower())
+            p.start()
+            self.addCleanup(p.stop)
         FakeServer.requests.clear()
         FakeServer.bad_models = set()
         FakeServer.streamed = 0
