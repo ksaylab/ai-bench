@@ -15,6 +15,7 @@ Checker kinds:
 - no_tool: no tool call at all, plus `ok`/`forbidden` on the text
 - json_schema: the first JSON object in the answer is valid against `schema` and matches `expected`
 Any case may set `portuguese: true`: the answer must be in Portuguese.
+Every case has a `tier` (easy, medium, hard; METHODOLOGY.md 8.3).
 """
 import hashlib
 import json
@@ -31,6 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CASES = ROOT / "cases"
 USE_CASES = ["coding", "rag", "agent", "chat_pt"]
 KINDS = {"regex", "lines", "summary", "code", "rag", "tool_call", "no_tool", "json_schema"}
+TIERS = ("easy", "medium", "hard")
 PASS_MARK = "__CASE_PASSED__"
 
 
@@ -71,6 +73,8 @@ def load(use_cases=None, context_words=3000, folder=CASES):
             c["use_case"] = uc
             if c["kind"] not in KINDS:
                 raise ValueError(f"{uc}.jsonl:{n}: unknown kind {c['kind']!r}")
+            if c.get("tier") not in TIERS:
+                raise ValueError(f"{uc}.jsonl:{n}: tier must be one of {', '.join(TIERS)}")
             if "tools" in c:
                 reg = reg or tools_registry()
                 c["tool_specs"] = [{"type": "function", "function": reg[t]} for t in c["tools"]]

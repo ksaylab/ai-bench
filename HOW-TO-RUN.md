@@ -114,6 +114,10 @@ python3 -m aibench calibrate --label anchors              # all anchors, all bat
 python3 -m aibench calibration                            # merge into calibration/anchors.csv
 ```
 
+`calibration` also writes the case pruning report, `calibration/pruning.md` (METHODOLOGY.md 8.3): which cases are too
+easy (every anchor passes, the floor included), which are suspect (no ceiling passes) and how many cases each
+battery needs to reach 15 to 20. Edit the batteries by hand and log the change in `cases/CHANGELOG.md`.
+
 `--models` runs a subset of the anchors and `--use-cases` a subset of the batteries. The prices are read from the
 public model list at run time (no key needed for that) and go into `meta.json`.
 

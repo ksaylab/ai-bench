@@ -16,6 +16,10 @@ Relative to the calibration anchors (aibench/calibration.py), when anchor runs e
 - Not calibrated: the battery version's best ceiling scored below CALIBRATED_CEILING_MIN or the floor above
   CALIBRATED_FLOOR_MAX. No Good for / Not good for for anyone on that use case until the battery is fixed.
 They are shown next to the score and never change Good for / Not good for.
+
+Tiers (cases' `tier`): easy_pct, medium_pct and hard_pct per use case. "Good for" is qualified with the tiers the
+model passes (>= threshold), counted from easy up: "(easy only)", "(easy and medium)"; no qualifier when it passes
+every tier present in the battery.
 borderline = the score is less than one case's worth (100 / cases in the battery) away from the threshold: mention it.
 """
 from collections import defaultdict
@@ -28,7 +32,8 @@ CALIBRATED_FLOOR_MAX = 40.0
 LABELS = {"coding": "Coding", "rag": "RAG (answers with sources)", "agent": "Agents / tool calling",
           "chat_pt": "Chat & summaries in Portuguese"}
 SCORE_COLUMNS = ["machine", "model", "use_case", "battery", "passed", "executions", "cases", "runs", "score_pct",
-                 "min_run_pct", "max_run_pct", "unstable_cases", "errors", "threshold_pct", "verdict", "borderline",
+                 "min_run_pct", "max_run_pct", "easy_pct", "medium_pct", "hard_pct", "unstable_cases", "errors",
+                 "threshold_pct", "verdict", "tier_qualifier", "borderline",
                  "ceiling_pct", "floor_pct", "pct_of_ceiling", "normalized", "calibrated", "avg_time_s", "avg_tok_s",
                  "cost_usd"]
 VERDICT_COLUMNS = ["machine", "model"] + [f"{uc}_pct" for uc in GOOD_THRESHOLD] + [
@@ -53,6 +58,34 @@ def relative(score, ref):
     norm = round(100 * (score - floor) / (ceiling - floor), 1) if ceiling != floor else ""
     calibrated = int(ceiling >= CALIBRATED_CEILING_MIN and floor <= CALIBRATED_FLOOR_MAX)
     return ceiling, floor, pct, norm, calibrated
+
+
+TIERS = ("easy", "medium", "hard")
+
+
+def tier_scores(rs):
+    """{tier: score %} for the tiers present in the rows."""
+    out = {}
+    for t in TIERS:
+        xs = [int(r["passed"]) for r in rs if r.get("tier") == t]
+        if xs:
+            out[t] = round(100 * sum(xs) / len(xs), 1)
+    return out
+
+
+def tier_qualifier(tiers, threshold):
+    """"" when every tier present passes; otherwise the tiers passed from easy up, e.g. "easy and medium"."""
+    if not tiers or all(v >= threshold for v in tiers.values()):
+        return ""
+    passed = []
+    for t in TIERS:
+        if t in tiers:
+            if tiers[t] < threshold:
+                break
+            passed.append(t)
+    if not passed:
+        return "mixed tiers"
+    return passed[0] + " only" if len(passed) == 1 else " and ".join(passed)
 
 
 def scores(rows, reference=None):
@@ -83,6 +116,7 @@ def scores(rows, reference=None):
             verdict = "Unstable"
         else:
             verdict = "Good for" if score >= threshold else "Not good for"
+        tiers = tier_scores(rs)
         times = [t for t in (_f(r["time_s"]) for r in rs) if t is not None]
         tps = [t for t in (_f(r["tok_s"]) for r in rs) if t is not None]
         costs = [c for c in (_f(r["cost_usd"]) for r in rs) if c is not None]
@@ -91,6 +125,8 @@ def scores(rows, reference=None):
                     "executions": n,
                     "cases": cases, "runs": len(per_run), "score_pct": score,
                     "min_run_pct": round(min(run_scores), 1), "max_run_pct": round(max(run_scores), 1),
+                    **{f"{t}_pct": tiers.get(t, "") for t in TIERS},
+                    "tier_qualifier": tier_qualifier(tiers, threshold) if verdict == "Good for" else "",
                     "unstable_cases": sum(len(v) > 1 for v in per_case.values()),
                     "errors": errors, "threshold_pct": threshold, "verdict": verdict,
                     "borderline": int(abs(score - threshold) < 100 / max(cases, 1)),
@@ -116,7 +152,8 @@ def verdicts(score_rows):
         for key, label in (("good_for", "Good for"), ("not_good_for", "Not good for"),
                            ("inconclusive", "Inconclusive"), ("unstable", "Unstable"),
                            ("not_calibrated", "Not calibrated")):
-            row[key] = "; ".join(LABELS.get(uc, uc) + (" (borderline)" if s["borderline"] else "")
+            row[key] = "; ".join(LABELS.get(uc, uc) + (f" ({s['tier_qualifier']})" if s.get("tier_qualifier") else "")
+                                 + (" (borderline)" if s["borderline"] else "")
                                  for uc, s in sorted(by.items(), key=lambda kv: _order(kv[0]))
                                  if s["verdict"] == label)
         times = [s["avg_time_s"] for s in ss if s["avg_time_s"] != ""]

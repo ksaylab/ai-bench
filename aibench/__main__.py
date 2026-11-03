@@ -84,7 +84,8 @@ def main(argv=None):
     p.add_argument("--smoke", action="store_true", help="allow fewer than 3 runs; the run cannot be published")
     p.add_argument("--skip-code", action="store_true", help="do not execute code written by the models")
 
-    sub.add_parser("calibration", help="merge the anchor runs into calibration/anchors.csv")
+    sub.add_parser("calibration", help="merge the anchor runs into calibration/anchors.csv and write the case "
+                                       "pruning report (calibration/pruning.md)")
 
     p = sub.add_parser("speed", help="llama-bench (pp and tg) at several context depths")
     p.add_argument("--episode", required=True)
@@ -154,6 +155,7 @@ def main(argv=None):
             for (uc, battery), r in sorted(ref.items()):
                 print(f"{uc:14} {battery}  best ceiling {r['ceiling']:.1f}% ({r['ceiling_model']}), "
                       f"floor {r['floor']:.1f}%")
+            print((path.parent / "pruning.md").read_text(encoding="utf-8"))
         elif a.cmd == "speed":
             if a.gguf:
                 targets = [{"name": a.model or Path(a.gguf).stem, "path": a.gguf}]
@@ -196,7 +198,7 @@ def main(argv=None):
                 print((path.parent / "verdicts.md").read_text(encoding="utf-8"))
         elif a.cmd == "cases":
             for c in cases.load():
-                print(f"{c['use_case']:8} {c['id']:20} {c['kind']}")
+                print(f"{c['use_case']:14} {c['id']:24} {c['tier']:7} {c['kind']}")
     except (run.RunError, client.ClientError, cost.CostError, calibration.CalibrationError, FileNotFoundError,
             ValueError) as e:
         print(f"error: {e}", file=sys.stderr)

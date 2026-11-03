@@ -13,6 +13,25 @@ class TestBatteries(unittest.TestCase):
         for uc in cases.USE_CASES:
             self.assertGreaterEqual(sum(c["use_case"] == uc for c in ALL), 5, uc)
 
+    def test_every_case_has_a_tier(self):
+        for c in ALL:
+            self.assertIn(c["tier"], cases.TIERS, c["id"])
+
+    def test_a_case_without_a_tier_is_refused(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as d:
+            for uc in cases.USE_CASES:
+                (Path(d) / f"{uc}.jsonl").write_text("")
+            (Path(d) / "coding.jsonl").write_text(json.dumps({"id": "x", "kind": "code"}) + "\n")
+            with self.assertRaises(ValueError):
+                cases.load(["coding"], folder=d)
+
+    def test_battery_version_changes_with_the_files_and_the_rag_size(self):
+        self.assertEqual(cases.battery_hash("coding"), cases.battery_hash("coding"))
+        self.assertNotEqual(cases.battery_hash("rag", 3000), cases.battery_hash("rag", 24000))
+        self.assertEqual(cases.battery_hash("coding", 3000), cases.battery_hash("coding", 24000))
+
     def test_ids_are_unique(self):
         ids = [c["id"] for c in ALL]
         self.assertEqual(len(ids), len(set(ids)))

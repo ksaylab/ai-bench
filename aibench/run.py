@@ -2,8 +2,8 @@
 
 Each run goes to episodes/<ep>/results/runs/<YYYY-MM-DD-HHMM>-<machine>-<label>/ with meta.json (parameters),
 env.json (machine), executions.csv (one row per case and run), responses.jsonl (the raw answer of every execution,
-for audit), scores.csv (per use case), verdicts.csv and verdicts.md (Good for / Not good for). `--simulate` answers with the cases' good examples, with no network: it
-exercises the plumbing.
+for audit), scores.csv (per use case), verdicts.csv and verdicts.md (Good for / Not good for). `--simulate` answers
+with the cases' good examples, with no network: it exercises the plumbing.
 """
 import csv
 import json
@@ -16,7 +16,7 @@ from aibench import calibration, cases, client, env, judge, verdict
 ROOT = Path(__file__).resolve().parents[1]
 EPISODES = ROOT / "episodes"
 MIN_RUNS = verdict.MIN_RUNS
-COLUMNS = ["run_id", "machine", "model", "use_case", "case", "rep", "seed", "passed", "reason", "time_s",
+COLUMNS = ["run_id", "machine", "model", "use_case", "case", "tier", "rep", "seed", "passed", "reason", "time_s",
            "prompt_tokens", "completion_tokens", "tok_s", "cost_usd", "finish", "judge_score", "judge_cost_usd",
            "context_words", "battery"]
 
@@ -165,7 +165,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                         except client.ClientError:
                             pass
                     row = {"run_id": run_id, "machine": machine, "model": model, "use_case": c["use_case"],
-                           "case": c["id"], "rep": rep, "seed": "" if seed is None else seed, "passed": int(passed), "reason": reason,
+                           "case": c["id"], "tier": c["tier"], "rep": rep, "seed": "" if seed is None else seed,
+                           "passed": int(passed), "reason": reason,
                            "time_s": r.get("time_s", ""), "prompt_tokens": r.get("prompt_tokens") or "",
                            "completion_tokens": r.get("completion_tokens") or "", "tok_s": r.get("tok_s") or "",
                            "cost_usd": "" if r.get("cost_usd") is None else r["cost_usd"],

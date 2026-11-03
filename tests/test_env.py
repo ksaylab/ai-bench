@@ -40,6 +40,7 @@ class TestEnvRemoteServer(unittest.TestCase):
     def router(self):
         srv = HTTPServer(("127.0.0.1", 0), Router)
         threading.Thread(target=srv.serve_forever, daemon=True).start()
+        self.addCleanup(srv.server_close)
         self.addCleanup(srv.shutdown)
         return f"http://127.0.0.1:{srv.server_port}/v1"
 

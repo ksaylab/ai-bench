@@ -170,26 +170,29 @@ that everyone passes is not.
 
 ### 8.3 Difficulty tiers and battery size
 
-- **Planned:** a `tier` field (`easy`, `medium`, `hard`) on every case in `cases/*.jsonl`, checked by
-  `tests/test_cases.py` like `example_good` and `example_bad`. `scores.csv` gets one score per tier
-  (`easy_pct`, `medium_pct`, `hard_pct`) next to the overall `score_pct`.
+- A `tier` field (`easy`, `medium`, `hard`) on every case in `cases/*.jsonl` (implemented): `cases.load` refuses
+  a case without one and `tests/test_cases.py` checks it like `example_good` and `example_bad`. `executions.csv`
+  has a `tier` column and `scores.csv` one score per tier (`easy_pct`, `medium_pct`, `hard_pct`) next to the
+  overall `score_pct`.
 - Rough meaning: **easy** = a small local model should pass; **medium** = needs real skill (multi-step logic,
   several constraints at once, longer context); **hard** = ceiling anchors pass and small models usually do not
   (edge cases in the hidden tests, distractor passages, ambiguous tool choice, long schemas).
 - **Target: 15 to 20 cases per use case** (today 6 to 8), roughly one third per tier. With 18 cases one case is
   worth 5.6 points instead of 12 to 17. All new cases follow section 1: synthetic, written for this repository,
   with `example_good` and `example_bad`.
-- The current 27 cases are tagged first (most are expected to be `easy`); new cases go mainly into `medium` and
-  `hard`.
+- The current 27 cases are tagged (best effort, before any anchor run: 11 easy, 15 medium, 1 hard); new cases go
+  mainly into `medium` and `hard`. `python3 -m aibench cases` lists them with their tier.
 
-**Discrimination check (case pruning).** After the anchors and the floor run a new battery version, every case is
-looked at once:
+**Discrimination check (case pruning, implemented).** After the anchors and the floor run a new battery version,
+`python3 -m aibench calibration` writes `calibration/pruning.csv` (one row per case: each anchor's passed/executions
+and the suggested action) and `calibration/pruning.md` (per use case: cases, tiers, flagged cases, how many are kept
+and how far the battery is from the 15 to 20 target). Every case is looked at once:
 
 | Result over all repeats | Action |
 | --- | --- |
-| All ceiling anchors **and** the floor pass | Too easy: removed, or rewritten harder. It cannot separate anyone. |
-| No ceiling anchor passes | Reviewed: most likely a wrong expected value, a too strict checker or an ambiguous prompt. Fixed or removed. |
-| Ceiling anchors disagree with each other on every repeat | Reviewed: check the prompt is unambiguous. |
+| All ceiling anchors **and** the floor pass, on every repeat (`too_easy`) | Too easy: removed, or rewritten harder. It cannot separate anyone. |
+| No ceiling anchor passes on any repeat (`suspect`) | Reviewed: most likely a wrong expected value, a too strict checker or an ambiguous prompt. Fixed or removed. |
+| One ceiling passes every repeat and another fails every repeat (`ceilings_disagree`) | Reviewed: check the prompt is unambiguous. |
 
 - The check uses **only the anchors and the floor, never the local contestants**, so the battery is not tuned to
   make a particular local model look good or bad.
@@ -198,7 +201,8 @@ looked at once:
   `meta.json` (`battery`) and in the `battery` column of `executions.csv` and `scores.csv`; `verdict` refuses to
   merge runs made with different versions of the same battery, and the anchors are only matched on the same
   version.
-- Removed cases and the reason go into a short changelog in `cases/` (**Planned**), so the pruning is public.
+- Removed cases and the reason go into [`cases/CHANGELOG.md`](cases/CHANGELOG.md), so the pruning is public. The
+  tool only suggests: a person edits the battery and the changelog.
 
 ### 8.4 Reproducibility
 
@@ -273,9 +277,10 @@ OpenRouter anchors:
   `aibench/verdict.py`; `calibrated` column in `scores.csv`: 1, 0, or empty when there are no anchor runs for that
   battery version yet). Otherwise that use case is shown as **Not calibrated** for every model and the battery goes
   back to 8.3. (The 90% / 40% values are a starting point, to be reviewed after the first anchor run.)
-- **The verdict says up to which tier (Planned):** "Good for" is qualified with the highest tier where the model
-  scores ≥ 80%, e.g. "Good for coding (easy and medium)". A model that is ≥ 80% overall only because of the easy
-  tier gets "Good for coding (easy only)".
+- **The verdict says up to which tier (implemented):** "Good for" is qualified with the tiers, counted from easy up,
+  where the model scores ≥ 80% (`tier_qualifier` in `scores.csv`), e.g. "Good for coding (easy and medium)". A model
+  that is ≥ 80% overall only because of the easy tier gets "Good for coding (easy only)". No qualifier when it passes
+  every tier present in the battery.
 - **Stable** (8.4): the verdict is published only if every repeat falls on the same side of the threshold.
 - `pct_of_ceiling` and `normalized` (8.2) are shown next to the score, never instead of it, and do not change the
   verdict.

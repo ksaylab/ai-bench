@@ -109,7 +109,8 @@ def check(terms, use_gitleaks=True, log=print):
                         "--redact -v` to see it)")
                     problems += 1
         else:
-            log("  warning: gitleaks is not installed (https://github.com/gitleaks/gitleaks); only the built-in check ran")
+            log("  warning: gitleaks is not installed (https://github.com/gitleaks/gitleaks); only the built-in check "
+                "ran")
     return problems
 
 

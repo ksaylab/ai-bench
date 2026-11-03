@@ -44,6 +44,53 @@ class TestRelativeScores(unittest.TestCase):
         self.assertEqual((s["pct_of_ceiling"], s["calibrated"]), ("", ""))  # other battery version: no reference
 
 
+class TestTiersAndPruning(unittest.TestCase):
+    def rows(self, results):
+        """results: {(model, role): {case: [passed per repeat]}}"""
+        out = []
+        for (model, role), by_case in results.items():
+            for case, reps in by_case.items():
+                for rep, p in enumerate(reps):
+                    out.append({"run_id": "r", "machine": "openrouter", "model": model, "role": role,
+                                "use_case": "coding", "case": case, "tier": "easy", "rep": rep, "passed": p,
+                                "battery": "b1"})
+        return out
+
+    def test_discrimination_check(self):
+        rows = self.rows({
+            ("c1", "ceiling"): {"easy": [1, 1, 1], "broken": [0, 0, 0], "split": [1, 1, 1], "good": [1, 1, 0]},
+            ("c2", "ceiling"): {"easy": [1, 1, 1], "broken": [0, 0, 0], "split": [0, 0, 0], "good": [1, 1, 1]},
+            ("f", "floor"): {"easy": [1, 1, 1], "broken": [0, 0, 0], "split": [0, 0, 0], "good": [0, 1, 0]}})
+        battery = [{"use_case": "coding", "id": i, "tier": "easy"} for i in ("easy", "broken", "split", "good")]
+        per_case, summary = calibration.pruning(rows, battery)
+        actions = {r["case"]: r["action"] for r in per_case}
+        self.assertEqual(actions, {"easy": "too_easy", "broken": "suspect", "split": "ceilings_disagree",
+                                   "good": "keep"})
+        self.assertEqual((summary["coding"]["kept"], summary["coding"]["too_easy"]), (2, 1))
+        self.assertIn("add 13 to 18", summary["coding"]["advice"])
+        md = calibration.pruning_markdown(per_case, summary)
+        self.assertIn("`broken`", md)
+        self.assertNotIn("`good`", md)
+
+    def test_only_anchor_results_decide(self):
+        self.assertEqual(calibration.classify({"local": ("", 3, 3)})[0], "")
+
+    def test_scores_per_tier_and_the_tier_qualifier(self):
+        rows = []
+        for rep in range(3):
+            for i, tier in enumerate(["easy"] * 6 + ["medium"] * 3 + ["hard"] * 1):
+                rows.append({"run_id": "r", "machine": "m", "model": "x", "use_case": "coding", "case": f"c{i}",
+                             "tier": tier, "rep": rep, "passed": int(tier != "hard" and not (tier == "medium" and
+                                                                                             i == 6)),
+                             "reason": "", "time_s": 1, "tok_s": 1, "cost_usd": ""})
+        s = verdict.scores(rows)[0]
+        self.assertEqual((s["easy_pct"], s["medium_pct"], s["hard_pct"]), (100.0, 66.7, 0.0))
+        self.assertEqual((s["score_pct"], s["verdict"], s["tier_qualifier"]), (80.0, "Good for", "easy only"))
+        self.assertEqual(verdict.verdicts([s])[0]["good_for"], "Coding (easy only) (borderline)")
+        self.assertEqual(verdict.tier_qualifier({"easy": 100.0, "medium": 90.0, "hard": 50.0}, 80), "easy and medium")
+        self.assertEqual(verdict.tier_qualifier({"easy": 100.0, "medium": 90.0}, 80), "")
+
+
 class Models(BaseHTTPRequestHandler):
     def do_GET(self):
         data = json.dumps({"data": [{"id": "ceil-a", "pricing": {"prompt": "0.0000016", "completion": "0.0000032"},
