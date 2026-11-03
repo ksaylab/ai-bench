@@ -213,7 +213,8 @@ def pruning_markdown(per_case, summary, reference_note=""):
         tiers = " / ".join(str(s["tiers"].get(t, 0)) for t in ("easy", "medium", "hard"))
         lines.append(f"| `{uc}` | {s['cases']} | {tiers} | {s['checked']} | {s['too_easy']} | {s['suspect']} | "
                      f"{s['ceilings_disagree']} | {s['kept']} | {s['advice']} |")
-    flagged = [r for r in per_case if r["action"] not in ("keep", "")]
+    from aibench.cases import REFERENCE_USE_CASES
+    flagged = [r for r in per_case if r["action"] not in ("keep", "") and r["use_case"] not in REFERENCE_USE_CASES]
     lines += ["", "## Cases to act on", ""]
     if not flagged:
         lines.append("None (or no anchor run yet)." if not per_case else "None: every checked case discriminates.")
