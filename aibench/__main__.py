@@ -80,7 +80,8 @@ def main(argv=None):
     p.add_argument("--url", help="OpenRouter-compatible address (default: OpenRouter)")
     p.add_argument("--use-cases", help=f"comma separated, from {','.join(cases.USE_CASES)} (default: all)")
     p.add_argument("--context-words", type=int, default=3000, help="size of the long RAG documents")
-    p.add_argument("--max-tokens", type=int, default=8192)
+    p.add_argument("--max-tokens", type=int, default=32768,
+                   help="room to reason: a ceiling cut at the limit fails for lack of room, not of skill")
     p.add_argument("--label", default="anchors")
     p.add_argument("--simulate", action="store_true", help="no network: answer with the cases' examples")
     p.add_argument("--smoke", action="store_true", help="allow fewer than 3 runs; the run cannot be published")

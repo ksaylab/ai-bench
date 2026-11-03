@@ -171,6 +171,15 @@ class TestAnchorRuns(unittest.TestCase):
         self.assertEqual(meta["anchors"]["ceil-a"]["reasoning"], {"effort": "max"})
         self.assertNotIn("reasoning", meta["anchors"]["floor-x"])
 
+    def test_calibrate_gives_the_anchors_room_to_reason(self):
+        # the first anchor run cut deepseek-v4-pro at 8192 tokens while it reasoned on humaneval_129: a cut ceiling
+        # fails for lack of room, not of skill, and lowers the ruler of every battery
+        from aibench import __main__ as cli
+        with mock.patch("sys.stdout"):
+            cli.main(["calibrate", "--simulate", "--use-cases", "coding", "--models", "z-ai/glm-5.3-flash"])
+        meta = json.loads(next((self.tmp / "calibration" / "runs").glob("*/meta.json")).read_text())
+        self.assertEqual(meta["max_tokens"], 32768)
+
     def test_unknown_reasoning_keys_are_refused(self):
         with self.assertRaises(run.RunError):
             run.run(None, "openrouter", ["ceil-a"], use_cases={"coding"}, simulate=True,

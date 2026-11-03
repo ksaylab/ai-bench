@@ -246,6 +246,11 @@ and how far the battery is from the 15 to 20 target). Every case is looked at on
   `deepseek/deepseek-v4-pro` (DeepSeek's API default; Think Max needs its own system prompt and a 384K context).
   The floor has none: its only endpoint does not take `reasoning`, and with `require_parameters` sending it would
   leave no provider. `meta.json` records it (`anchors.<model>.reasoning`); unknown keys are refused.
+  The anchors also get more room: `calibrate` defaults to `--max-tokens 32768` (8192 for `run`). In the first anchor
+  run, 4 of the 333 answers were cut at 8192 while still reasoning (`deepseek/deepseek-v4-pro` on `humaneval_129`
+  twice and `humaneval_46`, `z-ai/glm-5.3-flash` on `parse_duration`); a cut ceiling fails for lack of room, not
+  of skill, and lowers the ruler of the whole battery. Only the cases that reason long use the extra room, so the
+  cost barely changes.
 - The `seed` is fixed per repeat: base seed + repeat number (`run.rep_seed`), recorded in the `seed` column of
   `executions.csv` and in `meta.json`, so a repeat is reproducible on the same build and GGUF, while the repeats
   still differ from each other.
