@@ -117,7 +117,7 @@ input / output tokens on that date):
 | --- | --- | --- | --- |
 | Ceiling | `deepseek/deepseek-v4-pro` | 1.60 / 3.20 | Approved |
 | Ceiling | `z-ai/glm-5.3-flash` | 0.0313 / 0.0846 | Approved |
-| Floor | `mistralai/ministral-3b-2512` | 0.10 / 0.10 | Suggested, to be confirmed |
+| Floor | `mistralai/ministral-3b-2512` | 0.10 / 0.10 | Approved |
 
 All three accept `temperature`, `top_p`, `seed` and tool calling, so every anchor runs with pinned parameters (8.4).
 
