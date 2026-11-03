@@ -69,6 +69,23 @@ class FakeServer(BaseHTTPRequestHandler):
         pass
 
 
+class NoEndpoint(BaseHTTPRequestHandler):
+    """OpenRouter when routing leaves no provider: 404 with the reason in the JSON body."""
+    def do_POST(self):
+        self.rfile.read(int(self.headers["Content-Length"]))
+        data = json.dumps({"error": {"code": 404, "message": "No endpoints found for x/y. Every candidate endpoint "
+                                     "was removed during routing: Filter by Ignored Providers removed host/fp8"
+                                     + " padding" * 100}}).encode()
+        self.send_response(404)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+    def log_message(self, *a):
+        pass
+
+
 def stream_chunks(msg, usage):
     """The message split into OpenAI-style deltas: the text in two parts, each tool call's arguments in two parts."""
     text = msg.get("content") or ""
@@ -259,6 +276,18 @@ class TestRun(unittest.TestCase):
         for stream in (False, True):
             with self.subTest(stream=stream):
                 self.assertEqual(client.chat(url, "m1", cases.messages(case), stream=stream)["provider"], "FakeHost")
+
+    def test_an_http_error_keeps_the_api_message_short(self):
+        srv = HTTPServer(("127.0.0.1", 0), NoEndpoint)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        self.addCleanup(srv.server_close)
+        self.addCleanup(srv.shutdown)
+        with self.assertRaises(client.ClientError) as e:
+            client.chat(f"http://127.0.0.1:{srv.server_port}/v1", "x/y", [{"role": "user", "content": "hi"}])
+        msg = str(e.exception)
+        self.assertTrue(msg.startswith("HTTP 404: No endpoints found for x/y."), msg)
+        self.assertIn("Ignored Providers", msg)
+        self.assertLessEqual(len(msg), 300)
 
     def test_a_model_without_pinned_sampling_needs_smoke(self):
         with self.assertRaises(run.RunError):

@@ -34,6 +34,19 @@ class ClientError(Exception):
     pass
 
 
+def _http_error(e, limit=300):
+    """"HTTP <code>: <the API's message>", cut to `limit` characters: OpenRouter says why routing failed (e.g. which
+    filter removed the pinned provider) in the JSON body, which a bare status code would lose."""
+    try:
+        body = json.loads(e.read() or b"{}")
+        err = body.get("error") if isinstance(body, dict) else None
+        detail = err.get("message", "") if isinstance(err, dict) else str(err or "")
+    except (ValueError, OSError, AttributeError):
+        detail = ""
+    text = f"HTTP {e.code}: {' '.join(detail.split())}" if detail else f"HTTP {e.code}"
+    return text if len(text) <= limit else text[:limit - 1] + "…"
+
+
 def sampling_body(sampling):
     """The request-body part of a sampling table: only the known keys (`source`, `card`... are documentation)."""
     return {k: sampling[k] for k in SAMPLING_KEYS if k in (sampling or {})}
@@ -175,7 +188,7 @@ def chat(url, model, messages, key=None, max_tokens=8192, temperature=None, tool
                     resp, ttft = json.load(r), None
             break
         except urllib.error.HTTPError as e:
-            last = f"HTTP {e.code}"
+            last = _http_error(e)
             if e.code < 500 and e.code != 429:
                 raise ClientError(last) from None
         except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException) as e:
