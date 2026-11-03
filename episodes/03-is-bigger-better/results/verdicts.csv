@@ -1,4 +1,1 @@
 machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,good_for,not_good_for,inconclusive,runs,avg_time_s,cost_usd
-pc-rtx2060,gemma4-e4b,100.0,100.0,100.0,94.4,Coding; RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese (borderline),,,3,4.03,
-pc-rtx2060,neohorse-4b,100.0,95.8,85.7,94.4,Coding; RAG (answers with sources); Agents / tool calling (borderline); Chat & summaries in Portuguese (borderline),,,3,16.2,
-pc-rtx2060,ornith1.5-9b,83.3,62.5,95.2,94.4,Coding (borderline); Agents / tool calling; Chat & summaries in Portuguese (borderline),RAG (answers with sources),,3,6.39,

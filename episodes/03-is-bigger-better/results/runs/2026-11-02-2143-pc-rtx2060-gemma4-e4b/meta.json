@@ -47,12 +47,14 @@
   "smoke": false,
   "simulated": false,
   "max_tokens": 8192,
-  "publishable": true,
+  "publishable": false,
   "thresholds_pct": {
     "coding": 80.0,
     "rag": 80.0,
     "agent": 80.0,
     "chat_pt": 80.0
   },
-  "end": "2026-11-02T21:49:01"
+  "end": "2026-11-02T21:49:01",
+  "status": "pilot",
+  "status_note": "Pilot run before calibration (METHODOLOGY.md section 8): no pinned sampling, uncalibrated battery. Not publishable."
 }

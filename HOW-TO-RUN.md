@@ -14,7 +14,8 @@ python3 -m aibench cases                     # list the batteries
 ```
 
 `--simulate` answers with the cases' good examples (and gets one coding run wrong on purpose): it shows the folders,
-CSVs and the verdict table. Simulated and smoke runs stay out of git and out of `verdict`.
+CSVs and the verdict table. Simulated and smoke runs stay out of git and out of `verdict`; so do pilot runs
+(`"status": "pilot"` in `meta.json`, like the 2026-11-02 runs). `verdict` prints each run it skips and why.
 
 ## What each command does
 

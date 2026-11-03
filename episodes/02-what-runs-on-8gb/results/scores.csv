@@ -1,13 +1,1 @@
 machine,model,use_case,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,errors,threshold_pct,verdict,borderline,avg_time_s,avg_tok_s,cost_usd
-pc-rtx2060,gemma4-e4b,agent,21,21,7,3,100.0,100.0,100.0,0,80.0,Good for,0,1.51,104.28,
-pc-rtx2060,gemma4-e4b,chat_pt,16,18,6,3,88.9,83.3,100.0,0,80.0,Good for,1,5.66,103.85,
-pc-rtx2060,gemma4-e4b,coding,16,18,6,3,88.9,66.7,100.0,0,80.0,Good for,1,9.95,106.18,
-pc-rtx2060,gemma4-e4b,rag,22,24,8,3,91.7,75.0,100.0,0,80.0,Good for,1,2.77,97.58,
-pc-rtx2060,neohorse-4b,agent,20,21,7,3,95.2,85.7,100.0,0,80.0,Good for,0,4.81,69.12,
-pc-rtx2060,neohorse-4b,chat_pt,18,18,6,3,100.0,100.0,100.0,0,80.0,Good for,0,35.95,76.01,
-pc-rtx2060,neohorse-4b,coding,14,18,6,3,77.8,66.7,83.3,0,80.0,Not good for,1,22.06,75.44,
-pc-rtx2060,neohorse-4b,rag,21,24,8,3,87.5,62.5,100.0,0,80.0,Good for,1,4.78,61.25,
-pc-rtx2060,ornith1.5-9b,agent,19,21,7,3,90.5,85.7,100.0,0,80.0,Good for,1,1.56,62.94,
-pc-rtx2060,ornith1.5-9b,chat_pt,18,18,6,3,100.0,100.0,100.0,0,80.0,Good for,0,6.69,65.74,
-pc-rtx2060,ornith1.5-9b,coding,15,18,6,3,83.3,66.7,100.0,0,80.0,Good for,1,17.12,67.87,
-pc-rtx2060,ornith1.5-9b,rag,15,24,8,3,62.5,62.5,62.5,0,80.0,Not good for,0,2.44,44.25,

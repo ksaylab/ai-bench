@@ -135,7 +135,7 @@ def main(argv=None):
             if a.example or any(r["data_status"] != "CONFIRMED" for r in rows):
                 print("\nWARNING: some prices are not CONFIRMED: do not publish these numbers.", file=sys.stderr)
         elif a.cmd == "verdict":
-            path, n, v = run.consolidate(a.episode)
+            path, n, v = run.consolidate(a.episode, log=lambda m: print(m, file=sys.stderr))
             print(f"{n} publishable executions → {_rel(path)}")
             if v:
                 print((path.parent / "verdicts.md").read_text(encoding="utf-8"))

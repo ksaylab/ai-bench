@@ -98,9 +98,18 @@ the runs are pilot runs and are not published.
 - **OpenRouter models are calibration anchors only** (target `openrouter`). They are never "local" contestants and
   never get a Good for / Not good for verdict of their own in an episode table; they appear only as the reference
   line. Episode 3 no longer has an OpenRouter pair.
-- **Simulated and dry-run data never go into results.** `--simulate` and `--smoke` runs already write
-  `"publishable": false` in `meta.json`, `verdict` (`run.consolidate`) skips them and `.gitignore` keeps them out of
-  git. Their numbers (perfect scores, 0.01 s per case) are plumbing checks, not measurements.
+- **Simulated and dry-run data never go into results.** `--simulate` and `--smoke` runs write
+  `"publishable": false` in `meta.json` and `.gitignore` keeps them out of git. `verdict` (`run.excluded` in
+  `run.consolidate`) skips a run folder when its `meta.json` is not publishable, says `simulated`, `smoke` or
+  `"status": "pilot"`, when the folder name ends in `-simulated` or `-smoke` (so a hand-edited `meta.json` cannot
+  bring one back), when its machine is not a current target (for example the old `mac-m5`) and when it ran on
+  `openrouter` (anchors live in `calibration/`, 8.2). It prints every skipped folder and why. This covers the local
+  dry run `2026-11-02-2048-mac-m5-dry-run-simulated` in episode 3: it is simulated, untracked and never merged; delete
+  it from the working copy when convenient. Simulated numbers (perfect scores, 0.01 s per case) are plumbing checks,
+  not measurements.
+- **The 2026-11-02 runs on the PC are pilot runs, not publishable.** Their `meta.json` has `"publishable": false` and
+  `"status": "pilot"`; they stay in `results/runs/` for reference (they motivated this section), and the episode's
+  merged `results/*.csv` and `verdicts.md` no longer include them.
 
 ### 8.2 Anchors
 
@@ -253,5 +262,5 @@ OpenRouter anchors:
 4. Commit e-mails are GitHub noreply addresses.
 5. Prices have a source and a date, with `status` CONFIRMED.
 6. Every number in the video points to a CSV in this repository.
-7. No simulated, smoke or pilot run in the results; once section 8 is implemented, the battery is calibrated and
+7. No simulated, smoke or pilot run in the results (`verdict` lists what it skipped); once section 8 is implemented, the battery is calibrated and
    every published verdict is stable across repeats.

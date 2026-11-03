@@ -82,6 +82,32 @@ class TestRun(unittest.TestCase):
         self.assertIn("Not good for", (d / "verdicts.md").read_text() + "Not good for")
         self.assertEqual(run.consolidate("99-test")[1], 0)
 
+    def test_simulated_pilot_and_mac_runs_never_reach_the_results(self):
+        good = run.run("99-test", "pc-rtx2060", ["a"], simulate=True, **QUIET)
+        runs = good.parent
+        for name, patch in (("2026-11-02-2048-mac-m5-dry-run-simulated", {"machine": "mac-m5"}),
+                            ("2026-11-02-2049-pc-rtx2060-x-simulated", {}),
+                            ("2026-11-02-2050-pc-rtx2060-pilot", {"status": "pilot"}),
+                            ("2026-11-02-2051-mac-m5-old", {"machine": "mac-m5"}),
+                            ("2026-11-02-2052-openrouter-anchor", {"machine": "openrouter"})):
+            d = runs / name
+            shutil.copytree(good, d)
+            meta = json.loads((d / "meta.json").read_text())
+            # even a hand-edited meta.json that claims to be publishable is refused
+            meta.update({"publishable": True, "simulated": False, "smoke": False, **patch})
+            (d / "meta.json").write_text(json.dumps(meta))
+        skipped = []
+        self.assertEqual(run.consolidate("99-test", log=skipped.append)[1], 0)
+        self.assertEqual(len(skipped), 6, skipped)
+
+    def test_the_pilot_runs_in_the_repository_are_not_publishable(self):
+        metas = list(run.ROOT.glob("episodes/*/results/runs/2026-11-02-*/meta.json"))
+        self.assertTrue(metas)
+        for m in metas:
+            meta = json.loads(m.read_text(encoding="utf-8"))
+            self.assertEqual((meta["status"], meta["publishable"]), ("pilot", False), m.parent.name)
+            self.assertTrue(run.excluded(meta, m.parent))
+
     def test_fewer_than_3_runs_only_with_smoke(self):
         with self.assertRaises(run.RunError):
             run.run("99-test", "pc-rtx2060", ["a"], runs=1, simulate=True, **QUIET)

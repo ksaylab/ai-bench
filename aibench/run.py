@@ -127,12 +127,39 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
     return dest
 
 
-def consolidate(episode):
+NOT_PUBLISHABLE_SUFFIXES = ("-simulated", "-smoke")
+
+
+def excluded(meta, folder):
+    """Why a run folder must stay out of the results ("" = it can be merged). A run is merged only when its meta.json
+    says publishable, it is not simulated, smoke or pilot (by meta.json AND by folder name, so a hand-edited meta.json
+    cannot sneak a dry run in), and it ran on a known local or rented target (OpenRouter runs are calibration anchors,
+    never episode contestants)."""
+    name = Path(folder).name
+    if meta.get("simulated") or name.endswith("-simulated") or "-simulated-" in name:
+        return "simulated"
+    if meta.get("smoke") or any(name.endswith(s) or s + "-" in name for s in NOT_PUBLISHABLE_SUFFIXES):
+        return "smoke"
+    if meta.get("status") == "pilot":
+        return "pilot"
+    if not meta.get("publishable"):
+        return "not publishable"
+    if meta.get("machine") not in client.TARGETS:
+        return f"unknown machine {meta.get('machine')!r}"
+    if meta.get("machine") == "openrouter":
+        return "OpenRouter runs are calibration anchors, not contestants"
+    return ""
+
+
+def consolidate(episode, log=None):
     """Merges the episode's publishable runs into results/executions.csv, scores.csv, verdicts.csv and verdicts.md."""
     folder = EPISODES / episode / "results"
     rows = []
     for meta in sorted(folder.glob("runs/*/meta.json")):
-        if not json.loads(meta.read_text(encoding="utf-8")).get("publishable"):
+        why = excluded(json.loads(meta.read_text(encoding="utf-8")), meta.parent)
+        if why:
+            if log:
+                log(f"skipped {meta.parent.name}: {why}")
             continue
         with open(meta.parent / "executions.csv", encoding="utf-8") as f:
             rows += list(csv.DictReader(f))
@@ -141,4 +168,6 @@ def consolidate(episode):
     if not rows:
         write_csv(folder / "scores.csv", verdict.SCORE_COLUMNS, [])
         write_csv(folder / "verdicts.csv", verdict.VERDICT_COLUMNS, [])
+        (folder / "verdicts.md").write_text("No publishable runs yet (pilot, simulated and smoke runs are left out; "
+                                            "see METHODOLOGY.md).\n", encoding="utf-8")
     return folder / "verdicts.csv", len(rows), v
