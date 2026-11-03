@@ -13,13 +13,13 @@ OPENROUTER = "https://openrouter.ai/api/v1"
 # Known targets. url None = --url or AIBENCH_URL is required (the LAN address of a PC does not belong in a public
 # repository). Default ports: llama-server 8080, Ollama 11434.
 TARGETS = {
-    "mac-m5": {"url": "http://localhost:8080/v1", "key_env": None,
-               "description": "Mac M5 16 GB, local llama-server (or Ollama: --url http://localhost:11434/v1)"},
     "pc-rtx2060": {"url": None, "key_env": None,
-                   "description": "PC with an RTX 2060 Super 8 GB, llama-server on the LAN (set AIBENCH_URL)"},
+                   "description": "PC with an RTX 2060 Super 8 GB, llama-server on the LAN or on the PC itself "
+                                  "(set AIBENCH_URL, e.g. http://localhost:8080/v1 when running on the PC)"},
     "runpod": {"url": "http://localhost:8080/v1", "key_env": "AIBENCH_SERVER_KEY",
                "description": "RunPod pod running llama-server, through an ssh tunnel on local port 8080"},
-    "openrouter": {"url": OPENROUTER, "key_env": "OPENROUTER_API_KEY", "description": "cloud models (paid)"},
+    "openrouter": {"url": OPENROUTER, "key_env": "OPENROUTER_API_KEY",
+                   "description": "cloud models (paid): calibration anchors and the optional judge only"},
 }
 
 

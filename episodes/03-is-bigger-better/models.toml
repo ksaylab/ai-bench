@@ -1,33 +1,33 @@
 # Models for "Is a bigger model better?": small x large pairs on the SAME hardware. `pair` groups the comparison.
-# `name`: what the server receives in "model" (llama-server preset, Ollama tag or OpenRouter id).
+# `name`: what the server receives in "model" (llama-server preset or Ollama tag).
 
 [[model]]
 name = "neohorse-4b"
 gguf = "NeoHorse-1-4B.i1-Q4_K_M.gguf"
 pair = "4b-vs-35b"
 group = "small"
-machines = ["mac-m5", "pc-rtx2060"]
+machines = ["pc-rtx2060"]
 
 [[model]]
 name = "qwen3.6-35b-a3b"
 gguf = "Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf"
 pair = "4b-vs-35b"
 group = "large"
-machines = ["mac-m5", "pc-rtx2060"]
+machines = ["pc-rtx2060"]
 
 [[model]]
 name = "gemma4-e4b"
 gguf = "gemma-4-E4B_q4_0-it.gguf"
 pair = "e4b-vs-9b"
 group = "small"
-machines = ["mac-m5", "pc-rtx2060"]
+machines = ["pc-rtx2060"]
 
 [[model]]
 name = "ornith1.5-9b"
 gguf = "Ornith-1.5-9B-Q4_K_M.gguf"
 pair = "e4b-vs-9b"
 group = "large"
-machines = ["mac-m5", "pc-rtx2060"]
+machines = ["pc-rtx2060"]
 
 [[model]]
 name = "gemma4-12b"
@@ -43,15 +43,4 @@ pair = "12b-vs-27b"
 group = "large"
 machines = ["runpod"]
 
-# In the cloud (paid): the same family at two sizes. Suggested judge: a model from another family.
-[[model]]
-name = "qwen/qwen3.8-flash"
-pair = "cloud-flash-vs-27b"
-group = "small"
-machines = ["openrouter"]
-
-[[model]]
-name = "qwen/qwen3.8-27b"
-pair = "cloud-flash-vs-27b"
-group = "large"
-machines = ["openrouter"]
+# No OpenRouter contestants: cloud models are calibration anchors only (anchors.toml, METHODOLOGY.md 8.1).

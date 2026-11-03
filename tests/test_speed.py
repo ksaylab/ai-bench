@@ -46,7 +46,7 @@ class TestSpeed(unittest.TestCase):
     def test_measure_with_a_fake_llama_bench(self):
         (self.tmp / "out.json").write_text(json.dumps(OUTPUT))
         with self.fake(f"cat {self.tmp / 'out.json'}\n"):
-            rows = speed.measure("mac-m5", "m", self.gguf, [0, 16384], 3)
+            rows = speed.measure("pc-rtx2060", "m", self.gguf, [0, 16384], 3)
         self.assertEqual(len(rows), 2)
         self.assertTrue(all(r["status"] == "ok" for r in rows))
 

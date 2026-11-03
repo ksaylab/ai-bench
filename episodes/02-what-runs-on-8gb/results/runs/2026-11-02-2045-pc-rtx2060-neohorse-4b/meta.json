@@ -1,9 +1,9 @@
 {
-  "run_id": "2026-11-02-2106-pc-rtx2060-gemma4-e4b",
-  "episode": "02-what-runs-on-16gb-and-8gb",
+  "run_id": "2026-11-02-2045-pc-rtx2060-neohorse-4b",
+  "episode": "02-what-runs-on-8gb",
   "machine": "pc-rtx2060",
   "models": [
-    "gemma4-e4b"
+    "neohorse-4b"
   ],
   "runs": 3,
   "use_cases": [
@@ -43,7 +43,7 @@
   ],
   "context_words": 3000,
   "judge": "",
-  "start": "2026-11-02T21:06:47",
+  "start": "2026-11-02T20:45:46",
   "smoke": false,
   "simulated": false,
   "max_tokens": 8192,
@@ -54,5 +54,5 @@
     "agent": 80.0,
     "chat_pt": 80.0
   },
-  "end": "2026-11-02T21:13:07"
+  "end": "2026-11-02T21:06:47"
 }

@@ -74,7 +74,7 @@ class TestRun(unittest.TestCase):
         return f"http://127.0.0.1:{srv.server_port}/v1"
 
     def test_simulated_run_writes_everything_and_is_not_publishable(self):
-        d = run.run("99-test", "mac-m5", ["a", "b"], simulate=True, **QUIET)
+        d = run.run("99-test", "pc-rtx2060", ["a", "b"], simulate=True, **QUIET)
         self.assertEqual(len(read(d / "executions.csv")), 2 * 3 * len(cases.load()))
         self.assertFalse(json.loads((d / "meta.json").read_text())["publishable"])
         v = read(d / "verdicts.csv")
@@ -84,8 +84,8 @@ class TestRun(unittest.TestCase):
 
     def test_fewer_than_3_runs_only_with_smoke(self):
         with self.assertRaises(run.RunError):
-            run.run("99-test", "mac-m5", ["a"], runs=1, simulate=True, **QUIET)
-        d = run.run("99-test", "mac-m5", ["a"], runs=1, simulate=True, smoke=True, **QUIET)
+            run.run("99-test", "pc-rtx2060", ["a"], runs=1, simulate=True, **QUIET)
+        d = run.run("99-test", "pc-rtx2060", ["a"], runs=1, simulate=True, smoke=True, **QUIET)
         self.assertTrue(d.name.endswith("-smoke-simulated"))
         self.assertEqual(read(d / "verdicts.csv")[0]["inconclusive"].count(";"), 3)  # all four use cases
 
@@ -99,6 +99,13 @@ class TestRun(unittest.TestCase):
         with self.assertRaises(client.ClientError):
             client.resolve_target("openrouter", env={})
         self.assertEqual(client.resolve_target("openrouter", env={"OPENROUTER_API_KEY": "k"})[1], "k")
+
+    def test_local_contestants_run_only_on_the_pc(self):
+        import tomllib
+        self.assertNotIn("mac-m5", client.TARGETS)
+        for path in run.ROOT.glob("episodes/*/models.toml"):
+            for m in tomllib.loads(path.read_text(encoding="utf-8")).get("model", []):
+                self.assertTrue(set(m["machines"]) <= {"pc-rtx2060", "runpod"}, (path.parent.name, m["name"]))
 
     def test_aibench_url_never_redirects_the_openrouter_key(self):
         env = {"OPENROUTER_API_KEY": "k", "AIBENCH_URL": "http://other/v1"}

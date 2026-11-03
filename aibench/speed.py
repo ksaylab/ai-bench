@@ -39,7 +39,7 @@ def measure(machine, model, gguf, depths=(0, 16384), repetitions=3, timeout=3600
     if repetitions < 3:
         raise ValueError("the methodology requires at least 3 repetitions")
     if not shutil.which("llama-bench"):
-        raise FileNotFoundError("llama-bench not found (Mac: brew install llama.cpp)")
+        raise FileNotFoundError("llama-bench not found (install llama.cpp built with CUDA)")
     if not Path(gguf).exists():
         raise FileNotFoundError(f"GGUF not found: {Path(gguf).name}")
     base = {"machine": machine, "gpu": "", "model": model, "gguf": Path(gguf).name,

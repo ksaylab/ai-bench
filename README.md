@@ -17,7 +17,7 @@ Python 3.11+ and the standard library only: nothing to install with pip.
 
 ```bash
 python3 -m unittest discover -s tests -t .                       # free, no network
-python3 -m aibench run --episode 03-is-bigger-better --machine mac-m5 --simulate --label dry-run
+python3 -m aibench run --episode 03-is-bigger-better --machine pc-rtx2060 --simulate --label dry-run
 python3 -m aibench cost --example
 ```
 
@@ -28,7 +28,7 @@ How to run each episode on each machine, with time and cost estimates: [HOW-TO-R
 | # | Folder | Question |
 | --- | --- | --- |
 | 1 | [`episodes/01-buy-or-rent-gpu`](episodes/01-buy-or-rent-gpu/) | Buy or rent a GPU to run AI? |
-| 2 | [`episodes/02-what-runs-on-16gb-and-8gb`](episodes/02-what-runs-on-16gb-and-8gb/) | What runs on 16 GB and on 8 GB? |
+| 2 | [`episodes/02-what-runs-on-8gb`](episodes/02-what-runs-on-8gb/) | What runs on 8 GB? |
 | 3 | [`episodes/03-is-bigger-better`](episodes/03-is-bigger-better/) | Is a bigger model better? |
 
 ## Layout

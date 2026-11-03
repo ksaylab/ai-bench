@@ -1,6 +1,6 @@
 {
   "run_id": "2026-11-02-2113-pc-rtx2060-ornith1.5-9b",
-  "episode": "02-what-runs-on-16gb-and-8gb",
+  "episode": "02-what-runs-on-8gb",
   "machine": "pc-rtx2060",
   "models": [
     "ornith1.5-9b"

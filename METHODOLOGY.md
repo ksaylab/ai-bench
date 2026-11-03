@@ -92,11 +92,12 @@ the runs are pilot runs and are not published.
 ### 8.1 Machines
 
 - **Local contestants run only on the PC with the RTX 2060 Super 8 GB** (Arch Linux, llama.cpp `llama-server`,
-  target `pc-rtx2060`). The Mac M5 is no longer part of any episode. **Planned:** remove `mac-m5` from the
-  `machines` lists in the episodes' `models.toml` and from HOW-TO-RUN.md.
+  target `pc-rtx2060`). The Mac M5 is no longer part of any episode: it is gone from the targets
+  (`aibench/client.py`), from the `machines` lists in the episodes' `models.toml` and from HOW-TO-RUN.md. Episode 2
+  is now `02-what-runs-on-8gb` ("What runs on 8 GB?").
 - **OpenRouter models are calibration anchors only** (target `openrouter`). They are never "local" contestants and
   never get a Good for / Not good for verdict of their own in an episode table; they appear only as the reference
-  line.
+  line. Episode 3 no longer has an OpenRouter pair.
 - **Simulated and dry-run data never go into results.** `--simulate` and `--smoke` runs already write
   `"publishable": false` in `meta.json`, `verdict` (`run.consolidate`) skips them and `.gitignore` keeps them out of
   git. Their numbers (perfect scores, 0.01 s per case) are plumbing checks, not measurements.

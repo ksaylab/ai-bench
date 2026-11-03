@@ -63,7 +63,7 @@ class TestEnvRemoteServer(unittest.TestCase):
         self.assertIn("hardware", e)
 
     def test_local_server_still_records_this_machine(self):
-        e = env.capture("mac-m5", self.router())
+        e = env.capture("pc-rtx2060", self.router())
         self.assertIn("cpu", e)
         self.assertNotIn("hardware", e)
 
@@ -74,7 +74,7 @@ class TestEnvRemoteServer(unittest.TestCase):
         self.assertIn("hardware", e)
 
     def test_router_mode_records_the_gguf_of_each_model_without_its_path(self):
-        e = env.capture("mac-m5", self.router(), models=["small", "missing"])
+        e = env.capture("pc-rtx2060", self.router(), models=["small", "missing"])
         self.assertEqual(e["server"], {"build": "b1-abc", "gguf": {"small": "Small-Q4.gguf"}})
 
     def test_the_source_sent_over_ssh_runs_on_its_own(self):
