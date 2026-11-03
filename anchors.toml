@@ -20,8 +20,9 @@ source = "DeepSeek-V4-Pro card: temperature = 1.0, top_p = 1.0 (same in generati
 card = "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
 verified = true
 
-[anchor.provider]   # cheapest fp8 endpoint with seed; StreamLake, Baidu and Relace (cheaper) ignore seed
-order = ["gmicloud/fp8"]
+# StreamLake, Baidu and Relace (cheaper) ignore seed; GMICloud (cheapest with seed) is ignored by the account
+[anchor.provider]
+order = ["novita/fp8"]
 allow_fallbacks = false
 require_parameters = true
 
@@ -38,7 +39,7 @@ card = "https://docs.z.ai/guides/llm/glm-5.3-flash"
 verified = true
 
 [anchor.provider]   # same provider and precision as the other ceiling; Z.AI's own endpoint ignores seed
-order = ["gmicloud/fp8"]
+order = ["novita/fp8"]
 allow_fallbacks = false
 require_parameters = true
 

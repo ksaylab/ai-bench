@@ -43,6 +43,24 @@ card = "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf"
 verified = true
 
 [[model]]
+name = "lfm3-1.7b"
+gguf = "LFM3-1.7B-Q8_0.gguf"
+group = "small"
+machines = ["pc-rtx2060"]
+
+[model.sampling]
+temperature = 0.1
+top_p = 1.0
+top_k = 50
+min_p = 0.0
+presence_penalty = 0.0
+repeat_penalty = 1.1
+seed = 1000
+source = "LFM3-1.7B card, general set (chat, tool use, agents, coding), reasoning on by default; top_p and min_p not stated, pinned off"
+card = "https://huggingface.co/LiquidAI/LFM3-1.7B"
+verified = true
+
+[[model]]
 name = "ornith1.5-9b"
 gguf = "Ornith-1.5-9B-Q4_K_M.gguf"
 group = "medium"

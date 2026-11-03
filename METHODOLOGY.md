@@ -233,7 +233,7 @@ and how far the battery is from the 15 to 20 target). Every case is looked at on
 - **One pinned provider per anchor (implemented).** On OpenRouter the same model is served by many providers, at
   different precisions, and several of them silently ignore `seed` (among them Z.AI's own endpoint for
   `z-ai/glm-5.3-flash`). Each anchor has an `[anchor.provider]` table, sent as OpenRouter's `provider` routing
-  object: one endpoint in `order` (fp8, with `seed` and tool calling: `gmicloud/fp8` for both ceilings, `mistral`
+  object: one endpoint in `order` (fp8, with `seed` and tool calling: `novita/fp8` for both ceilings, `mistral`
   for the floor), `allow_fallbacks = false`, and `require_parameters = true`, so a provider that would drop a
   parameter refuses the call (an error row) instead of answering without it. An anchor run without such a table
   needs `--smoke`. `meta.json` records the table (`anchors.<model>.provider`) and `responses.jsonl` the provider that
