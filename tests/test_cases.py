@@ -94,9 +94,19 @@ class TestCheckers(unittest.TestCase):
         self.assertFalse(cases.check(c, cases.CITATION.sub("", good))[0])        # no citation
         self.assertFalse(cases.check(c, cases.CITATION.sub("[4]", good))[0])     # wrong passage
 
-    def test_rag_absent_answer_must_not_cite(self):
+    def test_rag_absent_answer_may_cite_what_the_document_does_cover(self):
         c = self.case("answer_absent")
-        self.assertFalse(cases.check(c, cases.as_answer(c["example_good"])["text"] + " [1]")[0])
+        # glm-5.3-flash in the first anchor run: right answer, citing passages to show what the document covers
+        glm = ("It is not in the document. None of the passages mention a maximum hotel rate per night that can be "
+               "reimbursed. The passages only cover travel reimbursement filing deadlines [1][3], portal security "
+               "[2][8], support desk hours [4] and office parking [5].")
+        self.assertEqual(cases.check(c, glm), (True, ""))
+
+    def test_rag_absent_answer_with_an_invented_value_fails_even_when_it_says_absent(self):
+        c = self.case("answer_absent")
+        self.assertFalse(cases.check(c, "It is not stated, but passage [1] suggests 250 per night.")[0])
+        self.assertFalse(cases.check(c, "Not in the document; usually $90 [2].")[0])
+        self.assertFalse(cases.check(c, c["example_bad"])[0])
 
     def test_tool_call_wrong_enum_or_extra_call_fails(self):
         c = self.case("weather_call")

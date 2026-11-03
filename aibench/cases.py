@@ -10,8 +10,7 @@ Checker kinds:
 - lines: exactly `n` non-empty lines, each matching `line`, plus `ok`/`forbidden` on the whole text
 - summary: `ok`/`forbidden` plus `max_words` and/or `max_sentences`
 - code: the Python code in the answer passes `tests` (isolated subprocess, empty environment, timeout: it is model code)
-- rag: `ok`/`forbidden`, every passage in `cite` is cited as [n], `cite_only` forbids other citations,
-  `no_citations` forbids any citation (for questions the document does not answer)
+- rag: `ok`/`forbidden`, every passage in `cite` is cited as [n], `cite_only` forbids other citations
 - tool_call: exactly one call to `expected.name`, arguments valid against the tool schema and equal to
   `expected.arguments` (lists compared as sets, strings case-insensitive)
 - no_tool: no tool call at all, plus `ok`/`forbidden` on the text
@@ -193,8 +192,6 @@ def _rag(c, text):
     if not ok:
         return ok, why
     cited = citations(text)
-    if c.get("no_citations") and cited:
-        return False, f"cited {sorted(cited)} for an unanswerable question"
     if missing := set(c.get("cite", [])) - cited:
         return False, f"missing citation {sorted(missing)}"
     if c.get("cite_only") and (extra := cited - set(c.get("cite", []))):
