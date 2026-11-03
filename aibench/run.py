@@ -16,12 +16,34 @@ from aibench import cases, client, env, judge, verdict
 ROOT = Path(__file__).resolve().parents[1]
 EPISODES = ROOT / "episodes"
 MIN_RUNS = verdict.MIN_RUNS
-COLUMNS = ["run_id", "machine", "model", "use_case", "case", "rep", "passed", "reason", "time_s", "prompt_tokens",
-           "completion_tokens", "tok_s", "cost_usd", "finish", "judge_score", "judge_cost_usd", "context_words"]
+COLUMNS = ["run_id", "machine", "model", "use_case", "case", "rep", "seed", "passed", "reason", "time_s",
+           "prompt_tokens", "completion_tokens", "tok_s", "cost_usd", "finish", "judge_score", "judge_cost_usd",
+           "context_words"]
 
 
 class RunError(Exception):
     pass
+
+
+def rep_seed(sampling, rep):
+    """The seed of one repeat: the table's base seed + the repeat number (reproducible, yet different per repeat)."""
+    return None if (sampling or {}).get("seed") is None else int(sampling["seed"]) + rep
+
+
+def check_sampling(models, sampling, smoke=False, simulate=False):
+    """Every model needs a pinned sampling table with a seed (METHODOLOGY.md 8.4); --smoke and --simulate are exempt."""
+    if smoke or simulate:
+        return
+    missing = [m for m in models if not (sampling or {}).get(m)]
+    if missing:
+        raise RunError(f"no [model.sampling] table for {', '.join(missing)} in models.toml (or anchors.toml): "
+                       "pin the sampling or use --smoke (not publishable)")
+    for m in models:
+        if sampling[m].get("seed") is None:
+            raise RunError(f"[model.sampling] of {m} needs a seed")
+        unknown = set(sampling[m]) - set(client.SAMPLING_KEYS) - {"source", "card", "verified"}
+        if unknown:
+            raise RunError(f"[model.sampling] of {m}: unknown key(s) {', '.join(sorted(unknown))}")
 
 
 def simulated_answer(case, rep):
@@ -51,7 +73,9 @@ def write_results(folder, rows):
 
 def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge_model=None, context_words=3000,
         label="run", simulate=False, smoke=False, skip_code=False, max_tokens=8192, out=None, log=print,
-        judge_url=None):
+        judge_url=None, sampling=None, server_args=None):
+    """`sampling`: model -> its [model.sampling] table (temperature, top_p, ..., base seed). `server_args`: the model
+    server's command line, recorded in meta.json (paths and addresses scrubbed)."""
     ep = EPISODES / episode
     if not ep.is_dir():
         raise RunError(f"episode {episode!r} not found in {EPISODES.name}/")
@@ -62,6 +86,11 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                        "cannot be published)")
     if judge_model and judge_model in models:
         raise RunError(f"the judge {judge_model} is also one of the compared models: pick another judge")
+    sampling = {m: dict((sampling or {}).get(m) or {}) for m in models}
+    check_sampling(models, sampling, smoke, simulate)
+    for m in models:
+        if sampling[m] and not sampling[m].get("verified", True):
+            log(f"warning: the sampling of {m} is not verified against its model card (verified = false)")
     battery = cases.load(use_cases, context_words)
     if skip_code:
         battery = [c for c in battery if c["kind"] != "code"]
@@ -85,7 +114,13 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
             "use_cases": sorted({c["use_case"] for c in battery}), "cases": [c["id"] for c in battery],
             "context_words": context_words, "judge": judge_model or "", "start": now.isoformat(timespec="seconds"),
             "smoke": smoke, "simulated": simulate, "max_tokens": max_tokens, "publishable": not (smoke or simulate),
-            "thresholds_pct": verdict.GOOD_THRESHOLD}
+            "thresholds_pct": verdict.GOOD_THRESHOLD,
+            "sampling": {m: {"sent": client.sampling_body({k: v for k, v in sampling[m].items() if k != "seed"}),
+                             "base_seed": sampling[m].get("seed"),
+                             "seeds": [rep_seed(sampling[m], rep) for rep in range(runs)],
+                             **{k: sampling[m][k] for k in ("source", "card", "verified") if k in sampling[m]}}
+                         for m in models},
+            "server_args": env.scrub(server_args or os.environ.get("AIBENCH_SERVER_ARGS", ""))}
     (dest / "env.json").write_text(json.dumps(environment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     rows = []
     with open(dest / "executions.csv", "w", newline="", encoding="utf-8") as f:
@@ -93,11 +128,13 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
         w.writeheader()
         for model in models:
             for rep in range(runs):
+                seed = rep_seed(sampling[model], rep)
+                params = {**sampling[model], "seed": seed} if seed is not None else sampling[model]
                 for c in battery:
                     try:
                         r = simulated_answer(c, rep) if simulate else client.chat(
                             model_url, model, cases.messages(c), key=key, max_tokens=max_tokens,
-                            tools=c.get("tool_specs"))
+                            tools=c.get("tool_specs"), sampling=params)
                         passed, reason = cases.check(c, r)
                     except client.ClientError as e:
                         r, passed, reason = {}, False, f"error: {e}"
@@ -110,7 +147,7 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                         except client.ClientError:
                             pass
                     row = {"run_id": run_id, "machine": machine, "model": model, "use_case": c["use_case"],
-                           "case": c["id"], "rep": rep, "passed": int(passed), "reason": reason,
+                           "case": c["id"], "rep": rep, "seed": "" if seed is None else seed, "passed": int(passed), "reason": reason,
                            "time_s": r.get("time_s", ""), "prompt_tokens": r.get("prompt_tokens") or "",
                            "completion_tokens": r.get("completion_tokens") or "", "tok_s": r.get("tok_s") or "",
                            "cost_usd": "" if r.get("cost_usd") is None else r["cost_usd"],

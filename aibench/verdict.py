@@ -5,6 +5,9 @@ score = passed executions / all executions of the use case's battery, over every
 - Not good for: score < GOOD_THRESHOLD
 - Inconclusive: fewer than MIN_RUNS runs, or more than MAX_ERROR_RATE of the executions failed for a
   technical reason (connection, server error), which says nothing about the model
+- Unstable: the worst and the best run (repeat) fall on different sides of the threshold, so the verdict would
+  change with the repeat that happened to be chosen. Shown like Inconclusive; never published as Good for / Not good for.
+unstable_cases = cases whose result (pass/fail) changed between repeats.
 borderline = the score is less than one case's worth (100 / cases in the battery) away from the threshold: mention it.
 """
 from collections import defaultdict
@@ -15,10 +18,11 @@ MAX_ERROR_RATE = 0.10
 LABELS = {"coding": "Coding", "rag": "RAG (answers with sources)", "agent": "Agents / tool calling",
           "chat_pt": "Chat & summaries in Portuguese"}
 SCORE_COLUMNS = ["machine", "model", "use_case", "passed", "executions", "cases", "runs", "score_pct", "min_run_pct",
-                 "max_run_pct", "errors", "threshold_pct", "verdict", "borderline", "avg_time_s", "avg_tok_s",
-                 "cost_usd"]
+                 "max_run_pct", "unstable_cases", "errors", "threshold_pct", "verdict", "borderline", "avg_time_s",
+                 "avg_tok_s", "cost_usd"]
 VERDICT_COLUMNS = ["machine", "model"] + [f"{uc}_pct" for uc in GOOD_THRESHOLD] + [
-    "good_for", "not_good_for", "inconclusive", "runs", "avg_time_s", "cost_usd"]
+    "good_for", "not_good_for", "inconclusive", "unstable", "runs", "avg_time_s", "cost_usd"]
+UNSURE = ("Inconclusive", "Unstable")
 
 
 def _order(uc):
@@ -36,9 +40,10 @@ def scores(rows):
         groups[(r["machine"], r["model"], r["use_case"])].append(r)
     out = []
     for (machine, model, uc), rs in sorted(groups.items()):
-        per_run = defaultdict(list)
+        per_run, per_case = defaultdict(list), defaultdict(set)
         for r in rs:
             per_run[(r["run_id"], str(r["rep"]))].append(int(r["passed"]))
+            per_case[r["case"]].add(int(r["passed"]))
         n, passed = len(rs), sum(int(r["passed"]) for r in rs)
         errors = sum(str(r["reason"]).startswith("error:") for r in rs)
         cases = len({r["case"] for r in rs})
@@ -47,6 +52,8 @@ def scores(rows):
         threshold = GOOD_THRESHOLD.get(uc, 80.0)
         if len(per_run) < MIN_RUNS or errors / n > MAX_ERROR_RATE:
             verdict = "Inconclusive"
+        elif min(run_scores) < threshold <= max(run_scores):
+            verdict = "Unstable"
         else:
             verdict = "Good for" if score >= threshold else "Not good for"
         times = [t for t in (_f(r["time_s"]) for r in rs) if t is not None]
@@ -56,6 +63,7 @@ def scores(rows):
         out.append({"machine": machine, "model": model, "use_case": uc, "passed": passed, "executions": n,
                     "cases": cases, "runs": len(per_run), "score_pct": score,
                     "min_run_pct": round(min(run_scores), 1), "max_run_pct": round(max(run_scores), 1),
+                    "unstable_cases": sum(len(v) > 1 for v in per_case.values()),
                     "errors": errors, "threshold_pct": threshold, "verdict": verdict,
                     "borderline": int(abs(score - threshold) < 100 / max(cases, 1)),
                     "avg_time_s": round(sum(times) / len(times), 2) if times else "",
@@ -76,7 +84,7 @@ def verdicts(score_rows):
         for uc in GOOD_THRESHOLD:
             row[f"{uc}_pct"] = by[uc]["score_pct"] if uc in by else ""
         for key, label in (("good_for", "Good for"), ("not_good_for", "Not good for"),
-                           ("inconclusive", "Inconclusive")):
+                           ("inconclusive", "Inconclusive"), ("unstable", "Unstable")):
             row[key] = "; ".join(LABELS.get(uc, uc) + (" (borderline)" if s["borderline"] else "")
                                  for uc, s in sorted(by.items(), key=lambda kv: _order(kv[0]))
                                  if s["verdict"] == label)
@@ -92,19 +100,23 @@ def verdicts(score_rows):
 def markdown(verdict_rows):
     """The table the video shows."""
     any_unsure = any(r.get("inconclusive") for r in verdict_rows)
+    any_unstable = any(r.get("unstable") for r in verdict_rows)
     head = ["Model", "Machine"] + [LABELS[uc] for uc in GOOD_THRESHOLD] + ["Good for", "Not good for"] + (
-        ["Inconclusive ⚠️"] if any_unsure else [])
+        ["Inconclusive ⚠️"] if any_unsure else []) + (["Unstable ⚠️"] if any_unstable else [])
     lines = ["| " + " | ".join(head) + " |", "| " + " | ".join(["---"] * len(head)) + " |"]
     for r in verdict_rows:
         cells = [f"`{r['model']}`", r["machine"]]
         for uc in GOOD_THRESHOLD:
             v = r[f"{uc}_pct"]
-            unsure = LABELS[uc] in r.get("inconclusive", "")
+            unsure = LABELS[uc] in r.get("inconclusive", "") or LABELS[uc] in r.get("unstable", "")
             mark = "⚠️" if unsure else ("✅" if v != "" and v >= GOOD_THRESHOLD[uc] else "❌")
             cells.append("—" if v == "" else f"{v:.0f}% {mark}")
         cells += [r["good_for"] or "—", r["not_good_for"] or "—"]
         if any_unsure:
             cells.append(r["inconclusive"] or "—")
+        if any_unstable:
+            cells.append(r["unstable"] or "—")
         lines.append("| " + " | ".join(cells) + " |")
     rules = ", ".join(f"{LABELS[uc]} ≥ {t:.0f}%" for uc, t in GOOD_THRESHOLD.items())
-    return "\n".join(lines) + f"\n\nGood for: {rules}, over at least {MIN_RUNS} runs. See METHODOLOGY.md.\n"
+    return ("\n".join(lines) + f"\n\nGood for: {rules}, over at least {MIN_RUNS} runs. Unstable: the repeats fall on "
+            "both sides of the threshold. See METHODOLOGY.md.\n")

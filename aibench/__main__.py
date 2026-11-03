@@ -24,6 +24,19 @@ def episode_models(episode, machine, group=None):
             and (group is None or m.get("group") == group)]
 
 
+def model_sampling(episode, names):
+    """name -> [model.sampling] table, from the episode's models.toml and the calibration anchors (anchors.toml)."""
+    found = {}
+    for path in (run.ROOT / "anchors.toml", EPISODES / episode / "models.toml"):
+        if path.exists():
+            with open(path, "rb") as f:
+                cfg = tomllib.load(f)
+            for m in cfg.get("model", []) + cfg.get("anchor", []):
+                if m["name"] in names and m.get("sampling"):
+                    found[m["name"]] = m["sampling"]
+    return found
+
+
 def _rel(p):
     return p.relative_to(run.ROOT) if p.is_relative_to(run.ROOT) else p
 
@@ -51,6 +64,8 @@ def main(argv=None):
     p.add_argument("--judge-url", help="OpenRouter-compatible address for the judge (default: OpenRouter)")
     p.add_argument("--context-words", type=int, default=3000, help="size of the long RAG documents")
     p.add_argument("--max-tokens", type=int, default=8192)
+    p.add_argument("--server-args", help="the model server's command line, recorded in meta.json "
+                                         "(default: AIBENCH_SERVER_ARGS)")
     p.add_argument("--label", default="run")
     p.add_argument("--simulate", action="store_true", help="no network: answer with the cases' examples")
     p.add_argument("--smoke", action="store_true", help="allow fewer than 3 runs; the run cannot be published")
@@ -96,7 +111,8 @@ def main(argv=None):
             if use_cases and use_cases - set(cases.USE_CASES):
                 raise ValueError(f"unknown use case(s): {','.join(sorted(use_cases - set(cases.USE_CASES)))}")
             dest = run.run(a.episode, a.machine, models, a.runs, a.url, use_cases, a.judge, a.context_words, a.label,
-                           a.simulate, a.smoke, a.skip_code, a.max_tokens, a.out, judge_url=a.judge_url)
+                           a.simulate, a.smoke, a.skip_code, a.max_tokens, a.out, judge_url=a.judge_url,
+                           sampling=model_sampling(a.episode, models), server_args=a.server_args)
             print(f"run written to {_rel(dest)}")
             print((dest / "verdicts.md").read_text(encoding="utf-8"))
         elif a.cmd == "speed":

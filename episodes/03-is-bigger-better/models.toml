@@ -1,12 +1,26 @@
 # Models for "Is a bigger model better?": small x large pairs on the SAME hardware. `pair` groups the comparison.
 # `name`: what the server receives in "model" (llama-server preset or Ollama tag).
 
+# `[model.sampling]`: pinned sampling sent on every call (METHODOLOGY.md 8.4); `seed` is the base seed, repeat
+# n uses seed + n. `source`/`card`/`verified` document where the values come from.
+
 [[model]]
 name = "neohorse-4b"
 gguf = "NeoHorse-1-4B.i1-Q4_K_M.gguf"
 pair = "4b-vs-35b"
 group = "small"
 machines = ["pc-rtx2060"]
+
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.7
+top_p = 0.95
+top_k = 40
+min_p = 0.05
+presence_penalty = 0.0
+seed = 1000
+source = "generic default (no recommended settings found yet)"
+card = ""
+verified = false
 
 [[model]]
 name = "qwen3.6-35b-a3b"
@@ -15,12 +29,34 @@ pair = "4b-vs-35b"
 group = "large"
 machines = ["pc-rtx2060"]
 
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.6
+top_p = 0.95
+top_k = 20
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Qwen family recommended settings for thinking mode"
+card = ""
+verified = false
+
 [[model]]
 name = "gemma4-e4b"
 gguf = "gemma-4-E4B_q4_0-it.gguf"
 pair = "e4b-vs-9b"
 group = "small"
 machines = ["pc-rtx2060"]
+
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 1.0
+top_p = 0.95
+top_k = 64
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Gemma family recommended settings"
+card = ""
+verified = false
 
 [[model]]
 name = "ornith1.5-9b"
@@ -29,6 +65,17 @@ pair = "e4b-vs-9b"
 group = "large"
 machines = ["pc-rtx2060"]
 
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.7
+top_p = 0.95
+top_k = 40
+min_p = 0.05
+presence_penalty = 0.0
+seed = 1000
+source = "generic default (no recommended settings found yet)"
+card = ""
+verified = false
+
 [[model]]
 name = "gemma4-12b"
 gguf = "gemma-4-12B-it-qat-UD-Q4_K_XL.gguf"
@@ -36,11 +83,33 @@ pair = "12b-vs-27b"
 group = "small"
 machines = ["runpod"]
 
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 1.0
+top_p = 0.95
+top_k = 64
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Gemma family recommended settings"
+card = ""
+verified = false
+
 [[model]]
 name = "qwen3.8-27b-q4"
 gguf = "Qwen3.8-27B-UD-Q4_K_M.gguf"
 pair = "12b-vs-27b"
 group = "large"
 machines = ["runpod"]
+
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.6
+top_p = 0.95
+top_k = 20
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Qwen family recommended settings for thinking mode"
+card = ""
+verified = false
 
 # No OpenRouter contestants: cloud models are calibration anchors only (anchors.toml, METHODOLOGY.md 8.1).

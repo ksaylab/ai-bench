@@ -45,6 +45,10 @@ llama-server -m ~/models/NeoHorse-1-4B.i1-Q4_K_M.gguf -c 32768 -ngl 99 -fa on --
   --host 0.0.0.0 --port 8080
 ```
 
+Every model needs a pinned `[model.sampling]` table with a `seed` in the episode's `models.toml` (METHODOLOGY.md
+8.4); check the values against the model card and set `verified = true`. Pass the server's command line with
+`--server-args` (or `AIBENCH_SERVER_ARGS`) so it goes into `meta.json`.
+
 The client can be the PC itself (`AIBENCH_URL="http://localhost:8080/v1"`) or another computer on the same network.
 From another computer, set the address through a variable (do not write the IP address in a repository file):
 

@@ -14,6 +14,10 @@ BY_PROMPT = {c["prompt"]: c for c in cases.load()}
 QUIET = {"log": lambda *_: None}
 
 
+def pinned(*models, seed=7):
+    return {m: {"temperature": 0.2, "top_p": 0.9, "top_k": 20, "min_p": 0.0, "seed": seed} for m in models}
+
+
 class FakeServer(BaseHTTPRequestHandler):
     """Speaks llama-server's /v1/chat/completions: answers each case with its good example (tool calls included)."""
     requests = []
@@ -22,7 +26,9 @@ class FakeServer(BaseHTTPRequestHandler):
     def do_POST(self):
         body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
         FakeServer.requests.append({"model": body["model"], "auth": self.headers.get("Authorization"),
-                                    "tools": [t["function"]["name"] for t in body.get("tools") or []]})
+                                    "tools": [t["function"]["name"] for t in body.get("tools") or []],
+                                    "seed": body.get("seed"), "temperature": body.get("temperature"),
+                                    "top_k": body.get("top_k")})
         msg = {"role": "assistant", "content": ""}
         if body["messages"][0]["content"].startswith("You grade"):
             msg["content"] = '{"score": 5, "reason": "ok"}'
@@ -142,7 +148,8 @@ class TestRun(unittest.TestCase):
         url = self.server()
         FakeServer.bad_models = {"weak"}
         with mock.patch.object(run.env, "capture", return_value={"machine": "pc-rtx2060"}):
-            d = run.run("99-test", "pc-rtx2060", ["strong", "weak"], url=url, **QUIET)
+            d = run.run("99-test", "pc-rtx2060", ["strong", "weak"], url=url, sampling=pinned("strong", "weak"),
+                        **QUIET)
         rows = read(d / "executions.csv")
         strong = [r for r in rows if r["model"] == "strong"]
         self.assertTrue(all(r["passed"] == "1" for r in strong), [(r["case"], r["reason"]) for r in strong
@@ -165,7 +172,7 @@ class TestRun(unittest.TestCase):
         with mock.patch.object(run.env, "capture", return_value={}), \
                 mock.patch.dict("os.environ", {"OPENROUTER_API_KEY": "test-token"}):
             d = run.run("99-test", "pc-rtx2060", ["m1"], url=url, use_cases={"chat_pt", "coding"},
-                        judge_model="judge/x", judge_url=url, **QUIET)
+                        judge_model="judge/x", judge_url=url, sampling=pinned("m1"), **QUIET)
         rows = read(d / "executions.csv")
         scored = {r["case"] for r in rows if r["judge_score"] == "5"}
         self.assertEqual(scored, {c["id"] for c in cases.load({"chat_pt", "coding"}) if c.get("rubric")})
@@ -178,12 +185,48 @@ class TestRun(unittest.TestCase):
         url = self.server()
         with mock.patch.object(run.env, "capture", return_value={}) as capture, \
                 mock.patch.dict(run.os.environ, {"AIBENCH_SERVER_HOST": "gpu-box"}):
-            run.run("99-test", "pc-rtx2060", ["m1", "m2"], url=url, use_cases={"agent"}, **QUIET)
+            run.run("99-test", "pc-rtx2060", ["m1", "m2"], url=url, use_cases={"agent"}, sampling=pinned("m1", "m2"),
+                    **QUIET)
         capture.assert_called_once_with("pc-rtx2060", url, server_host="gpu-box", models=["m1", "m2"])
+
+    def test_pinned_sampling_and_one_seed_per_repeat(self):
+        url = self.server()
+        with mock.patch.object(run.env, "capture", return_value={}):
+            d = run.run("99-test", "pc-rtx2060", ["m1"], url=url, use_cases={"coding"}, runs=3,
+                        sampling=pinned("m1", seed=100), server_args="llama-server -m /home/someone/m.gguf -c 8192",
+                        **QUIET)
+        model_calls = [p for p in FakeServer.requests if p["model"] == "m1"]
+        self.assertEqual(sorted({p["seed"] for p in model_calls}), [100, 101, 102])
+        self.assertTrue(all(p["temperature"] == 0.2 and p["top_k"] == 20 for p in model_calls))
+        rows = read(d / "executions.csv")
+        self.assertEqual({r["rep"]: r["seed"] for r in rows}, {"0": "100", "1": "101", "2": "102"})
+        meta = json.loads((d / "meta.json").read_text())
+        self.assertEqual(meta["sampling"]["m1"]["seeds"], [100, 101, 102])
+        self.assertEqual(meta["sampling"]["m1"]["sent"], {"temperature": 0.2, "top_p": 0.9, "top_k": 20, "min_p": 0.0})
+        self.assertNotIn("someone", meta["server_args"])
+        self.assertIn("-c 8192", meta["server_args"])
+
+    def test_a_model_without_pinned_sampling_needs_smoke(self):
+        with self.assertRaises(run.RunError):
+            run.run("99-test", "pc-rtx2060", ["m1"], url="http://127.0.0.1:9/v1", **QUIET)
+        with self.assertRaises(run.RunError):
+            run.run("99-test", "pc-rtx2060", ["m1"], url="http://127.0.0.1:9/v1",
+                    sampling={"m1": {"temperature": 0.1}}, **QUIET)  # no seed
+        with self.assertRaises(run.RunError):
+            run.run("99-test", "pc-rtx2060", ["m1"], url="http://127.0.0.1:9/v1",
+                    sampling={"m1": {"seed": 1, "temprature": 0.1}}, **QUIET)  # typo
+
+    def test_models_toml_pins_the_sampling_of_every_model(self):
+        import tomllib
+        for path in run.ROOT.glob("episodes/*/models.toml"):
+            for m in tomllib.loads(path.read_text(encoding="utf-8")).get("model", []):
+                with self.subTest(model=m["name"], episode=path.parent.name):
+                    run.check_sampling([m["name"]], {m["name"]: m["sampling"]})
 
     def test_server_down_is_an_error_row_and_inconclusive(self):
         with mock.patch.object(run.env, "capture", return_value={}), mock.patch.object(client.time, "sleep"):
-            d = run.run("99-test", "pc-rtx2060", ["m1"], url="http://127.0.0.1:9/v1", use_cases={"agent"}, **QUIET)
+            d = run.run("99-test", "pc-rtx2060", ["m1"], url="http://127.0.0.1:9/v1", use_cases={"agent"},
+                        sampling=pinned("m1"), **QUIET)
         rows = read(d / "executions.csv")
         self.assertTrue(all(r["passed"] == "0" and r["reason"].startswith("error:") for r in rows))
         self.assertEqual(read(d / "verdicts.csv")[0]["inconclusive"], verdict.LABELS["agent"])
@@ -204,9 +247,20 @@ class TestVerdict(unittest.TestCase):
         self.assertEqual((s["score_pct"], s["verdict"]), (100.0, "Good for"))
         s = verdict.scores(self.rows("coding", 5, 3, {(0, 0), (1, 0), (2, 0)}))[0]  # 12/15 = 80%
         self.assertEqual((s["score_pct"], s["verdict"], s["borderline"]), (80.0, "Good for", 1))
-        s = verdict.scores(self.rows("coding", 5, 3, {(0, 0), (1, 0), (2, 0), (2, 1)}))[0]  # 11/15
-        self.assertEqual(s["verdict"], "Not good for")
+        s = verdict.scores(self.rows("coding", 5, 3, {(0, 0), (1, 0), (2, 0), (0, 1), (1, 1), (2, 1)}))[0]  # 9/15
+        self.assertEqual((s["verdict"], s["unstable_cases"]), ("Not good for", 0))
+
+    def test_unstable_when_the_repeats_fall_on_both_sides_of_the_threshold(self):
+        s = verdict.scores(self.rows("coding", 5, 3, {(0, 0), (1, 0), (2, 0), (2, 1)}))[0]  # runs 80, 80, 60
         self.assertEqual((s["min_run_pct"], s["max_run_pct"]), (60.0, 80.0))
+        self.assertEqual((s["verdict"], s["unstable_cases"]), ("Unstable", 1))
+        s = verdict.scores(self.rows("coding", 5, 3, {(0, 0), (1, 1), (2, 2)}))[0]  # 80 each, different cases
+        self.assertEqual((s["verdict"], s["unstable_cases"]), ("Good for", 3))
+        v = verdict.verdicts(verdict.scores(self.rows("coding", 5, 3, {(0, 0), (1, 0), (2, 0), (2, 1)})))[0]
+        self.assertEqual((v["good_for"], v["not_good_for"], v["unstable"]), ("", "", "Coding (borderline)"))
+        md = verdict.markdown([v])
+        self.assertIn("Unstable ⚠️", md)
+        self.assertIn("73% ⚠️", md)
 
     def test_inconclusive_with_few_runs_or_many_errors(self):
         self.assertEqual(verdict.scores(self.rows("rag", 5, 2, set()))[0]["verdict"], "Inconclusive")

@@ -1,8 +1,11 @@
-# Models for "What runs on 8 GB?" (PC with an RTX 2060 Super 8 GB). `name` is what the server receives in "model" (llama-server
-# preset name in router mode, or the Ollama tag) and `gguf` is the file `speed` measures (looked up in
-# --models-dir). `machines`: where the model runs by default.
+# Models for "What runs on 8 GB?" (PC with an RTX 2060 Super 8 GB). `name` is what the server receives in
+# "model" (llama-server preset name in router mode, or the Ollama tag) and `gguf` is the file `speed` measures
+# (looked up in --models-dir). `machines`: where the model runs by default.
 # Groups: "small" (fits easily in 8 GB of VRAM), "medium" (fits, tight) and "limit" (larger than 8 GB: part of
 # the model runs on the CPU; tests whether it is still usable).
+
+# `[model.sampling]`: pinned sampling sent on every call (METHODOLOGY.md 8.4); `seed` is the base seed, repeat
+# n uses seed + n. `source`/`card`/`verified` document where the values come from.
 
 [[model]]
 name = "neohorse-4b"
@@ -10,11 +13,33 @@ gguf = "NeoHorse-1-4B.i1-Q4_K_M.gguf"
 group = "small"
 machines = ["pc-rtx2060"]
 
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.7
+top_p = 0.95
+top_k = 40
+min_p = 0.05
+presence_penalty = 0.0
+seed = 1000
+source = "generic default (no recommended settings found yet)"
+card = ""
+verified = false
+
 [[model]]
 name = "gemma4-e4b"
 gguf = "gemma-4-E4B_q4_0-it.gguf"
 group = "small"
 machines = ["pc-rtx2060"]
+
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 1.0
+top_p = 0.95
+top_k = 64
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Gemma family recommended settings"
+card = ""
+verified = false
 
 [[model]]
 name = "ornith1.5-9b"
@@ -22,11 +47,33 @@ gguf = "Ornith-1.5-9B-Q4_K_M.gguf"
 group = "medium"
 machines = ["pc-rtx2060"]
 
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.7
+top_p = 0.95
+top_k = 40
+min_p = 0.05
+presence_penalty = 0.0
+seed = 1000
+source = "generic default (no recommended settings found yet)"
+card = ""
+verified = false
+
 [[model]]
 name = "gemma4-12b"
 gguf = "gemma-4-12B-it-qat-UD-Q4_K_XL.gguf"
 group = "medium"
 machines = ["pc-rtx2060", "runpod"]
+
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 1.0
+top_p = 0.95
+top_k = 64
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Gemma family recommended settings"
+card = ""
+verified = false
 
 # 13 GB file: larger than the 8 GB card, so most layers run on the CPU (-ngl below 99 in the preset).
 [[model]]
@@ -35,9 +82,31 @@ gguf = "Qwen3.8-27B-UD-Q3_K_XL.gguf"
 group = "limit"
 machines = ["pc-rtx2060"]
 
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.6
+top_p = 0.95
+top_k = 20
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Qwen family recommended settings for thinking mode"
+card = ""
+verified = false
+
 # 35B MoE with ~3B active: on 8 GB, with the experts on the CPU (--n-cpu-moe in the preset).
 [[model]]
 name = "qwen3.6-35b-a3b"
 gguf = "Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf"
 group = "limit"
 machines = ["pc-rtx2060"]
+
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.6
+top_p = 0.95
+top_k = 20
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Qwen family recommended settings for thinking mode"
+card = ""
+verified = false

@@ -23,8 +23,19 @@ TARGETS = {
 }
 
 
+# Sampling parameters accepted in a models.toml `[model.sampling]` table and sent as-is in the request body.
+# llama-server and OpenRouter accept all of them (OpenRouter passes them to providers that support them).
+SAMPLING_KEYS = ("temperature", "top_p", "top_k", "min_p", "presence_penalty", "frequency_penalty", "repeat_penalty",
+                 "seed")
+
+
 class ClientError(Exception):
     pass
+
+
+def sampling_body(sampling):
+    """The request-body part of a sampling table: only the known keys (`source`, `card`... are documentation)."""
+    return {k: sampling[k] for k in SAMPLING_KEYS if k in (sampling or {})}
 
 
 def resolve_target(target, url=None, env=os.environ):
@@ -56,9 +67,11 @@ def _tool_calls(message):
 
 
 def chat(url, model, messages, key=None, max_tokens=8192, temperature=None, tools=None, timeout=900, attempts=3,
-         extra=None):
-    """One chat call. Returns text, reasoning, tool calls, tokens, cost (when the provider reports it) and time."""
+         extra=None, sampling=None):
+    """One chat call. Returns text, reasoning, tool calls, tokens, cost (when the provider reports it) and time.
+    `sampling`: temperature, top_p, top_k, min_p, presence_penalty, seed... (SAMPLING_KEYS), sent as given."""
     body = {"model": model, "messages": messages, "max_tokens": max_tokens}
+    body.update(sampling_body(sampling))
     if temperature is not None:
         body["temperature"] = temperature
     if tools:

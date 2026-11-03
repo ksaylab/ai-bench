@@ -35,14 +35,16 @@ score = passed executions / all executions of the battery, over all runs   (in %
 | **Good for** | score ≥ 80% |
 | **Not good for** | score < 80% |
 | **Inconclusive** | fewer than 3 runs, or more than 10% of the executions failed for a technical reason (connection or server error) |
+| **Unstable** | the worst and the best run fall on different sides of the threshold (shown like Inconclusive, never as Good for / Not good for) |
 
 - The thresholds are in [`aibench/verdict.py`](aibench/verdict.py) (`GOOD_THRESHOLD`, `MIN_RUNS`, `MAX_ERROR_RATE`).
   80% means the model gets at least 4 out of 5 tasks right, on every run: below that, you would have to double-check
   everything it does in that use case.
 - **borderline**: the score is less than one case's worth (100 / number of cases in the battery) away from the threshold. The
   video should say so: one case more or less flips the verdict.
-- `scores.csv` also has the worst and best run (`min_run_pct`, `max_run_pct`), so you can see how stable the model
-  is, plus average time, tokens per second and cost.
+- `scores.csv` also has the worst and best run (`min_run_pct`, `max_run_pct`) and `unstable_cases` (cases whose
+  pass/fail changed between repeats), so you can see how stable the model is, plus average time, tokens per second
+  and cost.
 - `verdicts.csv` and `verdicts.md` have one row per model and machine with the four scores, the **Good for** and
   **Not good for** lists, runs, average time and cost: this is the table the video shows.
 
@@ -53,7 +55,9 @@ when the server reports it, the build and the GGUF in use (per model, in router 
 another machine (the PC on the network, a RunPod pod through a tunnel), the hardware is read from that machine over
 ssh (`AIBENCH_SERVER_HOST`); without it, `env.json` says the hardware was not recorded instead of recording the
 machine that sent the requests. No host name, user name, IP address or paths.
-`meta.json` keeps the parameters: models, cases, runs, context size, judge, thresholds and times.
+`meta.json` keeps the parameters: models, cases, runs, context size, judge, thresholds, times, the sampling actually
+sent with the seed of every repeat, and the model server's command line (`--server-args` or `AIBENCH_SERVER_ARGS`,
+with paths and addresses scrubbed).
 
 ## 4. At least 3 runs
 
@@ -182,23 +186,27 @@ looked at once:
 
 ### 8.4 Reproducibility
 
-- **Pinned sampling per model (Planned).** A `[model.sampling]` table in `models.toml` with `temperature`,
-  `top_p`, `top_k`, `min_p`, `presence_penalty` and `seed`, taken from the model card's recommended settings (the
-  card's link goes in a comment next to the table). `run.run` passes them to `client.chat` (which today accepts only
-  `temperature` and an `extra` dict, and `run.run` passes neither) and `meta.json` records the values actually sent.
-  A model without a `sampling` table cannot be run without `--smoke`.
-- The `seed` is fixed per repeat (e.g. base seed + repeat number), so a repeat is reproducible on the same build and
-  GGUF, while the repeats still differ from each other.
-- **Local server settings are recorded:** the `llama-server` command line (context size, `-ngl`, `-fa`,
-  `--n-cpu-moe`, `--parallel`) goes into `meta.json` (**Planned**; today `env.json` records only the build and the
-  GGUF). Use `--parallel 1` so batching does not change the results.
+- **Pinned sampling per model (implemented).** A `[model.sampling]` table in `models.toml` (and `[anchor.sampling]`
+  in `anchors.toml`) with `temperature`, `top_p`, `top_k`, `min_p`, `presence_penalty` and `seed`, taken from the
+  model card's recommended settings: the card's link goes in `card`, and `verified = true` once checked (the runner
+  warns while it is `false`; the current tables use family defaults and still need that check). `run.run` sends them
+  through `client.chat(sampling=...)` and `meta.json` records the values actually sent (`sampling.<model>.sent`).
+  A model without a `sampling` table, or without a `seed`, cannot be run without `--smoke`; unknown keys are refused.
+- The `seed` is fixed per repeat: base seed + repeat number (`run.rep_seed`), recorded in the `seed` column of
+  `executions.csv` and in `meta.json`, so a repeat is reproducible on the same build and GGUF, while the repeats
+  still differ from each other.
+- **Local server settings are recorded (implemented):** the `llama-server` command line (context size, `-ngl`,
+  `-fa`, `--n-cpu-moe`, `--parallel`) goes into `meta.json` (`server_args`, from `--server-args` or
+  `AIBENCH_SERVER_ARGS`); `env.json` keeps the build and the GGUF. Use `--parallel 1` so batching does not change the
+  results.
 - **At least 3 repeats**, as today (`MIN_RUNS`). For the calibration episodes the target is 5 for the local
   contestants when time allows.
 - Scores are reported as **mean and min–max over the repeats**. `scores.csv` already has `score_pct`,
   `min_run_pct` and `max_run_pct`; the video shows the range, not only the mean.
-- **A verdict is published only if it is stable.** **Planned** rule in `aibench/verdict.py`: if the worst run and
-  the best run fall on different sides of the threshold, the verdict is **Unstable** (shown like Inconclusive)
-  instead of Good for / Not good for. The existing **borderline** mark stays.
+- **A verdict is published only if it is stable (implemented).** Rule in `aibench/verdict.py`: if the worst run and
+  the best run fall on different sides of the threshold, the verdict is **Unstable** (shown like Inconclusive, with
+  its own column in `verdicts.csv` and `verdicts.md`) instead of Good for / Not good for. `unstable_cases` in
+  `scores.csv` counts the cases whose result changed between repeats. The existing **borderline** mark stays.
 - **Raw responses are saved for audit (Planned).** Each run writes `responses.jsonl` next to `executions.csv`:
   one line per execution with the model's text, reasoning, tool calls and finish reason, so a failure can be
   traced to the model or to the checker. The cases are synthetic, so the file holds nothing private; it still goes

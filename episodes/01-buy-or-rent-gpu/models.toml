@@ -1,11 +1,25 @@
 # Models for "Buy or rent a GPU?": the same models on every rented GPU (machine runpod), so speed, cost and
 # the verdict can be compared card by card. `name` is what the server receives in "model" (llama-server preset).
 
+# `[model.sampling]`: pinned sampling sent on every call (METHODOLOGY.md 8.4); `seed` is the base seed, repeat
+# n uses seed + n. `source`/`card`/`verified` document where the values come from.
+
 [[model]]
 name = "gemma4-12b"
 gguf = "gemma-4-12B-it-qat-UD-Q4_K_XL.gguf"
 group = "16gb"
 machines = ["runpod"]
+
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 1.0
+top_p = 0.95
+top_k = 64
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Gemma family recommended settings"
+card = ""
+verified = false
 
 [[model]]
 name = "qwen3.8-27b-q3"
@@ -13,8 +27,30 @@ gguf = "Qwen3.8-27B-UD-Q3_K_XL.gguf"
 group = "24gb"
 machines = ["runpod"]
 
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.6
+top_p = 0.95
+top_k = 20
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Qwen family recommended settings for thinking mode"
+card = ""
+verified = false
+
 [[model]]
 name = "qwen3.8-27b-q4"
 gguf = "Qwen3.8-27B-UD-Q4_K_M.gguf"
 group = "24gb"
 machines = ["runpod"]
+
+[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.6
+top_p = 0.95
+top_k = 20
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Qwen family recommended settings for thinking mode"
+card = ""
+verified = false
