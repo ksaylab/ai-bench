@@ -53,6 +53,21 @@ class TestGpuSampler(unittest.TestCase):
         summary = s.summary()
         self.assertEqual((summary["peak_vram_mib"], summary["peak_power_w"]), (5000, 150.0))
 
+    def test_start_waits_for_the_first_sample_so_a_short_first_execution_is_measured(self):
+        smi = executable(self.tmp, "nvidia-smi", "#!/bin/sh\nsleep 0.3\nwhile true; do echo '0, 3000, 100.0'; sleep 1; done\n")
+        s = gpu.Sampler(command=[str(smi)]).start()
+        t0 = gpu.time.monotonic()
+        w = s.window(t0, gpu.time.monotonic())  # an execution that ends right away, before the next sample
+        s.stop()
+        self.assertEqual(w["peak_vram_mib"], 3000)
+
+    def test_a_silent_nvidia_smi_does_not_hold_the_run_past_the_timeout(self):
+        smi = executable(self.tmp, "nvidia-smi", "#!/bin/sh\nexec sleep 30\n")
+        t = gpu.time.monotonic()
+        s = gpu.Sampler(command=[str(smi)], first_sample_timeout=0.2).start()
+        self.assertLess(gpu.time.monotonic() - t, 1.5)
+        self.assertTrue(s.stop().status.startswith("unavailable"))
+
     def test_without_nvidia_smi_it_degrades_to_empty_columns(self):
         s = gpu.Sampler(command=[str(self.tmp / "no-such-nvidia-smi")]).start()
         self.assertTrue(s.status.startswith("unavailable"))

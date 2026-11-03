@@ -23,8 +23,11 @@ def _num(x):
 
 
 class Sampler:
-    def __init__(self, server_host=None, interval_ms=500, gpu_index=0, command=None, clock=time.monotonic):
+    def __init__(self, server_host=None, interval_ms=500, gpu_index=0, command=None, clock=time.monotonic,
+                 first_sample_timeout=5.0):
         self.interval_ms, self.gpu_index, self.clock = interval_ms, str(gpu_index), clock
+        self.first_sample_timeout = first_sample_timeout
+        self.ready = threading.Event()  # set on the first sample, or when nvidia-smi stops writing
         query = QUERY + ["-lms", str(interval_ms)]
         self.command = command or (["ssh", "-o", "BatchMode=yes", server_host, " ".join(query)] if server_host
                                    else query)
@@ -44,18 +47,27 @@ class Sampler:
         self.status = "ok"
         self.thread = threading.Thread(target=self._read, daemon=True)
         self.thread.start()
+        # nvidia-smi (more so over ssh) takes a moment to print its first line: without this wait, an execution
+        # that ends before it gets no GPU columns. A silent nvidia-smi holds the run for at most the timeout.
+        self.ready.wait(self.first_sample_timeout)
         return self
 
     def _read(self):
-        for line in self.proc.stdout:
-            parts = [p.strip() for p in line.split(",")]
-            if len(parts) != 3 or parts[0] != self.gpu_index:
-                continue
-            mem, power = _num(parts[1]), _num(parts[2])
-            if mem is None:
-                continue
-            with self.lock:
-                self.samples.append((self.clock(), mem, power))
+        try:
+            for line in self.proc.stdout:
+                parts = [p.strip() for p in line.split(",")]
+                if len(parts) != 3 or parts[0] != self.gpu_index:
+                    continue
+                mem, power = _num(parts[1]), _num(parts[2])
+                if mem is None:
+                    continue
+                with self.lock:
+                    self.samples.append((self.clock(), mem, power))
+                self.ready.set()
+        except ValueError:
+            pass  # stdout closed by stop()
+        finally:
+            self.ready.set()
 
     def stop(self):
         if self.proc:
