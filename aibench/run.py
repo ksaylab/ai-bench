@@ -8,17 +8,18 @@ with the cases' good examples, with no network: it exercises the plumbing.
 import csv
 import json
 import os
+import time
 from datetime import datetime
 from pathlib import Path
 
-from aibench import calibration, cases, client, env, judge, verdict
+from aibench import calibration, cases, client, env, gpu, judge, verdict
 
 ROOT = Path(__file__).resolve().parents[1]
 EPISODES = ROOT / "episodes"
 MIN_RUNS = verdict.MIN_RUNS
 COLUMNS = ["run_id", "machine", "model", "use_case", "case", "tier", "rep", "seed", "passed", "reason", "time_s",
-           "prompt_tokens", "completion_tokens", "tok_s", "cost_usd", "finish", "judge_score", "judge_cost_usd",
-           "context_words", "battery"]
+           "prompt_tokens", "completion_tokens", "tok_s", "ttft_s", "gen_tok_s", "peak_vram_mib", "avg_power_w",
+           "energy_wh", "cost_usd", "finish", "judge_score", "judge_cost_usd", "context_words", "battery"]
 
 
 class RunError(Exception):
@@ -51,7 +52,8 @@ def simulated_answer(case, rep):
     ex = case["example_bad"] if (case["use_case"] == "coding" and rep == 2) else case["example_good"]
     a = cases.as_answer(ex)
     return {**a, "finish": "stop", "prompt_tokens": len(case["prompt"].split()),
-            "completion_tokens": len(a["text"].split()), "cost_usd": 0.0, "time_s": 0.01, "tok_s": None}
+            "completion_tokens": len(a["text"].split()), "cost_usd": 0.0, "time_s": 0.01, "tok_s": None,
+            "ttft_s": 0.005, "gen_tok_s": None}
 
 
 RESPONSE_FIELDS = ("text", "reasoning", "tool_calls", "finish", "error")
@@ -61,6 +63,18 @@ def response_line(row, answer):
     """One line of responses.jsonl: which execution it is, the verdict of the checker and the raw answer."""
     keys = ("run_id", "model", "use_case", "case", "rep", "seed", "passed", "reason")
     return {**{k: row[k] for k in keys}, **{k: answer.get(k, "" if k != "tool_calls" else []) for k in RESPONSE_FIELDS}}
+
+
+def sampler_factory(machine, model_url, simulate=False, enabled=True, env_vars=os.environ):
+    """A function that makes a fresh GPU sampler (one per model): nvidia-smi where the model server runs."""
+    host = env_vars.get("AIBENCH_SERVER_HOST")
+    if simulate or not enabled or machine == "openrouter":
+        reason = "simulated run" if simulate else "cloud model" if machine == "openrouter" else "--no-gpu-sampling"
+        return lambda: gpu.Disabled(reason)
+    remote = env.server_is_remote(machine, model_url)
+    if remote and not host:
+        return lambda: gpu.Disabled("remote model server without AIBENCH_SERVER_HOST")
+    return lambda: gpu.Sampler(host if remote else None)
 
 
 def write_csv(path, columns, rows):
@@ -82,10 +96,12 @@ def write_results(folder, rows, reference=None):
 
 def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge_model=None, context_words=3000,
         label="run", simulate=False, smoke=False, skip_code=False, max_tokens=8192, out=None, log=print,
-        judge_url=None, sampling=None, server_args=None, anchors=None, root=None, model_info=None):
+        judge_url=None, sampling=None, server_args=None, anchors=None, root=None, model_info=None, stream=True,
+        gpu_sampling=True):
     """`sampling`: model -> its [model.sampling] table (temperature, top_p, ..., base seed). `server_args`: the model
     server's command line, recorded in meta.json (paths and addresses scrubbed). `anchors`: model -> role, for a
-    calibration run (`root` = calibration/, `model_info` = prices read from OpenRouter)."""
+    calibration run (`root` = calibration/, `model_info` = prices read from OpenRouter). `stream`: streaming
+    responses, for the time to first token. `gpu_sampling`: nvidia-smi on the model server during the run."""
     ep = EPISODES / episode if episode else None
     if root is None and (ep is None or not ep.is_dir()):
         raise RunError(f"episode {episode!r} not found in {EPISODES.name}/")
@@ -139,46 +155,58 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
         meta["anchors"] = {m: {"role": anchors[m], **((model_info or {}).get(m) or {})} for m in models}
         meta["anchors_checked"] = now.date().isoformat()
     (dest / "env.json").write_text(json.dumps(environment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    new_sampler = sampler_factory(machine, model_url, simulate, gpu_sampling)
+    meta["stream"] = stream and not simulate
+    gpu_summary = {}
     rows = []
     with open(dest / "executions.csv", "w", newline="", encoding="utf-8") as f, \
             open(dest / "responses.jsonl", "w", encoding="utf-8") as raw:
         w = csv.DictWriter(f, fieldnames=COLUMNS)
         w.writeheader()
         for model in models:
-            for rep in range(runs):
-                seed = rep_seed(sampling[model], rep)
-                params = {**sampling[model], "seed": seed} if seed is not None else sampling[model]
-                for c in battery:
-                    try:
-                        r = simulated_answer(c, rep) if simulate else client.chat(
-                            model_url, model, cases.messages(c), key=key, max_tokens=max_tokens,
-                            tools=c.get("tool_specs"), sampling=params)
-                        passed, reason = cases.check(c, r)
-                    except client.ClientError as e:
-                        r, passed, reason = {"error": str(e)}, False, f"error: {e}"
-                    score = judge_cost = ""
-                    if judge_model and c.get("rubric") and r.get("text") and not simulate:
+            sampler = new_sampler().start()
+            try:
+                for rep in range(runs):
+                    seed = rep_seed(sampling[model], rep)
+                    params = {**sampling[model], "seed": seed} if seed is not None else sampling[model]
+                    for c in battery:
+                        t0 = time.monotonic()
                         try:
-                            s, jc = judge.grade(judge_url, judge_key, judge_model, c, r["text"])
-                            score = "" if s is None else s
-                            judge_cost = "" if jc is None else jc
-                        except client.ClientError:
-                            pass
-                    row = {"run_id": run_id, "machine": machine, "model": model, "use_case": c["use_case"],
-                           "case": c["id"], "tier": c["tier"], "rep": rep, "seed": "" if seed is None else seed,
-                           "passed": int(passed), "reason": reason,
-                           "time_s": r.get("time_s", ""), "prompt_tokens": r.get("prompt_tokens") or "",
-                           "completion_tokens": r.get("completion_tokens") or "", "tok_s": r.get("tok_s") or "",
-                           "cost_usd": "" if r.get("cost_usd") is None else r["cost_usd"],
-                           "finish": r.get("finish", ""), "judge_score": score, "judge_cost_usd": judge_cost,
-                           "context_words": c.get("context_words", ""), "battery": hashes[c["use_case"]]}
-                    w.writerow(row)
-                    f.flush()
-                    raw.write(json.dumps(response_line(row, r), ensure_ascii=False) + "\n")
-                    raw.flush()
-                    rows.append(row)
-                done = [x for x in rows if x["model"] == model and x["rep"] == rep]
-                log(f"{model} · run {rep + 1}/{runs}: {sum(x['passed'] for x in done)}/{len(done)}")
+                            r = simulated_answer(c, rep) if simulate else client.chat(
+                                model_url, model, cases.messages(c), key=key, max_tokens=max_tokens,
+                                tools=c.get("tool_specs"), sampling=params, stream=stream)
+                            passed, reason = cases.check(c, r)
+                        except client.ClientError as e:
+                            r, passed, reason = {"error": str(e)}, False, f"error: {e}"
+                        power = sampler.window(t0, time.monotonic())
+                        score = judge_cost = ""
+                        if judge_model and c.get("rubric") and r.get("text") and not simulate:
+                            try:
+                                s, jc = judge.grade(judge_url, judge_key, judge_model, c, r["text"])
+                                score = "" if s is None else s
+                                judge_cost = "" if jc is None else jc
+                            except client.ClientError:
+                                pass
+                        row = {"run_id": run_id, "machine": machine, "model": model, "use_case": c["use_case"],
+                               "case": c["id"], "tier": c["tier"], "rep": rep, "seed": "" if seed is None else seed,
+                               "passed": int(passed), "reason": reason,
+                               "time_s": r.get("time_s", ""), "prompt_tokens": r.get("prompt_tokens") or "",
+                               "completion_tokens": r.get("completion_tokens") or "", "tok_s": r.get("tok_s") or "",
+                               "ttft_s": "" if r.get("ttft_s") is None else r["ttft_s"],
+                               "gen_tok_s": r.get("gen_tok_s") or "", **power,
+                               "cost_usd": "" if r.get("cost_usd") is None else r["cost_usd"],
+                               "finish": r.get("finish", ""), "judge_score": score, "judge_cost_usd": judge_cost,
+                               "context_words": c.get("context_words", ""), "battery": hashes[c["use_case"]]}
+                        w.writerow(row)
+                        f.flush()
+                        raw.write(json.dumps(response_line(row, r), ensure_ascii=False) + "\n")
+                        raw.flush()
+                        rows.append(row)
+                    done = [x for x in rows if x["model"] == model and x["rep"] == rep]
+                    log(f"{model} · run {rep + 1}/{runs}: {sum(x['passed'] for x in done)}/{len(done)}")
+            finally:
+                gpu_summary[model] = sampler.stop().summary()
+    meta["gpu_sampling"] = gpu_summary
     meta["end"] = datetime.now().isoformat(timespec="seconds")
     (dest / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     write_results(dest, rows, None if anchors else calibration.load_reference())
@@ -224,17 +252,22 @@ def check_battery_versions(rows):
 
 
 def consolidate(episode, log=None):
-    """Merges the episode's publishable runs into results/executions.csv, scores.csv, verdicts.csv and verdicts.md."""
+    """Merges the episode's publishable runs into results/executions.csv, scores.csv, verdicts.csv, verdicts.md and
+    speed.csv (from the `speed` runs)."""
     folder = EPISODES / episode / "results"
-    rows = []
+    rows, speed_rows = [], []
     for meta in sorted(folder.glob("runs/*/meta.json")):
         why = excluded(json.loads(meta.read_text(encoding="utf-8")), meta.parent)
         if why:
             if log:
                 log(f"skipped {meta.parent.name}: {why}")
             continue
-        with open(meta.parent / "executions.csv", encoding="utf-8") as f:
-            rows += list(csv.DictReader(f))
+        for name, dest in (("executions.csv", rows), ("speed.csv", speed_rows)):
+            if (meta.parent / name).exists():
+                with open(meta.parent / name, encoding="utf-8") as f:
+                    dest += list(csv.DictReader(f))
+    from aibench import speed  # speed imports nothing from run
+    write_csv(folder / "speed.csv", speed.COLUMNS, speed_rows)
     check_battery_versions(rows)
     write_csv(folder / "executions.csv", COLUMNS, rows)
     v = write_results(folder, rows, calibration.load_reference()) if rows else []

@@ -72,7 +72,12 @@ folder there (`rsync`/`scp`), run
 python3 -m aibench speed --episode 02-what-runs-on-8gb --machine pc-rtx2060 --models-dir ~/models --depths 0,16384,32768
 ```
 
-and bring back the new folder in `episodes/02-what-runs-on-8gb/results/runs/`.
+and bring back the new folder in `episodes/02-what-runs-on-8gb/results/runs/`; `verdict` merges it into
+`results/speed.csv`. On the PC, `speed` also samples nvidia-smi: peak VRAM and average power per model.
+
+`run` streams the responses (time to first token in `ttft_s`) and samples nvidia-smi on the PC (peak VRAM, power,
+Wh): locally when the client is the PC, over ssh when `AIBENCH_SERVER_HOST` is set. `--no-stream` and
+`--no-gpu-sampling` turn them off; without a GPU the columns stay empty.
 `speed` measures GGUF files with `llama-bench`; models only available in Ollama have no speed measurement.
 
 ## RunPod (rented GPU)

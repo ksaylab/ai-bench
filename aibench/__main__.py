@@ -8,7 +8,7 @@ import tomllib
 from datetime import datetime
 from pathlib import Path
 
-from aibench import calibration, cases, client, cost, env, run, speed
+from aibench import calibration, cases, client, cost, env, gpu, run, speed
 
 EPISODES = run.EPISODES
 COST_EPISODE = "01-buy-or-rent-gpu"
@@ -67,6 +67,8 @@ def main(argv=None):
     p.add_argument("--server-args", help="the model server's command line, recorded in meta.json "
                                          "(default: AIBENCH_SERVER_ARGS)")
     p.add_argument("--label", default="run")
+    p.add_argument("--no-stream", action="store_true", help="no streaming responses (no measured time to first token)")
+    p.add_argument("--no-gpu-sampling", action="store_true", help="do not sample nvidia-smi on the model server")
     p.add_argument("--simulate", action="store_true", help="no network: answer with the cases' examples")
     p.add_argument("--smoke", action="store_true", help="allow fewer than 3 runs; the run cannot be published")
     p.add_argument("--skip-code", action="store_true", help="do not execute code written by the models")
@@ -96,6 +98,7 @@ def main(argv=None):
     p.add_argument("--depths", default="0,16384")
     p.add_argument("--repetitions", type=int, default=3)
     p.add_argument("--label", default="speed")
+    p.add_argument("--no-gpu-sampling", action="store_true", help="do not sample nvidia-smi")
 
     p = sub.add_parser("cost", help="episode 1: monthly cost of buying vs renting")
     p.add_argument("--prices")
@@ -127,7 +130,8 @@ def main(argv=None):
                 raise ValueError(f"unknown use case(s): {','.join(sorted(use_cases - set(cases.USE_CASES)))}")
             dest = run.run(a.episode, a.machine, models, a.runs, a.url, use_cases, a.judge, a.context_words, a.label,
                            a.simulate, a.smoke, a.skip_code, a.max_tokens, a.out, judge_url=a.judge_url,
-                           sampling=model_sampling(a.episode, models), server_args=a.server_args)
+                           sampling=model_sampling(a.episode, models), server_args=a.server_args,
+                           stream=not a.no_stream, gpu_sampling=not a.no_gpu_sampling)
             print(f"run written to {_rel(dest)}")
             print((dest / "verdicts.md").read_text(encoding="utf-8"))
         elif a.cmd == "calibrate":
@@ -168,15 +172,23 @@ def main(argv=None):
             if not targets:
                 raise SystemExit("error: no model with a gguf in models.toml for this machine")
             depths = [int(x) for x in a.depths.split(",")]
-            rows = []
+            rows, start = [], datetime.now()
             for m in targets:
                 print(f"measuring {m['name']}…", file=sys.stderr)
-                rows += speed.measure(a.machine, m["name"], m["path"], depths, a.repetitions)
-            path = (EPISODES / a.episode / "results" / "runs" /
-                    f"{datetime.now():%Y-%m-%d-%H%M}-{a.machine}-{a.label}" / "speed.csv")
+                sampler = gpu.Disabled("--no-gpu-sampling") if a.no_gpu_sampling else gpu.Sampler()
+                rows += speed.measure(a.machine, m["name"], m["path"], depths, a.repetitions, sampler=sampler)
+                print(f"  GPU sampling: {sampler.status}", file=sys.stderr)
+            run_id = f"{start:%Y-%m-%d-%H%M}-{a.machine}-{a.label}"
+            path = EPISODES / a.episode / "results" / "runs" / run_id / "speed.csv"
             run.write_csv(path, speed.COLUMNS, rows)
             (path.parent / "env.json").write_text(
                 json.dumps(env.capture(a.machine), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            meta = {"run_id": run_id, "kind": "speed", "episode": a.episode, "machine": a.machine,
+                    "models": [m["name"] for m in targets], "depths": depths, "repetitions": a.repetitions,
+                    "start": start.isoformat(timespec="seconds"), "end": datetime.now().isoformat(timespec="seconds"),
+                    "smoke": False, "simulated": False, "publishable": True}
+            (path.parent / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
+                                                   encoding="utf-8")
             print(f"written to {_rel(path)}")
         elif a.cmd == "cost":
             ep = EPISODES / COST_EPISODE

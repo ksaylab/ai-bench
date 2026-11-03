@@ -35,7 +35,7 @@ SCORE_COLUMNS = ["machine", "model", "use_case", "battery", "passed", "execution
                  "min_run_pct", "max_run_pct", "easy_pct", "medium_pct", "hard_pct", "unstable_cases", "errors",
                  "threshold_pct", "verdict", "tier_qualifier", "borderline",
                  "ceiling_pct", "floor_pct", "pct_of_ceiling", "normalized", "calibrated", "avg_time_s", "avg_tok_s",
-                 "cost_usd"]
+                 "avg_ttft_s", "avg_gen_tok_s", "peak_vram_mib", "avg_power_w", "wh_per_run", "cost_usd"]
 VERDICT_COLUMNS = ["machine", "model"] + [f"{uc}_pct" for uc in GOOD_THRESHOLD] + [
     "good_for", "not_good_for", "inconclusive", "unstable", "not_calibrated", "runs", "avg_time_s", "cost_usd"]
 UNSURE = ("Inconclusive", "Not calibrated", "Unstable")
@@ -119,6 +119,11 @@ def scores(rows, reference=None):
         tiers = tier_scores(rs)
         times = [t for t in (_f(r["time_s"]) for r in rs) if t is not None]
         tps = [t for t in (_f(r["tok_s"]) for r in rs) if t is not None]
+
+        def vals(k):
+            return [x for x in (_f(r.get(k)) for r in rs) if x is not None]
+        ttft, gen, vram, watts, wh = (vals(k) for k in ("ttft_s", "gen_tok_s", "peak_vram_mib", "avg_power_w",
+                                                         "energy_wh"))
         costs = [c for c in (_f(r["cost_usd"]) for r in rs) if c is not None]
         costs += [c for c in (_f(r.get("judge_cost_usd")) for r in rs) if c is not None]
         out.append({"machine": machine, "model": model, "use_case": uc, "battery": battery, "passed": passed,
@@ -134,6 +139,11 @@ def scores(rows, reference=None):
                     "calibrated": calibrated,
                     "avg_time_s": round(sum(times) / len(times), 2) if times else "",
                     "avg_tok_s": round(sum(tps) / len(tps), 2) if tps else "",
+                    "avg_ttft_s": round(sum(ttft) / len(ttft), 3) if ttft else "",
+                    "avg_gen_tok_s": round(sum(gen) / len(gen), 2) if gen else "",
+                    "peak_vram_mib": int(max(vram)) if vram else "",
+                    "avg_power_w": round(sum(watts) / len(watts), 1) if watts else "",
+                    "wh_per_run": round(sum(wh) / len(per_run), 4) if wh else "",
                     "cost_usd": round(sum(costs), 6) if costs else ""})
     return out
 

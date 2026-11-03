@@ -22,6 +22,7 @@ class FakeServer(BaseHTTPRequestHandler):
     """Speaks llama-server's /v1/chat/completions: answers each case with its good example (tool calls included)."""
     requests = []
     bad_models = set()
+    streamed = 0
 
     def do_POST(self):
         body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
@@ -44,8 +45,18 @@ class FakeServer(BaseHTTPRequestHandler):
                 msg["tool_calls"] = [{"id": f"call_{i}", "type": "function",
                                       "function": {"name": t["name"], "arguments": json.dumps(t["arguments"])}}
                                      for i, t in enumerate(a["tool_calls"])]
-        data = json.dumps({"choices": [{"message": msg, "finish_reason": "stop"}],
-                           "usage": {"prompt_tokens": 10, "completion_tokens": 5}}).encode()
+        usage = {"prompt_tokens": 10, "completion_tokens": 5}
+        if body.get("stream"):
+            FakeServer.streamed += 1
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream")
+            self.end_headers()
+            for chunk in stream_chunks(msg, usage):
+                self.wfile.write(b": keep-alive\n\n" + b"data: " + json.dumps(chunk).encode() + b"\n\n")
+            self.wfile.write(b"data: [DONE]\n\n")
+            return
+        data = json.dumps({"choices": [{"message": msg, "finish_reason": "stop"}], "usage": usage,
+                           "timings": {"prompt_ms": 12.0}}).encode()
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(data)))
@@ -54,6 +65,23 @@ class FakeServer(BaseHTTPRequestHandler):
 
     def log_message(self, *a):
         pass
+
+
+def stream_chunks(msg, usage):
+    """The message split into OpenAI-style deltas: the text in two parts, each tool call's arguments in two parts."""
+    text = msg.get("content") or ""
+    yield {"choices": [{"index": 0, "delta": {"role": "assistant"}}]}
+    for part in (text[:len(text) // 2], text[len(text) // 2:]):
+        if part:
+            yield {"choices": [{"index": 0, "delta": {"content": part}}]}
+    for i, tc in enumerate(msg.get("tool_calls") or []):
+        args = tc["function"]["arguments"]
+        yield {"choices": [{"index": 0, "delta": {"tool_calls": [
+            {"index": i, "id": tc["id"], "type": "function", "function": {"name": tc["function"]["name"],
+                                                                        "arguments": args[:3]}}]}}]}
+        yield {"choices": [{"index": 0, "delta": {"tool_calls": [{"index": i, "function": {"arguments": args[3:]}}]}}]}
+    yield {"choices": [{"index": 0, "delta": {}, "finish_reason": "stop"}]}
+    yield {"choices": [], "usage": usage}
 
 
 def read(path):
@@ -71,6 +99,7 @@ class TestRun(unittest.TestCase):
         self.addCleanup(p.stop)
         FakeServer.requests.clear()
         FakeServer.bad_models = set()
+        FakeServer.streamed = 0
 
     def server(self):
         srv = HTTPServer(("127.0.0.1", 0), FakeServer)

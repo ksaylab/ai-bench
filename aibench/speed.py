@@ -2,17 +2,20 @@
 
 Runs `llama-bench -o json` with `-r` repetitions (at least 3) and writes one CSV row per measurement. When the model
 does not load (not enough memory, for example), the row gets status `error` and the reason: that is how episode 2
-shows what does not fit.
+shows what does not fit. With an NVIDIA GPU, nvidia-smi is sampled during each model's measurement: peak VRAM and
+average power go into the model's rows (empty without a GPU).
 """
 import json
 import shutil
 import subprocess
+import time
 from pathlib import Path
 
+from aibench import gpu
 from aibench.env import scrub
 
 COLUMNS = ["machine", "gpu", "model", "gguf", "gguf_gib", "metric", "depth", "tok_s", "stddev_tok_s", "repetitions",
-           "status", "reason", "build"]
+           "status", "reason", "build", "peak_vram_mib", "avg_power_w"]
 
 
 def command(gguf, depths, repetitions=3, ngl=99, flash=True, extra=()):
@@ -35,7 +38,20 @@ def parse(output_json, machine, model, gguf, repetitions):
     return rows
 
 
-def measure(machine, model, gguf, depths=(0, 16384), repetitions=3, timeout=3600, extra=()):
+def measure(machine, model, gguf, depths=(0, 16384), repetitions=3, timeout=3600, extra=(), sampler=None):
+    """llama-bench rows for one GGUF; `sampler` (gpu.Sampler) adds peak VRAM and average power to every row."""
+    sampler = sampler or gpu.Disabled("no sampler")
+    t0 = time.monotonic()
+    sampler.start()
+    try:
+        rows = _measure(machine, model, gguf, depths, repetitions, timeout, extra)
+    finally:
+        sampler.stop()
+    power = sampler.window(t0, time.monotonic())
+    return [{**r, "peak_vram_mib": power["peak_vram_mib"], "avg_power_w": power["avg_power_w"]} for r in rows]
+
+
+def _measure(machine, model, gguf, depths, repetitions, timeout, extra):
     if repetitions < 3:
         raise ValueError("the methodology requires at least 3 repetitions")
     if not shutil.which("llama-bench"):
