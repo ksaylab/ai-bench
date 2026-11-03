@@ -206,6 +206,22 @@ class TestRun(unittest.TestCase):
         self.assertNotIn("someone", meta["server_args"])
         self.assertIn("-c 8192", meta["server_args"])
 
+    def test_raw_responses_are_saved_next_to_the_executions(self):
+        url = self.server()
+        with mock.patch.object(run.env, "capture", return_value={}):
+            d = run.run("99-test", "pc-rtx2060", ["m1"], url=url, use_cases={"agent", "coding"},
+                        sampling=pinned("m1"), **QUIET)
+        lines = [json.loads(l) for l in (d / "responses.jsonl").read_text().splitlines()]
+        rows = read(d / "executions.csv")
+        self.assertEqual(len(lines), len(rows))
+        self.assertEqual([(l["case"], str(l["rep"]), str(l["passed"])) for l in lines],
+                         [(r["case"], r["rep"], r["passed"]) for r in rows])
+        weather = next(l for l in lines if l["case"] == "weather_call")
+        self.assertEqual(weather["tool_calls"][0]["name"], "get_weather")
+        code = next(l for l in lines if l["use_case"] == "coding")
+        self.assertIn("```python", code["text"])
+        self.assertEqual(code["finish"], "stop")
+
     def test_a_model_without_pinned_sampling_needs_smoke(self):
         with self.assertRaises(run.RunError):
             run.run("99-test", "pc-rtx2060", ["m1"], url="http://127.0.0.1:9/v1", **QUIET)
@@ -229,6 +245,8 @@ class TestRun(unittest.TestCase):
                         sampling=pinned("m1"), **QUIET)
         rows = read(d / "executions.csv")
         self.assertTrue(all(r["passed"] == "0" and r["reason"].startswith("error:") for r in rows))
+        raw = [json.loads(l) for l in (d / "responses.jsonl").read_text().splitlines()]
+        self.assertTrue(all(l["error"] and l["text"] == "" for l in raw))
         self.assertEqual(read(d / "verdicts.csv")[0]["inconclusive"], verdict.LABELS["agent"])
 
 

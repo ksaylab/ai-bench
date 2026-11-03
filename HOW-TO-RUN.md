@@ -20,8 +20,8 @@ CSVs and the verdict table. Simulated and smoke runs stay out of git and out of 
 ## What each command does
 
 - `run`: the four batteries (27 cases) × 3 runs = 81 calls per model. Writes
-  `episodes/<ep>/results/runs/<date>-<machine>-<label>/` with `executions.csv`, `scores.csv`, `verdicts.csv` and
-  `verdicts.md`. `--use-cases coding,rag` runs only some batteries (the others then have no verdict).
+  `episodes/<ep>/results/runs/<date>-<machine>-<label>/` with `meta.json`, `env.json`, `executions.csv`,
+  `responses.jsonl` (raw answers), `scores.csv`, `verdicts.csv` and `verdicts.md`. `--use-cases coding,rag` runs only some batteries (the others then have no verdict).
 - `speed`: `llama-bench` with 3 repetitions, a 512-token prompt and 128 generated tokens, at the requested depths
   (default 0 and 16384). Needs the GGUF on the machine and the model server stopped.
 - `verdict`: merges the episode's publishable runs into `results/executions.csv`, `scores.csv`, `verdicts.csv` and

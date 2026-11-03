@@ -207,9 +207,10 @@ looked at once:
   the best run fall on different sides of the threshold, the verdict is **Unstable** (shown like Inconclusive, with
   its own column in `verdicts.csv` and `verdicts.md`) instead of Good for / Not good for. `unstable_cases` in
   `scores.csv` counts the cases whose result changed between repeats. The existing **borderline** mark stays.
-- **Raw responses are saved for audit (Planned).** Each run writes `responses.jsonl` next to `executions.csv`:
-  one line per execution with the model's text, reasoning, tool calls and finish reason, so a failure can be
-  traced to the model or to the checker. The cases are synthetic, so the file holds nothing private; it still goes
+- **Raw responses are saved for audit (implemented).** Each run writes `responses.jsonl` next to `executions.csv`:
+  one line per execution (same order) with the case, repeat, seed, the checker's result and reason, and the model's
+  text, reasoning, tool calls, finish reason and the technical error, if any, so a failure can be traced to the
+  model or to the checker. The cases are synthetic, so the file holds nothing private; it still goes
   through `./scripts/pre-publish-check.sh`.
 
 ### 8.5 External sanity check (coding)

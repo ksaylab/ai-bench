@@ -1,8 +1,8 @@
 """Runs the use-case batteries against one or more models, N runs each (at least 3), and writes CSVs.
 
 Each run goes to episodes/<ep>/results/runs/<YYYY-MM-DD-HHMM>-<machine>-<label>/ with meta.json (parameters),
-env.json (machine), executions.csv (one row per case and run), scores.csv (per use case), verdicts.csv and
-verdicts.md (Good for / Not good for). `--simulate` answers with the cases' good examples, with no network: it
+env.json (machine), executions.csv (one row per case and run), responses.jsonl (the raw answer of every execution,
+for audit), scores.csv (per use case), verdicts.csv and verdicts.md (Good for / Not good for). `--simulate` answers with the cases' good examples, with no network: it
 exercises the plumbing.
 """
 import csv
@@ -52,6 +52,15 @@ def simulated_answer(case, rep):
     a = cases.as_answer(ex)
     return {**a, "finish": "stop", "prompt_tokens": len(case["prompt"].split()),
             "completion_tokens": len(a["text"].split()), "cost_usd": 0.0, "time_s": 0.01, "tok_s": None}
+
+
+RESPONSE_FIELDS = ("text", "reasoning", "tool_calls", "finish", "error")
+
+
+def response_line(row, answer):
+    """One line of responses.jsonl: which execution it is, the verdict of the checker and the raw answer."""
+    keys = ("run_id", "model", "use_case", "case", "rep", "seed", "passed", "reason")
+    return {**{k: row[k] for k in keys}, **{k: answer.get(k, "" if k != "tool_calls" else []) for k in RESPONSE_FIELDS}}
 
 
 def write_csv(path, columns, rows):
@@ -123,7 +132,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
             "server_args": env.scrub(server_args or os.environ.get("AIBENCH_SERVER_ARGS", ""))}
     (dest / "env.json").write_text(json.dumps(environment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     rows = []
-    with open(dest / "executions.csv", "w", newline="", encoding="utf-8") as f:
+    with open(dest / "executions.csv", "w", newline="", encoding="utf-8") as f, \
+            open(dest / "responses.jsonl", "w", encoding="utf-8") as raw:
         w = csv.DictWriter(f, fieldnames=COLUMNS)
         w.writeheader()
         for model in models:
@@ -137,7 +147,7 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                             tools=c.get("tool_specs"), sampling=params)
                         passed, reason = cases.check(c, r)
                     except client.ClientError as e:
-                        r, passed, reason = {}, False, f"error: {e}"
+                        r, passed, reason = {"error": str(e)}, False, f"error: {e}"
                     score = judge_cost = ""
                     if judge_model and c.get("rubric") and r.get("text") and not simulate:
                         try:
@@ -155,6 +165,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                            "context_words": c.get("context_words", "")}
                     w.writerow(row)
                     f.flush()
+                    raw.write(json.dumps(response_line(row, r), ensure_ascii=False) + "\n")
+                    raw.flush()
                     rows.append(row)
                 done = [x for x in rows if x["model"] == model and x["rep"] == rep]
                 log(f"{model} · run {rep + 1}/{runs}: {sum(x['passed'] for x in done)}/{len(done)}")
