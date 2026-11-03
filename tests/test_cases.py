@@ -60,6 +60,30 @@ class TestBatteries(unittest.TestCase):
                 self.assertEqual(c["tool_specs"][0]["type"], "function")
 
 
+class TestCodingPublic(unittest.TestCase):
+    def test_public_cases_carry_source_and_license_and_are_in_the_notice(self):
+        from pathlib import Path
+        pub = cases.load(["coding_public"])
+        self.assertTrue(9 <= len(pub) <= 12)
+        notice = (Path(cases.CASES) / "coding_public" / "NOTICE.md").read_text(encoding="utf-8")
+        self.assertIn("Copyright (c) OpenAI", (Path(cases.CASES) / "coding_public" / "LICENSE-HumanEval").read_text())
+        for c in pub:
+            self.assertIn(c["license"], ("MIT", "CC-BY-4.0"), c["id"])
+            self.assertTrue(c["source"].startswith(("HumanEval/", "MBPP")), c["id"])
+            self.assertIn(f"`{c['id']}`", notice)
+        self.assertEqual({c["license"] for c in pub}, {"MIT", "CC-BY-4.0"})
+
+    def test_public_cases_are_scored_but_never_get_a_verdict(self):
+        from aibench import verdict
+        rows = [{"run_id": "r", "machine": "m", "model": "x", "use_case": "coding_public", "case": f"c{i}",
+                 "rep": rep, "passed": 1, "reason": "", "time_s": 1, "tok_s": 1, "cost_usd": ""}
+                for rep in range(3) for i in range(5)]
+        s = verdict.scores(rows)[0]
+        self.assertEqual((s["score_pct"], s["verdict"]), (100.0, "Reference only"))
+        v = verdict.verdicts([s])[0]
+        self.assertEqual((v["coding_public_pct"], v["good_for"], v["not_good_for"]), (100.0, "", ""))
+
+
 class TestCheckers(unittest.TestCase):
     def case(self, cid):
         return next(c for c in ALL if c["id"] == cid)

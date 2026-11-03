@@ -184,10 +184,13 @@ def pruning(rows, battery_cases=None):
         s["checked"] += 1
         if r["action"] in ("too_easy", "suspect", "ceilings_disagree"):
             s[r["action"]] += 1
+    from aibench.cases import REFERENCE_USE_CASES
     for uc, s in summary.items():
         kept = s["cases"] - s["too_easy"] - s["suspect"]
         low, high = TARGET_CASES
-        if kept < low:
+        if uc in REFERENCE_USE_CASES:
+            s["advice"] = "reference battery (public sets): fixed, not pruned"
+        elif kept < low:
             s["advice"] = f"add {low - kept} to {high - kept} cases, mainly medium and hard"
         elif kept > high:
             s["advice"] = f"{kept - high} more case(s) than the target: drop the least discriminating easy ones"

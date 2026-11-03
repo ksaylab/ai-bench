@@ -7,7 +7,8 @@ The videos are in Brazilian Portuguese at [ksay.com.br](https://ksay.com.br).
 
 - **Use-case batteries** ([`cases/`](cases/)): coding (with automated tests), RAG (correct answer **and** the source
   passage cited), agents (tool calling and exact JSON schemas) and chat & summaries in Portuguese. Short, synthetic and
-  identical for every model.
+  identical for every model. Plus `coding_public`, 10 HumanEval / MBPP problems as an external sanity check (not
+  part of the verdict).
 - **Verdict**: per-use-case scores over at least 3 runs, mapped to Good for / Not good for (≥ 80%). See
   [METHODOLOGY.md](METHODOLOGY.md).
 - **Calibration**: the same batteries on cheap OpenRouter anchors (two ceilings, one floor) as a ruler: each local
@@ -47,4 +48,5 @@ scripts/      pre-publish-check.sh
 
 ## License
 
-Code: [MIT](LICENSE). Data (cases, prices, results): [CC BY 4.0](LICENSE-DATA).
+Code: [MIT](LICENSE). Data (cases, prices, results): [CC BY 4.0](LICENSE-DATA), except the HumanEval and MBPP
+problems in [`cases/coding_public/`](cases/coding_public/NOTICE.md), under their own licenses (MIT, CC BY 4.0).

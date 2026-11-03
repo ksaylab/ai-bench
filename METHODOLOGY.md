@@ -6,7 +6,7 @@ Rules every published result follows. The code enforces the ones it can; the res
 
 Every LLM test answers one question per model: **what is it good for, and what is it not good for?** Each use case
 has a short battery in [`cases/`](cases/). The batteries are the same for every model and machine, written for this
-repository, and scored automatically. Nothing comes from real companies' or people's code, data or conversations.
+repository (except the `coding_public` reference battery, 8.5), and scored automatically. Nothing comes from real companies' or people's code, data or conversations.
 
 | Use case | File | Cases | What passes |
 | --- | --- | --- | --- |
@@ -14,6 +14,7 @@ repository, and scored automatically. Nothing comes from real companies' or peop
 | `rag` | `cases/rag.jsonl` + `rag_documents.json` | 8 | The answer is correct **and** cites the source passage as `[n]`. Wrong passage, no citation or extra unrelated citations fail. Includes a question whose answer is not in the document (must say so, with no citation), an outdated vs. newer rule, similar entities and two long generated documents (needle in a haystack). |
 | `agent` | `cases/agent.jsonl` + `agent_tools.json` | 7 | Tool/function calling through the API's `tools` field: exactly one call, the right tool, arguments valid against the tool's JSON Schema and equal to the expected values. Also: not calling a tool when none is needed, and JSON output in an exact schema (types, enums, required keys, no extra keys). |
 | `chat_pt` | `cases/chat_pt.jsonl` | 6 | Chat and summaries in Brazilian Portuguese: required facts present, length limits (words/sentences/lines), answer in Portuguese, false premises corrected. |
+| `coding_public` | `cases/coding_public/cases.jsonl` | 10 | Reference only (8.5): 5 HumanEval and 5 MBPP problems, scored like `coding`, never part of the verdict. |
 
 - Every case has `example_good` and `example_bad`; the tests check that the checker passes the first and fails the
   second. A new case only goes in with both.
@@ -235,13 +236,14 @@ and how far the battery is from the 15 to 20 target). Every case is looked at on
 
 ### 8.5 External sanity check (coding)
 
-- **Planned:** a small `coding_public` battery (about 10 problems) taken from well-known public sets, scored with the
-  same isolated subprocess as `coding`:
-  - HumanEval (`openai/human-eval`, MIT license: the copyright notice must be kept);
-  - MBPP, sanitized split (`google-research-datasets/mbpp`, CC BY 4.0: attribution required).
-  Each case carries `source` and `license` fields, and a NOTICE file lists them. They are the only cases in the
-  repository not written for it.
-- It is **not part of the verdict.** Public problems are very likely in the models' training data, so a high score
+- **Implemented:** a small `coding_public` battery (10 problems) in `cases/coding_public/`, taken from well-known
+  public sets, scored with the same isolated subprocess as `coding`:
+  - 5 from HumanEval (`openai/human-eval`, MIT license: the copyright notice is kept in `LICENSE-HumanEval`);
+  - 5 from MBPP, sanitized split (`google-research/google-research`, `mbpp/`, CC BY 4.0: attribution in the NOTICE).
+  Each case carries `source` and `license` fields (`cases.load` refuses one without them), and
+  `cases/coding_public/NOTICE.md` lists them with the changes made. They are the only cases in the repository not
+  written for it. It runs by default with the other batteries (`--use-cases` to leave it out).
+- It is **not part of the verdict** (`Reference only` in `scores.csv`; `coding_public_pct` in `verdicts.csv`). Public problems are very likely in the models' training data, so a high score
   there says little. It only answers one question: does our ranking agree with the public one?
 - The anchors and the local models are ranked on `coding` and on `coding_public`, and both rankings are compared
   with the HumanEval / MBPP numbers in the model cards or public leaderboards, where they exist (with source and

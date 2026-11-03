@@ -30,13 +30,15 @@ MAX_ERROR_RATE = 0.10
 CALIBRATED_CEILING_MIN = 90.0
 CALIBRATED_FLOOR_MAX = 40.0
 LABELS = {"coding": "Coding", "rag": "RAG (answers with sources)", "agent": "Agents / tool calling",
-          "chat_pt": "Chat & summaries in Portuguese"}
+          "chat_pt": "Chat & summaries in Portuguese", "coding_public": "Coding, public sets (reference)"}
+# Batteries that are scored but never get a verdict (METHODOLOGY.md 8.5): their verdict column says so.
+REFERENCE = {"coding_public"}
 SCORE_COLUMNS = ["machine", "model", "use_case", "battery", "passed", "executions", "cases", "runs", "score_pct",
                  "min_run_pct", "max_run_pct", "easy_pct", "medium_pct", "hard_pct", "unstable_cases", "errors",
                  "threshold_pct", "verdict", "tier_qualifier", "borderline",
                  "ceiling_pct", "floor_pct", "pct_of_ceiling", "normalized", "calibrated", "avg_time_s", "avg_tok_s",
                  "avg_ttft_s", "avg_gen_tok_s", "peak_vram_mib", "avg_power_w", "wh_per_run", "cost_usd"]
-VERDICT_COLUMNS = ["machine", "model"] + [f"{uc}_pct" for uc in GOOD_THRESHOLD] + [
+VERDICT_COLUMNS = ["machine", "model"] + [f"{uc}_pct" for uc in GOOD_THRESHOLD] + ["coding_public_pct",
     "good_for", "not_good_for", "inconclusive", "unstable", "not_calibrated", "runs", "avg_time_s", "cost_usd"]
 UNSURE = ("Inconclusive", "Not calibrated", "Unstable")
 
@@ -108,7 +110,9 @@ def scores(rows, reference=None):
         threshold = GOOD_THRESHOLD.get(uc, 80.0)
         battery = next((r.get("battery") for r in rs if r.get("battery")), "")
         ceiling, floor, pct, norm, calibrated = relative(score, (reference or {}).get((uc, battery)))
-        if len(per_run) < MIN_RUNS or errors / n > MAX_ERROR_RATE:
+        if uc in REFERENCE:
+            verdict = "Reference only"
+        elif len(per_run) < MIN_RUNS or errors / n > MAX_ERROR_RATE:
             verdict = "Inconclusive"
         elif calibrated == 0:
             verdict = "Not calibrated"
@@ -157,7 +161,7 @@ def verdicts(score_rows):
     for (machine, model), ss in sorted(groups.items()):
         by = {s["use_case"]: s for s in ss}
         row = {"machine": machine, "model": model}
-        for uc in GOOD_THRESHOLD:
+        for uc in list(GOOD_THRESHOLD) + sorted(REFERENCE):
             row[f"{uc}_pct"] = by[uc]["score_pct"] if uc in by else ""
         for key, label in (("good_for", "Good for"), ("not_good_for", "Not good for"),
                            ("inconclusive", "Inconclusive"), ("unstable", "Unstable"),

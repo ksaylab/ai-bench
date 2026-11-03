@@ -19,7 +19,8 @@ CSVs and the verdict table. Simulated and smoke runs stay out of git and out of 
 
 ## What each command does
 
-- `run`: the four batteries (27 cases) × 3 runs = 81 calls per model. Writes
+- `run`: the four batteries (27 cases) plus the `coding_public` reference battery (10 cases) × 3 runs = 111 calls
+  per model. Writes
   `episodes/<ep>/results/runs/<date>-<machine>-<label>/` with `meta.json`, `env.json`, `executions.csv`,
   `responses.jsonl` (raw answers), `scores.csv`, `verdicts.csv` and `verdicts.md`. `--use-cases coding,rag` runs only some batteries (the others then have no verdict).
 - `speed`: `llama-bench` with 3 repetitions, a 512-token prompt and 128 generated tokens, at the requested depths
@@ -109,8 +110,8 @@ The anchors (`anchors.toml`: two ceilings and one floor, METHODOLOGY.md 8.2) run
 version; their scores are the ruler for every episode (`pct_of_ceiling`, `normalized`, `calibrated` in
 `scores.csv`). Check the anchors' sampling against their model cards first (`verified = true` in `anchors.toml`).
 
-Cost: whatever OpenRouter charges per token, recorded in `cost_usd`. Every anchor makes cases × runs calls (27 × 3 = 81
-today, 243 for the three anchors). Time: ~5 to 30 min per anchor.
+Cost: whatever OpenRouter charges per token, recorded in `cost_usd`. Every anchor makes cases × runs calls (37 × 3 = 111
+today, 333 for the three anchors). Time: ~5 to 30 min per anchor.
 
 ```bash
 python3 -m aibench calibrate --simulate --label dry-run   # free, no network: checks the plumbing

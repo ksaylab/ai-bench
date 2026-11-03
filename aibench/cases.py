@@ -1,7 +1,9 @@
 """Use-case batteries and automatic checkers. Every case is synthetic and ships with a good and a bad example
 answer; the tests make sure the checker accepts the first and rejects the second.
 
-Batteries (one JSONL file per use case in cases/): coding, rag, agent, chat_pt.
+Batteries (one JSONL file per use case in cases/): coding, rag, agent, chat_pt, plus the reference battery
+coding_public (cases/coding_public/cases.jsonl: problems from HumanEval and MBPP, with `source` and `license` on
+every case; not part of the verdict, METHODOLOGY.md 8.5).
 
 Checker kinds:
 - regex: every `ok` pattern matches and no `forbidden` one does (normalized text: lowercase, no accents)
@@ -30,7 +32,9 @@ from aibench.text import final_answer, is_portuguese, normalize, sentences, word
 
 ROOT = Path(__file__).resolve().parents[1]
 CASES = ROOT / "cases"
-USE_CASES = ["coding", "rag", "agent", "chat_pt"]
+USE_CASES = ["coding", "rag", "agent", "chat_pt", "coding_public"]
+REFERENCE_USE_CASES = {"coding_public"}  # scored like the others, never part of a Good for / Not good for verdict
+FILES = {"coding_public": "coding_public/cases.jsonl"}  # default: <use case>.jsonl
 KINDS = {"regex", "lines", "summary", "code", "rag", "tool_call", "no_tool", "json_schema"}
 TIERS = ("easy", "medium", "hard")
 PASS_MARK = "__CASE_PASSED__"
@@ -39,11 +43,15 @@ PASS_MARK = "__CASE_PASSED__"
 BATTERY_FILES = {"agent": ["agent_tools.json"], "rag": ["rag_documents.json"]}
 
 
+def battery_file(use_case):
+    return FILES.get(use_case, f"{use_case}.jsonl")
+
+
 def battery_hash(use_case, context_words=3000, folder=CASES):
     """Version of one use case's battery: the first 12 hex digits of a SHA-256 over its files (and, for RAG, the size
     of the generated documents). Runs and anchors are only compared on the same version."""
     h = hashlib.sha256()
-    for name in [f"{use_case}.jsonl"] + BATTERY_FILES.get(use_case, []):
+    for name in [battery_file(use_case)] + BATTERY_FILES.get(use_case, []):
         h.update(name.encode() + b"\0" + (Path(folder) / name).read_bytes() + b"\0")
     if use_case == "rag":
         h.update(f"context_words={context_words}".encode())
@@ -66,7 +74,7 @@ def load(use_cases=None, context_words=3000, folder=CASES):
         raise ValueError(f"unknown use case(s): {', '.join(sorted(unknown))} (use {', '.join(USE_CASES)})")
     reg, docs, out = None, None, []
     for uc in use_cases:
-        for n, line in enumerate((Path(folder) / f"{uc}.jsonl").read_text(encoding="utf-8").splitlines(), 1):
+        for n, line in enumerate((Path(folder) / battery_file(uc)).read_text(encoding="utf-8").splitlines(), 1):
             if not line.strip():
                 continue
             c = json.loads(line)
@@ -75,6 +83,8 @@ def load(use_cases=None, context_words=3000, folder=CASES):
                 raise ValueError(f"{uc}.jsonl:{n}: unknown kind {c['kind']!r}")
             if c.get("tier") not in TIERS:
                 raise ValueError(f"{uc}.jsonl:{n}: tier must be one of {', '.join(TIERS)}")
+            if uc in REFERENCE_USE_CASES and not (c.get("source") and c.get("license")):
+                raise ValueError(f"{uc}:{n}: a case taken from a public set needs `source` and `license`")
             if "tools" in c:
                 reg = reg or tools_registry()
                 c["tool_specs"] = [{"type": "function", "function": reg[t]} for t in c["tools"]]
