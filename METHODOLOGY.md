@@ -105,25 +105,27 @@ the runs are pilot runs and are not published.
 
 Every battery is run, with the same prompts, the same `cases/` version and pinned parameters (8.4), on:
 
-- **Ceiling anchors:** 2 or 3 frontier models through OpenRouter. They show what "the best available" scores today.
+- **Ceiling anchors:** 2 strong, low-cost models through OpenRouter. They show what a top open-weights model
+  scores today. Expensive closed frontier models are deliberately left out to keep anchor runs cheap.
 - **Floor anchor:** one deliberately small, weak model through OpenRouter. It shows what a model with almost no
   skill in the use case scores (format luck, trivial cases).
 
-Suggested anchors, with ids checked on `https://openrouter.ai/api/v1/models` on 2026-11-03 (price in USD per 1M
-input / output tokens on that date). **To be confirmed by the channel before the first anchor run**:
+Anchors, with ids checked on `https://openrouter.ai/api/v1/models` on 2026-11-03 (price in USD per 1M
+input / output tokens on that date):
 
-| Role | OpenRouter id | USD / 1M in / out | Sampling parameters the API accepts |
+| Role | OpenRouter id | USD / 1M in / out | Status |
 | --- | --- | --- | --- |
-| Ceiling | `anthropic/claude-opus-5.5` | 4.00 / 20.00 | no `temperature`, `top_p` or `seed` (provider defaults) |
-| Ceiling | `openai/gpt-5.6-sol` | 4.00 / 20.00 | `seed` only; no `temperature` or `top_p` |
-| Ceiling (open weights) | `deepseek/deepseek-v4-pro` | 1.60 / 3.20 | `temperature`, `top_p`, `seed`, `presence_penalty` |
-| Floor | `mistralai/ministral-3b-2512` | 0.10 / 0.10 | `temperature`, `top_p`, `seed`, tool calling |
+| Ceiling | `deepseek/deepseek-v4-pro` | 1.60 / 3.20 | Approved |
+| Ceiling | `z-ai/glm-5.3-flash` | 0.0313 / 0.0846 | Approved |
+| Floor | `mistralai/ministral-3b-2512` | 0.10 / 0.10 | Suggested, to be confirmed |
+
+All three accept `temperature`, `top_p`, `seed` and tool calling, so every anchor runs with pinned parameters (8.4).
 
 - The floor must support tool calling, or every `agent` case fails for a technical reason instead of for lack of
   skill. `meta-llama/llama-3.2-1b-instruct` is weaker but its OpenRouter listing has no `tools` parameter, so it
   can only be a floor for `coding`, `rag` and `chat_pt`.
-- Ceiling anchors that do not accept sampling parameters are run with the provider's defaults; that is written in
-  `meta.json` and their spread over the repeats (8.4) is reported like any other model's.
+- If the ceiling anchors themselves stay well below 90% on a use case, the battery is too hard or broken for that
+  use case (8.7), not a sign that a pricier anchor is needed.
 - The judge (`--judge`) must not be one of the anchors. The runner already refuses a judge that is one of the
   compared models in the same run; **Planned:** the same check against the anchor list.
 - Anchor ids, prices and accepted parameters change. Each anchor run records the id, the date and the price read
@@ -136,7 +138,7 @@ pct_of_ceiling = score / mean(ceiling anchors' scores) × 100
 normalized     = (score − floor score) / (mean ceiling score − floor score) × 100    (0 = floor, 100 = ceiling)
 ```
 
-"Model X reaches N% of the frontier level in coding" is the sentence the video can say; a raw 88.9% on a battery
+"Model X reaches N% of the ceiling anchors in coding" is the sentence the video can say; a raw 88.9% on a battery
 that everyone passes is not.
 
 ### 8.3 Difficulty tiers and battery size
@@ -145,7 +147,7 @@ that everyone passes is not.
   `tests/test_cases.py` like `example_good` and `example_bad`. `scores.csv` gets one score per tier
   (`easy_pct`, `medium_pct`, `hard_pct`) next to the overall `score_pct`.
 - Rough meaning: **easy** = a small local model should pass; **medium** = needs real skill (multi-step logic,
-  several constraints at once, longer context); **hard** = frontier anchors pass and small models usually do not
+  several constraints at once, longer context); **hard** = ceiling anchors pass and small models usually do not
   (edge cases in the hidden tests, distractor passages, ambiguous tool choice, long schemas).
 - **Target: 15 to 20 cases per use case** (today 6 to 8), roughly one third per tier. With 18 cases one case is
   worth 5.6 points instead of 12 to 17. All new cases follow section 1: synthetic, written for this repository,
