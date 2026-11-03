@@ -150,6 +150,7 @@ def main(argv=None):
                            a.simulate, a.smoke, a.skip_code, a.max_tokens,
                            sampling={n: table[n].get("sampling") for n in names},
                            providers={n: table[n].get("provider") for n in names},
+                           reasoning={n: table[n].get("reasoning") for n in names},
                            anchors={n: table[n]["role"] for n in names}, root=calibration.CALIBRATION,
                            model_info=info)
             print(f"run written to {_rel(dest)}")

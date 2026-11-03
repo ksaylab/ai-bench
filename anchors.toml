@@ -26,6 +26,9 @@ order = ["novita/fp8"]
 allow_fallbacks = false
 require_parameters = true
 
+[anchor.reasoning]   # DeepSeek's API default (Think High); Think Max needs its own system prompt and a 384K context
+effort = "high"
+
 [[anchor]]
 name = "z-ai/glm-5.3-flash"
 role = "ceiling"
@@ -42,6 +45,9 @@ verified = true
 order = ["novita/fp8"]
 allow_fallbacks = false
 require_parameters = true
+
+[anchor.reasoning]   # the card: reasoning_effort max, also for benchmark reproduction
+effort = "max"
 
 [[anchor]]
 name = "mistralai/ministral-3b-2512"

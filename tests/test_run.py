@@ -29,7 +29,8 @@ class FakeServer(BaseHTTPRequestHandler):
         FakeServer.requests.append({"model": body["model"], "auth": self.headers.get("Authorization"),
                                     "tools": [t["function"]["name"] for t in body.get("tools") or []],
                                     "seed": body.get("seed"), "temperature": body.get("temperature"),
-                                    "top_k": body.get("top_k"), "provider": body.get("provider")})
+                                    "top_k": body.get("top_k"), "provider": body.get("provider"),
+                                    "reasoning": body.get("reasoning")})
         msg = {"role": "assistant", "content": ""}
         if body["messages"][0]["content"].startswith("You grade"):
             msg["content"] = '{"score": 5, "reason": "ok"}'

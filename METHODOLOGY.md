@@ -240,6 +240,12 @@ and how far the battery is from the 15 to 20 target). Every case is looked at on
   answered each call. A provider that accepts `seed` does not promise identical output on batched GPU servers: what
   this pins is that the seed is sent and the provider and precision do not change during a run; what still varies
   shows in the min–max range.
+- **Pinned reasoning effort per anchor (implemented).** Without it, the effort is whatever the provider (or a proxy
+  in front of OpenRouter) defaults to. An optional `[anchor.reasoning]` table is sent as OpenRouter's `reasoning`
+  object: `effort = "max"` for `z-ai/glm-5.3-flash` (its card, also for benchmark reproduction) and `"high"` for
+  `deepseek/deepseek-v4-pro` (DeepSeek's API default; Think Max needs its own system prompt and a 384K context).
+  The floor has none: its only endpoint does not take `reasoning`, and with `require_parameters` sending it would
+  leave no provider. `meta.json` records it (`anchors.<model>.reasoning`); unknown keys are refused.
 - The `seed` is fixed per repeat: base seed + repeat number (`run.rep_seed`), recorded in the `seed` column of
   `executions.csv` and in `meta.json`, so a repeat is reproducible on the same build and GGUF, while the repeats
   still differ from each other.

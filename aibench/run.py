@@ -68,6 +68,18 @@ def check_provider(models, providers, smoke=False, simulate=False):
                            "OpenRouter as is)")
 
 
+# OpenRouter's reasoning object (https://openrouter.ai/docs/use-cases/reasoning-tokens), also sent as is.
+REASONING_KEYS = ("effort", "max_tokens", "exclude", "enabled")
+
+
+def check_reasoning(models, reasoning):
+    """An [anchor.reasoning] table is optional (a model without reasoning has none: with require_parameters, sending
+    it would remove the provider), but it reaches the API as is, so unknown keys are refused even in a smoke run."""
+    for m in models:
+        if unknown := set((reasoning or {}).get(m) or {}) - set(REASONING_KEYS):
+            raise RunError(f"[anchor.reasoning] of {m}: unknown key(s) {', '.join(sorted(unknown))}")
+
+
 def simulated_answer(case, rep):
     """No network: the case's good example, except the coding cases on run 3 (so the scores vary)."""
     ex = case["example_bad"] if (case["use_case"] == "coding" and rep == 2) else case["example_good"]
@@ -118,12 +130,13 @@ def write_results(folder, rows, reference=None):
 def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge_model=None, context_words=3000,
         label="run", simulate=False, smoke=False, skip_code=False, max_tokens=8192, out=None, log=print,
         judge_url=None, sampling=None, server_args=None, anchors=None, root=None, model_info=None, stream=True,
-        gpu_sampling=True, providers=None):
+        gpu_sampling=True, providers=None, reasoning=None):
     """`sampling`: model -> its [model.sampling] table (temperature, top_p, ..., base seed). `server_args`: the model
     server's command line, recorded in meta.json (paths and addresses scrubbed). `anchors`: model -> role, for a
     calibration run (`root` = calibration/, `model_info` = prices read from OpenRouter). `stream`: streaming
     responses, for the time to first token. `gpu_sampling`: nvidia-smi on the model server during the run.
-    `providers`: model -> its [anchor.provider] table, sent as OpenRouter's `provider` routing object."""
+    `providers`: model -> its [anchor.provider] table, sent as OpenRouter's `provider` routing object.
+    `reasoning`: model -> its [anchor.reasoning] table, sent as OpenRouter's `reasoning` object (e.g. the effort)."""
     ep = EPISODES / episode if episode else None
     if root is None and (ep is None or not ep.is_dir()):
         raise RunError(f"episode {episode!r} not found in {EPISODES.name}/")
@@ -141,6 +154,10 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
     providers = {m: (providers or {}).get(m) for m in models}
     if machine == "openrouter":
         check_provider(models, providers, smoke, simulate)
+    reasoning = {m: (reasoning or {}).get(m) for m in models}
+    check_reasoning(models, reasoning)
+    extra = {m: {k: v for k, v in (("provider", providers[m]), ("reasoning", reasoning[m])) if v} or None
+             for m in models}
     for m in models:
         if sampling[m] and not sampling[m].get("verified", True):
             log(f"warning: the sampling of {m} is not verified against its model card (verified = false)")
@@ -178,7 +195,7 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
             "battery": hashes}
     if anchors:
         meta["anchors"] = {m: {"role": anchors[m], **((model_info or {}).get(m) or {}),
-                               **({"provider": providers[m]} if providers[m] else {})} for m in models}
+                               **(extra[m] or {})} for m in models}
         meta["anchors_checked"] = now.date().isoformat()
     (dest / "env.json").write_text(json.dumps(environment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     new_sampler = sampler_factory(machine, model_url, simulate, gpu_sampling)
@@ -201,7 +218,7 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                             r = simulated_answer(c, rep) if simulate else client.chat(
                                 model_url, model, cases.messages(c), key=key, max_tokens=max_tokens,
                                 tools=c.get("tool_specs"), sampling=params, stream=stream,
-                                extra={"provider": providers[model]} if providers[model] else None)
+                                extra=extra[model])
                             passed, reason = cases.check(c, r)
                         except client.ClientError as e:
                             r, passed, reason = {"error": str(e)}, False, f"error: {e}"

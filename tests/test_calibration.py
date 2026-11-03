@@ -131,6 +131,10 @@ class TestAnchorRuns(unittest.TestCase):
                           "mistralai/ministral-3b-2512": "floor"})
         run.check_sampling(list(a), {n: x["sampling"] for n, x in a.items()})
         run.check_provider(list(a), {n: x.get("provider") for n, x in a.items()})
+        run.check_reasoning(list(a), {n: x.get("reasoning") for n, x in a.items()})
+        self.assertEqual({n: (x.get("reasoning") or {}).get("effort") for n, x in a.items()},
+                         {"deepseek/deepseek-v4-pro": "high", "z-ai/glm-5.3-flash": "max",
+                          "mistralai/ministral-3b-2512": None})  # the floor's only endpoint has no reasoning
 
     def test_prices_come_from_the_public_model_list(self):
         info = client.models_info(["ceil-a", "gone"], url=self.serve(Models))
@@ -151,6 +155,27 @@ class TestAnchorRuns(unittest.TestCase):
         self.assertEqual(meta["anchors"]["ceil-a"]["provider"], PINNED)
         lines = [json.loads(line) for line in (d / "responses.jsonl").read_text().splitlines()]
         self.assertEqual({line["provider"] for line in lines}, {"FakeHost"})
+
+    def test_an_anchor_run_pins_the_reasoning_effort_only_where_it_is_set(self):
+        url = self.serve(FakeServer)
+        with mock.patch.dict("os.environ", {"OPENROUTER_API_KEY": "test-token"}), \
+                mock.patch.object(run.env, "capture", return_value={}):
+            d = run.run(None, "openrouter", ["ceil-a", "floor-x"], url=url, use_cases={"agent"},
+                        sampling=pinned("ceil-a", "floor-x"), providers={"ceil-a": PINNED, "floor-x": PINNED},
+                        reasoning={"ceil-a": {"effort": "max"}}, anchors={"ceil-a": "ceiling", "floor-x": "floor"},
+                        root=calibration.CALIBRATION, **QUIET)
+        sent = {(p["model"], json.dumps(p["reasoning"])) for p in FakeServer.requests}
+        self.assertEqual(sent, {("ceil-a", '{"effort": "max"}'), ("floor-x", "null")})
+        self.assertTrue(all(p["provider"] == PINNED for p in FakeServer.requests))
+        meta = json.loads((d / "meta.json").read_text())
+        self.assertEqual(meta["anchors"]["ceil-a"]["reasoning"], {"effort": "max"})
+        self.assertNotIn("reasoning", meta["anchors"]["floor-x"])
+
+    def test_unknown_reasoning_keys_are_refused(self):
+        with self.assertRaises(run.RunError):
+            run.run(None, "openrouter", ["ceil-a"], use_cases={"coding"}, simulate=True,
+                    reasoning={"ceil-a": {"effort": "max", "efort": "high"}}, anchors={"ceil-a": "ceiling"},
+                    root=calibration.CALIBRATION, **QUIET)
 
     def test_an_anchor_run_without_one_pinned_provider_needs_smoke(self):
         loose = (None, {"order": ["host/fp8"]}, {**PINNED, "order": []}, {**PINNED, "allow_fallbacks": True},
