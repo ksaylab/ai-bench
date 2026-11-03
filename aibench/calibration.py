@@ -91,7 +91,7 @@ def reference(score_rows):
     for s in score_rows:
         key = (s["use_case"], s["battery"])
         score = float(s["score_pct"])
-        if s["role"] == "ceiling" and score >= by[key].get("ceiling", -1):
+        if s["role"] == "ceiling" and score > by[key].get("ceiling", -1):  # a tie keeps the first ceiling
             by[key].update(ceiling=score, ceiling_model=s["model"])
         elif s["role"] == "floor":
             # more than one floor model: the weakest one is the floor
