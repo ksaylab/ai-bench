@@ -91,8 +91,17 @@ The first pilot runs on the PC showed two problems. First, the batteries are too
 `coding`, so a frontier model would likely score ~100% and the battery could not tell a good model from a great one.
 Second, the scores did not repeat: `neohorse-4b` went from 77.8% to 100% in `coding` between two runs an hour apart,
 which flipped its verdict, because sampling was not pinned and, with 6 to 8 cases, one case is worth 12.5 to 16.7
-points. This section is the plan to fix both. Items marked **Planned** do not exist in the code yet; until they do,
-the runs are pilot runs and are not published.
+points. This section is the plan to fix both. Since 2026-11-03 every item below is implemented in the code
+(marked **implemented**); what is still open is running it and acting on the results:
+
+- the sampling tables in `models.toml` and `anchors.toml` use family defaults and still have to be checked against
+  each model card (`verified = true`);
+- the anchors have not run yet, so `pct_of_ceiling`, `normalized` and `calibrated` are empty and no battery is
+  calibrated;
+- the batteries have 6 to 8 cases (target 15 to 20, 8.3);
+- the local contestants have not run with pinned sampling on the PC.
+
+Until then, the runs are pilot runs and are not published.
 
 ### 8.1 Machines
 
@@ -135,6 +144,12 @@ Anchors, in [`anchors.toml`](anchors.toml) (role and pinned sampling), with ids 
 | Floor | `mistralai/ministral-3b-2512` | 0.10 / 0.10 | Approved |
 
 All three accept `temperature`, `top_p`, `seed` and tool calling, so every anchor runs with pinned parameters (8.4).
+
+Cost estimate of one full anchor run (every battery, 37 cases × 3 repeats = 111 calls per anchor, 333 in total, RAG
+documents at the default 3000 words): ~45k input tokens per anchor, and 35k to 220k output tokens depending on how
+much the model reasons. At the prices above that is about US$0.10 to 0.80 for `deepseek/deepseek-v4-pro`, under
+US$0.03 for `z-ai/glm-5.3-flash` and about US$0.01 for `mistralai/ministral-3b-2512`: **under US$1 per battery
+version**. Every new battery version (after pruning or new cases) needs a new anchor run.
 
 - The floor must support tool calling, or every `agent` case fails for a technical reason instead of for lack of
   skill. `meta-llama/llama-3.2-1b-instruct` is weaker but its OpenRouter listing has no `tools` parameter, so it

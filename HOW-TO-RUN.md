@@ -111,7 +111,8 @@ version; their scores are the ruler for every episode (`pct_of_ceiling`, `normal
 `scores.csv`). Check the anchors' sampling against their model cards first (`verified = true` in `anchors.toml`).
 
 Cost: whatever OpenRouter charges per token, recorded in `cost_usd`. Every anchor makes cases × runs calls (37 × 3 = 111
-today, 333 for the three anchors). Time: ~5 to 30 min per anchor.
+today, 333 for the three anchors): under US$1 in total per battery version (estimate in METHODOLOGY.md
+8.2). Time: ~5 to 30 min per anchor.
 
 ```bash
 python3 -m aibench calibrate --simulate --label dry-run   # free, no network: checks the plumbing
