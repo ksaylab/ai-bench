@@ -16,6 +16,7 @@ Checker kinds:
 - json_schema: the first JSON object in the answer is valid against `schema` and matches `expected`
 Any case may set `portuguese: true`: the answer must be in Portuguese.
 """
+import hashlib
 import json
 import re
 import subprocess
@@ -31,6 +32,20 @@ CASES = ROOT / "cases"
 USE_CASES = ["coding", "rag", "agent", "chat_pt"]
 KINDS = {"regex", "lines", "summary", "code", "rag", "tool_call", "no_tool", "json_schema"}
 PASS_MARK = "__CASE_PASSED__"
+
+
+BATTERY_FILES = {"agent": ["agent_tools.json"], "rag": ["rag_documents.json"]}
+
+
+def battery_hash(use_case, context_words=3000, folder=CASES):
+    """Version of one use case's battery: the first 12 hex digits of a SHA-256 over its files (and, for RAG, the size
+    of the generated documents). Runs and anchors are only compared on the same version."""
+    h = hashlib.sha256()
+    for name in [f"{use_case}.jsonl"] + BATTERY_FILES.get(use_case, []):
+        h.update(name.encode() + b"\0" + (Path(folder) / name).read_bytes() + b"\0")
+    if use_case == "rag":
+        h.update(f"context_words={context_words}".encode())
+    return h.hexdigest()[:12]
 
 
 def tools_registry():

@@ -10,3 +10,6 @@ episodes/*/results/runs/*-smoke/
 episodes/*/results/runs/*-smoke-simulated/
 episodes/*/results/*.EXAMPLE.csv
 ._*
+calibration/runs/*-simulated/
+calibration/runs/*-smoke/
+calibration/runs/*-smoke-simulated/

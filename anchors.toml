@@ -1,0 +1,41 @@
+# Calibration anchors (METHODOLOGY.md 8.2): OpenRouter models that only serve as the ruler for every battery. They
+# never get a verdict in an episode table. Ids checked on https://openrouter.ai/api/v1/models on 2026-11-03; every
+# anchor run records the id, the date and the price read at run time in meta.json.
+# role: "ceiling" (strong, low-cost) or "floor" (deliberately small and weak, with tool calling).
+# [anchor.sampling]: pinned like the local models (8.4). OpenRouter accepts temperature, top_p and seed for all three.
+
+[[anchor]]
+name = "deepseek/deepseek-v4-pro"
+role = "ceiling"
+
+[anchor.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 1.0
+top_p = 0.95
+seed = 2000
+source = "DeepSeek family recommended settings"
+card = ""
+verified = false
+
+[[anchor]]
+name = "z-ai/glm-5.3-flash"
+role = "ceiling"
+
+[anchor.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 1.0
+top_p = 0.95
+seed = 2000
+source = "GLM family recommended settings"
+card = ""
+verified = false
+
+[[anchor]]
+name = "mistralai/ministral-3b-2512"
+role = "floor"
+
+[anchor.sampling]   # replace with the model card's recommended settings, then set verified = true
+temperature = 0.15
+top_p = 1.0
+seed = 2000
+source = "Mistral recommended low temperature for Ministral 3"
+card = ""
+verified = false

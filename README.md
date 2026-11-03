@@ -10,6 +10,8 @@ The videos are in Brazilian Portuguese at [ksay.com.br](https://ksay.com.br).
   identical for every model.
 - **Verdict**: per-use-case scores over at least 3 runs, mapped to Good for / Not good for (≥ 80%). See
   [METHODOLOGY.md](METHODOLOGY.md).
+- **Calibration**: the same batteries on cheap OpenRouter anchors (two ceilings, one floor) as a ruler: each local
+  score also as % of the best ceiling and normalized between floor and ceiling. See [`calibration/`](calibration/).
 - **Speed**: `llama-bench` at several context depths, with repetitions.
 - **Cost**: buying vs renting a GPU per month, with the break-even point.
 
@@ -34,7 +36,9 @@ How to run each episode on each machine, with time and cost estimates: [HOW-TO-R
 ## Layout
 
 ```
-aibench/      runner, checkers, verdict, speed, cost, environment, pre-publish check
+aibench/      runner, checkers, verdict, calibration, speed, cost, environment, pre-publish check
+anchors.toml  the calibration anchors (OpenRouter) and their pinned sampling
+calibration/  anchor runs and the reference scores
 cases/        the public use-case batteries
 episodes/     one folder per episode: models, inputs and results (CSV)
 tests/        offline tests (fake servers, fake llama-bench)

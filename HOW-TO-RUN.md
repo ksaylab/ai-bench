@@ -98,6 +98,25 @@ python3 -m aibench run --episode 01-buy-or-rent-gpu --machine runpod --models ge
 python3 -m aibench speed --episode 01-buy-or-rent-gpu --machine runpod --models-dir /workspace --depths 0,16384,65536
 ```
 
+## Calibration anchors (OpenRouter, paid)
+
+The anchors (`anchors.toml`: two ceilings and one floor, METHODOLOGY.md 8.2) run the same batteries once per battery
+version; their scores are the ruler for every episode (`pct_of_ceiling`, `normalized`, `calibrated` in
+`scores.csv`). Check the anchors' sampling against their model cards first (`verified = true` in `anchors.toml`).
+
+Cost: whatever OpenRouter charges per token, recorded in `cost_usd`. Every anchor makes cases × runs calls (27 × 3 = 81
+today, 243 for the three anchors). Time: ~5 to 30 min per anchor.
+
+```bash
+python3 -m aibench calibrate --simulate --label dry-run   # free, no network: checks the plumbing
+export OPENROUTER_API_KEY="…"      # from your password manager; never in a repository file
+python3 -m aibench calibrate --label anchors              # all anchors, all batteries, 3 runs
+python3 -m aibench calibration                            # merge into calibration/anchors.csv
+```
+
+`--models` runs a subset of the anchors and `--use-cases` a subset of the batteries. The prices are read from the
+public model list at run time (no key needed for that) and go into `meta.json`.
+
 ## OpenRouter (cloud, paid): judge only
 
 OpenRouter models are not contestants (METHODOLOGY.md 8.1). The optional judge scores the Portuguese chat cases with

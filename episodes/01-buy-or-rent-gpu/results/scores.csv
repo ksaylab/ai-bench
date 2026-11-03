@@ -1,1 +1,1 @@
-machine,model,use_case,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,errors,threshold_pct,verdict,borderline,avg_time_s,avg_tok_s,cost_usd
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,unstable_cases,errors,threshold_pct,verdict,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,cost_usd

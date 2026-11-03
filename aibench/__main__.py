@@ -8,7 +8,7 @@ import tomllib
 from datetime import datetime
 from pathlib import Path
 
-from aibench import cases, client, cost, env, run, speed
+from aibench import calibration, cases, client, cost, env, run, speed
 
 EPISODES = run.EPISODES
 COST_EPISODE = "01-buy-or-rent-gpu"
@@ -72,6 +72,20 @@ def main(argv=None):
     p.add_argument("--skip-code", action="store_true", help="do not execute code written by the models")
     p.add_argument("--out")
 
+    p = sub.add_parser("calibrate", help="run the batteries on the OpenRouter anchors (anchors.toml; paid)")
+    p.add_argument("--models", help="comma separated subset of the anchors (default: all of anchors.toml)")
+    p.add_argument("--runs", type=int, default=run.MIN_RUNS)
+    p.add_argument("--url", help="OpenRouter-compatible address (default: OpenRouter)")
+    p.add_argument("--use-cases", help=f"comma separated, from {','.join(cases.USE_CASES)} (default: all)")
+    p.add_argument("--context-words", type=int, default=3000, help="size of the long RAG documents")
+    p.add_argument("--max-tokens", type=int, default=8192)
+    p.add_argument("--label", default="anchors")
+    p.add_argument("--simulate", action="store_true", help="no network: answer with the cases' examples")
+    p.add_argument("--smoke", action="store_true", help="allow fewer than 3 runs; the run cannot be published")
+    p.add_argument("--skip-code", action="store_true", help="do not execute code written by the models")
+
+    sub.add_parser("calibration", help="merge the anchor runs into calibration/anchors.csv")
+
     p = sub.add_parser("speed", help="llama-bench (pp and tg) at several context depths")
     p.add_argument("--episode", required=True)
     p.add_argument("--machine", required=True, choices=machines)
@@ -115,6 +129,31 @@ def main(argv=None):
                            sampling=model_sampling(a.episode, models), server_args=a.server_args)
             print(f"run written to {_rel(dest)}")
             print((dest / "verdicts.md").read_text(encoding="utf-8"))
+        elif a.cmd == "calibrate":
+            table = {x["name"]: x for x in calibration.anchors()}
+            names = a.models.split(",") if a.models else list(table)
+            if unknown := [n for n in names if n not in table]:
+                raise ValueError(f"not in anchors.toml: {', '.join(unknown)}")
+            use_cases = set(a.use_cases.split(",")) if a.use_cases else None
+            info = {}
+            if not a.simulate:
+                try:
+                    info = client.models_info(names, url=a.url or client.OPENROUTER)
+                except client.ClientError as e:
+                    print(f"warning: prices not recorded ({e})", file=sys.stderr)
+            dest = run.run(None, "openrouter", names, a.runs, a.url, use_cases, None, a.context_words, a.label,
+                           a.simulate, a.smoke, a.skip_code, a.max_tokens,
+                           sampling={n: table[n].get("sampling") for n in names},
+                           anchors={n: table[n]["role"] for n in names}, root=calibration.CALIBRATION,
+                           model_info=info)
+            print(f"run written to {_rel(dest)}")
+            print((dest / "verdicts.md").read_text(encoding="utf-8"))
+        elif a.cmd == "calibration":
+            path, n, ref = calibration.consolidate(log=lambda m: print(m, file=sys.stderr))
+            print(f"{n} anchor executions → {_rel(path)}")
+            for (uc, battery), r in sorted(ref.items()):
+                print(f"{uc:14} {battery}  best ceiling {r['ceiling']:.1f}% ({r['ceiling_model']}), "
+                      f"floor {r['floor']:.1f}%")
         elif a.cmd == "speed":
             if a.gguf:
                 targets = [{"name": a.model or Path(a.gguf).stem, "path": a.gguf}]
@@ -158,7 +197,8 @@ def main(argv=None):
         elif a.cmd == "cases":
             for c in cases.load():
                 print(f"{c['use_case']:8} {c['id']:20} {c['kind']}")
-    except (run.RunError, client.ClientError, cost.CostError, FileNotFoundError, ValueError) as e:
+    except (run.RunError, client.ClientError, cost.CostError, calibration.CalibrationError, FileNotFoundError,
+            ValueError) as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
     return 0

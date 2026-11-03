@@ -11,14 +11,14 @@ import os
 from datetime import datetime
 from pathlib import Path
 
-from aibench import cases, client, env, judge, verdict
+from aibench import calibration, cases, client, env, judge, verdict
 
 ROOT = Path(__file__).resolve().parents[1]
 EPISODES = ROOT / "episodes"
 MIN_RUNS = verdict.MIN_RUNS
 COLUMNS = ["run_id", "machine", "model", "use_case", "case", "rep", "seed", "passed", "reason", "time_s",
            "prompt_tokens", "completion_tokens", "tok_s", "cost_usd", "finish", "judge_score", "judge_cost_usd",
-           "context_words"]
+           "context_words", "battery"]
 
 
 class RunError(Exception):
@@ -71,8 +71,8 @@ def write_csv(path, columns, rows):
         w.writerows(rows)
 
 
-def write_results(folder, rows):
-    s = verdict.scores(rows)
+def write_results(folder, rows, reference=None):
+    s = verdict.scores(rows, reference)
     v = verdict.verdicts(s)
     write_csv(folder / "scores.csv", verdict.SCORE_COLUMNS, s)
     write_csv(folder / "verdicts.csv", verdict.VERDICT_COLUMNS, v)
@@ -82,11 +82,12 @@ def write_results(folder, rows):
 
 def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge_model=None, context_words=3000,
         label="run", simulate=False, smoke=False, skip_code=False, max_tokens=8192, out=None, log=print,
-        judge_url=None, sampling=None, server_args=None):
+        judge_url=None, sampling=None, server_args=None, anchors=None, root=None, model_info=None):
     """`sampling`: model -> its [model.sampling] table (temperature, top_p, ..., base seed). `server_args`: the model
-    server's command line, recorded in meta.json (paths and addresses scrubbed)."""
-    ep = EPISODES / episode
-    if not ep.is_dir():
+    server's command line, recorded in meta.json (paths and addresses scrubbed). `anchors`: model -> role, for a
+    calibration run (`root` = calibration/, `model_info` = prices read from OpenRouter)."""
+    ep = EPISODES / episode if episode else None
+    if root is None and (ep is None or not ep.is_dir()):
         raise RunError(f"episode {episode!r} not found in {EPISODES.name}/")
     if not models:
         raise RunError("no models (use --models or the episode's models.toml)")
@@ -95,6 +96,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                        "cannot be published)")
     if judge_model and judge_model in models:
         raise RunError(f"the judge {judge_model} is also one of the compared models: pick another judge")
+    if judge_model and judge_model in calibration.anchor_names():
+        raise RunError(f"the judge {judge_model} is a calibration anchor (anchors.toml): pick another judge")
     sampling = {m: dict((sampling or {}).get(m) or {}) for m in models}
     check_sampling(models, sampling, smoke, simulate)
     for m in models:
@@ -115,11 +118,12 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
         judge_url, judge_key = client.resolve_target("openrouter", judge_url or (url if machine == "openrouter" else None))
     now = datetime.now()
     run_id = f"{now:%Y-%m-%d-%H%M}-{machine}-{label}" + ("-smoke" if smoke else "") + ("-simulated" if simulate else "")
-    dest = Path(out) if out else ep / "results" / "runs" / run_id
+    dest = Path(out) if out else (Path(root) if root else ep / "results") / "runs" / run_id
     dest.mkdir(parents=True, exist_ok=True)
     environment = {"machine": machine, "simulated": True} if simulate else env.capture(
         machine, model_url, server_host=os.environ.get("AIBENCH_SERVER_HOST"), models=models)
-    meta = {"run_id": run_id, "episode": episode, "machine": machine, "models": models, "runs": runs,
+    hashes = {uc: cases.battery_hash(uc, context_words) for uc in sorted({c["use_case"] for c in battery})}
+    meta = {"run_id": run_id, "episode": episode or "", "machine": machine, "models": models, "runs": runs,
             "use_cases": sorted({c["use_case"] for c in battery}), "cases": [c["id"] for c in battery],
             "context_words": context_words, "judge": judge_model or "", "start": now.isoformat(timespec="seconds"),
             "smoke": smoke, "simulated": simulate, "max_tokens": max_tokens, "publishable": not (smoke or simulate),
@@ -129,7 +133,11 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                              "seeds": [rep_seed(sampling[m], rep) for rep in range(runs)],
                              **{k: sampling[m][k] for k in ("source", "card", "verified") if k in sampling[m]}}
                          for m in models},
-            "server_args": env.scrub(server_args or os.environ.get("AIBENCH_SERVER_ARGS", ""))}
+            "server_args": env.scrub(server_args or os.environ.get("AIBENCH_SERVER_ARGS", "")),
+            "battery": hashes}
+    if anchors:
+        meta["anchors"] = {m: {"role": anchors[m], **((model_info or {}).get(m) or {})} for m in models}
+        meta["anchors_checked"] = now.date().isoformat()
     (dest / "env.json").write_text(json.dumps(environment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     rows = []
     with open(dest / "executions.csv", "w", newline="", encoding="utf-8") as f, \
@@ -162,7 +170,7 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                            "completion_tokens": r.get("completion_tokens") or "", "tok_s": r.get("tok_s") or "",
                            "cost_usd": "" if r.get("cost_usd") is None else r["cost_usd"],
                            "finish": r.get("finish", ""), "judge_score": score, "judge_cost_usd": judge_cost,
-                           "context_words": c.get("context_words", "")}
+                           "context_words": c.get("context_words", ""), "battery": hashes[c["use_case"]]}
                     w.writerow(row)
                     f.flush()
                     raw.write(json.dumps(response_line(row, r), ensure_ascii=False) + "\n")
@@ -172,18 +180,18 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                 log(f"{model} · run {rep + 1}/{runs}: {sum(x['passed'] for x in done)}/{len(done)}")
     meta["end"] = datetime.now().isoformat(timespec="seconds")
     (dest / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    write_results(dest, rows)
+    write_results(dest, rows, None if anchors else calibration.load_reference())
     return dest
 
 
 NOT_PUBLISHABLE_SUFFIXES = ("-simulated", "-smoke")
 
 
-def excluded(meta, folder):
+def excluded(meta, folder, calibration=False):
     """Why a run folder must stay out of the results ("" = it can be merged). A run is merged only when its meta.json
     says publishable, it is not simulated, smoke or pilot (by meta.json AND by folder name, so a hand-edited meta.json
     cannot sneak a dry run in), and it ran on a known local or rented target (OpenRouter runs are calibration anchors,
-    never episode contestants)."""
+    never episode contestants). With calibration=True (calibration/runs/), only OpenRouter anchor runs are merged."""
     name = Path(folder).name
     if meta.get("simulated") or name.endswith("-simulated") or "-simulated-" in name:
         return "simulated"
@@ -195,9 +203,23 @@ def excluded(meta, folder):
         return "not publishable"
     if meta.get("machine") not in client.TARGETS:
         return f"unknown machine {meta.get('machine')!r}"
+    if calibration:
+        return "" if meta.get("machine") == "openrouter" and meta.get("anchors") else "not an anchor run"
     if meta.get("machine") == "openrouter":
         return "OpenRouter runs are calibration anchors, not contestants"
     return ""
+
+
+def check_battery_versions(rows):
+    """verdict merges runs of one battery version per use case only (METHODOLOGY.md 8.3: frozen battery)."""
+    versions = {}
+    for r in rows:
+        versions.setdefault(r["use_case"], set()).add(r.get("battery", ""))
+    mixed = {uc: v for uc, v in versions.items() if len(v) > 1}
+    if mixed:
+        raise RunError("runs made with different battery versions: " + "; ".join(
+            f"{uc} ({', '.join(sorted(x or 'unrecorded' for x in v))})" for uc, v in sorted(mixed.items())) +
+            ". Rerun with the frozen battery or move the old runs out of results/runs/")
 
 
 def consolidate(episode, log=None):
@@ -212,8 +234,9 @@ def consolidate(episode, log=None):
             continue
         with open(meta.parent / "executions.csv", encoding="utf-8") as f:
             rows += list(csv.DictReader(f))
+    check_battery_versions(rows)
     write_csv(folder / "executions.csv", COLUMNS, rows)
-    v = write_results(folder, rows) if rows else []
+    v = write_results(folder, rows, calibration.load_reference()) if rows else []
     if not rows:
         write_csv(folder / "scores.csv", verdict.SCORE_COLUMNS, [])
         write_csv(folder / "verdicts.csv", verdict.VERDICT_COLUMNS, [])

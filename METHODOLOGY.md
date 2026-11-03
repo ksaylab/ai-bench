@@ -124,8 +124,8 @@ Every battery is run, with the same prompts, the same `cases/` version and pinne
 - **Floor anchor:** one deliberately small, weak model through OpenRouter. It shows what a model with almost no
   skill in the use case scores (format luck, trivial cases).
 
-Anchors, with ids checked on `https://openrouter.ai/api/v1/models` on 2026-11-03 (price in USD per 1M
-input / output tokens on that date):
+Anchors, in [`anchors.toml`](anchors.toml) (role and pinned sampling), with ids checked on
+`https://openrouter.ai/api/v1/models` on 2026-11-03 (price in USD per 1M input / output tokens on that date):
 
 | Role | OpenRouter id | USD / 1M in / out | Status |
 | --- | --- | --- | --- |
@@ -140,17 +140,30 @@ All three accept `temperature`, `top_p`, `seed` and tool calling, so every ancho
   can only be a floor for `coding`, `rag` and `chat_pt`.
 - If the ceiling anchors themselves stay well below 90% on a use case, the battery is too hard or broken for that
   use case (8.7), not a sign that a pricier anchor is needed.
-- The judge (`--judge`) must not be one of the anchors. The runner already refuses a judge that is one of the
-  compared models in the same run; **Planned:** the same check against the anchor list.
-- Anchor ids, prices and accepted parameters change. Each anchor run records the id, the date and the price read
-  from `/api/v1/models` in `meta.json` (**Planned**).
+- The judge (`--judge`) must not be one of the anchors. The runner refuses a judge that is one of the compared
+  models in the same run, and also one that is listed in `anchors.toml`.
+- Anchor ids, prices and accepted parameters change. Each anchor run (`python3 -m aibench calibrate`) records in
+  `meta.json`, per anchor, its role, the price per 1M input / output tokens and the accepted parameters read from
+  the public `/api/v1/models` list at run time (no key, no cost), plus the date (`anchors_checked`).
+- Anchor runs go to `calibration/runs/`, never to an episode; `python3 -m aibench calibration` merges the
+  publishable ones into `calibration/anchors.csv` (score of each anchor per use case and battery version).
 
-Every local score is also reported relative to the anchors (**Planned** columns in `scores.csv`):
+Every local score is also reported relative to the anchors, in `scores.csv`, when anchor runs exist for the **same
+battery version** (8.3):
 
 ```
-pct_of_ceiling = score / mean(ceiling anchors' scores) × 100
-normalized     = (score − floor score) / (mean ceiling score − floor score) × 100    (0 = floor, 100 = ceiling)
+ceiling        = the best ceiling anchor's score on that use case and battery version
+floor          = the floor anchor's score on that use case and battery version
+pct_of_ceiling = score / ceiling × 100
+normalized     = (score − floor) / (ceiling − floor) × 100    (0 = floor, 100 = ceiling)
 ```
+
+- `ceiling_pct` and `floor_pct` are written next to them, so every relative number can be recomputed from the CSV.
+- `normalized` is not clamped: a model below the floor gets a negative value, one above the best ceiling more
+  than 100. It is empty when ceiling = floor (the battery separates nobody).
+- The best ceiling (not the mean of the two) is the reference, so "N% of the ceiling" means "of the best cheap
+  open-weights model we measured"; with only two ceilings the mean would move with the weaker one.
+- Without anchor runs for that battery version the columns are empty.
 
 "Model X reaches N% of the ceiling anchors in coding" is the sentence the video can say; a raw 88.9% on a battery
 that everyone passes is not.
@@ -180,8 +193,11 @@ looked at once:
 
 - The check uses **only the anchors and the floor, never the local contestants**, so the battery is not tuned to
   make a particular local model look good or bad.
-- After the check the battery version is frozen for the episode. **Planned:** a hash of `cases/` in `meta.json`;
-  `verdict` refuses to merge runs made with different battery versions.
+- After the check the battery version is frozen for the episode. Each run records the version of every battery
+  (`cases.battery_hash`: SHA-256 of the use case's files, plus the size of the generated RAG documents) in
+  `meta.json` (`battery`) and in the `battery` column of `executions.csv` and `scores.csv`; `verdict` refuses to
+  merge runs made with different versions of the same battery, and the anchors are only matched on the same
+  version.
 - Removed cases and the reason go into a short changelog in `cases/` (**Planned**), so the pruning is public.
 
 ### 8.4 Reproducibility
@@ -246,16 +262,17 @@ OpenRouter anchors:
 | Metric | How | Status |
 | --- | --- | --- |
 | Cost per execution and per battery (USD) | `cost_usd` reported by OpenRouter | Exists |
-| Price per 1M input / output tokens | read from `/api/v1/models` at run time, with the date, into `meta.json` | Planned |
+| Price per 1M input / output tokens | read from `/api/v1/models` at run time, with the date, into `meta.json` | Implemented (`calibrate`) |
 
 ### 8.7 Verdict rules with anchors
 
 - The absolute rule stays: **Good for** = score ≥ 80% (`GOOD_THRESHOLD`), over at least 3 runs. 80% keeps its
   practical meaning (4 out of 5 tasks right).
-- **A use case only gets verdicts if its battery is calibrated (Planned):** the mean ceiling score is ≥ 90% and the
-  floor score is ≤ 40% on the frozen battery. Otherwise that use case is shown as **Not calibrated** for every model
-  and the battery goes back to 8.3. (The 90% / 40% values are a starting point, to be reviewed after the first anchor
-  run.)
+- **A use case only gets verdicts if its battery is calibrated (implemented):** the best ceiling score is ≥ 90%
+  and the floor score is ≤ 40% on the frozen battery (`CALIBRATED_CEILING_MIN`, `CALIBRATED_FLOOR_MAX` in
+  `aibench/verdict.py`; `calibrated` column in `scores.csv`: 1, 0, or empty when there are no anchor runs for that
+  battery version yet). Otherwise that use case is shown as **Not calibrated** for every model and the battery goes
+  back to 8.3. (The 90% / 40% values are a starting point, to be reviewed after the first anchor run.)
 - **The verdict says up to which tier (Planned):** "Good for" is qualified with the highest tier where the model
   scores ≥ 80%, e.g. "Good for coding (easy and medium)". A model that is ≥ 80% overall only because of the easy
   tier gets "Good for coding (easy only)".
@@ -271,5 +288,5 @@ OpenRouter anchors:
 4. Commit e-mails are GitHub noreply addresses.
 5. Prices have a source and a date, with `status` CONFIRMED.
 6. Every number in the video points to a CSV in this repository.
-7. No simulated, smoke or pilot run in the results (`verdict` lists what it skipped); once section 8 is implemented, the battery is calibrated and
-   every published verdict is stable across repeats.
+7. No simulated, smoke or pilot run in the results (`verdict` lists what it skipped); every published use case has
+   `calibrated` = 1 in `scores.csv` and every published verdict is stable across repeats (no Unstable).

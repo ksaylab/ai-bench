@@ -52,6 +52,34 @@ def resolve_target(target, url=None, env=os.environ):
     return url.rstrip("/"), key
 
 
+def models_info(ids, url=OPENROUTER, timeout=30):
+    """Price (USD per 1M input / output tokens) and accepted parameters of each id, read from OpenRouter's public
+    /models list (no key, no cost). Missing ids map to {"error": ...}; a failed read raises ClientError."""
+    try:
+        req = urllib.request.Request(url.rstrip("/") + "/models", headers={"User-Agent": "ai-bench/0.2"})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            data = json.load(r).get("data", [])
+    except (urllib.error.URLError, TimeoutError, ConnectionError, ValueError) as e:
+        raise ClientError(f"could not read the model list: {type(e).__name__}") from None
+    by_id = {m.get("id"): m for m in data}
+    out = {}
+    for i in ids:
+        m = by_id.get(i)
+        if not m:
+            out[i] = {"error": "not in the OpenRouter model list"}
+            continue
+        price = m.get("pricing") or {}
+
+        def per_million(k):
+            try:
+                return round(float(price[k]) * 1e6, 6)
+            except (KeyError, TypeError, ValueError):
+                return None
+        out[i] = {"usd_per_1m_input": per_million("prompt"), "usd_per_1m_output": per_million("completion"),
+                  "supported_parameters": sorted(m.get("supported_parameters") or [])}
+    return out
+
+
 def _tool_calls(message):
     calls = []
     for c in message.get("tool_calls") or []:
