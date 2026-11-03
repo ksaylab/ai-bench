@@ -2,6 +2,7 @@
 import argparse
 import csv
 import json
+import os
 import sys
 import tomllib
 from datetime import datetime
@@ -35,6 +36,7 @@ def main(argv=None):
     p = sub.add_parser("env", help="record the machine environment as JSON")
     p.add_argument("--machine", required=True, choices=machines)
     p.add_argument("--url")
+    p.add_argument("--models", help="comma separated: records the GGUF of each one (llama-server in router mode)")
     p.add_argument("--out")
 
     p = sub.add_parser("run", help="run the use-case batteries (score, verdict, time, cost)")
@@ -80,7 +82,10 @@ def main(argv=None):
     a = ap.parse_args(argv)
     try:
         if a.cmd == "env":
-            text = json.dumps(env.capture(a.machine, a.url), ensure_ascii=False, indent=2)
+            text = json.dumps(env.capture(
+                a.machine, a.url,
+                server_host=os.environ.get("AIBENCH_SERVER_HOST"),
+                models=a.models.split(",") if a.models else ()), ensure_ascii=False, indent=2)
             if a.out:
                 Path(a.out).write_text(text + "\n", encoding="utf-8")
             print(text)

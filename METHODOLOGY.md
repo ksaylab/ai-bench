@@ -49,7 +49,10 @@ score = passed executions / all executions of the battery, over all runs   (in %
 ## 3. Record the environment
 
 Every run writes `env.json`: OS, CPU, memory, GPU (name, VRAM, driver), Python, llama.cpp or Ollama version and,
-when the server reports it, the build and the GGUF in use. No host name, user name, IP address or paths.
+when the server reports it, the build and the GGUF in use (per model, in router mode). When the model server is
+another machine (the PC on the network, a RunPod pod through a tunnel), the hardware is read from that machine over
+ssh (`AIBENCH_SERVER_HOST`); without it, `env.json` says the hardware was not recorded instead of recording the
+machine that sent the requests. No host name, user name, IP address or paths.
 `meta.json` keeps the parameters: models, cases, runs, context size, judge, thresholds and times.
 
 ## 4. At least 3 runs

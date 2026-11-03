@@ -7,6 +7,7 @@ exercises the plumbing.
 """
 import csv
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -78,7 +79,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
     run_id = f"{now:%Y-%m-%d-%H%M}-{machine}-{label}" + ("-smoke" if smoke else "") + ("-simulated" if simulate else "")
     dest = Path(out) if out else ep / "results" / "runs" / run_id
     dest.mkdir(parents=True, exist_ok=True)
-    environment = {"machine": machine, "simulated": True} if simulate else env.capture(machine, model_url)
+    environment = {"machine": machine, "simulated": True} if simulate else env.capture(
+        machine, model_url, server_host=os.environ.get("AIBENCH_SERVER_HOST"), models=models)
     meta = {"run_id": run_id, "episode": episode, "machine": machine, "models": models, "runs": runs,
             "use_cases": sorted({c["use_case"] for c in battery}), "cases": [c["id"] for c in battery],
             "context_words": context_words, "judge": judge_model or "", "start": now.isoformat(timespec="seconds"),

@@ -66,6 +66,7 @@ the run. On the Mac, set the address through a variable (do not write the IP add
 
 ```bash
 export AIBENCH_URL="http://<pc-address>:8080/v1"
+export AIBENCH_SERVER_HOST="<user>@<pc-address>"   # ssh destination: env.json records the PC's hardware, not the Mac's
 caffeinate -i python3 -m aibench run --episode 02-what-runs-on-16gb-and-8gb --machine pc-rtx2060 --models ornith1.5-9b --label ornith1.5-9b
 caffeinate -i python3 -m aibench run --episode 03-is-bigger-better --machine pc-rtx2060 --models neohorse-4b --label neohorse-4b
 ```
@@ -91,6 +92,7 @@ console). Time: ~30 to 60 min per model for `run`. **Delete the pod at the end**
 ```bash
 ssh -N -L 8080:localhost:8080 <pod-ssh-connection> &
 export AIBENCH_SERVER_KEY=""   # only if the server uses --api-key
+export AIBENCH_SERVER_HOST="<pod-ssh-connection>"   # env.json records the pod's hardware (needs python3 on the pod)
 caffeinate -i python3 -m aibench run --episode 01-buy-or-rent-gpu --machine runpod --models gemma4-12b --label a5000-gemma4-12b
 ```
 

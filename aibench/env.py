@@ -6,6 +6,7 @@ import re
 import shutil
 import subprocess
 import sys
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -59,16 +60,62 @@ def gpus():
     return found
 
 
-def server(url):
-    """llama-server build and model (/props); empty when the server is not llama-server."""
-    base = url[:-3] if url.endswith("/v1") else url
+def _get(url):
     try:
-        with urllib.request.urlopen(base + "/props", timeout=5) as r:
-            p = json.load(r)
+        with urllib.request.urlopen(url, timeout=5) as r:
+            return json.load(r)
     except Exception:
+        return None
+
+
+def server(url, models=()):
+    """llama-server build and GGUF file name (/props); empty when the server is not llama-server. In router mode
+    /props has no model, so the GGUF of each of `models` comes from its preset arguments in /v1/models."""
+    base = url[:-3] if url.endswith("/v1") else url
+    p = _get(base + "/props")
+    if p is None:
         return {}
     model = (p.get("model_path") or "").rsplit("/", 1)[-1]
+    if p.get("role") == "router":
+        model = {}
+        for m in (_get(base + "/v1/models") or {}).get("data", []):
+            args = (m.get("status") or {}).get("args") or []
+            if m.get("id") in models and "--model" in args[:-1]:
+                model[m["id"]] = args[args.index("--model") + 1].rsplit("/", 1)[-1]
     return {k: v for k, v in {"build": p.get("build_info", ""), "gguf": model}.items() if v}
+
+
+def local():
+    """This machine's hardware and versions."""
+    cpu, ram = cpu_and_memory()
+    hw = {"os": f"{platform.system()} {platform.release()}", "arch": platform.machine(), "cpu": cpu, "ram_gib": ram,
+          "gpus": gpus(), "python": sys.version.split()[0], "llama_cpp": scrub(llama_version()),
+          "ollama": scrub(_run(["ollama", "--version"]))}
+    if platform.system() == "Darwin":
+        hw["macos_version"] = _run(["sw_vers", "-productVersion"])
+    return hw
+
+
+def remote(host, command=None):
+    """The server machine's hardware: this file (standard library only) runs there with `python3 -I -` over ssh.
+    `host` is an ssh destination from the environment and never goes into the result. Empty if it fails."""
+    command = command or ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10", host, "python3", "-I", "-"]
+    source = Path(__file__).read_text(encoding="utf-8") + "\nprint(json.dumps(local()))\n"
+    try:
+        r = subprocess.run(command, input=source, capture_output=True, text=True, timeout=60)
+        hw = json.loads(r.stdout.strip().splitlines()[-1]) if r.returncode == 0 and r.stdout.strip() else {}
+    except (OSError, subprocess.TimeoutExpired, ValueError):
+        return {}
+    return hw if isinstance(hw, dict) else {}
+
+
+# Machines whose model server is never this one, even through a local tunnel (RunPod: ssh -L on localhost).
+TUNNELED = {"runpod"}
+
+
+def server_is_remote(machine, url):
+    host = (urllib.parse.urlsplit(url).hostname or "").lower()
+    return machine in TUNNELED or host not in ("localhost", "127.0.0.1", "::1")
 
 
 def llama_version():
@@ -79,13 +126,17 @@ def llama_version():
     return ""
 
 
-def capture(machine, url=None):
-    cpu, ram = cpu_and_memory()
-    env = {"machine": machine, "os": f"{platform.system()} {platform.release()}", "arch": platform.machine(),
-           "cpu": cpu, "ram_gib": ram, "gpus": gpus(), "python": sys.version.split()[0],
-           "llama_cpp": scrub(llama_version()), "ollama": scrub(_run(["ollama", "--version"]))}
-    if platform.system() == "Darwin":
-        env["macos_version"] = _run(["sw_vers", "-productVersion"])
+def capture(machine, url=None, server_host=None, models=()):
+    """Environment of the machine that runs the models. When the model server is another machine, its hardware is
+    read over ssh from `server_host` (AIBENCH_SERVER_HOST); without it, no hardware is recorded rather than this
+    machine's."""
+    env = {"machine": machine}
+    if url and "openrouter.ai" not in url and server_is_remote(machine, url):
+        hw = remote(server_host) if server_host else {}
+        env.update(hw or {"hardware": "not recorded: remote model server (set AIBENCH_SERVER_HOST to the ssh "
+                                      "destination of the server to record it)"})
+    else:
+        env.update(local())
     if url and "openrouter.ai" not in url:
-        env["server"] = server(url)
+        env["server"] = server(url, models)
     return env

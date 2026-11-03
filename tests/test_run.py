@@ -141,6 +141,13 @@ class TestRun(unittest.TestCase):
         self.assertTrue(all(p["auth"] == "Bearer test-token" for p in judge))
         self.assertTrue(all(p["auth"] is None for p in FakeServer.requests if p["model"] == "m1"))
 
+    def test_environment_is_of_the_model_server_named_in_aibench_server_host(self):
+        url = self.server()
+        with mock.patch.object(run.env, "capture", return_value={}) as capture, \
+                mock.patch.dict(run.os.environ, {"AIBENCH_SERVER_HOST": "gpu-box"}):
+            run.run("99-test", "pc-rtx2060", ["m1", "m2"], url=url, use_cases={"agent"}, **QUIET)
+        capture.assert_called_once_with("pc-rtx2060", url, server_host="gpu-box", models=["m1", "m2"])
+
     def test_server_down_is_an_error_row_and_inconclusive(self):
         with mock.patch.object(run.env, "capture", return_value={}), mock.patch.object(client.time, "sleep"):
             d = run.run("99-test", "pc-rtx2060", ["m1"], url="http://127.0.0.1:9/v1", use_cases={"agent"}, **QUIET)
