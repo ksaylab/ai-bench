@@ -9,3 +9,4 @@ episodes/*/results/runs/*-simulated/
 episodes/*/results/runs/*-smoke/
 episodes/*/results/runs/*-smoke-simulated/
 episodes/*/results/*.EXAMPLE.csv
+._*
