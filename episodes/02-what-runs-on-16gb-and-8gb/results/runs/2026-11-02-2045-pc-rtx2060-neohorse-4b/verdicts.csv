@@ -1,0 +1,2 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,good_for,not_good_for,inconclusive,runs,avg_time_s,cost_usd
+pc-rtx2060,neohorse-4b,77.8,87.5,95.2,100.0,RAG (answers with sources) (borderline); Agents / tool calling; Chat & summaries in Portuguese,Coding (borderline),,3,16.9,

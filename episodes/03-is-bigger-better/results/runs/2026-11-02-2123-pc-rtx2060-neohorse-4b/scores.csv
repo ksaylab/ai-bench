@@ -1,0 +1,5 @@
+machine,model,use_case,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,errors,threshold_pct,verdict,borderline,avg_time_s,avg_tok_s,cost_usd
+pc-rtx2060,neohorse-4b,agent,18,21,7,3,85.7,85.7,85.7,0,80.0,Good for,1,2.12,67.43,
+pc-rtx2060,neohorse-4b,chat_pt,17,18,6,3,94.4,83.3,100.0,0,80.0,Good for,1,37.04,76.21,
+pc-rtx2060,neohorse-4b,coding,18,18,6,3,100.0,100.0,100.0,0,80.0,Good for,0,22.58,72.1,
+pc-rtx2060,neohorse-4b,rag,23,24,8,3,95.8,87.5,100.0,0,80.0,Good for,0,3.06,59.37,

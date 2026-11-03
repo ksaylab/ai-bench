@@ -1,0 +1,58 @@
+{
+  "run_id": "2026-11-02-2149-pc-rtx2060-ornith1.5-9b",
+  "episode": "03-is-bigger-better",
+  "machine": "pc-rtx2060",
+  "models": [
+    "ornith1.5-9b"
+  ],
+  "runs": 3,
+  "use_cases": [
+    "agent",
+    "chat_pt",
+    "coding",
+    "rag"
+  ],
+  "cases": [
+    "is_palindrome",
+    "merge_intervals",
+    "word_count",
+    "fizzbuzz",
+    "parse_duration",
+    "top_k_frequent",
+    "single_passage",
+    "newer_rule_wins",
+    "answer_absent",
+    "similar_entity",
+    "two_facts",
+    "password_length",
+    "long_needle",
+    "long_two_hops",
+    "weather_call",
+    "ticket_call",
+    "currency_call",
+    "orders_call",
+    "no_tool_needed",
+    "contact_schema",
+    "priority_schema",
+    "email_summary",
+    "incident_summary",
+    "meeting_owners",
+    "explain_vpn",
+    "false_premise_pt",
+    "formal_rewrite"
+  ],
+  "context_words": 3000,
+  "judge": "",
+  "start": "2026-11-02T21:49:01",
+  "smoke": false,
+  "simulated": false,
+  "max_tokens": 8192,
+  "publishable": true,
+  "thresholds_pct": {
+    "coding": 80.0,
+    "rag": 80.0,
+    "agent": 80.0,
+    "chat_pt": 80.0
+  },
+  "end": "2026-11-02T21:57:02"
+}

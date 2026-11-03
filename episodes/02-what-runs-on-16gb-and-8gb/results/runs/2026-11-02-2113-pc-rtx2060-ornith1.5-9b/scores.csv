@@ -1,0 +1,5 @@
+machine,model,use_case,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,errors,threshold_pct,verdict,borderline,avg_time_s,avg_tok_s,cost_usd
+pc-rtx2060,ornith1.5-9b,agent,19,21,7,3,90.5,85.7,100.0,0,80.0,Good for,1,1.56,62.94,
+pc-rtx2060,ornith1.5-9b,chat_pt,18,18,6,3,100.0,100.0,100.0,0,80.0,Good for,0,6.69,65.74,
+pc-rtx2060,ornith1.5-9b,coding,15,18,6,3,83.3,66.7,100.0,0,80.0,Good for,1,17.12,67.87,
+pc-rtx2060,ornith1.5-9b,rag,15,24,8,3,62.5,62.5,62.5,0,80.0,Not good for,0,2.44,44.25,
