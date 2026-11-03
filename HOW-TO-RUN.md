@@ -9,6 +9,7 @@ the CSV.
 ```bash
 python3 -m unittest discover -s tests -t .
 python3 -m aibench run --episode 03-is-bigger-better --machine pc-rtx2060 --simulate --label dry-run
+python3 -m aibench calibrate --simulate --label dry-run
 python3 -m aibench cost --example
 python3 -m aibench cases                     # list the batteries
 ```
@@ -20,13 +21,17 @@ CSVs and the verdict table. Simulated and smoke runs stay out of git and out of 
 ## What each command does
 
 - `run`: the four batteries (27 cases) plus the `coding_public` reference battery (10 cases) × 3 runs = 111 calls
-  per model. Writes
+  per model, with the model's pinned sampling and one seed per run. Writes
   `episodes/<ep>/results/runs/<date>-<machine>-<label>/` with `meta.json`, `env.json`, `executions.csv`,
-  `responses.jsonl` (raw answers), `scores.csv`, `verdicts.csv` and `verdicts.md`. `--use-cases coding,rag` runs only some batteries (the others then have no verdict).
+  `responses.jsonl` (raw answers), `scores.csv`, `verdicts.csv` and `verdicts.md`. `--use-cases coding,rag` runs
+  only some batteries (the others then have no verdict).
+- `calibrate`: the same batteries on the OpenRouter anchors of `anchors.toml`, into `calibration/runs/`;
+  `calibration` merges them into `calibration/anchors.csv` and writes the pruning report `calibration/pruning.md`.
 - `speed`: `llama-bench` with 3 repetitions, a 512-token prompt and 128 generated tokens, at the requested depths
   (default 0 and 16384). Needs the GGUF on the machine and the model server stopped.
-- `verdict`: merges the episode's publishable runs into `results/executions.csv`, `scores.csv`, `verdicts.csv` and
-  `verdicts.md` (the table for the video).
+- `verdict`: merges the episode's publishable runs into `results/executions.csv`, `scores.csv`, `verdicts.csv`,
+  `verdicts.md` (the table for the video) and `speed.csv`; with anchor runs for the same battery version,
+  `scores.csv` also has `pct_of_ceiling`, `normalized` and `calibrated`.
 
 To keep the client machine awake during a long run: `systemd-inhibit` on Linux, `caffeinate -i` on macOS, in front
 of the command.
