@@ -8,34 +8,34 @@
 name = "deepseek/deepseek-v4-pro"
 role = "ceiling"
 
-[anchor.sampling]   # replace with the model card's recommended settings, then set verified = true
+[anchor.sampling]
 temperature = 1.0
-top_p = 0.95
+top_p = 1.0
 seed = 2000
-source = "DeepSeek family recommended settings"
-card = ""
-verified = false
+source = "DeepSeek-V4-Pro card: temperature = 1.0, top_p = 1.0 (same in generation_config.json)"
+card = "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
+verified = true
 
 [[anchor]]
 name = "z-ai/glm-5.3-flash"
 role = "ceiling"
 
-[anchor.sampling]   # replace with the model card's recommended settings, then set verified = true
+[anchor.sampling]
 temperature = 1.0
 top_p = 0.95
 seed = 2000
-source = "GLM family recommended settings"
-card = ""
-verified = false
+source = "Z.AI GLM-5.3-Flash doc: temperature 1, top_p 0.95 (same in generation_config.json)"
+card = "https://docs.z.ai/guides/llm/glm-5.3-flash"
+verified = true
 
 [[anchor]]
 name = "mistralai/ministral-3b-2512"
 role = "floor"
 
-[anchor.sampling]   # replace with the model card's recommended settings, then set verified = true
-temperature = 0.15
+[anchor.sampling]
+temperature = 0.1
 top_p = 1.0
 seed = 2000
-source = "Mistral recommended low temperature for Ministral 3"
-card = ""
-verified = false
+source = "Ministral 3 3B card: start with temperature 0.1 (its code examples use 0.15); top_p not stated, API default 1.0"
+card = "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512"
+verified = true

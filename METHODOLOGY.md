@@ -94,8 +94,8 @@ which flipped its verdict, because sampling was not pinned and, with 6 to 8 case
 points. This section is the plan to fix both. Since 2026-11-03 every item below is implemented in the code
 (marked **implemented**); what is still open is running it and acting on the results:
 
-- the sampling tables in `models.toml` and `anchors.toml` use family defaults and still have to be checked against
-  each model card (`verified = true`);
+- the anchor runs do not pin an OpenRouter provider, and several providers silently ignore `seed` (among them Z.AI's
+  own endpoint for `z-ai/glm-5.3-flash`), so an anchor repeat is not reproducible yet;
 - the anchors have not run yet, so `pct_of_ceiling`, `normalized` and `calibrated` are empty and no battery is
   calibrated;
 - the batteries have 6 to 8 cases (target 15 to 20, 8.3);
@@ -225,7 +225,11 @@ and how far the battery is from the 15 to 20 target). Every case is looked at on
 - **Pinned sampling per model (implemented).** A `[model.sampling]` table in `models.toml` (and `[anchor.sampling]`
   in `anchors.toml`) with `temperature`, `top_p`, `top_k`, `min_p`, `presence_penalty` and `seed`, taken from the
   model card's recommended settings: the card's link goes in `card`, and `verified = true` once checked (the runner
-  warns while it is `false`; the current tables use family defaults and still need that check). `run.run` sends them
+  warns while it is `false`). Every table was checked against its card on 2026-11-03. When a card gives more than
+  one set, a model keeps one set for every battery, in its default (thinking) mode: the Qwen3.6 and Ornith tables
+  use the cards' precise-coding set (temperature 0.6, `presence_penalty` 0.0), Ministral 3 uses the 0.1 the card
+  recommends in its text (not the 0.15 of its code examples), and NeoHorse uses the evaluation protocol on its card,
+  which gives no explicit recommendation. `source` says which set each table took. `run.run` sends them
   through `client.chat(sampling=...)` and `meta.json` records the values actually sent (`sampling.<model>.sent`).
   A model without a `sampling` table, or without a `seed`, cannot be run without `--smoke`; unknown keys are refused.
 - The `seed` is fixed per repeat: base seed + repeat number (`run.rep_seed`), recorded in the `seed` column of

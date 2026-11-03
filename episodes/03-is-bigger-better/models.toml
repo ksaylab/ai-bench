@@ -11,16 +11,17 @@ pair = "4b-vs-35b"
 group = "small"
 machines = ["pc-rtx2060"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
-temperature = 0.7
+[model.sampling]
+temperature = 1.0
 top_p = 0.95
-top_k = 40
-min_p = 0.05
-presence_penalty = 0.0
+top_k = 20
+min_p = 0.0
+presence_penalty = 1.5
+repeat_penalty = 1.0
 seed = 1000
-source = "generic default (no recommended settings found yet)"
-card = ""
-verified = false
+source = "NeoHorse-1-4B card: reported evaluation protocol (thinking on), not an explicit recommendation; the author's GGUF card uses the same values in its llama-server example"
+card = "https://huggingface.co/TokenRhythm/NeoHorse-1-4B"
+verified = true
 
 [[model]]
 name = "qwen3.6-35b-a3b"
@@ -29,16 +30,17 @@ pair = "4b-vs-35b"
 group = "large"
 machines = ["pc-rtx2060"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+[model.sampling]
 temperature = 0.6
 top_p = 0.95
 top_k = 20
 min_p = 0.0
 presence_penalty = 0.0
+repeat_penalty = 1.0
 seed = 1000
-source = "Qwen family recommended settings for thinking mode"
-card = ""
-verified = false
+source = "Qwen3.6 card, thinking mode (the default) for precise coding; the card's general-task set (temperature 1.0, presence_penalty 1.5) is not used: one set per model"
+card = "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+verified = true
 
 [[model]]
 name = "gemma4-e4b"
@@ -47,16 +49,16 @@ pair = "e4b-vs-9b"
 group = "small"
 machines = ["pc-rtx2060"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+[model.sampling]
 temperature = 1.0
 top_p = 0.95
 top_k = 64
 min_p = 0.0
 presence_penalty = 0.0
 seed = 1000
-source = "Gemma family recommended settings"
-card = ""
-verified = false
+source = "Gemma 4 card: temperature=1.0, top_p=0.95, top_k=64 for all use cases; min_p and penalties not stated, pinned off"
+card = "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf"
+verified = true
 
 [[model]]
 name = "ornith1.5-9b"
@@ -65,16 +67,17 @@ pair = "e4b-vs-9b"
 group = "large"
 machines = ["pc-rtx2060"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
-temperature = 0.7
+[model.sampling]
+temperature = 0.6
 top_p = 0.95
-top_k = 40
-min_p = 0.05
+top_k = 20
+min_p = 0.0
 presence_penalty = 0.0
+repeat_penalty = 1.0
 seed = 1000
-source = "generic default (no recommended settings found yet)"
-card = ""
-verified = false
+source = "Ornith 1.5 card, precise coding (thinking on by default); the card's general-task set (temperature 1.0, presence_penalty 1.5) is not used: one set per model"
+card = "https://huggingface.co/ornith-ai/Ornith-1.5-9B"
+verified = true
 
 [[model]]
 name = "gemma4-12b"
@@ -83,16 +86,16 @@ pair = "12b-vs-27b"
 group = "small"
 machines = ["runpod"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+[model.sampling]
 temperature = 1.0
 top_p = 0.95
 top_k = 64
 min_p = 0.0
 presence_penalty = 0.0
 seed = 1000
-source = "Gemma family recommended settings"
-card = ""
-verified = false
+source = "Gemma 4 card: temperature=1.0, top_p=0.95, top_k=64 for all use cases; min_p and penalties not stated, pinned off"
+card = "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized"
+verified = true
 
 [[model]]
 name = "qwen3.8-27b-q4"
@@ -101,15 +104,16 @@ pair = "12b-vs-27b"
 group = "large"
 machines = ["runpod"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
-temperature = 0.6
+[model.sampling]
+temperature = 1.0
 top_p = 0.95
 top_k = 20
 min_p = 0.0
 presence_penalty = 0.0
+repeat_penalty = 1.0
 seed = 1000
-source = "Qwen family recommended settings for thinking mode"
-card = ""
-verified = false
+source = "Qwen3.8 card, thinking mode (the default)"
+card = "https://huggingface.co/Qwen/Qwen3.8-27B"
+verified = true
 
 # No OpenRouter contestants: cloud models are calibration anchors only (anchors.toml, METHODOLOGY.md 8.1).

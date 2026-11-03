@@ -13,16 +13,17 @@ gguf = "NeoHorse-1-4B.i1-Q4_K_M.gguf"
 group = "small"
 machines = ["pc-rtx2060"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
-temperature = 0.7
+[model.sampling]
+temperature = 1.0
 top_p = 0.95
-top_k = 40
-min_p = 0.05
-presence_penalty = 0.0
+top_k = 20
+min_p = 0.0
+presence_penalty = 1.5
+repeat_penalty = 1.0
 seed = 1000
-source = "generic default (no recommended settings found yet)"
-card = ""
-verified = false
+source = "NeoHorse-1-4B card: reported evaluation protocol (thinking on), not an explicit recommendation; the author's GGUF card uses the same values in its llama-server example"
+card = "https://huggingface.co/TokenRhythm/NeoHorse-1-4B"
+verified = true
 
 [[model]]
 name = "gemma4-e4b"
@@ -30,16 +31,16 @@ gguf = "gemma-4-E4B_q4_0-it.gguf"
 group = "small"
 machines = ["pc-rtx2060"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+[model.sampling]
 temperature = 1.0
 top_p = 0.95
 top_k = 64
 min_p = 0.0
 presence_penalty = 0.0
 seed = 1000
-source = "Gemma family recommended settings"
-card = ""
-verified = false
+source = "Gemma 4 card: temperature=1.0, top_p=0.95, top_k=64 for all use cases; min_p and penalties not stated, pinned off"
+card = "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf"
+verified = true
 
 [[model]]
 name = "ornith1.5-9b"
@@ -47,16 +48,17 @@ gguf = "Ornith-1.5-9B-Q4_K_M.gguf"
 group = "medium"
 machines = ["pc-rtx2060"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
-temperature = 0.7
+[model.sampling]
+temperature = 0.6
 top_p = 0.95
-top_k = 40
-min_p = 0.05
+top_k = 20
+min_p = 0.0
 presence_penalty = 0.0
+repeat_penalty = 1.0
 seed = 1000
-source = "generic default (no recommended settings found yet)"
-card = ""
-verified = false
+source = "Ornith 1.5 card, precise coding (thinking on by default); the card's general-task set (temperature 1.0, presence_penalty 1.5) is not used: one set per model"
+card = "https://huggingface.co/ornith-ai/Ornith-1.5-9B"
+verified = true
 
 [[model]]
 name = "gemma4-12b"
@@ -64,16 +66,16 @@ gguf = "gemma-4-12B-it-qat-UD-Q4_K_XL.gguf"
 group = "medium"
 machines = ["pc-rtx2060", "runpod"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+[model.sampling]
 temperature = 1.0
 top_p = 0.95
 top_k = 64
 min_p = 0.0
 presence_penalty = 0.0
 seed = 1000
-source = "Gemma family recommended settings"
-card = ""
-verified = false
+source = "Gemma 4 card: temperature=1.0, top_p=0.95, top_k=64 for all use cases; min_p and penalties not stated, pinned off"
+card = "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized"
+verified = true
 
 # 13 GB file: larger than the 8 GB card, so most layers run on the CPU (-ngl below 99 in the preset).
 [[model]]
@@ -82,16 +84,17 @@ gguf = "Qwen3.8-27B-UD-Q3_K_XL.gguf"
 group = "limit"
 machines = ["pc-rtx2060"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
-temperature = 0.6
+[model.sampling]
+temperature = 1.0
 top_p = 0.95
 top_k = 20
 min_p = 0.0
 presence_penalty = 0.0
+repeat_penalty = 1.0
 seed = 1000
-source = "Qwen family recommended settings for thinking mode"
-card = ""
-verified = false
+source = "Qwen3.8 card, thinking mode (the default)"
+card = "https://huggingface.co/Qwen/Qwen3.8-27B"
+verified = true
 
 # 35B MoE with ~3B active: on 8 GB, with the experts on the CPU (--n-cpu-moe in the preset).
 [[model]]
@@ -100,13 +103,14 @@ gguf = "Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf"
 group = "limit"
 machines = ["pc-rtx2060"]
 
-[model.sampling]   # replace with the model card's recommended settings, then set verified = true
+[model.sampling]
 temperature = 0.6
 top_p = 0.95
 top_k = 20
 min_p = 0.0
 presence_penalty = 0.0
+repeat_penalty = 1.0
 seed = 1000
-source = "Qwen family recommended settings for thinking mode"
-card = ""
-verified = false
+source = "Qwen3.6 card, thinking mode (the default) for precise coding; the card's general-task set (temperature 1.0, presence_penalty 1.5) is not used: one set per model"
+card = "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+verified = true
