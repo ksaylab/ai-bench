@@ -118,9 +118,9 @@ and that each anchor's `[anchor.provider]` endpoint is still listed with `seed` 
 `https://openrouter.ai/api/v1/models/<id>/endpoints`: with no fallback, an endpoint that is gone or down turns every
 call into an error row.
 
-Cost: whatever OpenRouter charges per token, recorded in `cost_usd`. Every anchor makes cases × runs calls (37 × 3 = 111
-today, 333 for the three anchors): under US$1 in total per battery version (estimate in METHODOLOGY.md
-8.2). Time: ~5 to 30 min per anchor.
+Cost: whatever OpenRouter charges per token, recorded in `cost_usd`. Every anchor makes cases × runs calls
+(51 × 3 = 153 today, 459 for the three anchors): about US$1 or less in total per battery version (estimate in METHODOLOGY.md
+8.2). Time: ~5 to 60 min per anchor (`z-ai/glm-5.3-flash` at effort `max` is the slowest).
 
 ```bash
 python3 -m aibench calibrate --simulate --label dry-run   # free, no network: checks the plumbing

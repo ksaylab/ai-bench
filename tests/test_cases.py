@@ -118,12 +118,12 @@ class TestCheckers(unittest.TestCase):
         self.assertFalse(cases.check(c, {"text": "", "tool_calls": [{**call, "arguments": "{not json"}]})[0])
 
     def test_code_timeout_and_crash_fail(self):
-        c = self.case("fizzbuzz")
+        c = self.case("is_palindrome")
         self.assertFalse(cases.check(c, "```python\nwhile True:\n    pass\n```")[0])
         self.assertFalse(cases.check(c, "```python\nraise SystemExit(0)\n```")[0])
 
     def test_code_runs_without_the_callers_environment(self):
-        c = {**self.case("fizzbuzz"), "tests": "import os\nassert 'OPENROUTER_API_KEY' not in os.environ"}
+        c = {**self.case("is_palindrome"), "tests": "import os\nassert 'OPENROUTER_API_KEY' not in os.environ"}
         self.assertTrue(cases.check(c, "```python\nx = 1\n```")[0])
 
     def test_portuguese_cases_reject_english(self):
