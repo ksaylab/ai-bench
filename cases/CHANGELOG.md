@@ -5,6 +5,26 @@ battery version (`battery` in `meta.json`): runs of different versions are never
 
 ## 2026-11-03
 
+- `rag`: from 8 to 20 cases (2 easy, 8 medium, 10 hard), after the first anchor run found 6 of the 8 too easy.
+  - Removed as too easy: `newer_rule_wins`, `similar_entity`, `two_facts`, `long_needle`. Kept: `long_two_hops` (it
+    already separated models), `answer_absent`, and two easy cases, `single_passage` and `password_length`.
+  - New fixed document `ops` in `rag_documents.json` (16 passages of internal policies: rules with exceptions,
+    dates when a rule takes effect, limits that change, a chain of teams).
+  - Added 16 cases where the answer has to be worked out from the passages, not copied: dates and deadlines
+    (`credential_rotation_date`, `vpn_effective_date`, `sev2_after_midnight`, `vacation_one_day_short`), rules that
+    changed (`meal_limit_by_date`, `meal_domestic_unchanged`, `purchase_quotes_after_change`, `purchase_cfo`,
+    `purchase_exact_threshold`), joining passages (`payments_oncall_lead`, `long_renamed_room`,
+    `long_three_hops`, `long_updates_out_of_order`), an explicit "no target" that is not "not in the document"
+    (`sev3_no_target`), a half-answerable question (`partly_absent`) and a false premise
+    (`false_premise_office_hours`).
+  - Screened before entering (METHODOLOGY.md 8.3), in two rounds: of 24 candidates, the floor passed 8 on every
+    repeat, which were left out; `z-ai/glm-5.3-flash` passed the other 16 on every repeat. The floor still passes
+    some of them sometimes: `partly_absent` and `vacation_one_day_short` 2 of 3, `meal_limit_by_date` and
+    `long_updates_out_of_order` 1 of 3.
+  - During the screening `sev3_no_target` stopped accepting "not in the document" (wrong: the document says there
+    is no target), and `long_renamed_room` only forbids 4402 as the Boreal room's code (the GLM named it as the
+    other room's code and was failed).
+  - Tiers are the author's tagging, to be checked against the next anchor run.
 - `coding`: from 6 to 20 cases (2 easy, 12 medium, 6 hard), after the first anchor run found 5 of the 6 too easy
   (the floor passed them on every repeat).
   - Removed as too easy: `fizzbuzz`, `merge_intervals`, `top_k_frequent`. Kept: `parse_duration` (it already

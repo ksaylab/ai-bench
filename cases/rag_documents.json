@@ -8,5 +8,23 @@
     "(Handbook 2025) Laptops are replaced every 4 years and monitors every 6 years.",
     "(Handbook 2025) The Lisboa Street warehouse, which is not the Lisbon office, opens at 6 am.",
     "(Security policy 2026) Passwords must have at least 14 characters."
+  ],
+  "ops": [
+    "(IT policy 2024) VPN access requests are approved by the requester's manager and take effect on the next business day after approval.",
+    "(IT policy 2024) Contractors cannot request VPN access themselves: the project lead requests it for them, and contractor access expires after 90 days.",
+    "(HR handbook 2025) Employees accrue 2 vacation days per full month worked. New employees can take vacation only after completing 3 months.",
+    "(HR handbook 2025) Unused vacation days carry over to the next year up to a maximum of 10 days; any excess is lost on January 1.",
+    "(Finance notice, June 2025) Meal expenses are reimbursed up to 40 per day on domestic trips and 60 per day on international trips.",
+    "(Finance notice, January 2026) From February 1, 2026, the international meal limit rises to 75 per day. The domestic limit is unchanged.",
+    "(Facilities 2025) The Recife office is open from 7 am to 7 pm and the Natal office from 8 am to 6 pm. Both are closed on weekends.",
+    "(Facilities 2025) Meeting rooms with more than 10 seats must be booked at least 2 business days ahead.",
+    "(Security policy 2025) Production database credentials are rotated every 60 days; staging credentials every 180 days.",
+    "(Security policy 2025) A laptop reported lost must be wiped remotely within 4 hours of the report; if it held customer data, the privacy officer must also be notified within 24 hours.",
+    "(On-call guide 2025) Severity 1 incidents must be acknowledged within 15 minutes and severity 2 incidents within 1 hour. Severity 3 incidents have no acknowledgement target.",
+    "(On-call guide 2025) The on-call engineer for the payments service comes from the Falcon team, which rotates its on-call engineer every Monday.",
+    "(Team directory 2025) The Falcon team is led by Marta Quintela. The Heron team, which runs the billing service, is led by Davi Lacerda.",
+    "(Team directory 2025) Teams with more than 8 members have a deputy lead. The Falcon team has 11 members and its deputy lead is Rui Antunes.",
+    "(Procurement 2025) Purchases above 5,000 need two quotes; purchases above 20,000 also need the CFO's approval.",
+    "(Procurement notice, March 2026) The two-quote threshold is lowered to 3,000. The CFO threshold is unchanged."
   ]
 }

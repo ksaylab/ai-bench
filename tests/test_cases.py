@@ -44,12 +44,12 @@ class TestBatteries(unittest.TestCase):
                 self.assertFalse(cases.check(c, c["example_bad"])[0])
 
     def test_long_rag_document_is_deterministic(self):
-        c = next(c for c in cases.load({"rag"}, context_words=2000) if c["id"] == "long_needle")
-        again = next(c for c in cases.load({"rag"}, context_words=2000) if c["id"] == "long_needle")
+        c = next(c for c in cases.load({"rag"}, context_words=2000) if c["id"] == "long_two_hops")
+        again = next(c for c in cases.load({"rag"}, context_words=2000) if c["id"] == "long_two_hops")
         self.assertEqual(c["prompt"], again["prompt"])
         self.assertEqual(hashlib.sha256(c["prompt"].encode()).hexdigest()[:12],
                          hashlib.sha256(again["prompt"].encode()).hexdigest()[:12])
-        bigger = next(c for c in cases.load({"rag"}, context_words=8000) if c["id"] == "long_needle")
+        bigger = next(c for c in cases.load({"rag"}, context_words=8000) if c["id"] == "long_two_hops")
         self.assertGreater(len(bigger["prompt"].split()), 7000)
         self.assertTrue(cases.check(bigger, bigger["example_good"])[0])
 

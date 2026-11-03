@@ -11,7 +11,7 @@ repository (except the `coding_public` reference battery, 8.5), and scored autom
 | Use case | File | Cases | What passes |
 | --- | --- | --- | --- |
 | `coding` | `cases/coding.jsonl` | 20 | The model writes a Python function; hidden assertions run in an isolated subprocess with a timeout. All assertions must pass. |
-| `rag` | `cases/rag.jsonl` + `rag_documents.json` | 8 | The answer is correct **and** cites the source passage as `[n]`. Wrong passage, no citation or extra unrelated citations fail. Includes a question whose answer is not in the document (must say so, with no citation), an outdated vs. newer rule, similar entities and two long generated documents (needle in a haystack). |
+| `rag` | `cases/rag.jsonl` + `rag_documents.json` | 20 | The answer is correct **and** cites the source passage as `[n]`. Wrong passage, no citation or extra unrelated citations fail. Includes a question whose answer is not in the document (must say so, with no citation), an outdated vs. newer rule, similar entities and two long generated documents (needle in a haystack). |
 | `agent` | `cases/agent.jsonl` + `agent_tools.json` | 7 | Tool/function calling through the API's `tools` field: exactly one call, the right tool, arguments valid against the tool's JSON Schema and equal to the expected values. Also: not calling a tool when none is needed, and JSON output in an exact schema (types, enums, required keys, no extra keys). |
 | `chat_pt` | `cases/chat_pt.jsonl` | 6 | Chat and summaries in Brazilian Portuguese: required facts present, length limits (words/sentences/lines), answer in Portuguese, false premises corrected. |
 | `coding_public` | `cases/coding_public/cases.jsonl` | 10 | Reference only (8.5): 5 HumanEval and 5 MBPP problems, scored like `coding`, never part of the verdict. |
@@ -148,8 +148,8 @@ documents at the default 3000 words): ~45k input tokens per anchor, and 35k to 2
 much the model reasons. At the prices above that is about US$0.10 to 0.80 for `deepseek/deepseek-v4-pro`, under
 US$0.03 for `z-ai/glm-5.3-flash` and about US$0.01 for `mistralai/ministral-3b-2512`: **under US$1 per battery
 version**. The first anchor run, on that battery version, cost US$0.35 (US$0.32 of it `deepseek/deepseek-v4-pro`).
-With `coding` at 20 cases there are 51 cases (153 calls per anchor, 459 in total), harder ones and up to 32768
-output tokens per call for the anchors, so expect roughly US$0.50 to 1. Every new battery version (after pruning or
+With `coding` and `rag` at 20 cases there are 63 cases (189 calls per anchor, 567 in total), harder ones and up to
+32768 output tokens per call for the anchors, so expect roughly US$0.60 to 1.20. Every new battery version (after pruning or
 new cases) needs a new anchor run.
 
 - The floor must support tool calling, or every `agent` case fails for a technical reason instead of for lack of
@@ -194,7 +194,7 @@ that everyone passes is not.
 - Rough meaning: **easy** = a small local model should pass; **medium** = needs real skill (multi-step logic,
   several constraints at once, longer context); **hard** = ceiling anchors pass and small models usually do not
   (edge cases in the hidden tests, distractor passages, ambiguous tool choice, long schemas).
-- **Target: 15 to 20 cases per use case** (`coding` has 20; the others 6 to 8), roughly one third per tier. With 18 cases one case is
+- **Target: 15 to 20 cases per use case** (`coding` and `rag` have 20; `agent` 7 and `chat_pt` 6), roughly one third per tier. With 18 cases one case is
   worth 5.6 points instead of 12 to 17. All new cases follow section 1: synthetic, written for this repository,
   with `example_good` and `example_bad`.
 - The current 27 cases are tagged (best effort, before any anchor run: 11 easy, 15 medium, 1 hard); new cases go
@@ -228,7 +228,8 @@ order of cost: the floor first, and a candidate it passes on every repeat is dro
 often the prompt is ambiguous). The screening may run the GLM at effort `high` to save time: it only decides which
 candidates enter, and the anchor run of the new battery version uses the pinned settings (8.4). In the `coding`
 screening of 2026-11-03, the floor failed 17 of 20 candidates on every repeat and the GLM passed all 17 (one only
-after its prompt was made unambiguous).
+after its prompt was made unambiguous); in the `rag` screening, the floor passed 8 of 24 candidates on every
+repeat and the GLM passed the other 16.
 
 ### 8.4 Reproducibility
 
