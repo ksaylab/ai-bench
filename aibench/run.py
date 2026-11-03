@@ -47,6 +47,27 @@ def check_sampling(models, sampling, smoke=False, simulate=False):
             raise RunError(f"[model.sampling] of {m}: unknown key(s) {', '.join(sorted(unknown))}")
 
 
+# OpenRouter's provider routing fields (https://openrouter.ai/docs/features/provider-routing): the table is sent as is,
+# so anything else (a note, a typo) would reach the API.
+PROVIDER_KEYS = ("order", "allow_fallbacks", "require_parameters", "data_collection", "zdr", "only", "ignore",
+                 "quantizations", "sort", "max_price")
+
+
+def check_provider(models, providers, smoke=False, simulate=False):
+    """Every OpenRouter model needs one pinned provider that refuses the parameters it would ignore (seed among them),
+    with no fallback to another provider (METHODOLOGY.md 8.4); --smoke and --simulate are exempt."""
+    if smoke or simulate:
+        return
+    for m in models:
+        p = (providers or {}).get(m) or {}
+        if not p.get("order") or p.get("allow_fallbacks") is not False or p.get("require_parameters") is not True:
+            raise RunError(f"[anchor.provider] of {m} must pin a provider: order = [\"<provider>\"], "
+                           "allow_fallbacks = false, require_parameters = true (or use --smoke, not publishable)")
+        if unknown := set(p) - set(PROVIDER_KEYS):
+            raise RunError(f"[anchor.provider] of {m}: unknown key(s) {', '.join(sorted(unknown))} (it is sent to "
+                           "OpenRouter as is)")
+
+
 def simulated_answer(case, rep):
     """No network: the case's good example, except the coding cases on run 3 (so the scores vary)."""
     ex = case["example_bad"] if (case["use_case"] == "coding" and rep == 2) else case["example_good"]
@@ -56,7 +77,7 @@ def simulated_answer(case, rep):
             "ttft_s": 0.005, "gen_tok_s": None}
 
 
-RESPONSE_FIELDS = ("text", "reasoning", "tool_calls", "finish", "error")
+RESPONSE_FIELDS = ("text", "reasoning", "tool_calls", "finish", "provider", "error")
 
 
 def response_line(row, answer):
@@ -97,11 +118,12 @@ def write_results(folder, rows, reference=None):
 def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge_model=None, context_words=3000,
         label="run", simulate=False, smoke=False, skip_code=False, max_tokens=8192, out=None, log=print,
         judge_url=None, sampling=None, server_args=None, anchors=None, root=None, model_info=None, stream=True,
-        gpu_sampling=True):
+        gpu_sampling=True, providers=None):
     """`sampling`: model -> its [model.sampling] table (temperature, top_p, ..., base seed). `server_args`: the model
     server's command line, recorded in meta.json (paths and addresses scrubbed). `anchors`: model -> role, for a
     calibration run (`root` = calibration/, `model_info` = prices read from OpenRouter). `stream`: streaming
-    responses, for the time to first token. `gpu_sampling`: nvidia-smi on the model server during the run."""
+    responses, for the time to first token. `gpu_sampling`: nvidia-smi on the model server during the run.
+    `providers`: model -> its [anchor.provider] table, sent as OpenRouter's `provider` routing object."""
     ep = EPISODES / episode if episode else None
     if root is None and (ep is None or not ep.is_dir()):
         raise RunError(f"episode {episode!r} not found in {EPISODES.name}/")
@@ -116,6 +138,9 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
         raise RunError(f"the judge {judge_model} is a calibration anchor (anchors.toml): pick another judge")
     sampling = {m: dict((sampling or {}).get(m) or {}) for m in models}
     check_sampling(models, sampling, smoke, simulate)
+    providers = {m: (providers or {}).get(m) for m in models}
+    if machine == "openrouter":
+        check_provider(models, providers, smoke, simulate)
     for m in models:
         if sampling[m] and not sampling[m].get("verified", True):
             log(f"warning: the sampling of {m} is not verified against its model card (verified = false)")
@@ -152,7 +177,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
             "server_args": env.scrub(server_args or os.environ.get("AIBENCH_SERVER_ARGS", "")),
             "battery": hashes}
     if anchors:
-        meta["anchors"] = {m: {"role": anchors[m], **((model_info or {}).get(m) or {})} for m in models}
+        meta["anchors"] = {m: {"role": anchors[m], **((model_info or {}).get(m) or {}),
+                               **({"provider": providers[m]} if providers[m] else {})} for m in models}
         meta["anchors_checked"] = now.date().isoformat()
     (dest / "env.json").write_text(json.dumps(environment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     new_sampler = sampler_factory(machine, model_url, simulate, gpu_sampling)
@@ -174,7 +200,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                         try:
                             r = simulated_answer(c, rep) if simulate else client.chat(
                                 model_url, model, cases.messages(c), key=key, max_tokens=max_tokens,
-                                tools=c.get("tool_specs"), sampling=params, stream=stream)
+                                tools=c.get("tool_specs"), sampling=params, stream=stream,
+                                extra={"provider": providers[model]} if providers[model] else None)
                             passed, reason = cases.check(c, r)
                         except client.ClientError as e:
                             r, passed, reason = {"error": str(e)}, False, f"error: {e}"

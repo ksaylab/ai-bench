@@ -12,6 +12,7 @@ from aibench import calibration, client, run, verdict
 from tests.test_run import QUIET, FakeServer, pinned, read
 
 ANCHORS = {"ceil-a": "ceiling", "ceil-b": "ceiling", "floor-x": "floor"}
+PINNED = {"order": ["host/fp8"], "allow_fallbacks": False, "require_parameters": True}
 
 
 class TestRelativeScores(unittest.TestCase):
@@ -129,12 +130,38 @@ class TestAnchorRuns(unittest.TestCase):
                          {"deepseek/deepseek-v4-pro": "ceiling", "z-ai/glm-5.3-flash": "ceiling",
                           "mistralai/ministral-3b-2512": "floor"})
         run.check_sampling(list(a), {n: x["sampling"] for n, x in a.items()})
+        run.check_provider(list(a), {n: x.get("provider") for n, x in a.items()})
 
     def test_prices_come_from_the_public_model_list(self):
         info = client.models_info(["ceil-a", "gone"], url=self.serve(Models))
         self.assertEqual(info["ceil-a"]["usd_per_1m_input"], 1.6)
         self.assertEqual(info["ceil-a"]["usd_per_1m_output"], 3.2)
         self.assertIn("error", info["gone"])
+
+    def test_an_anchor_run_pins_one_provider_and_records_who_answered(self):
+        url = self.serve(FakeServer)
+        with mock.patch.dict("os.environ", {"OPENROUTER_API_KEY": "test-token"}), \
+                mock.patch.object(run.env, "capture", return_value={}):
+            d = run.run(None, "openrouter", ["ceil-a"], url=url, use_cases={"agent"}, sampling=pinned("ceil-a"),
+                        providers={"ceil-a": PINNED}, anchors={"ceil-a": "ceiling"}, root=calibration.CALIBRATION,
+                        **QUIET)
+        self.assertTrue(FakeServer.requests)
+        self.assertTrue(all(p["provider"] == PINNED for p in FakeServer.requests))
+        meta = json.loads((d / "meta.json").read_text())
+        self.assertEqual(meta["anchors"]["ceil-a"]["provider"], PINNED)
+        lines = [json.loads(line) for line in (d / "responses.jsonl").read_text().splitlines()]
+        self.assertEqual({line["provider"] for line in lines}, {"FakeHost"})
+
+    def test_an_anchor_run_without_one_pinned_provider_needs_smoke(self):
+        loose = (None, {"order": ["host/fp8"]}, {**PINNED, "order": []}, {**PINNED, "allow_fallbacks": True},
+                 {**PINNED, "require_parameters": False}, {**PINNED, "note": "sent to OpenRouter as is"})
+        for provider in loose:
+            with self.subTest(provider=provider), self.assertRaises(run.RunError):
+                run.run(None, "openrouter", ["ceil-a"], url="http://127.0.0.1:9/v1", sampling=pinned("ceil-a"),
+                        providers={"ceil-a": provider}, anchors={"ceil-a": "ceiling"}, root=calibration.CALIBRATION,
+                        **QUIET)
+        run.run(None, "openrouter", ["ceil-a"], use_cases={"coding"}, simulate=True, anchors={"ceil-a": "ceiling"},
+                root=calibration.CALIBRATION, **QUIET)
 
     def test_the_judge_cannot_be_an_anchor(self):
         with self.assertRaises(run.RunError):
@@ -146,10 +173,11 @@ class TestAnchorRuns(unittest.TestCase):
         with mock.patch.dict("os.environ", {"OPENROUTER_API_KEY": "test-token"}), \
                 mock.patch.object(run.env, "capture", return_value={}):
             d = run.run(None, "openrouter", list(ANCHORS), url=url, use_cases={"coding", "agent"},
-                        sampling=pinned(*ANCHORS), anchors=ANCHORS, root=calibration.CALIBRATION, label="anchors",
+                        sampling=pinned(*ANCHORS), providers={n: PINNED for n in ANCHORS}, anchors=ANCHORS,
+                        root=calibration.CALIBRATION, label="anchors",
                         model_info={"ceil-a": {"usd_per_1m_input": 1.6}}, **QUIET)
         meta = json.loads((d / "meta.json").read_text())
-        self.assertEqual(meta["anchors"]["ceil-a"], {"role": "ceiling", "usd_per_1m_input": 1.6})
+        self.assertEqual(meta["anchors"]["ceil-a"], {"role": "ceiling", "usd_per_1m_input": 1.6, "provider": PINNED})
         self.assertEqual(meta["anchors"]["floor-x"]["role"], "floor")
         self.assertTrue(all(p["auth"] == "Bearer test-token" for p in FakeServer.requests))
         self.assertNotIn("test-token", json.dumps(meta) + (d / "executions.csv").read_text())

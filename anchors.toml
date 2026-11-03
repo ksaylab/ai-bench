@@ -2,7 +2,11 @@
 # never get a verdict in an episode table. Ids checked on https://openrouter.ai/api/v1/models on 2026-11-03; every
 # anchor run records the id, the date and the price read at run time in meta.json.
 # role: "ceiling" (strong, low-cost) or "floor" (deliberately small and weak, with tool calling).
-# [anchor.sampling]: pinned like the local models (8.4). OpenRouter accepts temperature, top_p and seed for all three.
+# [anchor.sampling]: pinned like the local models (8.4).
+# [anchor.provider]: OpenRouter's provider routing object, sent as given. One provider endpoint (`order`, a slug from
+# https://openrouter.ai/api/v1/models/<id>/endpoints), no fallback, and require_parameters = true so a provider that
+# would silently ignore seed or tools refuses the call instead. Endpoints chosen on 2026-11-03: fp8 (no fp4 for a
+# ceiling), with seed and tools, uptime 100% over the last 30 minutes.
 
 [[anchor]]
 name = "deepseek/deepseek-v4-pro"
@@ -16,6 +20,11 @@ source = "DeepSeek-V4-Pro card: temperature = 1.0, top_p = 1.0 (same in generati
 card = "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro"
 verified = true
 
+[anchor.provider]   # cheapest fp8 endpoint with seed; StreamLake, Baidu and Relace (cheaper) ignore seed
+order = ["gmicloud/fp8"]
+allow_fallbacks = false
+require_parameters = true
+
 [[anchor]]
 name = "z-ai/glm-5.3-flash"
 role = "ceiling"
@@ -28,6 +37,11 @@ source = "Z.AI GLM-5.3-Flash doc: temperature 1, top_p 0.95 (same in generation_
 card = "https://docs.z.ai/guides/llm/glm-5.3-flash"
 verified = true
 
+[anchor.provider]   # same provider and precision as the other ceiling; Z.AI's own endpoint ignores seed
+order = ["gmicloud/fp8"]
+allow_fallbacks = false
+require_parameters = true
+
 [[anchor]]
 name = "mistralai/ministral-3b-2512"
 role = "floor"
@@ -39,3 +53,8 @@ seed = 2000
 source = "Ministral 3 3B card: start with temperature 0.1 (its code examples use 0.15); top_p not stated, API default 1.0"
 card = "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512"
 verified = true
+
+[anchor.provider]   # the only provider (Mistral), which supports seed
+order = ["mistral"]
+allow_fallbacks = false
+require_parameters = true

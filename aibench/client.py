@@ -114,6 +114,8 @@ def _read_stream(r, start):
             usage = chunk["usage"]
         if chunk.get("timings"):
             extra["timings"] = chunk["timings"]
+        if chunk.get("provider"):
+            extra["provider"] = chunk["provider"]  # OpenRouter: the provider that answered
         for choice in chunk.get("choices") or []:
             delta = choice.get("delta") or {}
             got = False
@@ -194,4 +196,5 @@ def chat(url, model, messages, key=None, max_tokens=8192, temperature=None, tool
             "prompt_tokens": usage.get("prompt_tokens"), "completion_tokens": out, "cost_usd": usage.get("cost"),
             "time_s": round(elapsed, 3), "tok_s": round(out / elapsed, 2) if out and elapsed > 0 else None,
             "ttft_s": None if ttft is None else round(ttft, 3),
-            "gen_tok_s": round(out / gen, 2) if out and gen and gen > 0 else None}
+            "gen_tok_s": round(out / gen, 2) if out and gen and gen > 0 else None,
+            "provider": resp.get("provider") or ""}

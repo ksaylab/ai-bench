@@ -29,7 +29,7 @@ class FakeServer(BaseHTTPRequestHandler):
         FakeServer.requests.append({"model": body["model"], "auth": self.headers.get("Authorization"),
                                     "tools": [t["function"]["name"] for t in body.get("tools") or []],
                                     "seed": body.get("seed"), "temperature": body.get("temperature"),
-                                    "top_k": body.get("top_k")})
+                                    "top_k": body.get("top_k"), "provider": body.get("provider")})
         msg = {"role": "assistant", "content": ""}
         if body["messages"][0]["content"].startswith("You grade"):
             msg["content"] = '{"score": 5, "reason": "ok"}'
@@ -52,11 +52,12 @@ class FakeServer(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "text/event-stream")
             self.end_headers()
             for chunk in stream_chunks(msg, usage):
+                chunk["provider"] = "FakeHost"  # OpenRouter names the provider that answered in every chunk
                 self.wfile.write(b": keep-alive\n\n" + b"data: " + json.dumps(chunk).encode() + b"\n\n")
             self.wfile.write(b"data: [DONE]\n\n")
             return
         data = json.dumps({"choices": [{"message": msg, "finish_reason": "stop"}], "usage": usage,
-                           "timings": {"prompt_ms": 12.0}}).encode()
+                           "timings": {"prompt_ms": 12.0}, "provider": "FakeHost"}).encode()
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(data)))
@@ -250,6 +251,13 @@ class TestRun(unittest.TestCase):
         code = next(l for l in lines if l["use_case"] == "coding")
         self.assertIn("```python", code["text"])
         self.assertEqual(code["finish"], "stop")
+
+    def test_the_answering_provider_is_returned_with_and_without_streaming(self):
+        url = self.server()
+        case = cases.load({"coding"})[0]
+        for stream in (False, True):
+            with self.subTest(stream=stream):
+                self.assertEqual(client.chat(url, "m1", cases.messages(case), stream=stream)["provider"], "FakeHost")
 
     def test_a_model_without_pinned_sampling_needs_smoke(self):
         with self.assertRaises(run.RunError):

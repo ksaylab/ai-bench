@@ -94,8 +94,6 @@ which flipped its verdict, because sampling was not pinned and, with 6 to 8 case
 points. This section is the plan to fix both. Since 2026-11-03 every item below is implemented in the code
 (marked **implemented**); what is still open is running it and acting on the results:
 
-- the anchor runs do not pin an OpenRouter provider, and several providers silently ignore `seed` (among them Z.AI's
-  own endpoint for `z-ai/glm-5.3-flash`), so an anchor repeat is not reproducible yet;
 - the anchors have not run yet, so `pct_of_ceiling`, `normalized` and `calibrated` are empty and no battery is
   calibrated;
 - the batteries have 6 to 8 cases (target 15 to 20, 8.3);
@@ -232,6 +230,16 @@ and how far the battery is from the 15 to 20 target). Every case is looked at on
   which gives no explicit recommendation. `source` says which set each table took. `run.run` sends them
   through `client.chat(sampling=...)` and `meta.json` records the values actually sent (`sampling.<model>.sent`).
   A model without a `sampling` table, or without a `seed`, cannot be run without `--smoke`; unknown keys are refused.
+- **One pinned provider per anchor (implemented).** On OpenRouter the same model is served by many providers, at
+  different precisions, and several of them silently ignore `seed` (among them Z.AI's own endpoint for
+  `z-ai/glm-5.3-flash`). Each anchor has an `[anchor.provider]` table, sent as OpenRouter's `provider` routing
+  object: one endpoint in `order` (fp8, with `seed` and tool calling: `gmicloud/fp8` for both ceilings, `mistral`
+  for the floor), `allow_fallbacks = false`, and `require_parameters = true`, so a provider that would drop a
+  parameter refuses the call (an error row) instead of answering without it. An anchor run without such a table
+  needs `--smoke`. `meta.json` records the table (`anchors.<model>.provider`) and `responses.jsonl` the provider that
+  answered each call. A provider that accepts `seed` does not promise identical output on batched GPU servers: what
+  this pins is that the seed is sent and the provider and precision do not change during a run; what still varies
+  shows in the min–max range.
 - The `seed` is fixed per repeat: base seed + repeat number (`run.rep_seed`), recorded in the `seed` column of
   `executions.csv` and in `meta.json`, so a repeat is reproducible on the same build and GGUF, while the repeats
   still differ from each other.
