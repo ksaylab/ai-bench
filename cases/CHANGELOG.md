@@ -5,6 +5,24 @@ battery version (`battery` in `meta.json`): runs of different versions are never
 
 ## 2026-11-03
 
+- `chat_pt`: from 6 to 15 cases (3 easy, 8 medium, 4 hard), after the first anchor run found 4 of the 6 too easy.
+  - Removed as too easy: `false_premise_pt` (three new false premises replace it) and `meeting_owners`. Kept:
+    `incident_summary` and `formal_rewrite` (they already separated models), and `explain_vpn` and
+    `email_summary` as easy cases (`email_summary` moves from medium to easy: the floor passes it).
+  - Added 11 cases of everyday Portuguese: false premises (`false_premise_states`, `false_premise_holiday`,
+    `false_premise_capital`), grammar (`grammar_fix`), dates (`dates_in_order`, `relative_deadlines_order`,
+    `weekday_of_date`) and following the instruction exactly (`yes_no_only`, `exact_word_count`,
+    `list_without_words`, `translate_keep_code`).
+  - Screened before entering (METHODOLOGY.md 8.3), in two rounds: of 22 candidates, the floor passed 11 on every
+    repeat, which were left out; `z-ai/glm-5.3-flash` passed the other 11, `list_without_words` only at effort
+    `max` (at `high` it left its draft and its self-correction in the answer). The floor still passes
+    `list_without_words` and `translate_keep_code` 2 of 3 times.
+  - During the screening four patterns were fixed because they failed right answers: `reassigned_task_owners`
+    ("Treinar" for "treinamento") and `no_jargon_explanation` (it required repeating the 40 minutes), both then
+    left out because the floor passed them; `weekday_of_date` (the GLM named another year's weekday while
+    explaining); and the Portuguese check on one-line answers (`exact_word_count`, `weekday_of_date`), where the
+    pattern already requires Portuguese words.
+  - Tiers are the author's tagging, to be checked against the next anchor run.
 - `rag`: from 8 to 20 cases (2 easy, 8 medium, 10 hard), after the first anchor run found 6 of the 8 too easy.
   - Removed as too easy: `newer_rule_wins`, `similar_entity`, `two_facts`, `long_needle`. Kept: `long_two_hops` (it
     already separated models), `answer_absent`, and two easy cases, `single_passage` and `password_length`.
