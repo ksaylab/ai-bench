@@ -5,6 +5,11 @@ battery version (`battery` in `meta.json`): runs of different versions are never
 
 ## 2026-11-03
 
+- `coding`: `parse_log_line` now says that the level may be in any case in the line. The prompt said "level is
+  uppercase without brackets", which describes the output but reads as the input; the tests send `[warning]` and
+  `[error]`. In the first run of this battery version, `deepseek/deepseek-v4-pro` matched the level with `[A-Z]+`
+  and failed for that reason only (it weighed lowercase input in its reasoning and ruled it out from the prompt).
+  That run was stopped after 7 calls and is not kept.
 - `agent`: from 7 to 15 cases (4 easy, 2 medium, 9 hard), after the first anchor run found all 7 too easy (the
   floor passed every one on every repeat).
   - Two new checker features (`aibench/cases.py`): kind `tool_calls` (several calls in one answer, in any order)
