@@ -351,7 +351,9 @@ OpenRouter anchors:
 
 1. `./scripts/pre-publish-check.sh` passes (tests, secret patterns, private terms, commit authors and gitleaks).
 2. No private project, company, person or machine names in the files or the history.
-3. No IP addresses, internal service ports, tokens or home paths.
+3. No IP addresses, internal service ports, tokens or home paths. The batteries (`cases/*.json*`) and the models'
+   answers to them (`responses.jsonl`) are synthetic and full of made-up addresses, so the check does not flag IPs,
+   `host:port` or e-mails there; tokens, keys, home paths and private terms are flagged in every file.
 4. Commit e-mails are GitHub noreply addresses.
 5. Prices have a source and a date, with `status` CONFIRMED.
 6. Every number in the video points to a CSV in this repository.

@@ -2,7 +2,9 @@
 
 1. Generic patterns in every tracked file (and in new, not ignored ones): IP addresses, `host:port`, API tokens,
    private keys, home paths and e-mail addresses. Only loopback with the default llama-server (8080) and Ollama
-   (11434) ports and GitHub noreply e-mails are allowed.
+   (11434) ports and GitHub noreply e-mails are allowed. Synthetic data (the batteries in cases/ and the models'
+   answers to them, responses.jsonl) is full of made-up addresses, so IPs, `host:port` and e-mails are not flagged
+   there; tokens, keys, home paths and private terms still are.
 2. Private terms from a list OUTSIDE the repository (PRIVATE_TERMS_FILE): project, people and machine names. The list
    is not shipped, so it does not reveal what it protects.
 3. Authors, e-mails and messages of every commit, against the same terms.
@@ -35,6 +37,8 @@ ALLOWED = {
     "e-mail": re.compile(r"@users\.noreply\.github\.com$", re.I),
 }
 SKIP_FILES = {".gitleaks.toml"}
+# made-up addresses are expected in synthetic data (is_synthetic); secrets never are
+SYNTHETIC_OK = {"IPv4", "host:port", "e-mail"}
 BINARY_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".pdf", ".gguf", ".zip", ".gz"}
 SERIOUS_IN_HISTORY = ("private term", "OpenRouter/OpenAI token", "GitHub token", "private key", "IPv4")
 
@@ -50,14 +54,23 @@ def private_terms(env=os.environ):
             if t.strip() and not t.strip().startswith("#")]
 
 
-def findings(text, terms=()):
-    """(kind, masked excerpt). The excerpt is never printed in full: it may be a secret."""
+def is_synthetic(rel):
+    """A battery file (cases/**/*.json, *.jsonl) or the models' answers to one (responses.jsonl of a run)."""
+    rel = Path(rel)
+    return rel.name == "responses.jsonl" or (rel.parts[:1] == ("cases",) and rel.suffix in (".json", ".jsonl"))
+
+
+def findings(text, terms=(), synthetic=False):
+    """(kind, masked excerpt). The excerpt is never printed in full: it may be a secret. `synthetic`: made-up IPs,
+    `host:port` and e-mails are not findings (SYNTHETIC_OK)."""
     out = []
     low = text.lower()
     for t in terms:
         if t in low:
             out.append(("private term", "(from the list)"))
     for name, rx in PATTERNS.items():
+        if synthetic and name in SYNTHETIC_OK:
+            continue
         for m in rx.finditer(text):
             hit = m.group(0)
             if name in ALLOWED and ALLOWED[name].search(hit):
@@ -82,8 +95,9 @@ def check(terms, use_gitleaks=True, log=print):
         if path.name in SKIP_FILES or path.suffix.lower() in BINARY_SUFFIXES:
             continue
         rel = path.relative_to(ROOT)
+        synthetic = is_synthetic(rel)
         for i, line in enumerate(path.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
-            for kind, hit in findings(line, terms):
+            for kind, hit in findings(line, terms, synthetic):
                 log(f"  {rel}:{i}: {kind} {hit}")
                 problems += 1
         if terms and any(t in str(rel).lower() for t in terms):

@@ -31,6 +31,30 @@ class TestCheck(unittest.TestCase):
                   "ksaylab@users.noreply.github.com", "llama.cpp b9000, version 0.26.0", "ANSWER: 17h05"):
             self.assertEqual(self.kinds(t), set(), t)
 
+    def test_synthetic_data_may_have_addresses_but_never_secrets(self):
+        # the batteries and the models' answers to them are full of made-up IPs and e-mails (an IP parsing case,
+        # fictional contacts); a token, a key, a home path or a private term is still a leak there
+        for t in (f("the server 10", ".1.2.3 answers"), f("tunnel on my-pc.local", ":18080 "),
+                  f("write to someone", "@example.com")):
+            self.assertTrue(self.kinds(t) & {"IPv4", "host:port", "e-mail"}, t)  # still caught everywhere else
+            self.assertEqual({k for k, _ in check.findings(t, synthetic=True)}, set(), t)
+        for t, kind in ((f("sk-or", "-v1-", *["0"] * 64), "OpenRouter/OpenAI token"),
+                        (f("-----BEGIN RSA PRI", "VATE KEY-----"), "private key"),
+                        (f("/ho", "me/someone/models"), "home path")):
+            self.assertIn(kind, {k for k, _ in check.findings(t, synthetic=True)}, t)
+        self.assertEqual({k for k, _ in check.findings("project Secret X", ["secret x"], synthetic=True)},
+                         {"private term"})
+
+    def test_only_batteries_and_answers_are_synthetic(self):
+        from pathlib import Path
+        for p in ("cases/coding.jsonl", "cases/agent_tools.json", "cases/coding_public/cases.jsonl",
+                  "calibration/runs/2026-11-04-0754-openrouter-anchors/responses.jsonl",
+                  "episodes/02-what-runs-on-8gb/results/runs/x/responses.jsonl"):
+            self.assertTrue(check.is_synthetic(Path(p)), p)
+        for p in ("cases/CHANGELOG.md", "calibration/runs/x/env.json", "calibration/runs/x/meta.json",
+                  "calibration/runs/x/executions.csv", "HOW-TO-RUN.md", "aibench/client.py", "responses.md"):
+            self.assertFalse(check.is_synthetic(Path(p)), p)
+
     def test_excerpt_is_masked(self):
         secret = f("sk-or", "-v1-", *["a"] * 64)
         self.assertTrue(all(secret not in hit for _, hit in check.findings(secret)))
