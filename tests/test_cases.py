@@ -32,6 +32,24 @@ class TestBatteries(unittest.TestCase):
         self.assertNotEqual(cases.battery_hash("rag", 3000), cases.battery_hash("rag", 24000))
         self.assertEqual(cases.battery_hash("coding", 3000), cases.battery_hash("coding", 24000))
 
+    def test_battery_version_changes_with_the_checker_version(self):
+        # a checker rule that can flip a verdict makes a new battery version, as an edited case does
+        from unittest import mock
+        before = cases.battery_hash("chat_pt")
+        with mock.patch.object(cases, "CHECKER_VERSION", cases.CHECKER_VERSION + 1):
+            self.assertNotEqual(cases.battery_hash("chat_pt"), before)
+
+    def test_a_time_a_fraction_or_a_number_is_one_word(self):
+        # "14:02" counted as two words failed incident_summary at 61 words, 57 as a reader counts them
+        self.assertEqual(text.words("Às 14:02, 100/100 conexões, R$ 1.234,56 em 40."),
+                         ["Às", "14:02", "100/100", "conexões", "R", "1.234,56", "em", "40"])
+
+    def test_a_markdown_heading_is_not_a_sentence(self):
+        # explain_vpn: "# O que é uma VPN?" over three sentences was counted as four
+        self.assertEqual(len(text.sentences("# O que é uma VPN?\n\nUma frase. Outra frase! Mais uma?")), 3)
+        self.assertEqual(text.sentences("## Resumo\nO serviço caiu."), ["O serviço caiu."])
+        self.assertEqual(len(text.words("# O que é uma VPN?\n\nUma frase.")), 7)  # still counted as words
+
     def test_ids_are_unique(self):
         ids = [c["id"] for c in ALL]
         self.assertEqual(len(ids), len(set(ids)))

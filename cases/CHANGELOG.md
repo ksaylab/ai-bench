@@ -3,6 +3,20 @@
 Every change to a battery, with the reason, so the pruning (METHODOLOGY.md 8.3) is public. Each change makes a new
 battery version (`battery` in `meta.json`): runs of different versions are never merged or compared.
 
+## 2026-11-04
+
+- Checker version 2 (`cases.CHECKER_VERSION`), a new version of every battery: the checker version is now part of
+  the battery version, so runs checked by different rules are never merged (before, only the case files were, and
+  the rag checker change of 2026-11-03 kept the version).
+  - `words`: a number with `:`, `/`, `.` or `,` inside (`14:02`, `100/100`, `1.234,56`) is one word, as a reader
+    counts it. `incident_summary` failed `z-ai/glm-5.3-flash` at 61 words, 57 counted that way.
+  - `sentences`: a markdown heading line (`# What is a VPN?`) is a title, not a sentence; it still counts as
+    words. `explain_vpn` failed the same model at "4 sentences" for three sentences under a heading.
+  - Found by screening every case on `z-ai/glm-5.3-flash` at effort `high` (1 repeat): of its 6 failures, these 2
+    were the checker; the other 4 (`compact_number_br`, `parse_brl`, `sort_names_br`, `list_without_words`) were the
+    model's own mistakes, and at effort `max` it passed all 6. No other verdict of the examples or of those answers
+    changed.
+
 ## 2026-11-03
 
 - `coding`: `parse_log_line` now says that the level may be in any case in the line. The prompt said "level is

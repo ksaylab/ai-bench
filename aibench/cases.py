@@ -41,6 +41,10 @@ FILES = {"coding_public": "coding_public/cases.jsonl"}  # default: <use case>.js
 KINDS = {"regex", "lines", "summary", "code", "rag", "tool_call", "tool_calls", "no_tool", "json_schema"}
 TIERS = ("easy", "medium", "hard")
 PASS_MARK = "__CASE_PASSED__"
+# Version of the checking rules (check() and aibench/text.py). Raise it with any change that can flip a verdict,
+# and log the change in cases/CHANGELOG.md: it goes into every battery version, so runs checked by different rules
+# are never merged or compared. 2: numbers like "14:02" are one word; markdown headings are not sentences.
+CHECKER_VERSION = 2
 
 
 BATTERY_FILES = {"agent": ["agent_tools.json"], "rag": ["rag_documents.json"]}
@@ -51,9 +55,9 @@ def battery_file(use_case):
 
 
 def battery_hash(use_case, context_words=3000, folder=CASES):
-    """Version of one use case's battery: the first 12 hex digits of a SHA-256 over its files (and, for RAG, the size
-    of the generated documents). Runs and anchors are only compared on the same version."""
-    h = hashlib.sha256()
+    """Version of one use case's battery: the first 12 hex digits of a SHA-256 over the checker version, its files
+    (and, for RAG, the size of the generated documents). Runs and anchors are only compared on the same version."""
+    h = hashlib.sha256(f"checker={CHECKER_VERSION}\0".encode())
     for name in [battery_file(use_case)] + BATTERY_FILES.get(use_case, []):
         h.update(name.encode() + b"\0" + (Path(folder) / name).read_bytes() + b"\0")
     if use_case == "rag":

@@ -24,12 +24,18 @@ def normalize(s):
     return strip_accents(final_answer(s)).lower()
 
 
+# a number with ':', '/', '.' or ',' inside ("14:02", "100/100", "1.234,56") is one word, as a reader counts it
+WORD = re.compile(r"\d+(?:[:/.,]\d+)+|[^\W_]+(?:[-'][^\W_]+)*")
+HEADING = re.compile(r"^[ \t]*#{1,6}[ \t].*$", re.M)
+
+
 def words(s):
-    return re.findall(r"[^\W_]+(?:[-'][^\W_]+)*", final_answer(s))
+    return WORD.findall(final_answer(s))
 
 
 def sentences(s):
-    parts = re.split(r"(?<=[.!?])\s+", final_answer(s).strip())
+    """Sentences of the answer; a markdown heading line ("# What is a VPN?") is a title, not a sentence."""
+    parts = re.split(r"(?<=[.!?])\s+", HEADING.sub("", final_answer(s)).strip())
     return [p for p in parts if re.search(r"\w", p)]
 
 

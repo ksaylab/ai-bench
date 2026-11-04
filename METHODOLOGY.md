@@ -214,7 +214,8 @@ and how far the battery is from the 15 to 20 target). Every case is looked at on
 - The check uses **only the anchors and the floor, never the local contestants**, so the battery is not tuned to
   make a particular local model look good or bad.
 - After the check the battery version is frozen for the episode. Each run records the version of every battery
-  (`cases.battery_hash`: SHA-256 of the use case's files, plus the size of the generated RAG documents) in
+  (`cases.battery_hash`: SHA-256 of the checker version `cases.CHECKER_VERSION`, raised with any change to the
+  checking rules that can flip a verdict, of the use case's files, plus the size of the generated RAG documents) in
   `meta.json` (`battery`) and in the `battery` column of `executions.csv` and `scores.csv`; `verdict` refuses to
   merge runs made with different versions of the same battery, and the anchors are only matched on the same
   version.
