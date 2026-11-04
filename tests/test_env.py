@@ -19,8 +19,10 @@ class Router(BaseHTTPRequestHandler):
         if self.path == "/props":
             body = {"role": "router", "model_path": "none", "build_info": "b1-abc"}
         elif self.path == "/v1/models":
+            preset = ("[small]\nmodel = /ho" "me/someone/models/Small-Q4.gguf\nmodel-draft = /ho" "me/someone/models/"
+                      "mtp-Small.gguf\nreasoning-budget = 8192\nctx-size = 90112\ntemperature = 0.6\n\n")
             body = {"data": [{"id": "small", "status": {"args": ["llama-server", "--model", "/srv/m/Small-Q4.gguf",
-                                                                 "--port", "0"]}},
+                                                                 "--port", "0"], "preset": preset}},
                              {"id": "other", "status": {"args": ["llama-server", "--model", "/srv/m/Other.gguf"]}}]}
         else:
             self.send_error(404)
@@ -76,7 +78,16 @@ class TestEnvRemoteServer(unittest.TestCase):
 
     def test_router_mode_records_the_gguf_of_each_model_without_its_path(self):
         e = env.capture("pc-rtx2060", self.router(), models=["small", "missing"])
-        self.assertEqual(e["server"], {"build": "b1-abc", "gguf": {"small": "Small-Q4.gguf"}})
+        self.assertEqual(e["server"]["build"], "b1-abc")
+        self.assertEqual(e["server"]["gguf"], {"small": "Small-Q4.gguf"})
+
+    def test_router_mode_records_each_model_preset_without_paths(self):
+        # the preset's reasoning-budget ends the thinking of some models early: it is part of what was measured
+        e = env.capture("pc-rtx2060", self.router(), models=["small", "other"])
+        self.assertEqual(e["server"]["preset"], {"small": {"model": "Small-Q4.gguf", "model-draft": "mtp-Small.gguf",
+                                                           "reasoning-budget": "8192", "ctx-size": "90112",
+                                                           "temperature": "0.6"}})
+        self.assertNotIn("/ho" "me/", json.dumps(e))
 
     def test_the_source_sent_over_ssh_runs_on_its_own(self):
         # the same stdin ssh would get, run by a local isolated interpreter instead of the remote one

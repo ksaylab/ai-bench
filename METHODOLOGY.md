@@ -290,7 +290,9 @@ the other 11.
   from what the other episode pins.
 - **Local server settings are recorded (implemented):** the `llama-server` command line (context size, `-ngl`,
   `-fa`, `--n-cpu-moe`, `--parallel`) goes into `meta.json` (`server_args`, from `--server-args` or
-  `AIBENCH_SERVER_ARGS`); `env.json` keeps the build and the GGUF. Use `--parallel 1` so batching does not change the
+  `AIBENCH_SERVER_ARGS`); `env.json` keeps the build and the GGUF and, in router mode, each model's preset as the
+  server reports it (`server.preset`, file paths reduced to the file name: `reasoning-budget`, `ctx-size`, KV cache
+  type, speculative decoding). Use `--parallel 1` so batching does not change the
   results.
 - **At least 3 repeats**, as today (`MIN_RUNS`). For the calibration episodes the target is 5 for the local
   contestants when time allows.

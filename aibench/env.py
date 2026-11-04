@@ -76,13 +76,29 @@ def server(url, models=()):
     if p is None:
         return {}
     model = (p.get("model_path") or "").rsplit("/", 1)[-1]
+    presets = {}
     if p.get("role") == "router":
         model = {}
         for m in (_get(base + "/v1/models") or {}).get("data", []):
-            args = (m.get("status") or {}).get("args") or []
+            status = m.get("status") or {}
+            args = status.get("args") or []
             if m.get("id") in models and "--model" in args[:-1]:
                 model[m["id"]] = args[args.index("--model") + 1].rsplit("/", 1)[-1]
-    return {k: v for k, v in {"build": p.get("build_info", ""), "gguf": model}.items() if v}
+            if m.get("id") in models and status.get("preset"):
+                presets[m["id"]] = preset_settings(status["preset"])
+    return {k: v for k, v in {"build": p.get("build_info", ""), "gguf": model, "preset": presets}.items() if v}
+
+
+def preset_settings(text):
+    """A router preset ("key = value" lines under [name]) as a dict: file paths reduced to the file name, then
+    scrubbed. Settings such as reasoning-budget or ctx-size change what a model can answer, so they are recorded."""
+    out = {}
+    for line in text.splitlines():
+        if "=" not in line or line.lstrip().startswith((";", "#", "[")):
+            continue
+        k, v = (x.strip() for x in line.split("=", 1))
+        out[k] = scrub(v.rsplit("/", 1)[-1] if "/" in v and k.startswith("model") else v)
+    return out
 
 
 def local():
