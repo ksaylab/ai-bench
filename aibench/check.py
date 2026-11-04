@@ -2,8 +2,8 @@
 
 1. Generic patterns in every tracked file (and in new, not ignored ones): IP addresses, `host:port`, API tokens,
    private keys, home paths and e-mail addresses. Only loopback with the default llama-server (8080) and Ollama
-   (11434) ports and GitHub noreply e-mails are allowed. Synthetic data (the batteries in cases/ and the models'
-   answers to them, responses.jsonl) is full of made-up addresses, so IPs, `host:port` and e-mails are not flagged
+   (11434) ports and GitHub noreply e-mails are allowed. Synthetic data (the batteries in cases/, the models'
+   answers to them, responses.jsonl, and the checks of those answers, executions.csv) is full of made-up addresses, so IPs, `host:port` and e-mails are not flagged
    there; tokens, keys, home paths and private terms still are.
 2. Private terms from a list OUTSIDE the repository (PRIVATE_TERMS_FILE): project, people and machine names. The list
    is not shipped, so it does not reveal what it protects.
@@ -55,9 +55,12 @@ def private_terms(env=os.environ):
 
 
 def is_synthetic(rel):
-    """A battery file (cases/**/*.json, *.jsonl) or the models' answers to one (responses.jsonl of a run)."""
+    """A battery file (cases/**/*.json, *.jsonl), the models' answers to one (responses.jsonl of a run) or the
+    executions that check them (executions.csv: its free text is the checker's and the tests' reason, and client
+    errors, which carry only the exception type or the HTTP status and the API's message, never an address)."""
     rel = Path(rel)
-    return rel.name == "responses.jsonl" or (rel.parts[:1] == ("cases",) and rel.suffix in (".json", ".jsonl"))
+    return (rel.name in ("responses.jsonl", "executions.csv")
+            or (rel.parts[:1] == ("cases",) and rel.suffix in (".json", ".jsonl")))
 
 
 def findings(text, terms=(), synthetic=False):

@@ -49,10 +49,13 @@ class TestCheck(unittest.TestCase):
         from pathlib import Path
         for p in ("cases/coding.jsonl", "cases/agent_tools.json", "cases/coding_public/cases.jsonl",
                   "calibration/runs/2026-11-04-0754-openrouter-anchors/responses.jsonl",
-                  "episodes/02-what-runs-on-8gb/results/runs/x/responses.jsonl"):
+                  "episodes/02-what-runs-on-8gb/results/runs/x/responses.jsonl",
+                  # the reason column repeats the checker and the tests on synthetic data ("Invalid network '10...")
+                  "episodes/02-what-runs-on-8gb/results/runs/x/executions.csv",
+                  "episodes/02-what-runs-on-8gb/results/executions.csv", "calibration/runs/x/executions.csv"):
             self.assertTrue(check.is_synthetic(Path(p)), p)
         for p in ("cases/CHANGELOG.md", "calibration/runs/x/env.json", "calibration/runs/x/meta.json",
-                  "calibration/runs/x/executions.csv", "HOW-TO-RUN.md", "aibench/client.py", "responses.md"):
+                  "calibration/runs/x/scores.csv", "HOW-TO-RUN.md", "aibench/client.py", "responses.md"):
             self.assertFalse(check.is_synthetic(Path(p)), p)
 
     def test_excerpt_is_masked(self):
