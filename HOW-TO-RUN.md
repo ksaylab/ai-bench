@@ -133,8 +133,16 @@ python3 -m aibench calibration                            # merge into calibrati
 easy (every anchor passes, the floor included), which are suspect (no ceiling passes) and how many cases each
 battery needs to reach 15 to 20. Edit the batteries by hand and log the change in `cases/CHANGELOG.md`.
 
-`--models` runs a subset of the anchors and `--use-cases` a subset of the batteries. The prices are read from the
-public model list at run time (no key needed for that) and go into `meta.json`.
+`--models` runs a subset of the anchors and `--use-cases` a subset of the batteries. `--cases id1,id2` runs only
+those cases, to screen new or doubtful cases cheaply before the full run; it needs `--smoke`, because a partial
+battery gives no battery score, so the run stays out of `calibration/anchors.csv`:
+
+```bash
+python3 -m aibench calibrate --smoke --cases weather_call,is_palindrome --label screen
+```
+
+The prices are read from the model list at run time and go into `meta.json`. OpenRouter's list is public; through a
+proxy (`--url`), the `OPENROUTER_API_KEY` is sent with that read too.
 
 ## OpenRouter (cloud, paid): judge only
 

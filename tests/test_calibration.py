@@ -215,6 +215,36 @@ class TestAnchorRuns(unittest.TestCase):
         meta = json.loads(next((self.tmp / "calibration" / "runs").glob("*/meta.json")).read_text())
         self.assertEqual(meta["max_tokens"], 32768)
 
+    def test_a_few_cases_by_id_make_a_smoke_run(self):
+        # screening a few cases on the anchors: a partial battery would give a misleading battery score
+        picked = ["weather_call", "is_palindrome"]
+        with self.assertRaises(run.RunError):
+            run.run(None, "openrouter", ["ceil-a"], simulate=True, case_ids=picked, anchors={"ceil-a": "ceiling"},
+                    root=calibration.CALIBRATION, **QUIET)
+        d = run.run(None, "openrouter", ["ceil-a"], simulate=True, smoke=True, case_ids=picked,
+                    anchors={"ceil-a": "ceiling"}, root=calibration.CALIBRATION, **QUIET)
+        meta = json.loads((d / "meta.json").read_text())
+        self.assertEqual(sorted(meta["cases"]), sorted(picked))
+        self.assertEqual(meta["use_cases"], ["agent", "coding"])
+        self.assertFalse(meta["publishable"])
+
+    def test_unknown_case_ids_are_refused(self):
+        with self.assertRaisesRegex(run.RunError, "no_such_case"):
+            run.run(None, "openrouter", ["ceil-a"], simulate=True, smoke=True,
+                    case_ids=["weather_call", "no_such_case"], anchors={"ceil-a": "ceiling"},
+                    root=calibration.CALIBRATION, **QUIET)
+        with self.assertRaisesRegex(run.RunError, "weather_call"):  # an agent case, outside --use-cases coding
+            run.run(None, "openrouter", ["ceil-a"], simulate=True, smoke=True, use_cases={"coding"},
+                    case_ids=["weather_call"], anchors={"ceil-a": "ceiling"}, root=calibration.CALIBRATION, **QUIET)
+
+    def test_calibrate_passes_the_case_filter(self):
+        from aibench import __main__ as cli
+        with mock.patch("sys.stdout"):
+            cli.main(["calibrate", "--simulate", "--smoke", "--runs", "1", "--models", "z-ai/glm-5.3-flash",
+                      "--cases", "weather_call,is_palindrome"])
+        meta = json.loads(next((self.tmp / "calibration" / "runs").glob("*/meta.json")).read_text())
+        self.assertEqual(sorted(meta["cases"]), ["is_palindrome", "weather_call"])
+
     def test_unknown_reasoning_keys_are_refused(self):
         with self.assertRaises(run.RunError):
             run.run(None, "openrouter", ["ceil-a"], use_cases={"coding"}, simulate=True,

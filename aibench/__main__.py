@@ -82,6 +82,7 @@ def main(argv=None):
     p.add_argument("--context-words", type=int, default=3000, help="size of the long RAG documents")
     p.add_argument("--max-tokens", type=int, default=32768,
                    help="room to reason: a ceiling cut at the limit fails for lack of room, not of skill")
+    p.add_argument("--cases", help="comma separated case ids, to screen a few cases (needs --smoke: not publishable)")
     p.add_argument("--label", default="anchors")
     p.add_argument("--simulate", action="store_true", help="no network: answer with the cases' examples")
     p.add_argument("--smoke", action="store_true", help="allow fewer than 3 runs; the run cannot be published")
@@ -154,7 +155,7 @@ def main(argv=None):
                            providers={n: table[n].get("provider") for n in names},
                            reasoning={n: table[n].get("reasoning") for n in names},
                            anchors={n: table[n]["role"] for n in names}, root=calibration.CALIBRATION,
-                           model_info=info)
+                           model_info=info, case_ids=a.cases.split(",") if a.cases else None)
             print(f"run written to {_rel(dest)}")
             print((dest / "verdicts.md").read_text(encoding="utf-8"))
         elif a.cmd == "calibration":

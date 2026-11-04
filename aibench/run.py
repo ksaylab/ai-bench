@@ -130,18 +130,22 @@ def write_results(folder, rows, reference=None):
 def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge_model=None, context_words=3000,
         label="run", simulate=False, smoke=False, skip_code=False, max_tokens=8192, out=None, log=print,
         judge_url=None, sampling=None, server_args=None, anchors=None, root=None, model_info=None, stream=True,
-        gpu_sampling=True, providers=None, reasoning=None):
+        gpu_sampling=True, providers=None, reasoning=None, case_ids=None):
     """`sampling`: model -> its [model.sampling] table (temperature, top_p, ..., base seed). `server_args`: the model
     server's command line, recorded in meta.json (paths and addresses scrubbed). `anchors`: model -> role, for a
     calibration run (`root` = calibration/, `model_info` = prices read from OpenRouter). `stream`: streaming
     responses, for the time to first token. `gpu_sampling`: nvidia-smi on the model server during the run.
     `providers`: model -> its [anchor.provider] table, sent as OpenRouter's `provider` routing object.
-    `reasoning`: model -> its [anchor.reasoning] table, sent as OpenRouter's `reasoning` object (e.g. the effort)."""
+    `reasoning`: model -> its [anchor.reasoning] table, sent as OpenRouter's `reasoning` object (e.g. the effort).
+    `case_ids`: only these cases (to screen a few on the anchors); a partial battery cannot be published."""
     ep = EPISODES / episode if episode else None
     if root is None and (ep is None or not ep.is_dir()):
         raise RunError(f"episode {episode!r} not found in {EPISODES.name}/")
     if not models:
         raise RunError("no models (use --models or the episode's models.toml)")
+    if case_ids and not smoke:
+        raise RunError("a run with only some cases (--cases) gives no battery score: use --smoke, it cannot be "
+                       "published")
     if runs < MIN_RUNS and not smoke:
         raise RunError(f"the methodology requires at least {MIN_RUNS} runs (use --smoke for a quick test that "
                        "cannot be published)")
@@ -162,6 +166,10 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
         if sampling[m] and not sampling[m].get("verified", True):
             log(f"warning: the sampling of {m} is not verified against its model card (verified = false)")
     battery = cases.load(use_cases, context_words)
+    if case_ids:
+        if missing := sorted(set(case_ids) - {c["id"] for c in battery}):
+            raise RunError(f"no case with id {', '.join(missing)}" + (" in these use cases" if use_cases else ""))
+        battery = [c for c in battery if c["id"] in set(case_ids)]
     if skip_code:
         battery = [c for c in battery if c["kind"] != "code"]
     if not battery:
