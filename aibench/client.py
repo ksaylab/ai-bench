@@ -66,11 +66,15 @@ def resolve_target(target, url=None, env=os.environ):
     return url.rstrip("/"), key
 
 
-def models_info(ids, url=OPENROUTER, timeout=30):
-    """Price (USD per 1M input / output tokens) and accepted parameters of each id, read from OpenRouter's public
-    /models list (no key, no cost). Missing ids map to {"error": ...}; a failed read raises ClientError."""
+def models_info(ids, url=OPENROUTER, key=None, timeout=30):
+    """Price (USD per 1M input / output tokens) and accepted parameters of each id, read from OpenRouter's /models
+    list (no cost). OpenRouter's list is public, but a proxy in front of it may want the key (`key`): without it
+    such a proxy answers 401. Missing ids map to {"error": ...}; a failed read raises ClientError."""
+    headers = {"User-Agent": "ai-bench/0.2"}
+    if key:
+        headers["Authorization"] = f"Bearer {key}"
     try:
-        req = urllib.request.Request(url.rstrip("/") + "/models", headers={"User-Agent": "ai-bench/0.2"})
+        req = urllib.request.Request(url.rstrip("/") + "/models", headers=headers)
         with urllib.request.urlopen(req, timeout=timeout) as r:
             data = json.load(r).get("data", [])
     except (urllib.error.URLError, TimeoutError, ConnectionError, ValueError) as e:

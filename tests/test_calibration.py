@@ -105,6 +105,22 @@ class Models(BaseHTTPRequestHandler):
         pass
 
 
+class GuardedModels(Models):
+    """A /models behind a token, like a local proxy in front of OpenRouter: 401 without `Authorization: Bearer test-token`."""
+    def do_GET(self):
+        if self.headers.get("Authorization") != "Bearer test-token":
+            self.send_response(401)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
+        data = json.dumps({"data": [{"id": "z-ai/glm-5.3-flash",
+                                     "pricing": {"prompt": "0.0000004", "completion": "0.0000016"}}]}).encode()
+        self.send_response(200)
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+
 class TestAnchorRuns(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp())
@@ -141,6 +157,25 @@ class TestAnchorRuns(unittest.TestCase):
         self.assertEqual(info["ceil-a"]["usd_per_1m_input"], 1.6)
         self.assertEqual(info["ceil-a"]["usd_per_1m_output"], 3.2)
         self.assertIn("error", info["gone"])
+
+    def test_prices_are_read_through_a_proxy_that_wants_the_key(self):
+        # through a local proxy, /models without the key gave HTTP 401 and calibrate recorded no prices
+        url = self.serve(GuardedModels)
+        with self.assertRaises(client.ClientError):
+            client.models_info(["z-ai/glm-5.3-flash"], url=url)
+        info = client.models_info(["z-ai/glm-5.3-flash"], url=url, key="test-token")
+        self.assertEqual(info["z-ai/glm-5.3-flash"]["usd_per_1m_output"], 1.6)
+
+    def test_calibrate_sends_the_key_when_it_reads_the_prices(self):
+        from aibench import __main__ as cli
+        url = self.serve(GuardedModels)
+        with mock.patch.dict("os.environ", {"OPENROUTER_API_KEY": "test-token"}), \
+                mock.patch.object(run, "run", return_value=self.tmp) as fake_run, \
+                mock.patch("sys.stdout"), mock.patch("sys.stderr"), \
+                mock.patch.object(Path, "read_text", return_value=""):
+            cli.main(["calibrate", "--url", url, "--models", "z-ai/glm-5.3-flash", "--use-cases", "coding"])
+        info = fake_run.call_args.kwargs["model_info"]
+        self.assertEqual(info["z-ai/glm-5.3-flash"]["usd_per_1m_input"], 0.4)
 
     def test_an_anchor_run_pins_one_provider_and_records_who_answered(self):
         url = self.serve(FakeServer)

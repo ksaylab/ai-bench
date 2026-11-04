@@ -144,7 +144,8 @@ def main(argv=None):
             info = {}
             if not a.simulate:
                 try:
-                    info = client.models_info(names, url=a.url or client.OPENROUTER)
+                    info = client.models_info(names, url=a.url or client.OPENROUTER,
+                                              key=os.environ.get("OPENROUTER_API_KEY"))
                 except client.ClientError as e:
                     print(f"warning: prices not recorded ({e})", file=sys.stderr)
             dest = run.run(None, "openrouter", names, a.runs, a.url, use_cases, None, a.context_words, a.label,
