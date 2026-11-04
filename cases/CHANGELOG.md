@@ -5,6 +5,27 @@ battery version (`battery` in `meta.json`): runs of different versions are never
 
 ## 2026-11-04
 
+- After the anchor run of the grown batteries (`calibration/runs/2026-11-04-0754-openrouter-anchors`, 720 calls,
+  US$2.00), its answers were reviewed and the batteries fixed where the checker or the tagging was wrong. No prompt,
+  history or tool changed, so the saved answers were rescored (`python3 -m aibench rescore`) instead of rerun: the
+  rescored run (`...-rescored-20261104-1315`) is the baseline (v2). Only 3 verdicts changed, all of
+  `z-ai/glm-5.3-flash` (235/240 to 238/240); the floor passed nothing new.
+  - Checker version 3: an initial or a title (`D. Pedro`, `Dr. Silva`) does not end a sentence.
+    `false_premise_holiday` failed the same model twice at "4 sentences" for three, cut at `D. Pedro I`. Known
+    limit: a sentence that really ends in a one-letter capital (`plan B.`) is joined to the next one.
+  - `rag` `sev3_no_target`: the forbidden `within (15|60) minutes` also caught a correct comparison ("severity 1
+    incidents must be acknowledged within 15 minutes ... this does not apply to severity 3"). It now forbids only an
+    answer that starts with a time or gives severity 3 one.
+  - Tiers from the data: the floor passed every repeat of `chat_pt` `translate_keep_code` and `incident_summary`
+    (medium), `rag` `answer_absent` (medium) and `vacation_one_day_short` (hard), now easy. Every case the pruning
+    calls too easy is now in the easy tier, which is meant to be passed by small models (8.3).
+  - Reviewed and kept: `rag` `vpn_effective_date` (`ceilings_disagree`). `deepseek/deepseek-v4-pro` gets the date
+    right but also cites [7], the office hours passage, for "closed on weekends", and fails every repeat on
+    `cite_only`; `z-ai/glm-5.3-flash` cites only [1]. Citing a passage that is not about the VPN policy counts as a
+    failure; the floor fails on the date itself.
+  - Also seen, no change: `coding` `parse_brl` was cut at 32768 tokens once out of 3 for `deepseek/deepseek-v4-pro`
+    (it passed the other two); `chat_pt` `incident_summary` failed `z-ai/glm-5.3-flash` twice over 60 words, with a
+    title (titles count as words).
 - Checker version 2 (`cases.CHECKER_VERSION`), a new version of every battery: the checker version is now part of
   the battery version, so runs checked by different rules are never merged (before, only the case files were, and
   the rag checker change of 2026-11-03 kept the version).

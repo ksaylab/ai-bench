@@ -44,7 +44,8 @@ PASS_MARK = "__CASE_PASSED__"
 # Version of the checking rules (check() and aibench/text.py). Raise it with any change that can flip a verdict,
 # and log the change in cases/CHANGELOG.md: it goes into every battery version, so runs checked by different rules
 # are never merged or compared. 2: numbers like "14:02" are one word; markdown headings are not sentences.
-CHECKER_VERSION = 2
+# 3: an initial or a title ("D. Pedro", "Dr. Silva") does not end a sentence.
+CHECKER_VERSION = 3
 
 
 BATTERY_FILES = {"agent": ["agent_tools.json"], "rag": ["rag_documents.json"]}

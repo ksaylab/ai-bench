@@ -50,6 +50,12 @@ class TestBatteries(unittest.TestCase):
         self.assertEqual(text.sentences("## Resumo\nO serviço caiu."), ["O serviço caiu."])
         self.assertEqual(len(text.words("# O que é uma VPN?\n\nUma frase.")), 7)  # still counted as words
 
+    def test_an_initial_or_a_title_does_not_end_a_sentence(self):
+        # false_premise_holiday: "quando D. Pedro I proclamou" was cut in two, four sentences for three
+        self.assertEqual(len(text.sentences("Foi quando D. Pedro I proclamou a independência. Depois veio 1889.")), 2)
+        self.assertEqual(len(text.sentences("O Dr. Silva e a Sra. Souza chegaram. A Profa. Lima saiu.")), 2)
+        self.assertEqual(len(text.sentences("Ele chegou às 9 h. Ela saiu cedo. Fim.")), 3)  # lowercase: not an initial
+
     def test_ids_are_unique(self):
         ids = [c["id"] for c in ALL]
         self.assertEqual(len(ids), len(set(ids)))

@@ -33,10 +33,21 @@ def words(s):
     return WORD.findall(final_answer(s))
 
 
+# a part ending in one of these is not a sentence: an initial ("D. Pedro") or a title ("Dr. Silva"). A sentence
+# that really ends in a one-letter capital ("we chose plan B. Then...") is joined to the next one: rarer than initials.
+NOT_AN_END = re.compile(r"(?:^|\s)(?:[A-ZÀ-Ý]|Sr|Sra|Srta|Dr|Dra|Prof|Profa|Mr|Mrs|Ms|St)\.$")
+
+
 def sentences(s):
     """Sentences of the answer; a markdown heading line ("# What is a VPN?") is a title, not a sentence."""
     parts = re.split(r"(?<=[.!?])\s+", HEADING.sub("", final_answer(s)).strip())
-    return [p for p in parts if re.search(r"\w", p)]
+    out = []
+    for p in parts:
+        if out and NOT_AN_END.search(out[-1]):
+            out[-1] += " " + p
+        else:
+            out.append(p)
+    return [p for p in out if re.search(r"\w", p)]
 
 
 def is_portuguese(s):
