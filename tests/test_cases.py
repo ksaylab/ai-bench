@@ -149,6 +149,53 @@ class TestCheckers(unittest.TestCase):
         self.assertEqual(text.final_answer("<think>maybe 5</think>The answer is 7"), "The answer is 7")
 
 
+def weather(city):
+    return {"name": "get_weather", "arguments": {"city": city, "unit": "celsius"}}
+
+
+class TestAgentSteps(unittest.TestCase):
+    """Several tool calls in one answer (`tool_calls`) and a fixed history of earlier calls and their results
+    (`history`), so a single request can test the next step of an agent."""
+
+    def setUp(self):
+        reg = cases.tools_registry()
+        self.specs = [{"type": "function", "function": reg[t]} for t in ("get_weather", "convert_currency")]
+        self.c = {"id": "t", "kind": "tool_calls", "tool_specs": self.specs,
+                  "expected": [weather("Recife"), weather("Natal")]}
+
+    def test_several_calls_match_in_any_order(self):
+        for calls in ([weather("Recife"), weather("Natal")], [weather("Natal"), weather("Recife")]):
+            self.assertEqual(cases.check(self.c, {"text": "", "tool_calls": calls}), (True, ""))
+
+    def test_a_missing_extra_repeated_or_wrong_call_fails(self):
+        wrong_unit = {"name": "get_weather", "arguments": {"city": "Natal", "unit": "fahrenheit"}}
+        for calls in ([weather("Recife")], [weather("Recife"), weather("Natal"), weather("Natal")],
+                      [weather("Recife"), weather("Recife")], [weather("Recife"), wrong_unit],
+                      [weather("Recife"), {"name": "get_weather", "arguments": {"city": "Natal"}}]):
+            with self.subTest(calls=calls):
+                self.assertFalse(cases.check(self.c, {"text": "", "tool_calls": calls})[0])
+
+    def test_history_becomes_the_assistant_calls_and_the_tool_results(self):
+        c = {"system": "S", "prompt": "Weather in Recife and Natal?",
+             "history": [{"call": weather("Recife"), "result": {"temp_c": 29}},
+                         {"call": weather("Natal"), "result": "28 C"}]}
+        m = cases.messages(c)
+        self.assertEqual([x["role"] for x in m], ["system", "user", "assistant", "tool", "assistant", "tool"])
+        call = m[2]["tool_calls"][0]
+        self.assertEqual((call["type"], call["function"]["name"]), ("function", "get_weather"))
+        self.assertEqual(json.loads(call["function"]["arguments"]), {"city": "Recife", "unit": "celsius"})
+        self.assertEqual(m[3]["tool_call_id"], call["id"])
+        self.assertEqual(json.loads(m[3]["content"]), {"temp_c": 29})
+        self.assertEqual(m[5]["content"], "28 C")
+        ids = [m[2]["tool_calls"][0]["id"], m[4]["tool_calls"][0]["id"]]
+        self.assertEqual(len(set(ids)), 2)
+        for i in ids:  # Mistral's API (the floor anchor) wants exactly 9 letters or digits
+            self.assertRegex(i, r"^[A-Za-z0-9]{9}$")
+
+    def test_a_case_without_history_keeps_two_messages(self):
+        self.assertEqual([x["role"] for x in cases.messages({"system": "S", "prompt": "P"})], ["system", "user"])
+
+
 class TestEnglishOnly(unittest.TestCase):
     """Everything is English except the content of the Portuguese chat battery."""
     MARKERS = ("ção", "ções", "você", "não ", "também", " para o ", " uma ", "rodada", "modelo ", "episódio",

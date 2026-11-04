@@ -35,10 +35,10 @@ class FakeServer(BaseHTTPRequestHandler):
         if body["messages"][0]["content"].startswith("You grade"):
             msg["content"] = '{"score": 5, "reason": "ok"}'
         else:
-            case = BY_PROMPT.get(body["messages"][-1]["content"])
+            prompt = next(m["content"] for m in reversed(body["messages"]) if m["role"] == "user")  # before history
+            case = BY_PROMPT.get(prompt)
             if case is None:  # generated RAG documents depend on --context-words: match by id in the system prompt
-                case = next(c for c in cases.load({"rag"}, len(body["messages"][-1]["content"].split()))
-                            if c["prompt"] == body["messages"][-1]["content"])
+                case = next(c for c in cases.load({"rag"}, len(prompt.split())) if c["prompt"] == prompt)
             ex = case["example_bad" if body["model"] in FakeServer.bad_models else "example_good"]
             a = cases.as_answer(ex)
             msg["content"] = a["text"]

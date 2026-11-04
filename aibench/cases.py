@@ -13,9 +13,13 @@ Checker kinds:
 - rag: `ok`/`forbidden`, every passage in `cite` is cited as [n], `cite_only` forbids other citations
 - tool_call: exactly one call to `expected.name`, arguments valid against the tool schema and equal to
   `expected.arguments` (lists compared as sets, strings case-insensitive)
+- tool_calls: `expected` is a list of calls; the answer makes exactly those calls, in any order, each checked like
+  tool_call (no missing, extra or repeated call)
 - no_tool: no tool call at all, plus `ok`/`forbidden` on the text
 - json_schema: the first JSON object in the answer is valid against `schema` and matches `expected`
 Any case may set `portuguese: true`: the answer must be in Portuguese.
+A case with tools may set `history`: earlier steps `{"call": {name, arguments}, "result": ...}` sent after the prompt
+as the assistant's tool calls and the tool results, so the checked answer is the agent's next step.
 Every case has a `tier` (easy, medium, hard; METHODOLOGY.md 8.3).
 """
 import hashlib
@@ -34,7 +38,7 @@ CASES = ROOT / "cases"
 USE_CASES = ["coding", "rag", "agent", "chat_pt", "coding_public"]
 REFERENCE_USE_CASES = {"coding_public"}  # scored like the others, never part of a Good for / Not good for verdict
 FILES = {"coding_public": "coding_public/cases.jsonl"}  # default: <use case>.jsonl
-KINDS = {"regex", "lines", "summary", "code", "rag", "tool_call", "no_tool", "json_schema"}
+KINDS = {"regex", "lines", "summary", "code", "rag", "tool_call", "tool_calls", "no_tool", "json_schema"}
 TIERS = ("easy", "medium", "hard")
 PASS_MARK = "__CASE_PASSED__"
 
@@ -226,20 +230,38 @@ def _match_expected(obj, expected):
     return ""
 
 
+def _call_error(c, call, exp):
+    """"" when `call` is the expected call: same tool, arguments valid against its schema and equal to the expected."""
+    if call["name"] != exp["name"]:
+        return f"called {call['name']}, expected {exp['name']}"
+    args = call["arguments"]
+    if not isinstance(args, dict):
+        return "arguments are not a JSON object"
+    params = next(t["function"]["parameters"] for t in c["tool_specs"] if t["function"]["name"] == exp["name"])
+    if errs := schema.errors(args, params):
+        return "schema: " + "; ".join(errs[:2])
+    return _match_expected(args, exp["arguments"])
+
+
+def _tool_calls(c, answer):
+    calls, expected = answer.get("tool_calls") or [], c["expected"]
+    if len(calls) != len(expected):
+        return False, f"{len(calls)} tool call(s), expected {len(expected)}"
+    left = list(calls)
+    for exp in expected:
+        hit = next((call for call in left if not _call_error(c, call, exp)), None)
+        if hit is None:
+            why = _call_error(c, left[0], exp) if len(left) == 1 else "no call matches it"
+            return False, f"{exp['name']} {json.dumps(exp['arguments'], ensure_ascii=False)}: {why}"
+        left.remove(hit)
+    return True, ""
+
+
 def _tool_call(c, answer):
     calls = answer.get("tool_calls") or []
     if len(calls) != 1:
         return False, f"{len(calls)} tool call(s), expected 1"
-    call, exp = calls[0], c["expected"]
-    if call["name"] != exp["name"]:
-        return False, f"called {call['name']}, expected {exp['name']}"
-    args = call["arguments"]
-    if not isinstance(args, dict):
-        return False, "arguments are not a JSON object"
-    params = next(t["function"]["parameters"] for t in c["tool_specs"] if t["function"]["name"] == exp["name"])
-    if errs := schema.errors(args, params):
-        return False, "schema: " + "; ".join(errs[:2])
-    if diff := _match_expected(args, exp["arguments"]):
+    if diff := _call_error(c, calls[0], c["expected"]):
         return False, diff
     return True, ""
 
@@ -309,6 +331,8 @@ def check(c, answer):
     text, kind = a["text"], c["kind"]
     if kind == "tool_call":
         return _tool_call(c, a)
+    if kind == "tool_calls":
+        return _tool_calls(c, a)
     if kind == "no_tool" and a["tool_calls"]:
         return False, f"called {a['tool_calls'][0]['name']} but no tool was needed"
     if not final_answer(text):
@@ -322,4 +346,13 @@ def check(c, answer):
 
 def messages(c):
     m = [{"role": "system", "content": c["system"]}] if c.get("system") else []
-    return m + [{"role": "user", "content": c["prompt"]}]
+    m.append({"role": "user", "content": c["prompt"]})
+    for i, step in enumerate(c.get("history") or []):
+        call_id = f"call{i:05d}"  # Mistral's API wants exactly 9 letters or digits
+        call = {"id": call_id, "type": "function", "function": {
+            "name": step["call"]["name"], "arguments": json.dumps(step["call"]["arguments"], ensure_ascii=False)}}
+        result = step["result"]
+        m.append({"role": "assistant", "content": "", "tool_calls": [call]})
+        m.append({"role": "tool", "tool_call_id": call_id,
+                  "content": result if isinstance(result, str) else json.dumps(result, ensure_ascii=False)})
+    return m
