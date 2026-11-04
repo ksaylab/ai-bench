@@ -219,6 +219,13 @@ and how far the battery is from the 15 to 20 target). Every case is looked at on
   `meta.json` (`battery`) and in the `battery` column of `executions.csv` and `scores.csv`; `verdict` refuses to
   merge runs made with different versions of the same battery, and the anchors are only matched on the same
   version.
+- **Rescore (implemented).** Each run also records what it sent for each case (`requests` in `meta.json`: a
+  SHA-256 of the messages and tools). `python3 -m aibench rescore <run folder>` checks the saved answers again with
+  the current cases and checker, into `<run id>-rescored-<date>/` (`rescored_from` in `meta.json`): no calls, so a
+  fix to the checker, a tier or an expected value does not cost a new anchor run. It refuses a case that now sends
+  another request (its saved answer answers another question) and a run scored by a judge. Only the use cases whose
+  battery version changed are rescored, and the rescored run stands in for its source on them when runs are merged.
+  Time, tokens and cost stay as measured.
 - Removed cases and the reason go into [`cases/CHANGELOG.md`](cases/CHANGELOG.md), so the pruning is public. The
   tool only suggests: a person edits the battery and the changelog.
 

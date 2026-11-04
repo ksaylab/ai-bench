@@ -8,6 +8,7 @@ with the cases' good examples, with no network: it exercises the plumbing.
 import csv
 import json
 import os
+import shutil
 import time
 from datetime import datetime
 from pathlib import Path
@@ -200,7 +201,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                              **{k: sampling[m][k] for k in ("source", "card", "verified") if k in sampling[m]}}
                          for m in models},
             "server_args": env.scrub(server_args or os.environ.get("AIBENCH_SERVER_ARGS", "")),
-            "battery": hashes}
+            "battery": hashes, "checker_version": cases.CHECKER_VERSION,
+            "requests": {c["id"]: cases.request_hash(c) for c in battery}}
     if anchors:
         meta["anchors"] = {m: {"role": anchors[m], **((model_info or {}).get(m) or {}),
                                **(extra[m] or {})} for m in models}
@@ -265,6 +267,83 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
     return dest
 
 
+def record_requests(folder):
+    """Adds the request hashes (meta.json `requests`) to a run made before runs recorded them. Only allowed while
+    every battery of the run is on the version it ran, because the hashes come from the current case files."""
+    folder = Path(folder)
+    meta = json.loads((folder / "meta.json").read_text(encoding="utf-8"))
+    cw = meta.get("context_words", 3000)
+    if moved := [uc for uc in meta["use_cases"] if cases.battery_hash(uc, cw) != meta["battery"].get(uc)]:
+        raise RunError(f"the battery version of {', '.join(moved)} changed since {folder.name} ran: its request "
+                       "hashes cannot be rebuilt from the current case files")
+    by_id = {c["id"]: c for c in cases.load(meta["use_cases"], cw)}
+    meta["requests"] = {i: cases.request_hash(by_id[i]) for i in meta["cases"]}
+    (folder / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def rescore(folder, log=print):
+    """Checks the saved answers of a run again with the current cases and checker, with no new calls, into a new run
+    folder next to it (`<run id>-rescored-<date>`, `rescored_from` in meta.json). Only the use cases whose battery
+    version changed are rescored, and only when every one of their cases still sends the same request (prompt,
+    history, tools): otherwise the saved answers answer another question. Time, tokens and cost stay as measured;
+    the tier comes from the current case."""
+    src = Path(folder)
+    old = json.loads((src / "meta.json").read_text(encoding="utf-8"))
+    if old.get("judge"):
+        raise RunError("a run scored by a judge is not rescored: the judge would have to grade the answers again")
+    if not old.get("requests"):
+        raise RunError(f"{src.name} has no request hashes (meta.json `requests`), so a changed prompt could not be "
+                       "told apart: rerun it")
+    cw = old.get("context_words", 3000)
+    hashes = {uc: cases.battery_hash(uc, cw) for uc in old["use_cases"]}
+    changed = [uc for uc in old["use_cases"] if hashes[uc] != old["battery"].get(uc)]
+    if not changed:
+        raise RunError(f"every battery of {src.name} is on the same battery version as when it ran: nothing to "
+                       "rescore")
+    with open(src / "executions.csv", encoding="utf-8") as f:
+        source_rows = [r for r in csv.DictReader(f) if r["use_case"] in changed]
+    answers = {(x["model"], x["case"], str(x["rep"])): x
+               for x in map(json.loads, (src / "responses.jsonl").read_text(encoding="utf-8").splitlines())}
+    by_id = {c["id"]: c for c in cases.load(changed, cw)}
+    ids = list(dict.fromkeys(r["case"] for r in source_rows))
+    if moved := [i for i in ids if i not in by_id or cases.request_hash(by_id[i]) != old["requests"].get(i)]:
+        raise RunError(f"these cases are gone or send another request since {src.name} ran, so their saved answers "
+                       f"cannot be rescored: {', '.join(moved)} (rerun those use cases)")
+    now = datetime.now()
+    run_id = f"{old['run_id']}-rescored-{now:%Y%m%d-%H%M}"
+    dest = src.parent / run_id
+    dest.mkdir()
+    rows, lines = [], []
+    for r in source_rows:
+        c, a = by_id[r["case"]], answers[(r["model"], r["case"], r["rep"])]
+        passed, reason = (False, r["reason"]) if a.get("error") else cases.check(c, a)
+        row = {**r, "run_id": run_id, "tier": c["tier"], "passed": int(passed), "reason": reason,
+               "battery": hashes[c["use_case"]]}
+        rows.append(row)
+        lines.append({**a, "run_id": run_id, "passed": int(passed), "reason": reason})
+    write_csv(dest / "executions.csv", COLUMNS, rows)
+    (dest / "responses.jsonl").write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in lines),
+                                          encoding="utf-8")
+    shutil.copy(src / "env.json", dest / "env.json")
+    meta = {**old, "run_id": run_id, "use_cases": changed, "cases": ids,
+            "battery": {uc: hashes[uc] for uc in changed}, "checker_version": cases.CHECKER_VERSION,
+            "requests": {i: old["requests"][i] for i in ids}, "rescored_from": old["run_id"],
+            "rescored": now.isoformat(timespec="seconds")}
+    (dest / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    for model in old["models"]:
+        done = [x for x in rows if x["model"] == model]
+        before = sum(int(x["passed"]) for x in source_rows if x["model"] == model)
+        log(f"{model}: {sum(x['passed'] for x in done)}/{len(done)} (was {before}/{len(done)})")
+    write_results(dest, rows, None if old.get("anchors") else calibration.load_reference())
+    return dest
+
+
+def replaced(metas):
+    """{(run id, use case)} that a rescored run stands in for: its source's rows of the use cases it rescored are
+    left out when runs are merged (the other use cases of the source stay)."""
+    return {(m["rescored_from"], uc) for m in metas if m.get("rescored_from") for uc in m.get("battery", {})}
+
+
 NOT_PUBLISHABLE_SUFFIXES = ("-simulated", "-smoke")
 
 
@@ -308,8 +387,10 @@ def consolidate(episode, log=None):
     speed.csv (from the `speed` runs)."""
     folder = EPISODES / episode / "results"
     rows, speed_rows = [], []
-    for meta in sorted(folder.glob("runs/*/meta.json")):
-        why = excluded(json.loads(meta.read_text(encoding="utf-8")), meta.parent)
+    metas = {p: json.loads(p.read_text(encoding="utf-8")) for p in sorted(folder.glob("runs/*/meta.json"))}
+    gone = replaced(metas.values())
+    for meta, m in metas.items():
+        why = excluded(m, meta.parent)
         if why:
             if log:
                 log(f"skipped {meta.parent.name}: {why}")
@@ -317,7 +398,7 @@ def consolidate(episode, log=None):
         for name, dest in (("executions.csv", rows), ("speed.csv", speed_rows)):
             if (meta.parent / name).exists():
                 with open(meta.parent / name, encoding="utf-8") as f:
-                    dest += list(csv.DictReader(f))
+                    dest += [r for r in csv.DictReader(f) if (r.get("run_id"), r.get("use_case")) not in gone]
     from aibench import speed  # speed imports nothing from run
     write_csv(folder / "speed.csv", speed.COLUMNS, speed_rows)
     check_battery_versions(rows)

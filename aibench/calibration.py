@@ -49,8 +49,9 @@ def read_rows(root=None, log=None):
     """Execution rows of the publishable anchor runs, each with the anchor's role (from that run's meta.json)."""
     from aibench import run  # run imports verdict, which imports nothing from here: no cycle at import time
     rows = []
-    for meta_path in sorted(Path(root or CALIBRATION).glob("runs/*/meta.json")):
-        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    metas = {p: json.loads(p.read_text(encoding="utf-8")) for p in sorted(Path(root or CALIBRATION).glob("runs/*/meta.json"))}
+    gone = run.replaced(metas.values())
+    for meta_path, meta in metas.items():
         why = run.excluded(meta, meta_path.parent, calibration=True)
         if why:
             if log:
@@ -59,7 +60,7 @@ def read_rows(root=None, log=None):
         roles = {m: info.get("role", "") for m, info in (meta.get("anchors") or {}).items()}
         with open(meta_path.parent / "executions.csv", encoding="utf-8") as f:
             for r in csv.DictReader(f):
-                if roles.get(r["model"]) in ROLES:
+                if roles.get(r["model"]) in ROLES and (r["run_id"], r["use_case"]) not in gone:
                     rows.append({**r, "role": roles[r["model"]]})
     return rows
 

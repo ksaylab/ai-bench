@@ -91,6 +91,10 @@ def main(argv=None):
     sub.add_parser("calibration", help="merge the anchor runs into calibration/anchors.csv and write the case "
                                        "pruning report (calibration/pruning.md)")
 
+    p = sub.add_parser("rescore", help="check the saved answers of a run again with the current cases and checker "
+                                       "(no calls, no cost), into a new run folder next to it")
+    p.add_argument("folder", help="the run folder, e.g. calibration/runs/<run id>")
+
     p = sub.add_parser("speed", help="llama-bench (pp and tg) at several context depths")
     p.add_argument("--episode", required=True)
     p.add_argument("--machine", required=True, choices=machines)
@@ -165,6 +169,10 @@ def main(argv=None):
                 print(f"{uc:14} {battery}  best ceiling {r['ceiling']:.1f}% ({r['ceiling_model']}), "
                       f"floor {r['floor']:.1f}%")
             print((path.parent / "pruning.md").read_text(encoding="utf-8"))
+        elif a.cmd == "rescore":
+            dest = run.rescore(a.folder)
+            print(f"rescored run written to {_rel(dest)}")
+            print((dest / "verdicts.md").read_text(encoding="utf-8"))
         elif a.cmd == "speed":
             if a.gguf:
                 targets = [{"name": a.model or Path(a.gguf).stem, "path": a.gguf}]

@@ -141,6 +141,14 @@ battery gives no battery score, so the run stays out of `calibration/anchors.csv
 python3 -m aibench calibrate --smoke --cases weather_call,is_palindrome --label screen
 ```
 
+To fix the checker, a tier or a case's expected values after an anchor run, edit the battery and rescore the saved
+answers instead of paying for a new run (free, no network; it refuses a case whose prompt, history or tools changed):
+
+```bash
+python3 -m aibench rescore calibration/runs/<run id>   # writes <run id>-rescored-<date>/ next to it
+python3 -m aibench calibration                         # the rescored run stands in for its source
+```
+
 The prices are read from the model list at run time and go into `meta.json`. OpenRouter's list is public; through a
 proxy (`--url`), the `OPENROUTER_API_KEY` is sent with that read too.
 

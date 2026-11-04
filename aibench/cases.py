@@ -65,6 +65,13 @@ def battery_hash(use_case, context_words=3000, folder=CASES):
     return h.hexdigest()[:12]
 
 
+def request_hash(c):
+    """What a run sends to the model for case `c` (its messages and tools), as a SHA-256: a rescore only checks the
+    saved answer to a case again while this is unchanged."""
+    body = json.dumps({"messages": messages(c), "tools": c.get("tool_specs")}, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(body.encode()).hexdigest()
+
+
 def tools_registry():
     return json.loads((CASES / "agent_tools.json").read_text(encoding="utf-8"))
 
