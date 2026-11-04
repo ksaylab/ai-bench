@@ -30,7 +30,9 @@ class FakeServer(BaseHTTPRequestHandler):
                                     "tools": [t["function"]["name"] for t in body.get("tools") or []],
                                     "seed": body.get("seed"), "temperature": body.get("temperature"),
                                     "top_k": body.get("top_k"), "provider": body.get("provider"),
-                                    "reasoning": body.get("reasoning")})
+                                    "reasoning": body.get("reasoning"), "max_tokens": body.get("max_tokens"),
+                                    **{k: body[k] for k in ("chat_template_kwargs", "reasoning_budget_tokens",
+                                                            "reasoning_budget_message") if k in body}})
         msg = {"role": "assistant", "content": ""}
         if body["messages"][0]["content"].startswith("You grade"):
             msg["content"] = '{"score": 5, "reason": "ok"}'

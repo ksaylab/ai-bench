@@ -65,6 +65,9 @@ def main(argv=None):
     p.add_argument("--context-words", type=int, default=3000, help="size of the long RAG documents")
     p.add_argument("--max-tokens", type=int, default=32768,
                    help="room to reason, as the anchors: a model cut at the limit fails for lack of room, not of skill")
+    p.add_argument("--thinking", help="off, unlimited, or a reasoning budget in tokens (e.g. 512), sent per request to "
+                                      "llama-server over the preset's; each level is its own contestant, "
+                                      "model@think-<level>")
     p.add_argument("--server-args", help="the model server's command line, recorded in meta.json "
                                          "(default: AIBENCH_SERVER_ARGS)")
     p.add_argument("--label", default="run")
@@ -143,7 +146,7 @@ def main(argv=None):
             dest = run.run(a.episode, a.machine, models, a.runs, a.url, use_cases, a.judge, a.context_words, a.label,
                            a.simulate, a.smoke, a.skip_code, a.max_tokens, a.out, judge_url=a.judge_url,
                            sampling=model_sampling(a.episode, models), server_args=a.server_args,
-                           stream=not a.no_stream, gpu_sampling=not a.no_gpu_sampling)
+                           stream=not a.no_stream, gpu_sampling=not a.no_gpu_sampling, thinking=a.thinking)
             print(f"run written to {_rel(dest)}")
             print((dest / "verdicts.md").read_text(encoding="utf-8"))
         elif a.cmd == "calibrate":

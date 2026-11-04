@@ -27,6 +27,40 @@ class RunError(Exception):
     pass
 
 
+# --thinking: thinking off, on with a reasoning budget, or on with no limit, sent per request to llama-server
+# (chat_template_kwargs and reasoning_budget_tokens override the preset, whose budget would otherwise end the
+# thinking at 6144 or 8192 tokens). max_tokens stays the same for every level (32768 by default): the budget caps
+# only the thinking, and the answer gets what is left.
+BUDGET_MESSAGE = "Stop thinking and answer now."
+
+
+def thinking_level(value):
+    """"off", "unlimited" or a positive reasoning budget in tokens (an int); anything else is refused."""
+    if value in ("off", "unlimited"):
+        return value
+    try:
+        n = int(value)
+    except (TypeError, ValueError):
+        n = 0
+    if n <= 0 or str(value).strip() != str(n):
+        raise RunError(f"--thinking must be off, unlimited or a positive number of tokens, not {value!r}")
+    return n
+
+
+def thinking_body(level):
+    if level == "off":
+        return {"chat_template_kwargs": {"enable_thinking": False}}
+    if level == "unlimited":  # -1: llama.cpp's "no limit", over the preset's budget
+        return {"chat_template_kwargs": {"enable_thinking": True}, "reasoning_budget_tokens": -1}
+    return {"chat_template_kwargs": {"enable_thinking": True}, "reasoning_budget_tokens": level,
+            "reasoning_budget_message": BUDGET_MESSAGE}
+
+
+def contestant(model, level):
+    """The name in the results: each thinking level of a model is its own contestant (model@think-<level>)."""
+    return model if level is None else f"{model}@think-{level}"
+
+
 def rep_seed(sampling, rep):
     """The seed of one repeat: the table's base seed + the repeat number (reproducible, yet different per repeat)."""
     return None if (sampling or {}).get("seed") is None else int(sampling["seed"]) + rep
@@ -131,19 +165,25 @@ def write_results(folder, rows, reference=None):
 def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge_model=None, context_words=3000,
         label="run", simulate=False, smoke=False, skip_code=False, max_tokens=32768, out=None, log=print,
         judge_url=None, sampling=None, server_args=None, anchors=None, root=None, model_info=None, stream=True,
-        gpu_sampling=True, providers=None, reasoning=None, case_ids=None):
+        gpu_sampling=True, providers=None, reasoning=None, case_ids=None, thinking=None):
     """`sampling`: model -> its [model.sampling] table (temperature, top_p, ..., base seed). `server_args`: the model
     server's command line, recorded in meta.json (paths and addresses scrubbed). `anchors`: model -> role, for a
     calibration run (`root` = calibration/, `model_info` = prices read from OpenRouter). `stream`: streaming
     responses, for the time to first token. `gpu_sampling`: nvidia-smi on the model server during the run.
     `providers`: model -> its [anchor.provider] table, sent as OpenRouter's `provider` routing object.
     `reasoning`: model -> its [anchor.reasoning] table, sent as OpenRouter's `reasoning` object (e.g. the effort).
-    `case_ids`: only these cases (to screen a few on the anchors); a partial battery cannot be published."""
+    `case_ids`: only these cases (to screen a few on the anchors); a partial battery cannot be published.
+    `thinking`: "off", "unlimited" or a reasoning budget (thinking_level), sent per request; the results are named
+    model@think-<level>."""
     ep = EPISODES / episode if episode else None
     if root is None and (ep is None or not ep.is_dir()):
         raise RunError(f"episode {episode!r} not found in {EPISODES.name}/")
     if not models:
         raise RunError("no models (use --models or the episode's models.toml)")
+    level = None if thinking is None else thinking_level(thinking)
+    if level is not None:
+        if machine == "openrouter":
+            raise RunError("--thinking is sent to a local llama-server; the anchors pin theirs in anchors.toml")
     if case_ids and not smoke:
         raise RunError("a run with only some cases (--cases) gives no battery score: use --smoke, it cannot be "
                        "published")
@@ -163,6 +203,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
     check_reasoning(models, reasoning)
     extra = {m: {k: v for k, v in (("provider", providers[m]), ("reasoning", reasoning[m])) if v} or None
              for m in models}
+    if level is not None:
+        extra = {m: {**(extra[m] or {}), **thinking_body(level)} for m in models}
     for m in models:
         if sampling[m] and not sampling[m].get("verified", True):
             log(f"warning: the sampling of {m} is not verified against its model card (verified = false)")
@@ -202,6 +244,7 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                          for m in models},
             "server_args": env.scrub(server_args or os.environ.get("AIBENCH_SERVER_ARGS", "")),
             "battery": hashes, "checker_version": cases.CHECKER_VERSION,
+            **({"thinking": level, "contestants": {m: contestant(m, level) for m in models}} if level is not None else {}),
             "requests": {c["id"]: cases.request_hash(c) for c in battery}}
     if anchors:
         meta["anchors"] = {m: {"role": anchors[m], **((model_info or {}).get(m) or {}),
@@ -241,7 +284,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                                 judge_cost = "" if jc is None else jc
                             except client.ClientError:
                                 pass
-                        row = {"run_id": run_id, "machine": machine, "model": model, "use_case": c["use_case"],
+                        row = {"run_id": run_id, "machine": machine, "model": contestant(model, level),
+                               "use_case": c["use_case"],
                                "case": c["id"], "tier": c["tier"], "rep": rep, "seed": "" if seed is None else seed,
                                "passed": int(passed), "reason": reason,
                                "time_s": r.get("time_s", ""), "prompt_tokens": r.get("prompt_tokens") or "",
@@ -256,8 +300,8 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                         raw.write(json.dumps(response_line(row, r), ensure_ascii=False) + "\n")
                         raw.flush()
                         rows.append(row)
-                    done = [x for x in rows if x["model"] == model and x["rep"] == rep]
-                    log(f"{model} · run {rep + 1}/{runs}: {sum(x['passed'] for x in done)}/{len(done)}")
+                    done = [x for x in rows if x["model"] == contestant(model, level) and x["rep"] == rep]
+                    log(f"{contestant(model, level)} · run {rep + 1}/{runs}: {sum(x['passed'] for x in done)}/{len(done)}")
             finally:
                 gpu_summary[model] = sampler.stop().summary()
     meta["gpu_sampling"] = gpu_summary
