@@ -31,14 +31,14 @@ group = "large"
 machines = ["pc-rtx2060"]
 
 [model.sampling]
-temperature = 0.6
+temperature = 1.0
 top_p = 0.95
 top_k = 20
 min_p = 0.0
-presence_penalty = 0.0
+presence_penalty = 1.5
 repeat_penalty = 1.0
 seed = 1000
-source = "Qwen3.6 card, thinking mode (the default) for precise coding; the card's general-task set (temperature 1.0, presence_penalty 1.5) is not used: one set per model"
+source = "Qwen3.6 card, thinking mode, general tasks: temperature=1.0, top_p=0.95, top_k=20, min_p=0.0, presence_penalty=1.5, repetition_penalty=1.0. Not the card's precise-coding set (temperature 0.6, no presence_penalty): with it the model looped and ran out of tokens on trivial prompts on the PC"
 card = "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
 verified = true
 
@@ -114,6 +114,24 @@ repeat_penalty = 1.0
 seed = 1000
 source = "Qwen3.8 card, thinking mode (the default)"
 card = "https://huggingface.co/Qwen/Qwen3.8-27B"
+verified = true
+
+# 26B MoE with ~3.8B active (QAT q4_0, 13.45 GiB): on 8 GB, part of the experts in RAM (the router's --fit).
+[[model]]
+name = "gemma4-26b"
+gguf = "gemma-4-26B_q4_0-it.gguf"
+group = "large"
+machines = ["pc-rtx2060"]
+
+[model.sampling]
+temperature = 1.0
+top_p = 0.95
+top_k = 64
+min_p = 0.0
+presence_penalty = 0.0
+seed = 1000
+source = "Gemma 4 card: temperature=1.0, top_p=0.95, top_k=64 for all use cases; min_p and penalties not stated, pinned off"
+card = "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf"
 verified = true
 
 # No OpenRouter contestants: cloud models are calibration anchors only (anchors.toml, METHODOLOGY.md 8.1).
