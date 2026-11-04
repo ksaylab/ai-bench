@@ -338,6 +338,53 @@ def rescore(folder, log=print):
     return dest
 
 
+def copy_run(folder, episode):
+    """Copies a finished run into another episode that lists the same model on the same machine with the same GGUF
+    and the same pinned sampling and seed: running it again would ask the same questions with the same seeds. The
+    copy says where it came from (`copied_from` in meta.json); the source is not changed. The GGUF is the one the
+    server reported (env.json), the sampling the one the run sent (meta.json)."""
+    import tomllib  # only here: run.py reads no models.toml otherwise
+    src = Path(folder)
+    if not (src / "meta.json").exists():
+        raise RunError(f"{src.name} has not finished (no meta.json yet): copy it when it ends")
+    meta = json.loads((src / "meta.json").read_text(encoding="utf-8"))
+    toml = EPISODES / episode / "models.toml"
+    if not toml.exists():
+        raise RunError(f"episode {episode!r} not found in {EPISODES.name}/ (or it has no models.toml)")
+    if meta.get("episode") == episode:
+        raise RunError(f"{src.name} is already a run of the same episode {episode}")
+    with open(toml, "rb") as f:
+        entries = {m["name"]: m for m in tomllib.load(f).get("model", [])}
+    served = (json.loads((src / "env.json").read_text(encoding="utf-8")).get("server") or {}).get("gguf") or {}
+    problems = []
+    for m in meta["models"]:
+        e = entries.get(m)
+        if not e or meta["machine"] not in e.get("machines", []):
+            problems.append(f"{m}: not in {episode}'s models.toml for {meta['machine']}")
+            continue
+        if served.get(m) != e.get("gguf"):
+            problems.append(f"{m}: the run used the GGUF {served.get(m)!r}, {episode} lists {e.get('gguf')!r}")
+        want = e.get("sampling") or {}
+        ran = meta["sampling"][m]
+        if client.sampling_body({k: v for k, v in want.items() if k != "seed"}) != ran["sent"]:
+            problems.append(f"{m}: the run sent the sampling {ran['sent']}, {episode} pins another one")
+        if want.get("seed") != ran.get("base_seed"):
+            problems.append(f"{m}: the run's base seed is {ran.get('base_seed')}, {episode} pins {want.get('seed')}")
+    if problems:
+        raise RunError("not the same setup, run it in that episode instead: " + "; ".join(problems))
+    dest = EPISODES / episode / "results" / "runs" / src.name
+    if dest.exists():
+        raise RunError(f"{_rel_name(dest)} already exists")
+    shutil.copytree(src, dest)
+    meta = {**meta, "episode": episode, "copied_from": {"episode": meta.get("episode", ""), "run_id": meta["run_id"]}}
+    (dest / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return dest
+
+
+def _rel_name(p):
+    return "/".join(Path(p).parts[-4:])
+
+
 def replaced(metas):
     """{(run id, use case)} that a rescored run stands in for: its source's rows of the use cases it rescored are
     left out when runs are merged (the other use cases of the source stay)."""

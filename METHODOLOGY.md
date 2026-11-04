@@ -283,6 +283,11 @@ the other 11.
 - The `seed` is fixed per repeat: base seed + repeat number (`run.rep_seed`), recorded in the `seed` column of
   `executions.csv` and in `meta.json`, so a repeat is reproducible on the same build and GGUF, while the repeats
   still differ from each other.
+- **One run serves every episode with the same setup (implemented):** when two episodes list a model on the same
+  machine with the same GGUF, sampling and seed, running it again would ask the same questions with the same seeds.
+  `python3 -m aibench copy-run <run folder> --episode <other>` copies the finished run instead (`copied_from` in
+  `meta.json`), and refuses when the GGUF the server reported, the sampling the run sent or the base seed differ
+  from what the other episode pins.
 - **Local server settings are recorded (implemented):** the `llama-server` command line (context size, `-ngl`,
   `-fa`, `--n-cpu-moe`, `--parallel`) goes into `meta.json` (`server_args`, from `--server-args` or
   `AIBENCH_SERVER_ARGS`); `env.json` keeps the build and the GGUF. Use `--parallel 1` so batching does not change the

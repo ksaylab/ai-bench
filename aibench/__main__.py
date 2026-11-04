@@ -95,6 +95,11 @@ def main(argv=None):
                                        "(no calls, no cost), into a new run folder next to it")
     p.add_argument("folder", help="the run folder, e.g. calibration/runs/<run id>")
 
+    p = sub.add_parser("copy-run", help="copy a finished run into another episode that lists the same model, GGUF, "
+                                        "sampling and seed on that machine (instead of running it again)")
+    p.add_argument("folder", help="the run folder, e.g. episodes/<episode>/results/runs/<run id>")
+    p.add_argument("--episode", required=True, help="the episode to copy it into")
+
     p = sub.add_parser("speed", help="llama-bench (pp and tg) at several context depths")
     p.add_argument("--episode", required=True)
     p.add_argument("--machine", required=True, choices=machines)
@@ -173,6 +178,8 @@ def main(argv=None):
             dest = run.rescore(a.folder)
             print(f"rescored run written to {_rel(dest)}")
             print((dest / "verdicts.md").read_text(encoding="utf-8"))
+        elif a.cmd == "copy-run":
+            print(f"copied to {_rel(run.copy_run(a.folder, a.episode))}")
         elif a.cmd == "speed":
             if a.gguf:
                 targets = [{"name": a.model or Path(a.gguf).stem, "path": a.gguf}]

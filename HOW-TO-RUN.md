@@ -63,7 +63,8 @@ export AIBENCH_URL="http://<pc-address>:8080/v1"
 export AIBENCH_SERVER_HOST="<user>@<pc-address>"   # ssh destination: env.json records the PC's hardware
 python3 -m aibench run --episode 02-what-runs-on-8gb --machine pc-rtx2060 --models neohorse-4b --label neohorse-4b
 python3 -m aibench run --episode 02-what-runs-on-8gb --machine pc-rtx2060 --models ornith1.5-9b --label ornith1.5-9b
-python3 -m aibench run --episode 03-is-bigger-better --machine pc-rtx2060 --models neohorse-4b --label neohorse-4b
+# the same model, GGUF and sampling in 03: copy the finished run of 02 instead of running it again
+python3 -m aibench copy-run episodes/02-what-runs-on-8gb/results/runs/<run id> --episode 03-is-bigger-better
 # longer RAG documents (the server needs -c 65536 or more)
 python3 -m aibench run --episode 02-what-runs-on-8gb --machine pc-rtx2060 --models neohorse-4b --use-cases rag \
   --context-words 24000 --label neohorse-4b-ctx24k
