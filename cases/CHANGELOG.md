@@ -5,6 +5,26 @@ battery version (`battery` in `meta.json`): runs of different versions are never
 
 ## 2026-11-03
 
+- `agent`: from 7 to 15 cases (4 easy, 2 medium, 9 hard), after the first anchor run found all 7 too easy (the
+  floor passed every one on every repeat).
+  - Two new checker features (`aibench/cases.py`): kind `tool_calls` (several calls in one answer, in any order)
+    and `history` (earlier calls and their results sent before the answer, so a case checks the agent's next step).
+  - Five new tools in `agent_tools.json`, close to the old ones on purpose: `get_order`, `update_ticket`,
+    `refund_order`, `schedule_meeting`, `list_tickets`; `search_orders` now says what a customer id looks like.
+  - Removed as too easy: `ticket_call`, `currency_call`, `orders_call`. Kept as easy cases: `weather_call`,
+    `no_tool_needed`, and the two JSON output cases `contact_schema` and `priority_schema` (moved from medium to
+    easy), so structured output is still tested.
+  - Added 11 cases where the floor fails because it has to reason over the data, not because of the tool or its
+    arguments: relative dates (`meeting_relative_date`, `meeting_next_week_tuesday`), picking, filtering or adding
+    up a tool result (`ticket_for_oldest_order`, `refund_late_orders`, `close_old_resolved`, `refund_some_items`,
+    `priority_from_sum`), acting on a result (`act_on_result_threshold`), stopping at a limit
+    (`refund_above_total`), looking up before acting (`look_up_before_refund`) and asking for a missing id
+    (`ask_for_customer_id`).
+  - Screened before entering (METHODOLOGY.md 8.3), in three rounds: of 33 candidates, the floor passed 22 on
+    every repeat, which were left out (it chooses tools and builds arguments well); `z-ai/glm-5.3-flash` passed
+    the other 11 on every repeat. `ask_for_customer_id` first failed both anchors, because `search_orders` did not
+    say that a customer id is not a name; the tool now says it.
+  - Tiers are the author's tagging, to be checked against the next anchor run.
 - `chat_pt`: from 6 to 15 cases (3 easy, 8 medium, 4 hard), after the first anchor run found 4 of the 6 too easy.
   - Removed as too easy: `false_premise_pt` (three new false premises replace it) and `meeting_owners`. Kept:
     `incident_summary` and `formal_rewrite` (they already separated models), and `explain_vpn` and

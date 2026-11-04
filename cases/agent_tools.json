@@ -86,7 +86,8 @@
       "type": "object",
       "properties": {
         "customer_id": {
-          "type": "string"
+          "type": "string",
+          "description": "the customer's id, like 'C-1042' (not their name)"
         },
         "status": {
           "type": "string",
@@ -101,6 +102,136 @@
       "required": [
         "customer_id"
       ],
+      "additionalProperties": false
+    }
+  },
+  "get_order": {
+    "name": "get_order",
+    "description": "Details of one order, by its id (for example 'O-5521').",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "order_id"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "update_ticket": {
+    "name": "update_ticket",
+    "description": "Change an existing ticket: its status and/or add a comment.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "ticket_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "open",
+            "in_progress",
+            "resolved",
+            "closed"
+          ]
+        },
+        "comment": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ticket_id"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "refund_order": {
+    "name": "refund_order",
+    "description": "Refund part or all of an order.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "order_id": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "damaged",
+            "late",
+            "wrong_item",
+            "other"
+          ]
+        }
+      },
+      "required": [
+        "order_id",
+        "amount",
+        "reason"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "schedule_meeting": {
+    "name": "schedule_meeting",
+    "description": "Book a meeting.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "start": {
+          "type": "string",
+          "description": "HH:MM, 24-hour clock"
+        },
+        "duration_minutes": {
+          "type": "integer"
+        },
+        "attendees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "email addresses"
+        }
+      },
+      "required": [
+        "title",
+        "date",
+        "start",
+        "duration_minutes"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "list_tickets": {
+    "name": "list_tickets",
+    "description": "List the user's tickets, optionally only those with one status.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "open",
+            "in_progress",
+            "resolved",
+            "closed"
+          ]
+        }
+      },
       "additionalProperties": false
     }
   }

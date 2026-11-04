@@ -55,7 +55,7 @@ class TestBatteries(unittest.TestCase):
 
     def test_agent_cases_send_the_tools(self):
         for c in cases.load({"agent"}):
-            if c["kind"] in ("tool_call", "no_tool"):
+            if c["kind"] in ("tool_call", "tool_calls", "no_tool"):
                 self.assertTrue(c["tool_specs"], c["id"])
                 self.assertEqual(c["tool_specs"][0]["type"], "function")
 

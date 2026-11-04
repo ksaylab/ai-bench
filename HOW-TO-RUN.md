@@ -119,7 +119,7 @@ and that each anchor's `[anchor.provider]` endpoint is still listed with `seed` 
 call into an error row.
 
 Cost: whatever OpenRouter charges per token, recorded in `cost_usd`. Every anchor makes cases × runs calls
-(72 × 3 = 216 today, 648 for the three anchors): about US$1 or less in total per battery version (estimate in METHODOLOGY.md
+(80 × 3 = 240 today, 720 for the three anchors): about US$1 or less in total per battery version (estimate in METHODOLOGY.md
 8.2). Time: ~5 to 60 min per anchor (`z-ai/glm-5.3-flash` at effort `max` is the slowest).
 
 ```bash

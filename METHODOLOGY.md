@@ -12,7 +12,7 @@ repository (except the `coding_public` reference battery, 8.5), and scored autom
 | --- | --- | --- | --- |
 | `coding` | `cases/coding.jsonl` | 20 | The model writes a Python function; hidden assertions run in an isolated subprocess with a timeout. All assertions must pass. |
 | `rag` | `cases/rag.jsonl` + `rag_documents.json` | 20 | The answer is correct **and** cites the source passage as `[n]`. Wrong passage, no citation or extra unrelated citations fail. Includes a question whose answer is not in the document (must say so, with no citation), an outdated vs. newer rule, similar entities and two long generated documents (needle in a haystack). |
-| `agent` | `cases/agent.jsonl` + `agent_tools.json` | 7 | Tool/function calling through the API's `tools` field: exactly one call, the right tool, arguments valid against the tool's JSON Schema and equal to the expected values. Also: not calling a tool when none is needed, and JSON output in an exact schema (types, enums, required keys, no extra keys). |
+| `agent` | `cases/agent.jsonl` + `agent_tools.json` | 15 | Tool/function calling through the API's `tools` field: the right tool, arguments valid against the tool's JSON Schema and equal to the expected values; several calls in one answer when the task needs them; the next step after a fixed history of earlier calls and their results (filter, add up or compare the results, retry after a tool error, ask when an id is missing, do not act past a limit). Also: not calling a tool when none is needed, and JSON output in an exact schema (types, enums, required keys, no extra keys). |
 | `chat_pt` | `cases/chat_pt.jsonl` | 15 | Chat and summaries in Brazilian Portuguese: required facts present, length limits (words/sentences/lines), answer in Portuguese, false premises corrected. |
 | `coding_public` | `cases/coding_public/cases.jsonl` | 10 | Reference only (8.5): 5 HumanEval and 5 MBPP problems, scored like `coding`, never part of the verdict. |
 
@@ -94,9 +94,9 @@ which flipped its verdict, because sampling was not pinned and, with 6 to 8 case
 points. This section is the plan to fix both. Since 2026-11-03 every item below is implemented in the code
 (marked **implemented**); what is still open is running it and acting on the results:
 
-- the anchors have not run yet, so `pct_of_ceiling`, `normalized` and `calibrated` are empty and no battery is
-  calibrated;
-- the batteries have 6 to 8 cases (target 15 to 20, 8.3);
+- the first anchor run (2026-11-03, first battery versions) found every battery too easy: the floor scored 83% to
+  100%, so no battery is calibrated. The batteries were then grown to 15 to 20 cases and screened on the anchors
+  (8.3); the new versions still need their anchor run;
 - the local contestants have not run with pinned sampling on the PC.
 
 Until then, the runs are pilot runs and are not published.
@@ -148,8 +148,8 @@ documents at the default 3000 words): ~45k input tokens per anchor, and 35k to 2
 much the model reasons. At the prices above that is about US$0.10 to 0.80 for `deepseek/deepseek-v4-pro`, under
 US$0.03 for `z-ai/glm-5.3-flash` and about US$0.01 for `mistralai/ministral-3b-2512`: **under US$1 per battery
 version**. The first anchor run, on that battery version, cost US$0.35 (US$0.32 of it `deepseek/deepseek-v4-pro`).
-With `coding` and `rag` at 20 cases and `chat_pt` at 15 there are 72 cases (216 calls per anchor, 648 in total),
-harder ones and up to 32768 output tokens per call for the anchors, so expect roughly US$0.70 to 1.40. Every new battery version (after pruning or
+With `coding` and `rag` at 20 cases and `chat_pt` and `agent` at 15 there are 80 cases (240 calls per anchor, 720
+in total), harder ones and up to 32768 output tokens per call for the anchors, so expect roughly US$0.80 to 1.60. Every new battery version (after pruning or
 new cases) needs a new anchor run.
 
 - The floor must support tool calling, or every `agent` case fails for a technical reason instead of for lack of
@@ -194,7 +194,7 @@ that everyone passes is not.
 - Rough meaning: **easy** = a small local model should pass; **medium** = needs real skill (multi-step logic,
   several constraints at once, longer context); **hard** = ceiling anchors pass and small models usually do not
   (edge cases in the hidden tests, distractor passages, ambiguous tool choice, long schemas).
-- **Target: 15 to 20 cases per use case** (`coding` and `rag` have 20, `chat_pt` 15; `agent` 7), roughly one third per tier. With 18 cases one case is
+- **Target: 15 to 20 cases per use case** (`coding` and `rag` have 20, `chat_pt` and `agent` 15), roughly one third per tier. With 18 cases one case is
   worth 5.6 points instead of 12 to 17. All new cases follow section 1: synthetic, written for this repository,
   with `example_good` and `example_bad`.
 - The current 27 cases are tagged (best effort, before any anchor run: 11 easy, 15 medium, 1 hard); new cases go
@@ -230,7 +230,8 @@ candidates enter, and the anchor run of the new battery version uses the pinned 
 screening of 2026-11-03, the floor failed 17 of 20 candidates on every repeat and the GLM passed all 17 (one only
 after its prompt was made unambiguous); in the `rag` screening, the floor passed 8 of 24 candidates on every
 repeat and the GLM passed the other 16; in the `chat_pt` screening, the floor passed 11 of 22 and the GLM passed
-the other 11 (one only at effort `max`).
+the other 11 (one only at effort `max`); in the `agent` screening, the floor passed 22 of 33 and the GLM passed
+the other 11.
 
 ### 8.4 Reproducibility
 
