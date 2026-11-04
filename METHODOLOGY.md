@@ -96,7 +96,10 @@ points. This section is the plan to fix both. Since 2026-11-03 every item below 
 
 - the first anchor run (2026-11-03, first battery versions) found every battery too easy: the floor scored 83% to
   100%, so no battery is calibrated. The batteries were then grown to 15 to 20 cases and screened on the anchors
-  (8.3); the new versions still need their anchor run;
+  (8.3);
+- the anchor run of the grown batteries (2026-11-04, 720 calls, US$2.00) calibrated all four: best ceiling 98.3% to
+  100%, floor 11.7% to 37.8%. Its answers were then rescored (8.3) after the review of its results, with no new
+  calls; that rescored run is the baseline (v2);
 - the local contestants have not run with pinned sampling on the PC.
 
 Until then, the runs are pilot runs and are not published.
@@ -149,8 +152,11 @@ much the model reasons. At the prices above that is about US$0.10 to 0.80 for `d
 US$0.03 for `z-ai/glm-5.3-flash` and about US$0.01 for `mistralai/ministral-3b-2512`: **under US$1 per battery
 version**. The first anchor run, on that battery version, cost US$0.35 (US$0.32 of it `deepseek/deepseek-v4-pro`).
 With `coding` and `rag` at 20 cases and `chat_pt` and `agent` at 15 there are 80 cases (240 calls per anchor, 720
-in total), harder ones and up to 32768 output tokens per call for the anchors, so expect roughly US$0.80 to 1.60. Every new battery version (after pruning or
-new cases) needs a new anchor run.
+in total), harder ones and up to 32768 output tokens per call for the anchors: that run cost US$2.00, US$1.87 of it
+`deepseek/deepseek-v4-pro` (US$1.44 in `coding`, where it reasons up to the 32768-token limit). A new battery version
+needs a new anchor run when a case sends another request (prompt, history, tools); when only the checker, a tier
+or a case's expected values change, `python3 -m aibench rescore` checks the saved answers again instead, for free
+(8.3).
 
 - The floor must support tool calling, or every `agent` case fails for a technical reason instead of for lack of
   skill. `meta-llama/llama-3.2-1b-instruct` is weaker but its OpenRouter listing has no `tools` parameter, so it
