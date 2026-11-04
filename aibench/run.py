@@ -384,7 +384,8 @@ def rescore(folder, log=print):
 
 def copy_run(folder, episode):
     """Copies a finished run into another episode that lists the same model on the same machine with the same GGUF
-    and the same pinned sampling and seed: running it again would ask the same questions with the same seeds. The
+    and the same pinned sampling, seed and thinking level (`thinking` in models.toml; none = the server preset's):
+    running it again would ask the same questions with the same seeds. The
     copy says where it came from (`copied_from` in meta.json); the source is not changed. The GGUF is the one the
     server reported (env.json), the sampling the one the run sent (meta.json)."""
     import tomllib  # only here: run.py reads no models.toml otherwise
@@ -414,6 +415,10 @@ def copy_run(folder, episode):
             problems.append(f"{m}: the run sent the sampling {ran['sent']}, {episode} pins another one")
         if want.get("seed") != ran.get("base_seed"):
             problems.append(f"{m}: the run's base seed is {ran.get('base_seed')}, {episode} pins {want.get('seed')}")
+        level = lambda v: None if v is None else thinking_level(v)  # noqa: E731
+        if level(meta.get("thinking")) != level(e.get("thinking")):
+            problems.append(f"{m}: the run's thinking level is {meta.get('thinking', 'the preset')}, {episode} runs "
+                            f"{e.get('thinking', 'the preset')}")
     if problems:
         raise RunError("not the same setup, run it in that episode instead: " + "; ".join(problems))
     dest = EPISODES / episode / "results" / "runs" / src.name

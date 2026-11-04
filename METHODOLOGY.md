@@ -289,8 +289,9 @@ the other 11.
 - **One run serves every episode with the same setup (implemented):** when two episodes list a model on the same
   machine with the same GGUF, sampling and seed, running it again would ask the same questions with the same seeds.
   `python3 -m aibench copy-run <run folder> --episode <other>` copies the finished run instead (`copied_from` in
-  `meta.json`), and refuses when the GGUF the server reported, the sampling the run sent or the base seed differ
-  from what the other episode pins.
+  `meta.json`), and refuses when the GGUF the server reported, the sampling the run sent, the base seed or the
+  thinking level (`--thinking`, against the episode's `thinking` in `models.toml`; none means the preset's budget)
+  differ from what the other episode pins.
 - **Local server settings are recorded (implemented):** the `llama-server` command line (context size, `-ngl`,
   `-fa`, `--n-cpu-moe`, `--parallel`) goes into `meta.json` (`server_args`, from `--server-args` or
   `AIBENCH_SERVER_ARGS`); `env.json` keeps the build and the GGUF and, in router mode, each model's preset as the

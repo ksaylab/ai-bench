@@ -17,6 +17,9 @@ def models_toml(path, entries):
                   f'machines = {json.dumps(e.get("machines", ["pc-rtx2060"]))}', "", "[model.sampling]"]
         lines += [f"{k} = {json.dumps(v)}" for k, v in {**SAMPLING, **e.get("sampling", {})}.items()]
         lines += [f'seed = {e.get("seed", 1000)}', 'source = "card"', "verified = true", ""]
+        if "thinking" in e:  # a model's own key: it goes before its [model.sampling] table
+            i = lines.index("[model.sampling]", len(lines) - 12)
+            lines.insert(i, f"thinking = {json.dumps(e['thinking'])}")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines), encoding="utf-8")
 
@@ -73,6 +76,23 @@ class TestCopyRun(unittest.TestCase):
     def test_a_model_the_episode_does_not_list_on_that_machine_is_refused(self):
         self.refused("m1", {"name": "m1", "gguf": "m1-Q4.gguf", "machines": ["runpod"]})
         self.refused("m1", {"name": "other", "gguf": "m1-Q4.gguf"})
+
+    def test_another_thinking_level_is_refused(self):
+        # a run of episode 04 at one level is not what an episode without that level runs (the preset's budget)
+        meta = json.loads((self.src / "meta.json").read_text())
+        (self.src / "meta.json").write_text(json.dumps({**meta, "thinking": 512}), encoding="utf-8")
+        self.refused("thinking")
+        self.refused("thinking", {"name": "m1", "gguf": "m1-Q4.gguf", "thinking": "off"})
+
+    def test_the_same_thinking_level_is_copied(self):
+        meta = json.loads((self.src / "meta.json").read_text())
+        (self.src / "meta.json").write_text(json.dumps({**meta, "thinking": 512}), encoding="utf-8")
+        models_toml(self.tmp / "episodes" / "03-b" / "models.toml",
+                    [{"name": "m1", "gguf": "m1-Q4.gguf", "thinking": 512}])
+        self.assertTrue(run.copy_run(self.src, "03-b").exists())
+
+    def test_a_run_with_no_level_needs_an_episode_with_no_level(self):
+        self.refused("thinking", {"name": "m1", "gguf": "m1-Q4.gguf", "thinking": 8192})
 
     def test_an_unfinished_run_is_refused(self):
         (self.src / "meta.json").unlink()  # meta.json is written when the run ends
