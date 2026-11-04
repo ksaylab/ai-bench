@@ -129,7 +129,7 @@ def write_results(folder, rows, reference=None):
 
 
 def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge_model=None, context_words=3000,
-        label="run", simulate=False, smoke=False, skip_code=False, max_tokens=8192, out=None, log=print,
+        label="run", simulate=False, smoke=False, skip_code=False, max_tokens=32768, out=None, log=print,
         judge_url=None, sampling=None, server_args=None, anchors=None, root=None, model_info=None, stream=True,
         gpu_sampling=True, providers=None, reasoning=None, case_ids=None):
     """`sampling`: model -> its [model.sampling] table (temperature, top_p, ..., base seed). `server_args`: the model

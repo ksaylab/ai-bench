@@ -63,7 +63,8 @@ def main(argv=None):
     p.add_argument("--judge", help="OpenRouter model that scores the cases with a rubric (cannot be a compared model)")
     p.add_argument("--judge-url", help="OpenRouter-compatible address for the judge (default: OpenRouter)")
     p.add_argument("--context-words", type=int, default=3000, help="size of the long RAG documents")
-    p.add_argument("--max-tokens", type=int, default=8192)
+    p.add_argument("--max-tokens", type=int, default=32768,
+                   help="room to reason, as the anchors: a model cut at the limit fails for lack of room, not of skill")
     p.add_argument("--server-args", help="the model server's command line, recorded in meta.json "
                                          "(default: AIBENCH_SERVER_ARGS)")
     p.add_argument("--label", default="run")

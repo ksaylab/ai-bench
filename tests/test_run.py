@@ -129,6 +129,16 @@ class TestRun(unittest.TestCase):
         self.addCleanup(srv.shutdown)
         return f"http://127.0.0.1:{srv.server_port}/v1"
 
+    def test_a_run_gives_the_contestants_the_anchors_room_to_reason(self):
+        # with 8192, ornith1.5-9b was cut while still reasoning on 5 of its first 14 coding cases: a cut is a failure
+        # for lack of room, and the anchors it is scored against had 32768
+        from aibench import __main__ as cli
+        with mock.patch("sys.stdout"):
+            cli.main(["run", "--episode", "99-test", "--machine", "pc-rtx2060", "--models", "a", "--simulate",
+                      "--use-cases", "agent"])
+        meta = json.loads(next((self.tmp / "episodes" / "99-test" / "results" / "runs").glob("*/meta.json")).read_text())
+        self.assertEqual(meta["max_tokens"], 32768)
+
     def test_simulated_run_writes_everything_and_is_not_publishable(self):
         d = run.run("99-test", "pc-rtx2060", ["a", "b"], simulate=True, **QUIET)
         self.assertEqual(len(read(d / "executions.csv")), 2 * 3 * len(cases.load()))
