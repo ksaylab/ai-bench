@@ -1,0 +1,241 @@
+run_id,machine,model,use_case,case,tier,rep,seed,passed,reason,time_s,prompt_tokens,completion_tokens,tok_s,ttft_s,gen_tok_s,peak_vram_mib,avg_power_w,energy_wh,cost_usd,finish,judge_score,judge_cost_usd,context_words,battery
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,is_palindrome,easy,0,1000,1,,86.83,54,57,0.66,85.224,35.5,7128,36.0,0.869336,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,word_count,easy,0,1000,1,,3.217,63,81,25.18,0.916,35.19,7128,73.6,0.066659,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_duration,medium,0,1000,1,,6.684,79,207,30.97,1.034,36.64,7130,66.0,0.123386,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,split_csv_line,hard,0,1000,1,,7.613,100,245,32.18,1.069,37.44,7130,64.5,0.13712,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_headers,medium,0,1000,1,,5.342,108,141,26.4,1.692,38.64,7130,65.3,0.097695,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_log_line,medium,0,1000,1,,10.151,176,325,32.02,1.236,36.45,7132,63.6,0.180214,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,compact_number_br,hard,0,1000,0,AssertionError,7.756,161,232,29.91,1.357,36.25,7132,62.7,0.136307,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,allocate_cents,hard,0,1000,1,,16.815,120,490,29.14,1.213,31.41,7132,60.2,0.281851,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,reached_threshold,medium,0,1000,1,,6.48,115,108,16.67,3.665,38.36,7132,60.3,0.109113,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_brl,medium,0,1000,0,AssertionError,17.13,183,455,26.56,4.032,34.74,7132,59.2,0.282814,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,add_business_days,medium,0,1000,1,,7.176,104,180,25.08,2.26,36.61,7132,61.9,0.124059,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,semver_compare,hard,0,1000,1,,19.738,147,654,33.13,1.517,35.89,7132,59.9,0.329005,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,build_order,hard,0,1000,1,,17.508,106,554,31.64,1.192,33.95,7132,60.0,0.292647,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,natural_sort,medium,0,1000,0,TypeError: '<' not supported between instances of 'int' and 'str',5.107,104,133,26.04,1.488,36.76,7132,67.5,0.096973,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,sort_names_br,medium,0,1000,1,,7.43,95,216,29.07,1.354,35.55,7132,64.3,0.13353,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,wrap_text,medium,0,1000,1,,261.915,113,8597,32.82,1.238,32.98,7132,59.1,4.303665,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,set_ini_value,hard,0,1000,0,"KeyError: ""Section 'db' not found.""",10.908,140,359,32.91,1.178,36.9,7132,62.1,0.189168,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,deep_merge,medium,0,1000,1,,8.792,103,289,32.87,1.017,37.17,7132,63.1,0.154777,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,latest_by_key,medium,0,1000,1,,13.432,173,438,32.61,1.197,35.8,7132,61.3,0.229502,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,ip_allowed,medium,0,1000,0,AssertionError,4.515,139,127,28.13,1.174,38.02,7132,71.5,0.090821,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,single_passage,easy,0,1000,1,,2.225,307,14,6.29,1.851,37.5,7134,65.4,0.040401,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,password_length,easy,0,1000,1,,1.561,303,13,8.33,1.189,34.91,7134,87.5,0.037955,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,answer_absent,easy,0,1000,1,,1.415,309,8,5.65,1.203,37.81,7136,86.4,0.03399,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_two_hops,hard,0,1000,1,,10.072,3912,28,2.78,9.246,33.92,7140,92.5,0.258775,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,meal_limit_by_date,hard,0,1000,1,,4.093,743,53,12.95,2.654,36.83,7140,96.0,0.109158,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,meal_domestic_unchanged,medium,0,1000,1,,1.981,720,24,12.11,1.329,36.81,7140,87.5,0.04818,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,sev3_no_target,medium,0,1000,1,,1.668,720,13,7.79,1.296,34.96,7140,91.1,0.042235,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,payments_oncall_lead,hard,0,1000,1,,2.031,718,29,14.28,1.366,43.62,7140,86.7,0.04891,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,purchase_quotes_after_change,hard,0,1000,1,,2.692,736,48,17.83,1.307,34.64,7140,89.7,0.06708,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,purchase_cfo,medium,0,1000,1,,3.212,732,70,21.79,1.306,36.72,7140,90.8,0.081043,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,credential_rotation_date,medium,0,1000,1,,3.428,743,69,20.13,1.495,35.69,7140,85.8,0.08167,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,vpn_effective_date,medium,0,1000,0,missing citation [1],1.686,745,11,6.52,1.467,50.21,7142,89.9,0.042115,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,partly_absent,medium,0,1000,1,,2.143,722,32,14.93,1.3,37.97,7142,87.2,0.051929,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_renamed_room,hard,0,1000,1,,11.123,3947,59,5.3,9.281,32.03,7142,92.7,0.286409,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,purchase_exact_threshold,hard,0,1000,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,2.79,732,45,16.13,1.574,36.99,7142,79.9,0.061951,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,sev2_after_midnight,hard,0,1000,0,missing citation [11],1.874,749,17,9.07,1.456,40.69,7142,93.5,0.048658,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,false_premise_office_hours,medium,0,1000,0,missing: \b8 ?(am|a\.m\.|:00),1.662,721,12,7.22,1.298,32.97,7142,90.9,0.041986,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,vacation_one_day_short,easy,0,1000,1,,3.162,757,60,18.97,1.494,35.96,7142,92.9,0.081589,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_three_hops,hard,0,1000,1,,9.782,3983,23,2.35,9.082,32.84,7144,98.8,0.268483,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_updates_out_of_order,hard,0,1000,1,,9.53,3978,19,1.99,9.016,36.94,7144,98.2,0.259962,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,weather_call,easy,0,1000,1,,2.535,402,24,9.47,2.076,52.32,7144,87.4,0.061532,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,no_tool_needed,easy,0,1000,1,,0.528,400,2,3.79,0.472,35.55,7144,79.9,0.011732,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,contact_schema,easy,0,1000,1,,2.323,72,54,23.24,1.005,40.96,7144,81.2,0.052413,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,priority_schema,easy,0,1000,1,,1.808,65,34,18.8,0.934,38.88,7144,80.0,0.040177,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,meeting_relative_date,hard,0,1000,1,,3.914,879,68,17.37,2.288,41.81,7144,86.6,0.094209,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,ticket_for_oldest_order,hard,0,1000,1,,2.219,973,37,16.67,1.491,50.77,7144,79.0,0.048742,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,act_on_result_threshold,medium,0,1000,1,,2.111,929,32,15.16,1.487,51.25,7150,83.3,0.048833,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,refund_late_orders,hard,0,1000,1,,3.31,1107,71,21.45,1.635,42.39,7150,89.5,0.082311,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,refund_above_total,hard,0,1000,1,,2.079,917,34,16.36,1.297,43.48,7150,83.7,0.048311,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,priority_from_sum,medium,0,1000,1,,2.167,966,37,17.08,1.488,54.5,7150,83.1,0.050027,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,meeting_next_week_tuesday,hard,0,1000,1,,2.486,874,58,23.33,1.145,43.28,7150,85.8,0.059273,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,look_up_before_refund,hard,0,1000,1,,1.242,844,22,17.71,0.799,49.66,7150,59.0,0.020348,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,refund_some_items,hard,0,1000,1,,2.312,951,37,16.0,1.533,47.46,7150,76.5,0.049125,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,close_old_resolved,hard,0,1000,1,,2.749,969,57,20.73,1.493,45.37,7150,82.6,0.063072,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,ask_for_customer_id,hard,0,1000,0,called search_orders but no tool was needed,1.224,836,24,19.61,0.697,45.53,7150,53.5,0.018202,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,explain_vpn,easy,0,1000,1,,3.011,36,74,24.57,0.667,31.57,7150,55.9,0.046755,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,email_summary,easy,0,1000,1,,2.426,103,58,23.91,0.927,38.69,7150,80.8,0.054472,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,formal_rewrite,easy,0,1000,1,,3.688,40,106,28.74,0.671,35.14,7150,75.6,0.077442,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,incident_summary,easy,0,1000,1,,3.164,137,80,25.29,0.983,36.69,7150,82.1,0.072204,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,grammar_fix,medium,0,1000,1,,1.392,70,22,15.81,0.848,40.43,7150,75.6,0.029251,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,false_premise_states,medium,0,1000,1,,2.461,36,62,25.19,0.556,32.54,7150,69.2,0.047336,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,list_without_words,medium,0,1000,1,,1.571,55,25,15.91,0.801,32.45,7150,76.8,0.033536,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,dates_in_order,hard,0,1000,1,,1.758,101,33,18.78,0.945,40.62,7150,84.7,0.041365,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,translate_keep_code,easy,0,1000,1,,2.239,77,50,22.33,0.953,38.86,7150,80.6,0.050181,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,relative_deadlines_order,hard,0,1000,1,,1.899,92,37,19.48,0.965,39.59,7150,83.2,0.043911,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,false_premise_holiday,medium,0,1000,1,,2.684,44,72,26.83,0.701,36.32,7150,81.7,0.060882,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,yes_no_only,medium,0,1000,1,,0.842,43,2,2.38,0.788,37.16,7150,67.8,0.015855,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,false_premise_capital,medium,0,1000,1,,2.386,36,68,28.5,0.55,37.05,7152,70.2,0.046538,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,exact_word_count,hard,0,1000,0,line does not match: Use senhas fortes com letras e números.,1.062,38,10,9.42,0.728,29.95,7152,78.2,0.023086,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,weekday_of_date,hard,0,1000,1,,1.326,42,22,16.59,0.713,35.87,7152,79.4,0.029264,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_0,easy,0,1000,1,,6.241,175,188,30.12,1.168,37.06,7152,71.7,0.125219,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_12,easy,0,1000,1,,4.574,150,132,28.86,1.088,37.86,7152,72.4,0.092815,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_46,medium,0,1000,1,,10.642,223,340,31.95,1.243,36.17,7152,64.7,0.192135,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_108,medium,0,1000,1,,9.881,178,314,31.78,1.23,36.3,7152,64.6,0.178243,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_129,hard,0,1000,1,,39.589,464,1291,32.61,1.445,33.85,7152,60.7,0.667761,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_3,easy,0,1000,1,,2.631,59,66,25.09,0.95,39.27,7152,76.2,0.05655,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_4,easy,0,1000,1,,1.865,115,32,17.16,1.055,39.48,7152,80.5,0.042547,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_9,medium,0,1000,1,,3.233,72,84,25.98,0.954,36.86,7152,76.7,0.069746,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_11,easy,0,1000,1,,4.04,69,120,29.71,0.901,38.23,7152,71.9,0.081366,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_20,medium,0,1000,1,,4.204,64,122,29.02,0.937,37.34,7152,71.6,0.084384,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,is_palindrome,easy,1,1001,1,,2.419,54,61,25.22,0.837,38.56,7152,78.7,0.05381,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,word_count,easy,1,1001,1,,3.314,63,93,28.06,0.849,37.74,7152,77.2,0.071985,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_duration,medium,1,1001,1,,8.234,79,256,31.09,0.941,35.1,7152,63.4,0.145709,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,split_csv_line,hard,1,1001,1,,7.331,100,241,32.88,0.987,37.99,7152,65.8,0.13475,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_headers,medium,1,1001,1,,4.812,108,148,30.75,0.979,38.6,7152,71.4,0.096264,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_log_line,medium,1,1001,1,,9.92,176,323,32.56,1.127,36.73,7152,65.2,0.180448,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,compact_number_br,hard,1,1001,1,,32.589,161,1065,32.68,1.147,33.87,7152,60.4,0.547772,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,allocate_cents,hard,1,1001,1,,14.191,120,465,32.77,1.182,35.74,7152,62.3,0.246139,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,reached_threshold,medium,1,1001,1,,5.82,115,169,29.04,1.081,35.67,7152,67.8,0.110392,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_brl,medium,1,1001,1,,15.362,183,487,31.7,1.121,34.2,7152,62.3,0.266461,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,add_business_days,medium,1,1001,1,,5.949,104,183,30.76,1.093,37.69,7152,67.4,0.112105,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,semver_compare,hard,1,1001,1,,18.135,147,612,33.75,1.06,35.84,7152,60.6,0.305801,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,build_order,hard,1,1001,1,,11.13,106,358,32.16,1.026,35.43,7152,62.5,0.19411,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,natural_sort,medium,1,1001,1,,5.671,104,173,30.51,1.048,37.42,7152,69.2,0.109903,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,sort_names_br,medium,1,1001,1,,10.193,95,320,31.39,1.053,35.01,7152,64.1,0.182349,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,wrap_text,medium,1,1001,1,,12.569,113,422,33.57,1.011,36.51,7152,62.0,0.217097,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,set_ini_value,hard,1,1001,1,,180.998,140,6165,34.06,1.043,34.26,7152,59.0,2.968134,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,deep_merge,medium,1,1001,1,,10.806,103,358,33.13,1.128,36.99,7152,62.6,0.188881,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,latest_by_key,medium,1,1001,1,,7.895,173,243,30.78,1.126,35.9,7152,65.3,0.144012,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,ip_allowed,medium,1,1001,0,AttributeError: 'IPv4Address' object has no attribute 'ipv4_mapped'. Did you mean '.ipv6_mapped' instead of '.ipv4_mapped'?,10.808,139,349,32.29,1.054,35.78,7152,63.7,0.192536,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,single_passage,easy,1,1001,1,,1.583,307,14,8.84,1.214,37.89,7152,81.4,0.0358,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,password_length,easy,1,1001,1,,1.55,303,13,8.39,1.18,35.21,7152,86.0,0.037009,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,answer_absent,easy,1,1001,1,,1.404,309,8,5.7,1.184,36.24,7152,88.4,0.034488,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_two_hops,hard,1,1001,1,,9.683,3912,27,2.79,8.922,35.48,7152,95.8,0.257785,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,meal_limit_by_date,hard,1,1001,1,,4.001,743,59,14.75,2.417,37.25,7152,86.0,0.095538,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,meal_domestic_unchanged,medium,1,1001,1,,2.184,720,31,14.19,1.299,35.01,7152,88.3,0.05356,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,sev3_no_target,medium,1,1001,1,,1.661,720,13,7.83,1.293,35.33,7152,88.5,0.040846,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,payments_oncall_lead,hard,1,1001,1,,2.027,718,29,14.31,1.296,39.7,7152,103.5,0.058297,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,purchase_quotes_after_change,hard,1,1001,1,,3.544,736,77,21.72,1.301,34.32,7152,91.2,0.089791,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,purchase_cfo,medium,1,1001,1,,2.836,732,55,19.4,1.317,36.22,7152,83.2,0.06554,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,credential_rotation_date,medium,1,1001,1,,3.366,743,70,20.79,1.433,36.2,7152,84.6,0.07914,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,vpn_effective_date,medium,1,1001,0,missing citation [1],1.679,745,11,6.55,1.411,41.11,7152,89.7,0.041831,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,partly_absent,medium,1,1001,1,,2.126,722,32,15.05,1.291,38.31,7152,88.8,0.052466,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_renamed_room,hard,1,1001,0,missing citation [78],11.304,3947,73,6.46,9.06,32.53,7152,95.4,0.299704,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,purchase_exact_threshold,hard,1,1001,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,2.81,732,43,15.3,1.598,35.46,7152,87.2,0.06809,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,sev2_after_midnight,hard,1,1001,1,,2.066,749,22,10.65,1.435,34.83,7152,88.0,0.050537,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,false_premise_office_hours,medium,1,1001,1,,2.175,721,31,14.25,1.284,34.79,7152,93.9,0.056758,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,vacation_one_day_short,easy,1,1001,1,,2.887,757,49,16.97,1.485,34.95,7152,89.5,0.071818,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_three_hops,hard,1,1001,1,,10.955,3983,66,6.02,9.092,35.43,7152,95.0,0.289187,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_updates_out_of_order,hard,1,1001,1,,9.79,3978,19,1.94,9.29,37.99,7152,94.1,0.255796,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,weather_call,easy,1,1001,1,,2.347,402,24,10.23,1.895,53.05,7152,84.0,0.054781,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,no_tool_needed,easy,1,1001,1,,0.522,400,2,3.83,0.467,36.37,7152,80.0,0.011604,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,contact_schema,easy,1,1001,1,,2.284,72,54,23.65,0.905,39.17,7152,86.8,0.055079,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,priority_schema,easy,1,1001,1,,1.889,65,35,18.53,0.93,36.48,7152,80.1,0.042055,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,meeting_relative_date,hard,1,1001,1,,3.87,879,68,17.57,2.262,42.3,7152,86.1,0.092514,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,ticket_for_oldest_order,hard,1,1001,1,,2.196,973,37,16.85,1.473,51.23,7152,78.9,0.048156,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,act_on_result_threshold,medium,1,1001,1,,2.084,929,32,15.36,1.464,51.68,7152,85.5,0.049501,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,refund_late_orders,hard,1,1001,1,,3.332,1107,71,21.31,1.616,41.39,7152,87.0,0.080487,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,refund_above_total,hard,1,1001,1,,2.082,917,33,15.85,1.308,42.62,7152,74.8,0.043244,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,priority_from_sum,medium,1,1001,1,,2.15,966,37,17.21,1.474,54.78,7152,83.6,0.049915,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,meeting_next_week_tuesday,hard,1,1001,1,,2.512,874,58,23.08,1.135,42.11,7152,82.5,0.057559,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,look_up_before_refund,hard,1,1001,1,,1.267,844,22,17.37,0.825,49.79,7152,52.7,0.018559,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,refund_some_items,hard,1,1001,1,,2.256,951,37,16.4,1.55,52.42,7152,77.3,0.048459,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,close_old_resolved,hard,1,1001,1,,2.743,969,57,20.78,1.487,45.39,7152,83.5,0.063599,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,ask_for_customer_id,hard,1,1001,0,called search_orders but no tool was needed,1.197,836,24,20.05,0.683,46.67,7152,62.3,0.020729,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,explain_vpn,easy,1,1001,1,,3.161,36,79,24.99,0.61,30.96,7152,57.3,0.050331,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,email_summary,easy,1,1001,1,,2.313,103,54,23.34,0.916,38.65,7152,82.8,0.053202,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,formal_rewrite,easy,1,1001,1,,3.991,40,115,28.82,0.666,34.59,7152,74.8,0.082876,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,incident_summary,easy,1,1001,1,,3.244,137,81,24.97,0.969,35.61,7152,76.0,0.068517,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,grammar_fix,medium,1,1001,1,,1.378,70,22,15.96,0.845,41.25,7152,72.7,0.027853,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,false_premise_states,medium,1,1001,1,,1.65,36,39,23.63,0.541,35.17,7152,72.4,0.033197,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,list_without_words,medium,1,1001,1,,1.545,55,27,17.47,0.794,35.95,7152,80.6,0.034627,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,dates_in_order,hard,1,1001,1,,1.75,101,33,18.86,0.938,40.66,7152,81.7,0.039713,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,translate_keep_code,easy,1,1001,1,,2.215,77,50,22.57,0.902,38.07,7152,87.7,0.053953,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,relative_deadlines_order,hard,1,1001,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,2.141,92,49,22.89,0.934,40.61,7152,82.6,0.04916,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,false_premise_holiday,medium,1,1001,1,,2.595,44,71,27.36,0.724,37.96,7152,81.8,0.058974,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,yes_no_only,medium,1,1001,1,,0.83,43,2,2.41,0.791,51.14,7152,63.1,0.014539,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,false_premise_capital,medium,1,1001,1,,2.514,36,64,25.46,0.55,32.59,7152,69.4,0.048512,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,exact_word_count,hard,1,1001,1,,1.015,38,11,10.84,0.722,37.54,7152,74.3,0.020972,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,weekday_of_date,hard,1,1001,1,,1.308,42,21,16.06,0.73,36.37,7152,78.3,0.028453,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_0,easy,1,1001,1,,6.231,175,188,30.17,1.163,37.1,7152,70.0,0.122221,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_12,easy,1,1001,1,,4.564,150,132,28.92,1.088,37.97,7152,71.5,0.091681,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_46,medium,1,1001,1,,10.769,223,342,31.76,1.244,35.91,7152,64.2,0.192766,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_108,medium,1,1001,1,,9.355,178,299,31.96,1.177,36.56,7152,64.1,0.167217,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_129,hard,1,1001,1,,107.223,464,3537,32.99,1.392,33.42,7152,59.8,1.783325,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_3,easy,1,1001,1,,2.626,59,66,25.13,0.919,38.66,7152,78.5,0.058368,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_4,easy,1,1001,1,,1.858,115,32,17.22,1.074,40.78,7152,79.3,0.041997,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_9,medium,1,1001,1,,2.762,72,70,25.35,0.951,38.66,7152,81.2,0.063382,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_11,easy,1,1001,1,,4.028,69,120,29.79,0.895,38.31,7152,70.0,0.079243,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_20,medium,1,1001,1,,4.2,64,124,29.52,0.935,37.98,7152,71.5,0.084424,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,is_palindrome,easy,2,1002,1,,2.404,54,61,25.37,0.839,38.96,7152,74.5,0.050867,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,word_count,easy,2,1002,1,,2.987,63,81,27.12,0.846,37.85,7152,74.6,0.062956,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_duration,medium,2,1002,1,,10.502,79,331,31.52,0.939,34.61,7152,61.8,0.181343,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,split_csv_line,hard,2,1002,1,,6.868,100,223,32.47,0.989,37.93,7152,67.4,0.129514,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_headers,medium,2,1002,1,,4.751,108,147,30.94,0.973,38.92,7152,71.0,0.09458,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_log_line,medium,2,1002,1,,7.686,176,247,32.13,1.093,37.46,7152,66.8,0.143786,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,compact_number_br,hard,2,1002,0,AssertionError,184.376,161,6132,33.26,1.112,33.46,7152,58.9,3.019757,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,allocate_cents,hard,2,1002,1,,15.344,120,502,32.72,1.116,35.28,7152,61.0,0.261045,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,reached_threshold,medium,2,1002,1,,6.221,115,186,29.9,1.069,36.1,7152,69.1,0.120484,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,parse_brl,medium,2,1002,0,ValueError: Invalid BRL format: 1234,22.127,183,728,32.9,1.112,34.64,7152,60.7,0.374095,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,add_business_days,medium,2,1002,1,,6.056,104,186,30.71,1.068,37.29,7152,67.1,0.11362,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,semver_compare,hard,2,1002,1,,16.192,147,547,33.78,1.058,36.14,7152,60.6,0.273379,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,build_order,hard,2,1002,1,,10.742,106,350,32.58,1.014,35.98,7152,63.2,0.189373,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,natural_sort,medium,2,1002,1,,3.813,104,106,27.8,1.035,38.16,7152,73.7,0.079061,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,sort_names_br,medium,2,1002,1,,11.503,95,361,31.38,1.019,34.43,7152,62.5,0.200513,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,wrap_text,medium,2,1002,1,,19.609,113,657,33.5,1.095,35.49,7152,60.7,0.331689,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,set_ini_value,hard,2,1002,0,AssertionError,19.479,140,659,33.83,1.006,35.67,7152,60.7,0.329827,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,deep_merge,medium,2,1002,1,,4.809,103,144,29.94,0.98,37.61,7152,67.3,0.090797,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,latest_by_key,medium,2,1002,1,,11.354,173,361,31.8,1.118,35.27,7152,63.2,0.200101,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding,ip_allowed,medium,2,1002,0,AttributeError: 'IPv4Address' object has no attribute 'ipv4_mapped'. Did you mean '.ipv6_mapped' instead of '.ipv4_mapped'?,10.025,139,314,31.32,1.098,35.17,7152,64.2,0.180067,,stop,,,,9ba2c5db525d
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,single_passage,easy,2,1002,1,,1.585,307,14,8.83,1.217,38.06,7152,84.1,0.037028,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,password_length,easy,2,1002,1,,1.55,303,13,8.39,1.18,35.12,7152,83.5,0.035948,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,answer_absent,easy,2,1002,1,,1.388,309,8,5.76,1.2,42.7,7152,85.3,0.032871,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_two_hops,hard,2,1002,1,,10.349,3912,51,4.93,8.884,34.82,7152,95.7,0.274994,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,meal_limit_by_date,hard,2,1002,1,,3.95,743,57,14.43,2.409,36.98,7152,88.2,0.096838,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,meal_domestic_unchanged,medium,2,1002,1,,2.286,720,34,14.88,1.384,37.72,7152,88.0,0.055889,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,sev3_no_target,medium,2,1002,1,,1.657,720,13,7.85,1.288,35.24,7152,90.9,0.041828,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,payments_oncall_lead,hard,2,1002,1,,1.768,718,17,9.61,1.29,35.56,7152,88.6,0.043525,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,purchase_quotes_after_change,hard,2,1002,1,,2.941,736,59,20.06,1.301,35.99,7152,95.7,0.078217,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,purchase_cfo,medium,2,1002,1,,3.137,732,65,20.72,1.3,35.37,7152,94.0,0.081967,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,credential_rotation_date,medium,2,1002,1,,3.393,743,70,20.63,1.459,36.19,7152,86.3,0.081335,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,vpn_effective_date,medium,2,1002,0,missing citation [1],1.674,745,11,6.57,1.409,41.5,7152,84.8,0.039455,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,partly_absent,medium,2,1002,1,,2.126,722,32,15.05,1.29,38.28,7152,88.5,0.052308,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_renamed_room,hard,2,1002,1,,11.324,3947,77,6.8,9.04,33.72,7152,96.6,0.303748,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,purchase_exact_threshold,hard,2,1002,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,2.378,732,36,15.14,1.481,40.15,7152,81.6,0.0539,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,sev2_after_midnight,hard,2,1002,0,missing citation [11],1.856,749,17,9.16,1.438,40.68,7152,91.7,0.047293,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,false_premise_office_hours,medium,2,1002,1,,1.861,721,19,10.21,1.342,36.62,7152,91.4,0.047221,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,vacation_one_day_short,easy,2,1002,1,,3.056,757,58,18.98,1.484,36.88,7152,85.3,0.072428,,stop,,,,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_three_hops,hard,2,1002,1,,9.878,3983,31,3.14,9.019,36.09,7152,97.0,0.266297,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,rag,long_updates_out_of_order,hard,2,1002,1,,9.606,3978,19,1.98,9.11,38.32,7152,98.9,0.264001,,stop,,,3000,5263567493a5
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,weather_call,easy,2,1002,1,,2.314,402,24,10.37,1.862,53.12,7152,93.5,0.060069,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,no_tool_needed,easy,2,1002,1,,0.523,400,2,3.82,0.466,35.37,7152,64.0,0.009298,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,contact_schema,easy,2,1002,1,,2.292,72,54,23.56,0.929,39.6,7152,80.6,0.051351,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,priority_schema,easy,2,1002,1,,1.798,65,34,18.91,0.933,39.28,7152,80.8,0.040354,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,meeting_relative_date,hard,2,1002,1,,3.877,879,68,17.54,2.267,42.24,7152,85.2,0.09179,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,ticket_for_oldest_order,hard,2,1002,1,,2.23,973,37,16.59,1.481,49.41,7152,85.4,0.052905,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,act_on_result_threshold,medium,2,1002,1,,2.118,929,32,15.11,1.457,48.46,7152,83.2,0.048981,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,refund_late_orders,hard,2,1002,1,,3.297,1107,71,21.53,1.606,41.99,7152,90.3,0.082744,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,refund_above_total,hard,2,1002,1,,2.069,917,33,15.95,1.29,42.38,7152,84.9,0.048794,,stop,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,priority_from_sum,medium,2,1002,1,,2.137,966,37,17.31,1.461,54.74,7152,84.1,0.049964,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,meeting_next_week_tuesday,hard,2,1002,1,,2.468,874,58,23.5,1.128,43.28,7152,86.6,0.05939,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,look_up_before_refund,hard,2,1002,0,"called refund_order, expected get_order",1.592,844,36,22.61,0.829,47.14,7152,57.8,0.025556,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,refund_some_items,hard,2,1002,1,,2.249,951,37,16.45,1.469,47.44,7152,77.9,0.048696,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,close_old_resolved,hard,2,1002,1,,2.726,969,57,20.91,1.507,46.76,7152,84.8,0.064221,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,agent,ask_for_customer_id,hard,2,1002,0,called search_orders but no tool was needed,1.156,836,24,20.76,0.666,48.92,7152,57.6,0.018496,,tool_calls,,,,00cdb8195bc8
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,explain_vpn,easy,2,1002,1,,3.354,36,87,25.94,0.61,31.71,7152,57.7,0.053717,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,email_summary,easy,2,1002,1,,2.316,103,54,23.32,0.92,38.69,7152,83.9,0.053959,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,formal_rewrite,easy,2,1002,1,,3.866,40,117,30.26,0.666,36.56,7152,74.7,0.080239,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,incident_summary,easy,2,1002,1,,3.195,137,81,25.36,0.965,36.33,7152,77.1,0.068397,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,grammar_fix,medium,2,1002,1,,1.379,70,22,15.95,0.84,40.82,7152,82.0,0.031408,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,false_premise_states,medium,2,1002,1,,2.674,36,71,26.56,0.542,33.31,7152,69.4,0.051586,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,list_without_words,medium,2,1002,1,,1.599,55,27,16.88,0.793,33.51,7152,80.8,0.035897,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,dates_in_order,hard,2,1002,1,,1.75,101,33,18.85,0.94,40.71,7152,83.0,0.040372,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,translate_keep_code,easy,2,1002,1,,2.224,77,50,22.48,0.943,39.02,7152,87.0,0.05375,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,relative_deadlines_order,hard,2,1002,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,2.14,92,49,22.9,0.933,40.61,7152,82.8,0.049194,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,false_premise_holiday,medium,2,1002,1,,3.465,44,92,26.55,0.694,33.2,7152,73.7,0.070954,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,yes_no_only,medium,2,1002,1,,0.834,43,2,2.4,0.78,37.02,7152,65.1,0.015077,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,false_premise_capital,medium,2,1002,1,,3.007,36,87,28.94,0.55,35.41,7152,71.3,0.059523,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,exact_word_count,hard,2,1002,0,line does not match: Use senhas longas para proteger seus dad,1.053,38,11,10.45,0.711,32.17,7152,66.7,0.019494,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,chat_pt,weekday_of_date,hard,2,1002,0,missing: sexta,1.197,42,19,15.87,0.693,37.64,7152,79.6,0.026494,,stop,,,,c578c34b848c
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_0,easy,2,1002,1,,6.235,175,188,30.15,1.251,37.72,7152,70.5,0.123012,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_12,easy,2,1002,1,,4.559,150,132,28.96,1.086,38.01,7152,71.2,0.091127,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_46,medium,2,1002,1,,10.319,223,327,31.69,1.264,36.11,7152,63.6,0.183297,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_108,medium,2,1002,1,,8.549,178,270,31.58,1.179,36.64,7152,64.6,0.154255,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,humaneval_129,hard,2,1002,1,,30.314,464,992,32.72,1.394,34.3,7152,61.4,0.518395,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_3,easy,2,1002,1,,2.614,59,66,25.25,0.913,38.81,7152,74.4,0.054993,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_4,easy,2,1002,1,,1.865,115,32,17.16,1.054,39.46,7152,80.9,0.042985,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_9,medium,2,1002,1,,3.498,72,93,26.59,0.951,36.53,7152,76.5,0.075447,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_11,easy,2,1002,1,,3.429,69,96,28.0,0.889,37.8,7152,74.2,0.071648,,stop,,,,908376ec7f97
+2026-11-05-1540-pc-rtx2060-gemma4-26b-think-off,pc-rtx2060,gemma4-26b@think-off,coding_public,mbpp_20,medium,2,1002,0,AssertionError,2.819,64,72,25.54,0.931,38.14,7152,75.7,0.061314,,stop,,,,908376ec7f97

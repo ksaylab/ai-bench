@@ -1,0 +1,6 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,gemma4-26b@think-8192,agent,00cdb8195bc8,45,45,15,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,100.0,26.7,100.0,100.0,1,10.58,29.08,1.338,34.86,7140,64.2,2.7907,
+pc-rtx2060,gemma4-26b@think-8192,chat_pt,c578c34b848c,45,45,15,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,100.0,37.8,100.0,100.0,1,28.59,33.3,0.917,35.12,7140,59.8,7.0518,
+pc-rtx2060,gemma4-26b@think-8192,coding,9ba2c5db525d,51,60,20,3,85.0,75.0,90.0,100.0,86.1,77.8,3,0,80.0,Unstable,,0,100.0,11.7,85.0,83.0,1,138.05,32.8,1.634,33.52,7140,59.5,45.6998,
+pc-rtx2060,gemma4-26b@think-8192,coding_public,908376ec7f97,30,30,10,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Reference only,,0,100.0,70.0,100.0,100.0,0,67.01,33.47,1.237,34.48,7140,59.8,11.0865,
+pc-rtx2060,gemma4-26b@think-8192,rag,5263567493a5,56,60,20,3,93.3,85.0,100.0,100.0,85.7,96.3,3,0,80.0,Good for,,0,100.0,26.7,93.3,90.9,1,36.78,29.62,3.13,34.22,7140,65.1,12.8851,

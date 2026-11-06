@@ -232,7 +232,10 @@ class TestEnglishOnly(unittest.TestCase):
         found = []
         for p in root.rglob("*"):
             rel = p.relative_to(root).as_posix()
-            if not p.is_file() or rel in allowed or ".git/" in rel or "__pycache__" in rel or "/runs/" in rel:
+            # runs/ and the merged results/executions.csv hold the models' answers and the checkers' reasons, which
+            # quote the chat_pt patterns (e.g. "forbidden: ... em uma ...")
+            if not p.is_file() or rel in allowed or ".git/" in rel or "__pycache__" in rel or "/runs/" in rel \
+                    or rel.endswith("/results/executions.csv"):
                 continue
             body = p.read_text(encoding="utf-8", errors="ignore").lower()
             if rel == "aibench/text.py":  # the Portuguese stop-word list the language check needs

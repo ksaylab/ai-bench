@@ -1,0 +1,6 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,lfm3-1.7b@think-8192,agent,00cdb8195bc8,45,45,15,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,100.0,26.7,100.0,100.0,1,1.77,121.36,0.111,133.64,3618,146.9,1.0902,
+pc-rtx2060,lfm3-1.7b@think-8192,chat_pt,c578c34b848c,37,45,15,3,82.2,80.0,86.7,100.0,66.7,83.3,1,0,80.0,Good for,easy only,1,100.0,37.8,82.2,71.4,1,13.38,133.94,0.043,135.08,3618,149.4,8.3318,
+pc-rtx2060,lfm3-1.7b@think-8192,coding,9ba2c5db525d,35,60,20,3,58.3,50.0,70.0,100.0,61.1,38.9,6,0,80.0,Not good for,,0,100.0,11.7,58.3,52.8,1,57.73,132.84,0.124,134.25,3618,148.6,48.0024,
+pc-rtx2060,lfm3-1.7b@think-8192,coding_public,908376ec7f97,30,30,10,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Reference only,,0,100.0,70.0,100.0,100.0,0,24.81,134.13,0.06,134.62,3618,149.3,10.335,
+pc-rtx2060,lfm3-1.7b@think-8192,rag,5263567493a5,56,60,20,3,93.3,85.0,100.0,91.7,95.2,92.6,4,0,80.0,Good for,,0,100.0,26.7,93.3,90.9,1,10.39,128.14,0.225,133.17,3618,149.0,8.6172,

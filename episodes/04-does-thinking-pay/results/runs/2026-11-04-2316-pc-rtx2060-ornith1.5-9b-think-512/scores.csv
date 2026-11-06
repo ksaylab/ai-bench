@@ -1,0 +1,6 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,ornith1.5-9b@think-512,agent,00cdb8195bc8,44,45,15,3,97.8,93.3,100.0,91.7,100.0,100.0,1,0,80.0,Good for,,0,100.0,26.7,97.8,97.0,1,3.09,64.0,0.283,72.44,7754,148.6,1.9233,
+pc-rtx2060,ornith1.5-9b@think-512,chat_pt,c578c34b848c,37,45,15,3,82.2,80.0,86.7,93.3,77.8,75.0,2,0,80.0,Good for,easy only,1,100.0,37.8,82.2,71.4,1,5.06,66.33,0.139,68.71,7754,150.6,3.1753,
+pc-rtx2060,ornith1.5-9b@think-512,coding,9ba2c5db525d,30,60,20,3,50.0,40.0,60.0,50.0,55.6,38.9,14,0,80.0,Not good for,,0,100.0,11.7,50.0,43.4,1,13.15,67.03,0.255,69.1,7754,149.5,11.0213,
+pc-rtx2060,ornith1.5-9b@think-512,coding_public,908376ec7f97,24,30,10,3,80.0,70.0,90.0,100.0,58.3,66.7,2,0,80.0,Reference only,,1,100.0,70.0,80.0,33.3,0,11.59,70.82,0.209,72.52,7754,150.2,4.8599,
+pc-rtx2060,ornith1.5-9b@think-512,rag,5263567493a5,53,60,20,3,88.3,80.0,95.0,58.3,90.5,100.0,3,0,80.0,Good for,mixed tiers,0,100.0,26.7,88.3,84.0,1,4.9,55.74,1.085,72.56,7754,147.5,4.0231,

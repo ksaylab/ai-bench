@@ -1,0 +1,2 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+pc-rtx2060,neohorse-4b@think-off,33.3,91.7,88.9,42.2,76.7,RAG (answers with sources); Agents / tool calling,Coding; Chat & summaries in Portuguese,,,,3,6.7,

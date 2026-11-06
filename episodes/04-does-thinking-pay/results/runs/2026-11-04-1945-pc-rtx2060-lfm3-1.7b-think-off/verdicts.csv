@@ -1,0 +1,2 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+pc-rtx2060,lfm3-1.7b@think-off,16.7,81.7,71.1,48.9,50.0,RAG (answers with sources) (easy only) (borderline),Coding; Agents / tool calling; Chat & summaries in Portuguese,,,,3,7.45,
