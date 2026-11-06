@@ -8,7 +8,7 @@ import tomllib
 from datetime import datetime
 from pathlib import Path
 
-from aibench import calibration, cases, client, cost, env, gpu, run, speed
+from aibench import calibration, cases, client, cost, env, gpu, run, speed, thinking
 
 EPISODES = run.EPISODES
 COST_EPISODE = "01-buy-or-rent-gpu"
@@ -141,6 +141,10 @@ def main(argv=None):
     p = sub.add_parser("verdict", help="merge an episode's publishable runs into scores and verdicts")
     p.add_argument("--episode", required=True)
 
+    p = sub.add_parser("thinking", help="score x time per model, thinking level and battery (after verdict): "
+                                        "results/thinking.csv and results/charts/thinking-<battery>.svg")
+    p.add_argument("--episode", default="04-does-thinking-pay")
+
     sub.add_parser("cases", help="list the cases of each use-case battery")
 
     a = ap.parse_args(argv)
@@ -249,6 +253,9 @@ def main(argv=None):
             print(f"{n} publishable executions → {_rel(path)}")
             if v:
                 print((path.parent / "verdicts.md").read_text(encoding="utf-8"))
+        elif a.cmd == "thinking":
+            for path in thinking.write(a.episode):
+                print(f"wrote {_rel(path)}")
         elif a.cmd == "cases":
             for c in cases.load():
                 print(f"{c['use_case']:14} {c['id']:24} {c['tier']:7} {c['kind']}")
