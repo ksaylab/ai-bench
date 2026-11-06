@@ -4,11 +4,14 @@
 returns one row per model, level and battery, plus `all`: the verdict batteries pooled (coding_public is reference
 only and left out, as in the verdicts). `write` saves them to results/thinking.csv and draws one chart per battery
 in results/charts/thinking-<battery>.svg: score (y) against minutes per battery run (x, log scale), one line per
-model through its levels. Every number in the charts is a row of thinking.csv.
+model through its levels. Every number in the charts is a row of thinking.csv. `budget` picks the thinking budget
+per model and battery (the lowest level within 2 points of that model's best), saved to thinking-budget.csv and,
+as the table for the video, thinking-budget.md.
 """
 import csv
 import math
 from collections import defaultdict
+from fractions import Fraction
 from html import escape
 
 from aibench import run, verdict
@@ -17,6 +20,9 @@ LEVELS = ["off", "512", "2048", "8192", "unlimited"]
 COLUMNS = ["model", "level", "use_case", "cases", "runs", "executions", "passed", "score_pct", "min_run_pct",
            "max_run_pct", "minutes_per_run", "length_cuts", "points_vs_off", "time_vs_off"]
 ALL = "all"
+BUDGET_MARGIN = 2.0  # points: rule A of the budget table (chosen 2026-11-06)
+BUDGET_COLUMNS = ["model", "use_case", "level", "score_pct", "minutes_per_run", "best_level", "best_score_pct",
+                  "best_minutes_per_run", "points_below_best", "time_vs_best"]
 
 # Categorical slots in fixed order (dataviz reference palette, light and dark steps; validated for six series on the
 # adjacent pairlist). Three light steps are under 3:1 on the surface: every line carries a direct label.
@@ -73,6 +79,49 @@ def table(episode):
                                       order.index(r["model"]), LEVELS.index(r["level"])))
 
 
+def budget(rows, margin=BUDGET_MARGIN):
+    """The thinking budget per model and battery (rule A): the lowest level whose score is within `margin` points
+    of that model's best level on that battery (inclusive). A tie for best goes to the lowest level. Scores are
+    compared as exact fractions (passed / executions), not as the rounded percentages."""
+    exact = lambda r: Fraction(100 * int(r["passed"]), int(r["executions"]))  # noqa: E731
+    groups = defaultdict(list)
+    for r in rows:
+        groups[(r["model"], r["use_case"])].append(r)
+    out = []
+    for (model, uc), rs in groups.items():
+        rs = sorted(rs, key=lambda r: LEVELS.index(r["level"]))
+        top = max(exact(r) for r in rs)
+        best = next(r for r in rs if exact(r) == top)
+        pick = next(r for r in rs if exact(r) >= top - Fraction(str(margin)))
+        out.append({"model": model, "use_case": uc, "level": pick["level"], "score_pct": pick["score_pct"],
+                    "minutes_per_run": pick["minutes_per_run"], "best_level": best["level"],
+                    "best_score_pct": best["score_pct"], "best_minutes_per_run": best["minutes_per_run"],
+                    "points_below_best": round(float(top - exact(pick)), 1),
+                    "time_vs_best": round(float(pick["minutes_per_run"]) / float(best["minutes_per_run"]), 2)
+                    if float(best["minutes_per_run"]) else ""})
+    return out
+
+
+def budget_markdown(rows, margin=BUDGET_MARGIN):
+    """The budget table for the video: one row per model, one column per battery, `level · score · minutes`."""
+    ucs = list(dict.fromkeys(r["use_case"] for r in rows))
+    cell = {(r["model"], r["use_case"]): r for r in rows}
+    head = ["All four batteries" if u == ALL else verdict.LABELS.get(u, u) for u in ucs]
+    lines = ["# Thinking budget per task", "",
+             f"Rule: for each model and battery, the lowest thinking level (off < 512 < 2048 < 8192 tokens) whose "
+             f"score is within {margin:g} points of that model's best level on that battery. Each cell: level · "
+             f"score · minutes per battery run. Source: `thinking-budget.csv` (and `thinking.csv` for every level).",
+             "", "| Model | " + " | ".join(head) + " |", "| --- |" + " --- |" * len(ucs)]
+    for m in dict.fromkeys(r["model"] for r in rows):
+        cells = []
+        for u in ucs:
+            r = cell.get((m, u))
+            mins = float(r["minutes_per_run"]) if r else 0
+            cells.append(f"{r['level']} · {r['score_pct']}% · {mins:.{1 if mins < 10 else 0}f} min" if r else "—")
+        lines.append(f"| `{m}` | " + " | ".join(cells) + " |")
+    return "\n".join(lines) + "\n"
+
+
 def write(episode):
     rows = table(episode)
     results = run.EPISODES / episode / "results"
@@ -81,8 +130,14 @@ def write(episode):
         w = csv.DictWriter(f, fieldnames=COLUMNS)
         w.writeheader()
         w.writerows(rows)
+    picks = budget(rows)
+    with open(results / "thinking-budget.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=BUDGET_COLUMNS)
+        w.writeheader()
+        w.writerows(picks)
+    (results / "thinking-budget.md").write_text(budget_markdown(picks), encoding="utf-8")
     (results / "charts").mkdir(exist_ok=True)
-    paths = [path]
+    paths = [path, results / "thinking-budget.csv", results / "thinking-budget.md"]
     for uc in dict.fromkeys(r["use_case"] for r in rows):
         svg = results / "charts" / f"thinking-{uc}.svg"
         svg.write_text(chart([r for r in rows if r["use_case"] == uc], uc), encoding="utf-8")

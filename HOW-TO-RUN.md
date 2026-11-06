@@ -73,6 +73,7 @@ python3 -m aibench copy-run episodes/04-does-thinking-pay/results/runs/<run id>-
 python3 -m aibench run --episode 04-does-thinking-pay --machine pc-rtx2060 --models neohorse-4b --thinking 512 \
   --label neohorse-4b-think-512
 # after verdict: score x time per model, level and battery (results/thinking.csv, results/charts/thinking-*.svg)
+# and the budget per task: the lowest level within 2 points of the model's best (results/thinking-budget.md)
 python3 -m aibench thinking --episode 04-does-thinking-pay
 # longer RAG documents (the server needs -c 65536 or more)
 python3 -m aibench run --episode 02-what-runs-on-8gb --machine pc-rtx2060 --models neohorse-4b --use-cases rag \

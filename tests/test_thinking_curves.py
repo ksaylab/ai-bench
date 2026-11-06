@@ -77,6 +77,10 @@ class TestThinkingCurves(unittest.TestCase):
     def test_write_saves_the_csv_and_one_chart_per_battery(self):
         paths = thinking.write("04-x")
         self.assertTrue((self.results / "thinking.csv").exists())
+        self.assertTrue((self.results / "thinking-budget.csv").exists())
+        md = (self.results / "thinking-budget.md").read_text()
+        self.assertIn("| `m1` | 512 · 91.7% · 3.0 min |", md)  # all: 512 is 16.7 points over off
+        self.assertIn("2 points", md)  # the rule is stated with the table
         charts = sorted(p.name for p in paths if p.suffix == ".svg")
         self.assertEqual(charts, ["thinking-all.svg", "thinking-coding.svg", "thinking-rag.svg"])
         svg = ET.parse(self.results / "charts" / "thinking-all.svg").getroot()  # well-formed XML
@@ -85,6 +89,49 @@ class TestThinkingCurves(unittest.TestCase):
         tips = [t.text for c in svg.iter(f"{ns}circle") for t in c.iter(f"{ns}title")]
         self.assertEqual(len(tips), 2)  # hover: every point names model, level, score and time
         self.assertIn("m1, thinking 512: 91.7%", tips[1])
+
+
+def level_row(model, use_case, level, passed, minutes, executions=100):
+    return {"model": model, "use_case": use_case, "level": level, "passed": passed, "executions": executions,
+            "score_pct": round(100 * passed / executions, 1), "minutes_per_run": minutes}
+
+
+class TestBudget(unittest.TestCase):
+    """Rule A: per model and battery, the lowest thinking level that scores within 2 points of that model's best."""
+
+    def budget(self, *rows):
+        return {(b["model"], b["use_case"]): b for b in thinking.budget(list(rows))}
+
+    def test_the_lowest_level_within_two_points_of_the_best(self):
+        b = self.budget(level_row("m", "coding", "off", 50, 1), level_row("m", "coding", "512", 70, 2),
+                        level_row("m", "coding", "2048", 79, 4), level_row("m", "coding", "8192", 80, 9))
+        r = b[("m", "coding")]
+        self.assertEqual((r["level"], r["score_pct"], r["minutes_per_run"]), ("2048", 79.0, 4))
+        self.assertEqual((r["best_level"], r["best_score_pct"], r["best_minutes_per_run"]), ("8192", 80.0, 9))
+        self.assertEqual(r["points_below_best"], 1.0)
+        self.assertEqual(r["time_vs_best"], 0.44)
+
+    def test_exactly_two_points_below_counts(self):
+        b = self.budget(level_row("m", "rag", "off", 78, 1), level_row("m", "rag", "512", 80, 3))
+        self.assertEqual(b[("m", "rag")]["level"], "off")
+
+    def test_the_best_need_not_be_the_highest_level(self):
+        b = self.budget(level_row("m", "agent", "off", 60, 1), level_row("m", "agent", "512", 90, 2),
+                        level_row("m", "agent", "2048", 85, 5))
+        r = b[("m", "agent")]
+        self.assertEqual((r["level"], r["best_level"], r["points_below_best"]), ("512", "512", 0.0))
+
+    def test_a_tie_for_best_takes_the_lowest_level(self):
+        b = self.budget(level_row("m", "chat_pt", "2048", 90, 5), level_row("m", "chat_pt", "8192", 90, 9))
+        self.assertEqual((b[("m", "chat_pt")]["level"], b[("m", "chat_pt")]["best_level"]), ("2048", "2048"))
+
+    def test_scores_compare_unrounded(self):  # 2/3 of a point apart, not 0.7 after rounding twice
+        b = self.budget(level_row("m", "coding", "off", 196, 1, executions=300),
+                        level_row("m", "coding", "512", 202, 2, executions=300))
+        self.assertEqual(b[("m", "coding")]["level"], "off")  # 65.33 vs 67.33: exactly 2.0 below
+        b = self.budget(level_row("m", "coding", "off", 195, 1, executions=300),
+                        level_row("m", "coding", "512", 202, 2, executions=300))
+        self.assertEqual(b[("m", "coding")]["level"], "512")  # 65.0 vs 67.33: 2.33 below
 
 
 if __name__ == "__main__":
