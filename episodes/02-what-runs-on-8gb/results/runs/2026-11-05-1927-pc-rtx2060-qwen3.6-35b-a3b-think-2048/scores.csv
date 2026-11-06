@@ -1,0 +1,6 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,agent,00cdb8195bc8,39,45,15,3,86.7,80.0,93.3,100.0,66.7,85.2,2,0,80.0,Good for,easy only,0,100.0,26.7,86.7,81.9,1,14.79,27.16,1.172,35.26,7188,80.6,4.5813,
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,chat_pt,c578c34b848c,44,45,15,3,97.8,93.3,100.0,93.3,100.0,100.0,1,0,80.0,Good for,,0,100.0,37.8,97.8,96.5,1,36.04,32.15,0.725,33.03,7188,70.8,10.6187,
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,coding,9ba2c5db525d,43,60,20,3,71.7,70.0,75.0,100.0,66.7,72.2,8,0,80.0,Not good for,,0,100.0,11.7,71.7,68.0,1,71.22,31.91,3.213,32.84,7188,70.2,27.6022,
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,coding_public,908376ec7f97,29,30,10,3,96.7,90.0,100.0,100.0,100.0,66.7,1,0,80.0,Reference only,,0,100.0,70.0,96.7,89.0,0,64.99,32.35,1.044,32.89,7188,71.0,12.8349,
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,rag,5263567493a5,56,60,20,3,93.3,90.0,95.0,100.0,100.0,85.2,1,0,80.0,Good for,,0,100.0,26.7,93.3,90.9,1,43.43,30.78,2.101,32.66,7188,74.2,17.8105,

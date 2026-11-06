@@ -100,9 +100,12 @@ points. This section is the plan to fix both. Since 2026-11-03 every item below 
 - the anchor run of the grown batteries (2026-11-04, 720 calls, US$2.00) calibrated all four: best ceiling 98.3% to
   100%, floor 11.7% to 37.8%. Its answers were then rescored (8.3) after the review of its results, with no new
   calls; that rescored run is the baseline (v2);
-- the local contestants have not run with pinned sampling on the PC.
+- the local contestants ran on the PC with pinned sampling and 32768 tokens (2026-11-04 to 2026-11-06): the six
+  PC models of episode 04 at thinking off, 512, 2048 and 8192, 240 calls per run. Episodes 02 and 03 pin thinking
+  2048 (8.4) and use the copies of those 2048 runs.
 
-Until then, the runs are pilot runs and are not published.
+The PC runs before that (2026-11-02 with unpinned sampling, 2026-11-04 with 8192 tokens or no thinking level) stay
+as pilot runs and are not published.
 
 ### 8.1 Machines
 
@@ -253,8 +256,10 @@ the other 11.
   in `anchors.toml`) with `temperature`, `top_p`, `top_k`, `min_p`, `presence_penalty` and `seed`, taken from the
   model card's recommended settings: the card's link goes in `card`, and `verified = true` once checked (the runner
   warns while it is `false`). Every table was checked against its card on 2026-11-03. When a card gives more than
-  one set, a model keeps one set for every battery, in its default (thinking) mode: the Qwen3.6 and Ornith tables
-  use the cards' precise-coding set (temperature 0.6, `presence_penalty` 0.0), Ministral 3 uses the 0.1 the card
+  one set, a model keeps one set for every battery, in its default (thinking) mode: the Ornith table uses the
+  card's precise-coding set (temperature 0.6, `presence_penalty` 0.0); the Qwen3.6 table uses the card's
+  general-task set (temperature 1.0, `presence_penalty` 1.5), because with the precise-coding set it looped and ran
+  out of tokens on trivial prompts on the PC (2026-11-04); Ministral 3 uses the 0.1 the card
   recommends in its text (not the 0.15 of its code examples), and NeoHorse uses the evaluation protocol on its card,
   which gives no explicit recommendation. `source` says which set each table took. `run.run` sends them
   through `client.chat(sampling=...)` and `meta.json` records the values actually sent (`sampling.<model>.sent`).
@@ -283,6 +288,12 @@ the other 11.
   before answering on 5 of its first 14 coding cases, so every contestant was run again with 32768 and those runs
   are kept as `pilot`. On the PC, the server's `reasoning-budget` (per preset) still ends the thinking earlier for
   some models; it is part of the server setup, recorded in `env.json` (`server.preset`).
+- **An episode pins the thinking level (implemented):** `thinking` in `models.toml` (off, unlimited or a reasoning
+  budget in tokens) is sent per request over the preset's budget, as `--thinking` would (the flag wins; one run
+  sends one level, so models with different levels are run apart). Episodes 02 and 03 pin 2048 for every model,
+  chosen from episode 04: most of the gain over thinking off, no answer cut at `max_tokens` (32768) on any of the
+  six PC models, about half the time of 8192. Their PC runs are the copies of episode 04's 2048 runs
+  (`model@think-2048`); the earlier runs without a level stay as `pilot`.
 - The `seed` is fixed per repeat: base seed + repeat number (`run.rep_seed`), recorded in the `seed` column of
   `executions.csv` and in `meta.json`, so a repeat is reproducible on the same build and GGUF, while the repeats
   still differ from each other.

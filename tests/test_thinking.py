@@ -94,5 +94,57 @@ class TestThinking(unittest.TestCase):
         self.assertEqual({p["reasoning_budget_tokens"] for p in FakeServer.requests}, {2048})
 
 
+class TestEpisodeThinking(unittest.TestCase):
+    """An episode pins its thinking level per model (`thinking` in models.toml), as it pins the sampling: `run` sends
+    it without --thinking, so a model run in the episode and a run copied from episode 04 have the same setup."""
+
+    def setUp(self):
+        from aibench import __main__ as cli
+        from tests.test_copy_run import models_toml
+        self.cli, self.models_toml = cli, models_toml
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp)
+        p = mock.patch.object(cli, "EPISODES", self.tmp / "episodes")
+        p.start()
+        self.addCleanup(p.stop)
+
+    def toml(self, *entries):
+        self.models_toml(self.tmp / "episodes" / "02-a" / "models.toml",
+                         [{"gguf": f"{e['name']}.gguf", **e} for e in entries])
+
+    def thinking_sent(self, *args):
+        with mock.patch.object(self.cli.run, "run", return_value=self.tmp) as r, \
+                mock.patch.object(Path, "read_text", return_value=""), mock.patch("sys.stdout"):
+            code = self.cli.main(["run", "--episode", "02-a", "--machine", "pc-rtx2060", *args])
+        return code, (r.call_args.kwargs["thinking"] if r.called else "not run")
+
+    def test_the_episode_level_is_sent_without_the_flag(self):
+        self.toml({"name": "m1", "thinking": 2048}, {"name": "m2", "thinking": 2048})
+        self.assertEqual(self.thinking_sent(), (0, 2048))
+        self.assertEqual(self.thinking_sent("--models", "m2"), (0, 2048))
+
+    def test_no_level_in_the_episode_leaves_the_preset(self):
+        self.toml({"name": "m1"})
+        self.assertEqual(self.thinking_sent(), (0, None))
+
+    def test_the_flag_wins(self):  # episode 04 runs every level of the same models
+        self.toml({"name": "m1", "thinking": 2048})
+        self.assertEqual(self.thinking_sent("--thinking", "off"), (0, "off"))
+
+    def test_models_with_different_levels_are_run_apart(self):
+        self.toml({"name": "m1", "thinking": 2048}, {"name": "m2", "thinking": "off"})
+        with mock.patch("sys.stderr"):
+            self.assertEqual(self.thinking_sent(), (1, "not run"))
+            self.assertEqual(self.thinking_sent("--models", "m1"), (0, 2048))
+        self.toml({"name": "m1", "thinking": 2048}, {"name": "m2"})
+        with mock.patch("sys.stderr"):
+            self.assertEqual(self.thinking_sent(), (1, "not run"))
+
+    def test_a_bad_level_in_the_episode_is_refused(self):
+        self.toml({"name": "m1", "thinking": "lots"})
+        with mock.patch("sys.stderr"):
+            self.assertEqual(self.thinking_sent(), (1, "not run"))
+
+
 if __name__ == "__main__":
     unittest.main()

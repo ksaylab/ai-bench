@@ -63,8 +63,11 @@ export AIBENCH_URL="http://<pc-address>:8080/v1"
 export AIBENCH_SERVER_HOST="<user>@<pc-address>"   # ssh destination: env.json records the PC's hardware
 python3 -m aibench run --episode 02-what-runs-on-8gb --machine pc-rtx2060 --models neohorse-4b --label neohorse-4b
 python3 -m aibench run --episode 02-what-runs-on-8gb --machine pc-rtx2060 --models ornith1.5-9b --label ornith1.5-9b
-# the same model, GGUF and sampling in 03: copy the finished run of 02 instead of running it again
+# 02 and 03 pin `thinking = 2048` in models.toml: run sends it without --thinking (results: model@think-2048)
+# the same model, GGUF, sampling and thinking level in 03: copy the finished run of 02 instead of running it again
 python3 -m aibench copy-run episodes/02-what-runs-on-8gb/results/runs/<run id> --episode 03-is-bigger-better
+# the same for episode 04's 2048 runs: copy them into 02 and 03
+python3 -m aibench copy-run episodes/04-does-thinking-pay/results/runs/<run id>-think-2048 --episode 02-what-runs-on-8gb
 # episode 04: one run per thinking level (off, unlimited, or a reasoning budget in tokens), sent per request over the
 # preset's budget; max_tokens stays 32768, and each level is its own contestant (model@think-<level>)
 python3 -m aibench run --episode 04-does-thinking-pay --machine pc-rtx2060 --models neohorse-4b --thinking 512 \

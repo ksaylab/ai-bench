@@ -4,11 +4,15 @@
 # `[model.sampling]`: pinned sampling sent on every call (METHODOLOGY.md 8.4); `seed` is the base seed, repeat
 # n uses seed + n. `source`/`card`/`verified` document where the values come from.
 
+# `thinking = 2048`: every model thinks with a reasoning budget of 2048 tokens, as in episodes 02 and 03 (chosen
+# from episode 04); `run` sends it per request, and the same setup lets `copy-run` share runs with episode 03.
+
 [[model]]
 name = "gemma4-12b"
 gguf = "gemma-4-12B-it-qat-UD-Q4_K_XL.gguf"
 group = "16gb"
 machines = ["runpod"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -26,6 +30,7 @@ name = "qwen3.8-27b-q3"
 gguf = "Qwen3.8-27B-UD-Q3_K_XL.gguf"
 group = "24gb"
 machines = ["runpod"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -44,6 +49,7 @@ name = "qwen3.8-27b-q4"
 gguf = "Qwen3.8-27B-UD-Q4_K_M.gguf"
 group = "24gb"
 machines = ["runpod"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0

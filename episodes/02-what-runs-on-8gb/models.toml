@@ -7,11 +7,17 @@
 # `[model.sampling]`: pinned sampling sent on every call (METHODOLOGY.md 8.4); `seed` is the base seed, repeat
 # n uses seed + n. `source`/`card`/`verified` document where the values come from.
 
+# `thinking = 2048`: every model thinks with a reasoning budget of 2048 tokens, sent per request over the server
+# preset's budget (`run` reads it, like `--thinking 2048`). Chosen from episode 04 (does thinking pay?): most of the
+# gain over thinking off, no answer cut at max_tokens, about half the time of 8192. The same setup as episode 04's
+# 2048 runs, so `copy-run` brings those runs here (the results name them model@think-2048).
+
 [[model]]
 name = "neohorse-4b"
 gguf = "NeoHorse-1-4B.i1-Q4_K_M.gguf"
 group = "small"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -30,6 +36,7 @@ name = "gemma4-e4b"
 gguf = "gemma-4-E4B_q4_0-it.gguf"
 group = "small"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -47,6 +54,7 @@ name = "lfm3-1.7b"
 gguf = "LFM3-1.7B-Q8_0.gguf"
 group = "small"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 0.1
@@ -65,6 +73,7 @@ name = "ornith1.5-9b"
 gguf = "Ornith-1.5-9B-Q4_K_M.gguf"
 group = "medium"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 0.6
@@ -83,6 +92,7 @@ name = "gemma4-12b"
 gguf = "gemma-4-12B-it-qat-UD-Q4_K_XL.gguf"
 group = "medium"
 machines = ["pc-rtx2060", "runpod"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -101,6 +111,7 @@ name = "qwen3.8-27b-q3"
 gguf = "Qwen3.8-27B-UD-Q3_K_XL.gguf"
 group = "limit"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -120,6 +131,7 @@ name = "qwen3.6-35b-a3b"
 gguf = "Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf"
 group = "limit"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -139,6 +151,7 @@ name = "gemma4-26b"
 gguf = "gemma-4-26B_q4_0-it.gguf"
 group = "limit"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0

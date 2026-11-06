@@ -4,12 +4,18 @@
 # `[model.sampling]`: pinned sampling sent on every call (METHODOLOGY.md 8.4); `seed` is the base seed, repeat
 # n uses seed + n. `source`/`card`/`verified` document where the values come from.
 
+# `thinking = 2048`: every model thinks with a reasoning budget of 2048 tokens, sent per request over the server
+# preset's budget (`run` reads it, like `--thinking 2048`). Chosen from episode 04 (does thinking pay?): most of the
+# gain over thinking off, no answer cut at max_tokens, about half the time of 8192. The same setup as episode 04's
+# 2048 runs, so `copy-run` brings those runs here (the results name them model@think-2048).
+
 [[model]]
 name = "neohorse-4b"
 gguf = "NeoHorse-1-4B.i1-Q4_K_M.gguf"
 pair = "4b-vs-35b"
 group = "small"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -29,6 +35,7 @@ gguf = "Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf"
 pair = "4b-vs-35b"
 group = "large"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -48,6 +55,7 @@ gguf = "gemma-4-E4B_q4_0-it.gguf"
 pair = "e4b-vs-9b"
 group = "small"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -66,6 +74,7 @@ gguf = "Ornith-1.5-9B-Q4_K_M.gguf"
 pair = "e4b-vs-9b"
 group = "large"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 0.6
@@ -85,6 +94,7 @@ gguf = "gemma-4-12B-it-qat-UD-Q4_K_XL.gguf"
 pair = "12b-vs-27b"
 group = "small"
 machines = ["runpod"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -103,6 +113,7 @@ gguf = "Qwen3.8-27B-UD-Q4_K_M.gguf"
 pair = "12b-vs-27b"
 group = "large"
 machines = ["runpod"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0
@@ -122,6 +133,7 @@ name = "gemma4-26b"
 gguf = "gemma-4-26B_q4_0-it.gguf"
 group = "large"
 machines = ["pc-rtx2060"]
+thinking = 2048
 
 [model.sampling]
 temperature = 1.0

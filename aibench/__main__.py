@@ -37,6 +37,22 @@ def model_sampling(episode, names):
     return found
 
 
+def episode_thinking(episode, names):
+    """The thinking level the episode pins for these models (`thinking` in models.toml, as copy-run compares it);
+    None when none of them pins one (the server preset's budget). One run sends one level, so models with different
+    levels are refused: run them apart."""
+    levels = {}
+    path = EPISODES / episode / "models.toml"
+    if path.exists():
+        with open(path, "rb") as f:
+            levels = {m["name"]: m.get("thinking") for m in tomllib.load(f).get("model", []) if m["name"] in names}
+    found = {run.thinking_level(v) if v is not None else None for v in (levels.get(n) for n in names)}
+    if len(found) > 1:
+        raise ValueError(f"{episode} pins different thinking levels for {', '.join(names)} "
+                         f"({', '.join(f'{n}: {levels.get(n) or 'the preset'}' for n in names)}): run them apart")
+    return found.pop() if found else None
+
+
 def _rel(p):
     return p.relative_to(run.ROOT) if p.is_relative_to(run.ROOT) else p
 
@@ -146,7 +162,8 @@ def main(argv=None):
             dest = run.run(a.episode, a.machine, models, a.runs, a.url, use_cases, a.judge, a.context_words, a.label,
                            a.simulate, a.smoke, a.skip_code, a.max_tokens, a.out, judge_url=a.judge_url,
                            sampling=model_sampling(a.episode, models), server_args=a.server_args,
-                           stream=not a.no_stream, gpu_sampling=not a.no_gpu_sampling, thinking=a.thinking)
+                           stream=not a.no_stream, gpu_sampling=not a.no_gpu_sampling,
+                           thinking=a.thinking if a.thinking is not None else episode_thinking(a.episode, models))
             print(f"run written to {_rel(dest)}")
             print((dest / "verdicts.md").read_text(encoding="utf-8"))
         elif a.cmd == "calibrate":

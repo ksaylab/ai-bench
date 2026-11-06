@@ -1,0 +1,6 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,neohorse-4b,agent,00cdb8195bc8,38,45,15,3,84.4,80.0,93.3,75.0,100.0,85.2,3,0,80.0,Good for,mixed tiers,1,100.0,26.7,84.4,78.7,1,3.03,68.59,0.185,74.92,7224,146.6,1.8609,
+pc-rtx2060,neohorse-4b,chat_pt,c578c34b848c,37,45,15,3,82.2,73.3,86.7,93.3,77.8,75.0,5,0,80.0,Unstable,,1,100.0,37.8,82.2,71.4,1,45.6,74.14,0.117,74.91,7224,148.9,28.3418,
+pc-rtx2060,neohorse-4b,coding,9ba2c5db525d,40,60,20,3,66.7,60.0,75.0,100.0,72.2,44.4,10,0,80.0,Not good for,,0,100.0,11.7,66.7,62.3,1,70.74,73.59,0.209,74.55,7224,148.1,58.6167,
+pc-rtx2060,neohorse-4b,coding_public,908376ec7f97,29,30,10,3,96.7,90.0,100.0,100.0,91.7,100.0,1,0,80.0,Reference only,,0,100.0,70.0,96.7,89.0,0,27.89,74.02,0.155,74.76,7224,148.3,11.5429,
+pc-rtx2060,neohorse-4b,rag,5263567493a5,53,60,20,3,88.3,85.0,90.0,100.0,85.7,85.2,4,0,80.0,Good for,,0,100.0,26.7,88.3,84.0,1,11.31,66.51,0.642,74.52,7224,146.6,9.3108,

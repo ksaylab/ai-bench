@@ -1,0 +1,241 @@
+run_id,machine,model,use_case,case,tier,rep,seed,passed,reason,time_s,prompt_tokens,completion_tokens,tok_s,ttft_s,gen_tok_s,peak_vram_mib,avg_power_w,energy_wh,cost_usd,finish,judge_score,judge_cost_usd,context_words,battery
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,is_palindrome,easy,0,1000,1,,5.898,50,191,32.38,3.374,75.66,7206,100.9,0.166765,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,word_count,easy,0,1000,1,,55.276,58,4180,75.62,0.096,75.75,7206,149.0,2.290206,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_duration,medium,0,1000,1,,40.127,74,3031,75.53,0.13,75.78,7210,149.1,1.664231,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,split_csv_line,hard,0,1000,1,,81.493,93,6087,74.69,0.129,74.81,7210,149.4,3.384198,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_headers,medium,0,1000,1,,32.226,101,2427,75.31,0.154,75.67,7210,149.2,1.337756,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_log_line,medium,0,1000,1,,88.702,171,6472,72.96,0.165,73.1,7210,149.0,3.673979,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,compact_number_br,hard,0,1000,0,AssertionError,86.261,157,6382,73.98,0.18,74.14,7210,149.4,3.582146,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,allocate_cents,hard,0,1000,1,,76.436,114,5632,73.68,0.158,73.83,7210,148.5,3.155852,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,reached_threshold,medium,0,1000,1,,81.178,110,6018,74.13,0.154,74.27,7210,149.2,3.366161,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_brl,medium,0,1000,0,ValueError: Invalid thousand separator grouping: 1.234,90.731,179,6780,74.73,0.19,74.88,7210,149.5,3.771288,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,add_business_days,medium,0,1000,0,AssertionError,33.494,97,2516,75.12,0.155,75.47,7210,148.0,1.3797,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,semver_compare,hard,0,1000,0,AssertionError,93.193,140,6941,74.48,0.152,74.6,7210,149.3,3.867625,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,build_order,hard,0,1000,0,TypeError: cannot use 'list' as a set element (unhashable type: 'list'),86.004,100,6395,74.36,0.157,74.49,7210,149.5,3.574138,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,natural_sort,medium,0,1000,1,,84.724,97,6286,74.19,0.152,74.33,7210,149.2,3.512809,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,sort_names_br,medium,0,1000,1,,84.511,88,6310,74.66,0.151,74.8,7210,149.5,3.511371,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,wrap_text,medium,0,1000,1,,86.858,107,6478,74.58,0.16,74.72,7210,148.8,3.592894,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,set_ini_value,hard,0,1000,0,AssertionError,87.572,134,6458,73.74,0.177,73.89,7210,148.8,3.621707,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,deep_merge,medium,0,1000,1,,86.286,96,6364,73.75,0.154,73.89,7210,149.3,3.58156,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,latest_by_key,medium,0,1000,1,,87.714,165,6454,73.58,0.19,73.74,7210,149.1,3.635809,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,ip_allowed,medium,0,1000,0,AssertionError,68.953,132,5056,73.33,0.172,73.51,7210,148.9,2.854797,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,single_passage,easy,0,1000,1,,1.144,310,68,59.44,0.244,75.56,7212,121.1,0.038519,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,password_length,easy,0,1000,1,,1.712,306,114,66.59,0.19,74.91,7212,149.3,0.07102,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,answer_absent,easy,0,1000,1,,3.477,313,247,71.03,0.192,75.19,7212,147.5,0.142569,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_two_hops,hard,0,1000,1,,4.565,3976,191,41.84,1.967,73.5,7214,146.1,0.185368,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,meal_limit_by_date,hard,0,1000,1,,6.655,739,467,70.17,0.442,75.16,7214,148.5,0.274496,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,meal_domestic_unchanged,medium,0,1000,1,,4.841,716,342,70.65,0.284,75.05,7214,147.4,0.198253,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,sev3_no_target,medium,0,1000,1,,1.652,716,102,61.73,0.288,74.74,7222,143.9,0.066077,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,payments_oncall_lead,hard,0,1000,1,,3.66,713,253,69.12,0.31,75.53,7222,148.1,0.150641,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,purchase_quotes_after_change,hard,0,1000,1,,4.864,732,343,70.53,0.288,74.97,7222,146.5,0.197999,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,purchase_cfo,medium,0,1000,1,,5.228,728,372,71.16,0.288,75.31,7222,147.7,0.214556,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,credential_rotation_date,medium,0,1000,1,,59.954,735,4442,74.09,0.288,74.45,7222,148.9,2.480023,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,vpn_effective_date,medium,0,1000,0,extra citation [7],38.586,737,2899,75.13,0.349,75.82,7222,149.5,1.602049,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,partly_absent,medium,0,1000,1,,9.08,718,650,71.59,0.339,74.36,7222,148.6,0.374888,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_renamed_room,hard,0,1000,1,,12.402,4012,761,61.36,2.019,73.29,7222,147.6,0.508373,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,purchase_exact_threshold,hard,0,1000,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,10.237,728,739,72.19,0.358,74.8,7222,148.7,0.422816,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,sev2_after_midnight,hard,0,1000,1,,7.73,741,556,71.93,0.335,75.19,7222,146.7,0.314927,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,false_premise_office_hours,medium,0,1000,1,,7.629,717,545,71.44,0.288,74.24,7222,149.6,0.316996,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,vacation_one_day_short,easy,0,1000,1,,23.81,749,1743,73.2,0.311,74.17,7222,149.5,0.988877,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_three_hops,hard,0,1000,1,,5.219,4050,235,45.03,2.028,73.65,7222,146.1,0.211908,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_updates_out_of_order,hard,0,1000,1,,9.118,4037,519,56.92,2.023,73.16,7222,145.3,0.368012,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,weather_call,easy,0,1000,1,,1.45,658,75,51.73,0.44,74.27,7222,146.9,0.05919,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,no_tool_needed,easy,0,1000,1,,0.526,657,34,64.62,0.082,76.52,7222,147.2,0.021526,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,contact_schema,easy,0,1000,1,,3.828,69,275,71.84,0.121,74.18,7222,149.0,0.158453,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,priority_schema,easy,0,1000,0,schema: $.reason: longer than 120,2.545,62,183,71.92,0.096,74.74,7222,148.8,0.105212,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,meeting_relative_date,hard,0,1000,1,,3.508,1205,217,61.87,0.618,75.09,7222,147.9,0.144097,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,ticket_for_oldest_order,hard,0,1000,1,,2.339,1325,163,69.7,0.16,74.81,7222,148.9,0.096769,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,act_on_result_threshold,medium,0,1000,1,,1.424,1293,94,65.99,0.146,73.52,7222,139.1,0.05505,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,refund_late_orders,hard,0,1000,1,,6.074,1464,441,72.6,0.222,75.36,7222,150.0,0.253117,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,refund_above_total,hard,0,1000,1,,1.725,1268,119,68.98,0.132,74.71,7222,148.6,0.071231,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,priority_from_sum,medium,0,1000,1,,2.5,1317,175,70.01,0.159,74.75,7222,149.5,0.103805,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,meeting_next_week_tuesday,hard,0,1000,1,,9.677,1203,714,73.79,0.101,74.56,7222,148.7,0.399755,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,look_up_before_refund,hard,0,1000,1,,3.062,1176,222,72.51,0.098,74.92,7222,150.4,0.127924,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,refund_some_items,hard,0,1000,1,,2.503,1302,176,70.32,0.146,74.68,7222,148.7,0.103408,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,close_old_resolved,hard,0,1000,1,,3.639,1313,262,72.0,0.159,75.29,7222,149.0,0.150616,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,ask_for_customer_id,hard,0,1000,1,,3.715,1167,268,72.15,0.085,73.83,7222,149.0,0.153802,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,explain_vpn,easy,0,1000,1,,7.62,33,571,74.94,0.118,76.11,7224,146.1,0.309308,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,email_summary,easy,0,1000,1,,82.692,99,6206,75.05,0.114,75.15,7224,149.8,3.439996,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,formal_rewrite,easy,0,1000,1,,23.471,38,1772,75.5,0.127,75.91,7224,149.2,0.972448,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,incident_summary,easy,0,1000,1,,83.988,132,6236,74.25,0.137,74.37,7224,149.7,3.491517,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,grammar_fix,medium,0,1000,1,,82.825,67,6177,74.58,0.138,74.7,7224,149.7,3.444625,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,false_premise_states,medium,0,1000,1,,64.646,33,4864,75.24,0.125,75.39,7224,149.6,2.686263,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,list_without_words,medium,0,1000,1,,22.705,55,1712,75.4,0.126,75.82,7224,148.1,0.933969,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,dates_in_order,hard,0,1000,1,,11.45,97,854,74.58,0.121,75.38,7224,149.0,0.473992,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,translate_keep_code,easy,0,1000,1,,82.662,71,6195,74.94,0.107,75.04,7224,149.4,3.42984,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,relative_deadlines_order,hard,0,1000,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,19.301,87,1424,73.78,0.15,74.36,7224,148.1,0.794259,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,false_premise_holiday,medium,0,1000,0,missing: 7 de setembro|07/09|sete de setembro,83.443,40,6236,74.73,0.096,74.82,7224,149.5,3.464586,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,yes_no_only,medium,0,1000,1,,1.447,39,100,69.09,0.126,75.66,7224,148.6,0.059767,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,false_premise_capital,medium,0,1000,1,,54.882,33,4082,74.38,0.085,74.49,7224,149.4,2.277423,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,exact_word_count,hard,0,1000,1,,7.873,36,582,73.92,0.11,74.97,7224,149.5,0.326968,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,weekday_of_date,hard,0,1000,1,,72.981,39,5404,74.05,0.091,74.14,7224,149.1,3.023318,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_0,easy,0,1000,1,,7.327,164,540,73.7,0.172,75.47,7224,149.1,0.305998,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_12,easy,0,1000,1,,13.593,145,1004,73.86,0.141,74.64,7224,148.4,0.562508,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_46,medium,0,1000,1,,51.357,215,3837,74.71,0.171,74.96,7224,148.9,2.126648,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_108,medium,0,1000,1,,56.441,169,4170,73.88,0.174,74.11,7224,149.2,2.341037,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_129,hard,0,1000,1,,92.075,447,6829,74.17,0.29,74.4,7224,149.5,3.825363,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_3,easy,0,1000,1,,6.938,54,509,73.37,0.141,74.89,7224,143.1,0.27759,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_4,easy,0,1000,1,,7.029,111,517,73.55,0.118,74.8,7224,148.5,0.291946,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_9,medium,0,1000,1,,11.924,69,884,74.14,0.106,74.8,7224,148.9,0.49495,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_11,easy,0,1000,1,,30.328,66,2256,74.39,0.103,74.64,7224,149.0,1.257375,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_20,medium,0,1000,1,,24.439,61,1803,73.78,0.111,74.11,7224,148.9,1.013054,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,is_palindrome,easy,1,1001,1,,3.722,50,271,72.81,0.102,74.87,7224,146.1,0.153013,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,word_count,easy,1,1001,1,,46.557,58,3506,75.31,0.097,75.46,7224,149.3,1.933355,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_duration,medium,1,1001,1,,45.698,74,3397,74.34,0.126,74.54,7224,148.9,1.891811,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,split_csv_line,hard,1,1001,1,,85.629,93,6397,74.71,0.132,74.82,7224,149.4,3.555247,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_headers,medium,1,1001,1,,33.523,101,2476,73.86,0.16,74.21,7224,147.2,1.373486,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_log_line,medium,1,1001,0,AssertionError,88.94,171,6475,72.8,0.166,72.94,7224,148.8,3.67898,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,compact_number_br,hard,1,1001,0,AssertionError,85.672,157,6316,73.72,0.197,73.89,7224,149.0,3.548406,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,allocate_cents,hard,1,1001,1,,50.068,114,3706,74.02,0.159,74.25,7224,148.8,2.071344,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,reached_threshold,medium,1,1001,1,,85.625,110,6332,73.95,0.142,74.07,7224,148.8,3.542071,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_brl,medium,1,1001,1,,89.574,179,6563,73.27,0.192,73.43,7224,149.0,3.709041,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,add_business_days,medium,1,1001,1,,51.738,97,3862,74.64,0.155,74.87,7224,149.0,2.143629,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,semver_compare,hard,1,1001,1,,83.988,140,6203,73.86,0.159,74.0,7224,149.2,3.481558,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,build_order,hard,1,1001,1,,86.076,100,6394,74.28,0.151,74.41,7224,148.9,3.562458,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,natural_sort,medium,1,1001,0,AssertionError,84.275,97,6316,74.94,0.152,75.08,7224,149.5,3.501896,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,sort_names_br,medium,1,1001,1,,83.157,88,6208,74.65,0.15,74.79,7224,149.4,3.451211,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,wrap_text,medium,1,1001,1,,84.346,107,6323,74.97,0.155,75.1,7224,149.4,3.501583,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,set_ini_value,hard,1,1001,0,AssertionError,87.255,134,6527,74.8,0.178,74.96,7224,149.5,3.625529,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,deep_merge,medium,1,1001,1,,82.413,96,6137,74.47,0.151,74.6,7224,149.3,3.420097,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,latest_by_key,medium,1,1001,0,AssertionError,40.692,165,3048,74.9,0.189,75.25,7224,148.9,1.686505,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,ip_allowed,medium,1,1001,1,,87.174,132,6464,74.15,0.144,74.27,7224,149.2,3.615918,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,single_passage,easy,1,1001,1,,1.356,310,83,61.2,0.252,75.19,7224,131.4,0.049495,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,password_length,easy,1,1001,1,,1.357,306,88,64.86,0.19,75.41,7224,145.0,0.05466,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,answer_absent,easy,1,1001,1,,3.674,313,261,71.04,0.19,74.91,7224,148.2,0.151272,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_two_hops,hard,1,1001,1,,4.336,3976,175,40.36,1.951,73.38,7224,145.6,0.175342,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,meal_limit_by_date,hard,1,1001,1,,6.195,739,433,69.9,0.441,75.26,7224,148.9,0.25631,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,meal_domestic_unchanged,medium,1,1001,1,,4.059,716,283,69.72,0.285,74.99,7224,148.0,0.166921,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,sev3_no_target,medium,1,1001,1,,1.795,716,112,62.41,0.292,74.52,7224,145.8,0.072685,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,payments_oncall_lead,hard,1,1001,1,,4.548,713,318,69.93,0.286,74.62,7224,148.8,0.18804,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,purchase_quotes_after_change,hard,1,1001,1,,5.517,732,393,71.23,0.288,75.15,7224,149.5,0.229116,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,purchase_cfo,medium,1,1001,1,,8.215,728,594,72.3,0.286,74.92,7224,148.3,0.338337,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,credential_rotation_date,medium,1,1001,1,,44.559,735,3314,74.37,0.288,74.86,7224,149.2,1.847002,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,vpn_effective_date,medium,1,1001,1,,6.998,737,495,70.73,0.341,74.35,7224,148.5,0.288606,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,partly_absent,medium,1,1001,0,missing: (not in the (document|passages)|not (mentioned|provided|stated|specified|covered|available|included)|no information|(does not|doesn't|do not|don't) (say|mention|specify|contain|include|state|provide)),7.388,718,529,71.61,0.287,74.5,7224,147.6,0.302814,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_renamed_room,hard,1,1001,1,,18.922,4012,1231,65.06,1.969,72.62,7224,148.6,0.781219,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,purchase_exact_threshold,hard,1,1001,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,17.908,728,1307,72.99,0.36,74.48,7224,149.0,0.741203,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,sev2_after_midnight,hard,1,1001,1,,9.062,741,654,72.17,0.342,75.0,7224,146.5,0.368868,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,false_premise_office_hours,medium,1,1001,1,,5.85,717,410,70.08,0.335,74.34,7224,142.9,0.232254,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,vacation_one_day_short,easy,1,1001,1,,15.696,749,1144,72.88,0.321,74.41,7224,148.2,0.646295,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_three_hops,hard,1,1001,1,,5.493,4050,255,46.42,2.024,73.51,7224,146.1,0.222951,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_updates_out_of_order,hard,1,1001,1,,11.925,4037,723,60.63,2.022,73.01,7224,147.3,0.488067,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,weather_call,easy,1,1001,1,,1.425,658,74,51.92,0.443,75.35,7224,140.2,0.055517,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,no_tool_needed,easy,1,1001,1,,0.636,657,40,62.91,0.113,76.55,7224,115.5,0.020407,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,contact_schema,easy,1,1001,1,,2.57,69,184,71.58,0.121,75.12,7224,149.8,0.106989,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,priority_schema,easy,1,1001,0,schema: $.reason: longer than 120,2.91,62,210,72.17,0.096,74.62,7224,148.5,0.120052,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,meeting_relative_date,hard,1,1001,0,date: '2026-03-15' != '2026-03-16',3.583,1205,222,61.97,0.619,74.92,7224,139.1,0.138416,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,ticket_for_oldest_order,hard,1,1001,1,,1.648,1325,112,67.96,0.159,75.21,7224,145.0,0.06638,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,act_on_result_threshold,medium,1,1001,1,,1.438,1293,97,67.43,0.146,75.07,7224,147.8,0.059092,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,refund_late_orders,hard,1,1001,1,,6.962,1464,508,72.97,0.223,75.38,7224,149.1,0.288409,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,refund_above_total,hard,1,1001,1,,2.014,1268,141,70.02,0.131,74.89,7224,139.8,0.078206,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,priority_from_sum,medium,1,1001,1,,2.523,1317,177,70.15,0.154,74.7,7224,144.0,0.100964,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,meeting_next_week_tuesday,hard,1,1001,0,date: '2026-03-16' != '2026-03-17',4.217,1203,309,73.27,0.101,75.06,7224,144.8,0.169623,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,look_up_before_refund,hard,1,1001,1,,1.643,1176,115,69.98,0.087,73.88,7224,148.3,0.067689,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,refund_some_items,hard,1,1001,1,,2.0,1302,139,69.49,0.147,75.0,7224,148.3,0.082396,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,close_old_resolved,hard,1,1001,1,,3.741,1313,271,72.43,0.153,75.52,7224,148.8,0.154635,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,ask_for_customer_id,hard,1,1001,1,,3.206,1167,232,72.37,0.083,74.3,7224,144.4,0.128619,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,explain_vpn,easy,1,1001,1,,7.793,33,582,74.68,0.119,75.84,7224,149.0,0.322555,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,email_summary,easy,1,1001,1,,18.118,99,1334,73.63,0.115,74.1,7224,148.8,0.748917,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,formal_rewrite,easy,1,1001,1,,82.753,38,6176,74.63,0.098,74.72,7224,149.8,3.444287,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,incident_summary,easy,1,1001,1,,74.177,132,5448,73.45,0.165,73.61,7224,149.0,3.069316,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,grammar_fix,medium,1,1001,1,,83.279,67,6178,74.18,0.132,74.3,7224,149.4,3.455628,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,false_premise_states,medium,1,1001,0,missing: \b26\b|vinte e seis,82.902,33,6227,75.11,0.125,75.23,7224,149.3,3.438411,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,list_without_words,medium,1,1001,1,,17.92,55,1317,73.49,0.134,74.05,7224,148.8,0.740603,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,dates_in_order,hard,1,1001,1,,13.088,97,979,74.8,0.119,75.49,7224,149.1,0.541967,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,translate_keep_code,easy,1,1001,1,,39.349,71,2977,75.66,0.107,75.86,7224,149.5,1.634093,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,relative_deadlines_order,hard,1,1001,1,,83.176,87,6202,74.56,0.129,74.68,7224,149.2,3.447574,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,false_premise_holiday,medium,1,1001,0,missing: republica,84.862,40,6362,74.97,0.13,75.08,7224,149.3,3.518476,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,yes_no_only,medium,1,1001,1,,1.756,39,123,70.04,0.128,75.57,7224,148.6,0.072498,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,false_premise_capital,medium,1,1001,1,,83.527,33,6234,74.63,0.085,74.71,7224,149.1,3.458414,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,exact_word_count,hard,1,1001,1,,11.988,36,888,74.07,0.126,74.86,7224,148.2,0.493406,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,weekday_of_date,hard,1,1001,1,,83.046,39,6160,74.18,0.091,74.26,7224,148.8,3.433322,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_0,easy,1,1001,1,,8.328,164,616,73.97,0.176,75.57,7224,148.8,0.346399,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_12,easy,1,1001,1,,7.479,145,551,73.67,0.14,75.08,7224,146.2,0.305473,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_46,medium,1,1001,1,,34.587,215,2594,75.0,0.171,75.37,7224,148.1,1.425068,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_108,medium,1,1001,1,,32.224,169,2396,74.35,0.169,74.75,7224,148.8,1.333364,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_129,hard,1,1001,1,,56.23,447,4156,73.91,0.285,74.29,7224,149.1,2.330514,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_3,easy,1,1001,1,,5.444,54,401,73.66,0.125,75.39,7224,146.1,0.222637,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_4,easy,1,1001,1,,6.993,111,517,73.93,0.12,75.23,7224,148.6,0.290371,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_9,medium,1,1001,0,AssertionError,38.784,69,2862,73.79,0.104,73.99,7224,148.9,1.606826,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_11,easy,1,1001,1,,16.083,66,1196,74.36,0.114,74.89,7224,148.6,0.665559,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_20,medium,1,1001,1,,84.041,61,6283,74.76,0.104,74.85,7224,149.4,3.488754,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,is_palindrome,easy,2,1002,1,,3.356,50,240,71.51,0.129,74.37,7224,144.1,0.136008,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,word_count,easy,2,1002,1,,43.176,58,3255,75.39,0.096,75.56,7224,149.4,1.793313,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_duration,medium,2,1002,1,,52.939,74,3971,75.01,0.122,75.18,7224,149.3,2.197351,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,split_csv_line,hard,2,1002,0,AssertionError,85.436,93,6393,74.83,0.136,74.95,7224,149.5,3.550332,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_headers,medium,2,1002,1,,65.7,101,4931,75.05,0.158,75.23,7224,149.1,2.723525,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_log_line,medium,2,1002,1,,86.854,171,6395,73.63,0.182,73.78,7224,148.9,3.594086,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,compact_number_br,hard,2,1002,0,AssertionError,86.108,157,6356,73.81,0.181,73.97,7224,148.7,3.560163,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,allocate_cents,hard,2,1002,1,,87.315,114,6412,73.44,0.188,73.59,7224,148.9,3.613809,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,reached_threshold,medium,2,1002,1,,83.454,110,6231,74.66,0.16,74.81,7224,149.1,3.458668,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,parse_brl,medium,2,1002,0,UnboundLocalError: cannot access local variable 'cents' where it is not associated with a value,91.271,179,6684,73.23,0.189,73.38,7224,148.8,3.776259,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,add_business_days,medium,2,1002,1,,86.966,97,6401,73.6,0.159,73.74,7224,148.9,3.597798,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,semver_compare,hard,2,1002,0,TypeError: object of type 'NoneType' has no len(),89.717,140,6693,74.6,0.177,74.75,7224,149.3,3.724567,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,build_order,hard,2,1002,1,,87.023,100,6510,74.81,0.155,74.94,7224,149.1,3.605195,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,natural_sort,medium,2,1002,0,TypeError: '<' not supported between instances of 'int' and 'str',53.934,97,4070,75.46,0.153,75.68,7224,149.0,2.234029,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,sort_names_br,medium,2,1002,1,,59.867,88,4492,75.03,0.136,75.2,7224,149.5,2.487466,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,wrap_text,medium,2,1002,1,,77.475,107,5710,73.7,0.145,73.84,7224,148.7,3.202787,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,set_ini_value,hard,2,1002,0,AssertionError,74.667,134,5610,75.13,0.174,75.31,7224,149.4,3.101554,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,deep_merge,medium,2,1002,0,AssertionError,85.646,96,6429,75.06,0.149,75.2,7224,149.4,3.556599,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,latest_by_key,medium,2,1002,1,,33.224,165,2461,74.07,0.19,74.5,7224,148.9,1.375954,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding,ip_allowed,medium,2,1002,0,ValueError: Invalid network '10.0.0.1/8',86.804,132,6413,73.88,0.141,74.0,7224,148.7,3.588397,,stop,,,,9ba2c5db525d
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,single_passage,easy,2,1002,1,,3.049,310,210,68.89,0.25,75.05,7224,145.9,0.123571,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,password_length,easy,2,1002,1,,1.292,306,83,64.22,0.189,75.25,7224,147.5,0.052967,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,answer_absent,easy,2,1002,1,,3.5,313,248,70.86,0.192,74.98,7224,147.5,0.143372,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_two_hops,hard,2,1002,1,,3.959,3976,147,37.13,1.963,73.65,7224,144.6,0.159085,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,meal_limit_by_date,hard,2,1002,1,,6.999,739,491,70.15,0.441,74.87,7224,148.0,0.287804,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,meal_domestic_unchanged,medium,2,1002,1,,5.209,716,368,70.65,0.293,74.86,7224,147.9,0.213941,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,sev3_no_target,medium,2,1002,1,,5.776,716,412,71.32,0.288,75.07,7224,147.3,0.236414,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,payments_oncall_lead,hard,2,1002,1,,3.117,713,212,68.02,0.286,74.9,7224,149.0,0.129014,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,purchase_quotes_after_change,hard,2,1002,0,missing: two quotes|2 quotes,6.477,732,464,71.64,0.287,74.97,7224,148.9,0.267831,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,purchase_cfo,medium,2,1002,1,,7.307,728,527,72.12,0.295,75.15,7224,148.6,0.30156,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,credential_rotation_date,medium,2,1002,0,missing: 2026-03-16,111.664,735,8192,73.36,0.288,73.55,7224,149.1,4.623844,,length,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,vpn_effective_date,medium,2,1002,1,,18.335,737,1335,72.81,0.373,74.32,7224,148.8,0.757848,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,partly_absent,medium,2,1002,1,,4.068,718,278,68.34,0.328,74.33,7224,139.7,0.157816,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_renamed_room,hard,2,1002,1,,7.248,4012,384,52.98,1.978,72.87,7224,144.3,0.290477,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,purchase_exact_threshold,hard,2,1002,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,9.128,728,656,71.87,0.358,74.81,7224,148.4,0.376161,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,sev2_after_midnight,hard,2,1002,1,,31.037,741,2281,73.49,0.333,74.29,7224,148.4,1.279602,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,false_premise_office_hours,medium,2,1002,1,,6.283,717,442,70.35,0.419,75.37,7224,145.4,0.253774,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,vacation_one_day_short,easy,2,1002,1,,19.12,749,1399,73.17,0.311,74.38,7224,148.3,0.787854,,stop,,,,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_three_hops,hard,2,1002,1,,8.926,4050,504,56.46,2.017,72.94,7224,147.1,0.36471,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,rag,long_updates_out_of_order,hard,2,1002,1,,9.877,4037,572,57.91,2.023,72.83,7224,143.9,0.394846,,stop,,,3000,5263567493a5
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,weather_call,easy,2,1002,1,,1.451,658,76,52.37,0.441,75.2,7224,146.2,0.05898,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,no_tool_needed,easy,2,1002,1,,0.473,657,30,63.41,0.083,76.83,7224,150.3,0.019766,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,contact_schema,easy,2,1002,1,,2.938,69,210,71.49,0.121,74.56,7224,149.5,0.122043,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,priority_schema,easy,2,1002,0,schema: $.reason: longer than 120,1.914,62,136,71.07,0.102,75.06,7224,148.8,0.079105,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,meeting_relative_date,hard,2,1002,0,date: '2026-03-15' != '2026-03-16',3.08,1205,184,59.74,0.617,74.72,7224,146.8,0.125608,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,ticket_for_oldest_order,hard,2,1002,1,,2.738,1325,194,70.86,0.16,75.27,7224,149.3,0.113569,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,act_on_result_threshold,medium,2,1002,1,,2.28,1293,158,69.31,0.146,74.04,7224,148.2,0.093879,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,refund_late_orders,hard,2,1002,1,,5.515,1464,399,72.35,0.222,75.39,7224,148.5,0.227543,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,refund_above_total,hard,2,1002,1,,1.906,1268,132,69.24,0.132,74.39,7224,143.8,0.076184,,stop,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,priority_from_sum,medium,2,1002,1,,2.134,1317,148,69.36,0.159,74.96,7224,147.4,0.087357,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,meeting_next_week_tuesday,hard,2,1002,1,,7.254,1203,538,74.17,0.102,75.23,7224,148.1,0.29849,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,look_up_before_refund,hard,2,1002,1,,1.54,1176,109,70.78,0.087,75.02,7224,148.5,0.063537,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,refund_some_items,hard,2,1002,1,,2.346,1302,164,69.91,0.146,74.55,7224,149.1,0.097176,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,close_old_resolved,hard,2,1002,1,,4.515,1313,329,72.87,0.158,75.52,7224,148.8,0.186691,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,agent,ask_for_customer_id,hard,2,1002,0,called search_orders but no tool was needed,7.147,1167,520,72.75,0.097,73.75,7224,146.8,0.291522,,tool_calls,,,,00cdb8195bc8
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,explain_vpn,easy,2,1002,1,,17.166,33,1296,75.5,0.118,76.02,7224,149.4,0.712579,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,email_summary,easy,2,1002,1,,9.536,99,701,73.51,0.119,74.44,7224,149.1,0.394989,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,formal_rewrite,easy,2,1002,1,,82.634,38,6176,74.74,0.091,74.82,7224,149.0,3.419481,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,incident_summary,easy,2,1002,1,,30.588,132,2278,74.47,0.162,74.87,7224,148.9,1.265088,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,grammar_fix,medium,2,1002,1,,82.713,67,6178,74.69,0.112,74.79,7224,149.1,3.424733,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,false_premise_states,medium,2,1002,0,missing: \b26\b|vinte e seis,15.868,33,1196,75.37,0.125,75.97,7224,148.5,0.654615,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,list_without_words,medium,2,1002,1,,21.732,55,1596,73.44,0.102,73.79,7224,147.8,0.892416,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,dates_in_order,hard,2,1002,1,,36.441,97,2711,74.39,0.121,74.64,7224,148.4,1.502542,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,translate_keep_code,easy,2,1002,0,missing: `/api/v2/orders`,82.683,71,6195,74.92,0.119,75.03,7224,149.1,3.42552,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,relative_deadlines_order,hard,2,1002,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,22.086,87,1624,73.53,0.149,74.03,7224,148.3,0.90952,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,false_premise_holiday,medium,2,1002,1,,83.12,40,6230,74.95,0.097,75.04,7224,149.0,3.439849,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,yes_no_only,medium,2,1002,1,,1.635,39,114,69.73,0.125,75.51,7224,148.7,0.067554,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,false_premise_capital,medium,2,1002,1,,9.237,33,677,73.29,0.088,74.0,7224,147.9,0.379642,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,exact_word_count,hard,2,1002,1,,3.3,36,242,73.34,0.09,75.39,7224,148.9,0.136524,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,chat_pt,weekday_of_date,hard,2,1002,0,missing: sexta,83.523,39,6173,73.91,0.089,73.99,7224,148.8,3.452595,,stop,,,,c578c34b848c
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_0,easy,2,1002,1,,16.939,164,1255,74.09,0.179,74.88,7224,147.3,0.695343,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_12,easy,2,1002,1,,6.861,145,504,73.46,0.143,75.02,7224,149.5,0.286629,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_46,medium,2,1002,1,,23.804,215,1782,74.86,0.168,75.39,7224,148.8,0.985413,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_108,medium,2,1002,1,,37.803,169,2806,74.23,0.187,74.6,7224,148.1,1.557479,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,humaneval_129,hard,2,1002,1,,43.113,447,3168,73.48,0.37,74.12,7224,148.7,1.78293,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_3,easy,2,1002,1,,7.083,54,523,73.84,0.119,75.1,7224,148.5,0.2939,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_4,easy,2,1002,1,,26.694,111,1987,74.44,0.119,74.77,7224,148.8,1.105425,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_9,medium,2,1002,1,,10.87,69,800,73.59,0.118,74.4,7224,147.9,0.448337,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_11,easy,2,1002,1,,16.945,66,1253,73.94,0.101,74.39,7224,148.3,0.699832,,stop,,,,908376ec7f97
+2026-11-04-1511-pc-rtx2060-neohorse-4b,pc-rtx2060,neohorse-4b,coding_public,mbpp_20,medium,2,1002,1,,55.04,61,4064,73.84,0.103,73.98,7224,147.8,2.262088,,stop,,,,908376ec7f97
