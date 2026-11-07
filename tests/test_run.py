@@ -23,9 +23,15 @@ class FakeServer(BaseHTTPRequestHandler):
     requests = []
     bad_models = set()
     streamed = 0
+    status = None  # an HTTP error code to answer every request with
 
     def do_POST(self):
         body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+        if FakeServer.status:
+            self.send_response(FakeServer.status)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
         FakeServer.requests.append({"model": body["model"], "auth": self.headers.get("Authorization"),
                                     "tools": [t["function"]["name"] for t in body.get("tools") or []],
                                     "seed": body.get("seed"), "temperature": body.get("temperature"),
@@ -320,15 +326,46 @@ class TestRun(unittest.TestCase):
                 with self.subTest(model=m["name"], episode=path.parent.name):
                     run.check_sampling([m["name"]], {m["name"]: m["sampling"]})
 
-    def test_server_down_is_an_error_row_and_inconclusive(self):
+    def stopped_run(self, url):
+        """The run against a server that does not answer: it stops unfinished, with the cases it got to."""
         with mock.patch.object(run.env, "capture", return_value={}), mock.patch.object(client.time, "sleep"):
-            d = run.run("99-test", "pc-rtx2060", ["m1"], url="http://127.0.0.1:9/v1", use_cases={"agent"},
-                        sampling=pinned("m1"), **QUIET)
+            with self.assertRaisesRegex(run.RunError, "stopped answering"):
+                run.run("99-test", "pc-rtx2060", ["m1"], url=url, use_cases={"agent"}, sampling=pinned("m1"),
+                        **QUIET)
+        [d] = (self.tmp / "episodes" / "99-test" / "results" / "runs").iterdir()
+        return d
+
+    def test_a_server_down_stops_the_run_unfinished(self):
+        # 07/11: the tunnel to a RunPod pod dropped after 26 cases; the other 214 were connection errors scored as
+        # failures, in a run marked publishable. A run that loses its server is not a score of the model.
+        d = self.stopped_run("http://127.0.0.1:9/v1")
+        self.assertFalse((d / "meta.json").exists())  # unfinished: consolidate and copy-run leave it out
         rows = read(d / "executions.csv")
-        self.assertTrue(all(r["passed"] == "0" and r["reason"].startswith("error:") for r in rows))
-        raw = [json.loads(l) for l in (d / "responses.jsonl").read_text().splitlines()]
-        self.assertTrue(all(l["error"] and l["text"] == "" for l in raw))
-        self.assertEqual(read(d / "verdicts.csv")[0]["inconclusive"], verdict.LABELS["agent"])
+        self.assertEqual(len(rows), run.MAX_SERVER_ERRORS)
+        self.assertTrue(all(r["reason"].startswith("error: connection") for r in rows))
+
+    def test_a_server_that_keeps_failing_stops_the_run(self):
+        # a router whose model crashed answers 5xx to every request
+        FakeServer.status = 503
+        self.addCleanup(setattr, FakeServer, "status", None)
+        d = self.stopped_run(self.server())
+        self.assertEqual(len(read(d / "executions.csv")), run.MAX_SERVER_ERRORS)
+
+    def test_one_lost_answer_does_not_stop_the_run(self):
+        real = client.chat
+        calls = []
+
+        def flaky(*a, **k):
+            calls.append(1)
+            if len(calls) in (2, 3):  # two in a row, one short of stopping
+                raise client.ClientError("connection: URLError")
+            return real(*a, **k)
+
+        with mock.patch.object(run.env, "capture", return_value={}), mock.patch.object(run.client, "chat", flaky):
+            d = run.run("99-test", "pc-rtx2060", ["m1"], url=self.server(), use_cases={"agent"},
+                        sampling=pinned("m1"), **QUIET)
+        self.assertTrue((d / "meta.json").exists())
+        self.assertEqual(sum(r["reason"].startswith("error:") for r in read(d / "executions.csv")), 2)
 
 
 class TestVerdict(unittest.TestCase):

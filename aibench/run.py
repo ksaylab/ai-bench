@@ -8,6 +8,7 @@ with the cases' good examples, with no network: it exercises the plumbing.
 import csv
 import json
 import os
+import re
 import shutil
 import time
 from datetime import datetime
@@ -18,9 +19,16 @@ from aibench import calibration, cases, client, env, gpu, judge, verdict
 ROOT = Path(__file__).resolve().parents[1]
 EPISODES = ROOT / "episodes"
 MIN_RUNS = verdict.MIN_RUNS
+# cases in a row the server does not answer (connection lost or HTTP 5xx, after the client's own retries) before the
+# run stops unfinished: a run that lost its server is not a score of the model
+MAX_SERVER_ERRORS = 3
 COLUMNS = ["run_id", "machine", "model", "use_case", "case", "tier", "rep", "seed", "passed", "reason", "time_s",
            "prompt_tokens", "completion_tokens", "tok_s", "ttft_s", "gen_tok_s", "peak_vram_mib", "avg_power_w",
            "energy_wh", "cost_usd", "finish", "judge_score", "judge_cost_usd", "context_words", "battery"]
+
+
+def server_error(message):
+    return message.startswith("connection:") or re.match(r"HTTP 5\d\d\b", message) is not None
 
 
 class RunError(Exception):
@@ -255,6 +263,7 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
     meta["stream"] = stream and not simulate
     gpu_summary = {}
     rows = []
+    down = 0  # cases in a row the server did not answer
     with open(dest / "executions.csv", "w", newline="", encoding="utf-8") as f, \
             open(dest / "responses.jsonl", "w", encoding="utf-8") as raw:
         w = csv.DictWriter(f, fieldnames=COLUMNS)
@@ -275,6 +284,7 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                             passed, reason = cases.check(c, r)
                         except client.ClientError as e:
                             r, passed, reason = {"error": str(e)}, False, f"error: {e}"
+                        down = down + 1 if server_error(r.get("error", "")) else 0
                         power = sampler.window(t0, time.monotonic())
                         score = judge_cost = ""
                         if judge_model and c.get("rubric") and r.get("text") and not simulate:
@@ -300,6 +310,10 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
                         raw.write(json.dumps(response_line(row, r), ensure_ascii=False) + "\n")
                         raw.flush()
                         rows.append(row)
+                        if down >= MAX_SERVER_ERRORS:
+                            raise RunError(f"the server stopped answering ({r['error']}) on {down} cases in a "
+                                           "row: the run stops unfinished, with no meta.json, so it is not merged "
+                                           f"({_rel_name(dest)})")
                     done = [x for x in rows if x["model"] == contestant(model, level) and x["rep"] == rep]
                     log(f"{contestant(model, level)} · run {rep + 1}/{runs}: {sum(x['passed'] for x in done)}/{len(done)}")
             finally:

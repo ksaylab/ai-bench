@@ -38,6 +38,9 @@ score = passed executions / all executions of the battery, over all runs   (in %
 | **Inconclusive** | fewer than 3 runs, or more than 10% of the executions failed for a technical reason (connection or server error) |
 | **Unstable** | the worst and the best run fall on different sides of the threshold (shown like Inconclusive, never as Good for / Not good for) |
 
+- A run whose server stops answering (connection lost or HTTP 5xx on 3 cases in a row, `MAX_SERVER_ERRORS` in
+  [`aibench/run.py`](aibench/run.py)) stops unfinished, with no `meta.json`: it is never merged, so a lost server is
+  not scored as the model's failures. Isolated errors stay in the run and count toward Inconclusive.
 - The thresholds are in [`aibench/verdict.py`](aibench/verdict.py) (`GOOD_THRESHOLD`, `MIN_RUNS`, `MAX_ERROR_RATE`).
   80% means the model gets at least 4 out of 5 tasks right, on every run: below that, you would have to double-check
   everything it does in that use case.
