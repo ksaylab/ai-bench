@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-11-06-2011-pc-rtx2060-speed-neohorse-4b",
+  "kind": "speed",
+  "episode": "03-is-bigger-better",
+  "machine": "pc-rtx2060",
+  "models": [
+    "neohorse-4b"
+  ],
+  "depths": [
+    0,
+    16384,
+    32768
+  ],
+  "repetitions": 3,
+  "fit_target_mib": 1536,
+  "start": "2026-11-06T20:11:52",
+  "end": "2026-11-06T20:12:44",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true,
+  "copied_from": {
+    "episode": "02-what-runs-on-8gb",
+    "run_id": "2026-11-06-2011-pc-rtx2060-speed-neohorse-4b"
+  }
+}

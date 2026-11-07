@@ -115,5 +115,45 @@ class TestCopyRun(unittest.TestCase):
         self.assertTrue(self.dest().exists())
 
 
+class TestCopySpeedRun(unittest.TestCase):
+    """A speed run (llama-bench) measures a GGUF on a machine: another episode that lists the same model with the
+    same GGUF on that machine gets the copy. Sampling, seed and thinking level do not apply: llama-bench sends none."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp)
+        p = mock.patch.object(run, "EPISODES", self.tmp / "episodes")
+        p.start()
+        self.addCleanup(p.stop)
+        models_toml(self.tmp / "episodes" / "02-a" / "models.toml", [{"name": "m1", "gguf": "m1-Q4.gguf"}])
+        # the destination pins a thinking level and other sampling: irrelevant to a speed run
+        models_toml(self.tmp / "episodes" / "04-c" / "models.toml",
+                    [{"name": "m1", "gguf": "m1-Q4.gguf", "thinking": 2048, "sampling": {"temperature": 0.6}}])
+        self.src = self.tmp / "episodes" / "02-a" / "results" / "runs" / "2026-11-06-2011-pc-rtx2060-speed-m1"
+        self.src.mkdir(parents=True)
+        meta = {"run_id": self.src.name, "kind": "speed", "episode": "02-a", "machine": "pc-rtx2060",
+                "models": ["m1"], "depths": [0], "repetitions": 3, "publishable": True, "smoke": False,
+                "simulated": False}
+        (self.src / "meta.json").write_text(json.dumps(meta), encoding="utf-8")
+        (self.src / "env.json").write_text(json.dumps({"server": {}}), encoding="utf-8")
+        (self.src / "speed.csv").write_text("machine,model,gguf,metric\npc-rtx2060,m1,m1-Q4.gguf,pp\n"
+                                            "pc-rtx2060,m1,m1-Q4.gguf,tg\n", encoding="utf-8")
+
+    def test_the_same_gguf_is_copied(self):
+        d = run.copy_run(self.src, "04-c")
+        self.assertEqual(json.loads((d / "meta.json").read_text())["copied_from"],
+                         {"episode": "02-a", "run_id": self.src.name})
+        self.assertEqual((d / "speed.csv").read_text(), (self.src / "speed.csv").read_text())
+
+    def test_another_gguf_or_machine_is_refused(self):
+        models_toml(self.tmp / "episodes" / "04-c" / "models.toml", [{"name": "m1", "gguf": "m1-Q8.gguf"}])
+        with self.assertRaisesRegex(run.RunError, "GGUF"):
+            run.copy_run(self.src, "04-c")
+        models_toml(self.tmp / "episodes" / "04-c" / "models.toml",
+                    [{"name": "m1", "gguf": "m1-Q4.gguf", "machines": ["runpod"]}])
+        with self.assertRaisesRegex(run.RunError, "m1"):
+            run.copy_run(self.src, "04-c")
+
+
 if __name__ == "__main__":
     unittest.main()

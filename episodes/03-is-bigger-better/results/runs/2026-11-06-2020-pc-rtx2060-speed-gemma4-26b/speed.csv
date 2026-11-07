@@ -1,0 +1,8 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib
+pc-rtx2060,,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.45,,,,,3,error,did not fit in memory,,106,45.1,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,pp,0,510.92,8.7,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,tg,0,30.6,0.47,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,pp,16384,452.93,4.59,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,tg,16384,28.95,1.93,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,pp,32768,364.89,72.77,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,tg,32768,26.76,2.88,3,ok,,b12070-00f113ece,6038,82.8,1536

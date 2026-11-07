@@ -1,0 +1,25 @@
+{
+  "run_id": "2026-11-06-2020-pc-rtx2060-speed-gemma4-26b",
+  "kind": "speed",
+  "episode": "04-does-thinking-pay",
+  "machine": "pc-rtx2060",
+  "models": [
+    "gemma4-26b"
+  ],
+  "depths": [
+    0,
+    16384,
+    32768
+  ],
+  "repetitions": 3,
+  "fit_target_mib": 1536,
+  "start": "2026-11-06T20:20:33",
+  "end": "2026-11-06T20:24:25",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true,
+  "copied_from": {
+    "episode": "02-what-runs-on-8gb",
+    "run_id": "2026-11-06-2020-pc-rtx2060-speed-gemma4-26b"
+  }
+}

@@ -384,7 +384,8 @@ def rescore(folder, log=print):
 
 def copy_run(folder, episode):
     """Copies a finished run into another episode that lists the same model on the same machine with the same GGUF
-    and the same pinned sampling, seed and thinking level (`thinking` in models.toml; none = the server preset's):
+    and the same pinned sampling, seed and thinking level (`thinking` in models.toml; none = the server preset's; a
+    speed run only needs the same GGUF, the one in its speed.csv: llama-bench sends no sampling or thinking level):
     running it again would ask the same questions with the same seeds. The
     copy says where it came from (`copied_from` in meta.json); the source is not changed. The GGUF is the one the
     server reported (env.json), the sampling the one the run sent (meta.json)."""
@@ -400,7 +401,12 @@ def copy_run(folder, episode):
         raise RunError(f"{src.name} is already a run of the same episode {episode}")
     with open(toml, "rb") as f:
         entries = {m["name"]: m for m in tomllib.load(f).get("model", [])}
-    served = (json.loads((src / "env.json").read_text(encoding="utf-8")).get("server") or {}).get("gguf") or {}
+    speed = meta.get("kind") == "speed"
+    if speed:  # llama-bench measured a GGUF file: the one in speed.csv; no sampling, seed or thinking level
+        with open(src / "speed.csv", encoding="utf-8") as f:
+            served = {r["model"]: r["gguf"] for r in csv.DictReader(f)}
+    else:
+        served = (json.loads((src / "env.json").read_text(encoding="utf-8")).get("server") or {}).get("gguf") or {}
     problems = []
     for m in meta["models"]:
         e = entries.get(m)
@@ -409,6 +415,8 @@ def copy_run(folder, episode):
             continue
         if served.get(m) != e.get("gguf"):
             problems.append(f"{m}: the run used the GGUF {served.get(m)!r}, {episode} lists {e.get('gguf')!r}")
+        if speed:
+            continue
         want = e.get("sampling") or {}
         ran = meta["sampling"][m]
         if client.sampling_body({k: v for k, v in want.items() if k != "seed"}) != ran["sent"]:

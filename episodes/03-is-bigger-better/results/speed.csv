@@ -1,1 +1,33 @@
-machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,pp,0,2398.16,17.77,3,ok,,b12070-00f113ece,4338,138.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,tg,0,92.19,0.24,3,ok,,b12070-00f113ece,4338,138.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,pp,16384,1626.11,15.01,3,ok,,b12070-00f113ece,4338,138.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,tg,16384,82.15,0.03,3,ok,,b12070-00f113ece,4338,138.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,pp,32768,1258.36,19.74,3,ok,,b12070-00f113ece,4338,138.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,tg,32768,73.9,0.07,3,ok,,b12070-00f113ece,4338,138.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,pp,0,2485.3,52.32,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,tg,0,79.39,0.16,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,pp,16384,1604.72,6.69,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,tg,16384,70.38,0.01,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,pp,32768,1228.58,4.51,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,tg,32768,64.41,0.03,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,pp,0,1383.72,35.56,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,tg,0,55.66,0.03,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,pp,16384,1078.06,1.19,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,tg,16384,51.88,0.05,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,pp,32768,897.14,7.35,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,tg,32768,48.55,0.0,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.04,,,,,3,error,did not fit in memory,,106,48.0,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,pp,0,311.9,140.92,3,ok,,b12070-00f113ece,6284,74.1,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,tg,0,25.74,4.81,3,ok,,b12070-00f113ece,6284,74.1,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,pp,16384,393.25,8.25,3,ok,,b12070-00f113ece,6284,74.1,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,tg,16384,25.19,4.39,3,ok,,b12070-00f113ece,6284,74.1,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,pp,32768,367.63,6.15,3,ok,,b12070-00f113ece,6284,74.1,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,tg,32768,22.43,3.61,3,ok,,b12070-00f113ece,6284,74.1,1536
+pc-rtx2060,,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.45,,,,,3,error,did not fit in memory,,106,45.1,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,pp,0,510.92,8.7,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,tg,0,30.6,0.47,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,pp,16384,452.93,4.59,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,tg,16384,28.95,1.93,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,pp,32768,364.89,72.77,3,ok,,b12070-00f113ece,6038,82.8,1536
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,tg,32768,26.76,2.88,3,ok,,b12070-00f113ece,6038,82.8,1536

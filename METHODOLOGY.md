@@ -302,7 +302,9 @@ the other 11.
   `python3 -m aibench copy-run <run folder> --episode <other>` copies the finished run instead (`copied_from` in
   `meta.json`), and refuses when the GGUF the server reported, the sampling the run sent, the base seed or the
   thinking level (`--thinking`, against the episode's `thinking` in `models.toml`; none means the preset's budget)
-  differ from what the other episode pins.
+  differ from what the other episode pins. A `speed` run is copied the same way when the other episode lists the
+  model on that machine with the same GGUF (the one in its `speed.csv`): llama-bench sends no sampling, seed or
+  thinking level.
 - **Local server settings are recorded (implemented):** the `llama-server` command line (context size, `-ngl`,
   `-fa`, `--n-cpu-moe`, `--parallel`) goes into `meta.json` (`server_args`, from `--server-args` or
   `AIBENCH_SERVER_ARGS`); `env.json` keeps the build and the GGUF and, in router mode, each model's preset as the
@@ -344,7 +346,7 @@ Local (PC):
 
 | Metric | How | Status |
 | --- | --- | --- |
-| Prompt processing and generation speed (pp512, tg128, tok/s at several depths) | `python3 -m aibench speed` (`aibench/speed.py`, `llama-bench`, ≥ 3 repetitions); each speed run writes `meta.json` and `verdict` merges the publishable ones into `results/speed.csv` | Implemented; run on the PC for episode 02 (2026-11-06, depths 0, 16384 and 32768; the two models larger than 8 GB measured with `--fit-target 1536`, part on the CPU as in the server's presets) |
+| Prompt processing and generation speed (pp512, tg128, tok/s at several depths) | `python3 -m aibench speed` (`aibench/speed.py`, `llama-bench`, ≥ 3 repetitions); each speed run writes `meta.json` and `verdict` merges the publishable ones into `results/speed.csv` | Implemented; run on the PC for episode 02 and copied to 03 and 04 (2026-11-06, depths 0, 16384 and 32768; the two models larger than 8 GB measured with `--fit-target 1536`, part on the CPU as in the server's presets) |
 | Time to first token (TTFT) | streaming responses in `client.chat` (`ttft_s` in `executions.csv`, `avg_ttft_s` in `scores.csv`); with `--no-stream`, llama-server's reported prompt time instead | Implemented |
 | Peak VRAM (MiB) | `nvidia-smi --query-gpu=index,memory.used,power.draw -lms 500` sampled during the run where the model server runs (over ssh with `AIBENCH_SERVER_HOST`), `aibench/gpu.py`: `peak_vram_mib` per execution and use case, and in `speed.csv` | Implemented |
 | Power (W, average and peak; Wh per battery) | same sampler: `avg_power_w` and `energy_wh` per execution, `avg_power_w` and `wh_per_run` (Wh per battery run) in `scores.csv`, peak power per model in `meta.json` (`gpu_sampling`) | Implemented |

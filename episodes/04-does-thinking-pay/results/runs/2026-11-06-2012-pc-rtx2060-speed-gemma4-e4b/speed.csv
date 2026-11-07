@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,pp,0,2485.3,52.32,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,tg,0,79.39,0.16,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,pp,16384,1604.72,6.69,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,tg,16384,70.38,0.01,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,pp,32768,1228.58,4.51,3,ok,,b12070-00f113ece,4008,135.3,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-e4b,gemma-4-E4B_q4_0-it.gguf,4.79,tg,32768,64.41,0.03,3,ok,,b12070-00f113ece,4008,135.3,
