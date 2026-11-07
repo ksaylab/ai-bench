@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,lfm3-1.7b,LFM3-1.7B-Q8_0.gguf,1.71,pp,0,6448.08,304.79,3,ok,,b12070-00f113ece,2578,137.2,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,lfm3-1.7b,LFM3-1.7B-Q8_0.gguf,1.71,tg,0,164.76,1.57,3,ok,,b12070-00f113ece,2578,137.2,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,lfm3-1.7b,LFM3-1.7B-Q8_0.gguf,1.71,pp,16384,5058.59,47.61,3,ok,,b12070-00f113ece,2578,137.2,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,lfm3-1.7b,LFM3-1.7B-Q8_0.gguf,1.71,tg,16384,150.61,0.12,3,ok,,b12070-00f113ece,2578,137.2,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,lfm3-1.7b,LFM3-1.7B-Q8_0.gguf,1.71,pp,32768,4022.87,17.16,3,ok,,b12070-00f113ece,2578,137.2,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,lfm3-1.7b,LFM3-1.7B-Q8_0.gguf,1.71,tg,32768,139.47,0.21,3,ok,,b12070-00f113ece,2578,137.2,

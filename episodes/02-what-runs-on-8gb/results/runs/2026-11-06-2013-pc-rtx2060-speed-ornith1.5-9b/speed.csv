@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,pp,0,1383.72,35.56,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,tg,0,55.66,0.03,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,pp,16384,1078.06,1.19,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,tg,16384,51.88,0.05,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,pp,32768,897.14,7.35,3,ok,,b12070-00f113ece,6586,136.6,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,ornith1.5-9b,Ornith-1.5-9B-Q4_K_M.gguf,5.37,tg,32768,48.55,0.0,3,ok,,b12070-00f113ece,6586,136.6,

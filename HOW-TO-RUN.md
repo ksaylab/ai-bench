@@ -86,8 +86,14 @@ With Ollama instead of llama-server: `--url http://localhost:11434/v1` and `--mo
 folder there (`rsync`/`scp`), run
 
 ```bash
-python3 -m aibench speed --episode 02-what-runs-on-8gb --machine pc-rtx2060 --models-dir ~/models --depths 0,16384,32768
+PATH=~/opt/llama.cpp/atual/bin:$PATH python3 -m aibench speed --episode 02-what-runs-on-8gb --machine pc-rtx2060 \
+  --models-dir ~/models --depths 0,16384,32768 --fit-target 1536 --timeout 7200 --model <name> --label speed-<name>
 ```
+
+A model that does not fit with every layer on the card (`-ngl 99`) gets an error row ("did not fit in memory", which
+episode 02 shows) and, with `--fit-target 1536`, is measured again with llama-bench placing the layers itself and
+leaving part of the model on the CPU, with the same 1536 MiB margin as the server's presets (`fit_target_mib` on
+those rows).
 
 and bring back the new folder in `episodes/02-what-runs-on-8gb/results/runs/`; `verdict` merges it into
 `results/speed.csv`. On the PC, `speed` also samples nvidia-smi: peak VRAM and average power per model.

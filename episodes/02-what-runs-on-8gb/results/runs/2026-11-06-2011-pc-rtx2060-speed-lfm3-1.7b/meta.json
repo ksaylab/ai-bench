@@ -1,0 +1,21 @@
+{
+  "run_id": "2026-11-06-2011-pc-rtx2060-speed-lfm3-1.7b",
+  "kind": "speed",
+  "episode": "02-what-runs-on-8gb",
+  "machine": "pc-rtx2060",
+  "models": [
+    "lfm3-1.7b"
+  ],
+  "depths": [
+    0,
+    16384,
+    32768
+  ],
+  "repetitions": 3,
+  "fit_target_mib": 1536,
+  "start": "2026-11-06T20:11:31",
+  "end": "2026-11-06T20:11:52",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true
+}

@@ -55,6 +55,40 @@ class TestSpeed(unittest.TestCase):
             rows = speed.measure("pc-rtx2060", "m", self.gguf, [0], 3)
         self.assertEqual((rows[0]["status"], rows[0]["reason"]), ("error", "did not fit in memory"))
 
+    def test_a_fitted_command_lets_llama_bench_place_the_layers(self):
+        cmd = speed.command("m.gguf", [0, 32768], 3, fit_target=1536)
+        self.assertNotIn("-ngl", cmd)  # an explicit layer count would override the fit
+        self.assertEqual(cmd[cmd.index("-fitt") + 1], "1536")
+        self.assertEqual(cmd[cmd.index("-fitc") + 1], str(32768 + 512 + 128))  # room for the deepest test
+        self.assertEqual(speed.command("m.gguf", [0], 3)[speed.command("m.gguf", [0], 3).index("-ngl") + 1], "99")
+
+    def test_a_model_that_does_not_fit_is_measured_again_fitted(self):
+        """The error row says it does not fit on the card (episode 02); the fitted rows say how fast it runs with
+        part of it on the CPU, placed as the server places it (--fit-target)."""
+        (self.tmp / "out.json").write_text(json.dumps(OUTPUT))
+        script = (f'case "$*" in *-fitt*) cat {self.tmp / "out.json"} ;; '
+                  f'*) echo "failed to allocate buffer" >&2; exit 1 ;; esac\n')
+        with self.fake(script):
+            rows = speed.measure("pc-rtx2060", "m", self.gguf, [0, 16384], 3, fit_target=1536)
+        self.assertEqual([(r["status"], r["fit_target_mib"]) for r in rows],
+                         [("error", ""), ("ok", 1536), ("ok", 1536)])
+        self.assertEqual(rows[0]["reason"], "did not fit in memory")
+
+    def test_a_model_that_fits_is_not_fitted(self):
+        (self.tmp / "out.json").write_text(json.dumps(OUTPUT))
+        calls = self.tmp / "calls"
+        with self.fake(f'echo "$*" >> {calls}\ncat {self.tmp / "out.json"}\n'):
+            rows = speed.measure("pc-rtx2060", "m", self.gguf, [0, 16384], 3, fit_target=1536)
+        self.assertEqual(len(calls.read_text().splitlines()), 1)
+        self.assertEqual({r["fit_target_mib"] for r in rows}, {""})
+
+    def test_other_errors_are_not_retried(self):
+        calls = self.tmp / "calls"
+        with self.fake(f'echo "$*" >> {calls}\necho "unknown model architecture" >&2\nexit 1\n'):
+            rows = speed.measure("pc-rtx2060", "m", self.gguf, [0], 3, fit_target=1536)
+        self.assertEqual(len(calls.read_text().splitlines()), 1)
+        self.assertEqual((rows[0]["status"], rows[0]["reason"]), ("error", "unknown model architecture"))
+
     def test_fewer_than_3_repetitions_is_refused(self):
         with self.assertRaises(ValueError):
             speed.measure("pc-rtx2060", "m", self.gguf, [0], 2)

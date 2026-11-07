@@ -12,6 +12,8 @@ when part of the model spills to the CPU, how fast it runs and what each model i
 - `results/runs/`: the six PC models are copies of episode 04's 2048 runs (`copied_from` in `meta.json`). The
   2026-11-02 runs (unpinned sampling) and the 2026-11-04 runs (8192 tokens, or no thinking level) are pilot runs
   (METHODOLOGY.md section 8), kept as data and not merged.
-- Not run yet: `gemma4-12b` and `qwen3.8-27b-q3` (no preset on the PC's server yet), and `speed`.
+- `speed`: the six PC models (2026-11-06). `qwen3.6-35b-a3b` and `gemma4-26b` do not fit with every layer on the
+  card (error row) and are measured again fitted, part on the CPU (`fit_target_mib` = 1536).
+- Not run yet: `gemma4-12b` and `qwen3.8-27b-q3` (no preset on the PC's server yet).
 
 Commands: [HOW-TO-RUN.md](../../HOW-TO-RUN.md).

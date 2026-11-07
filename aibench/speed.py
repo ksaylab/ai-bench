@@ -2,7 +2,9 @@
 
 Runs `llama-bench -o json` with `-r` repetitions (at least 3) and writes one CSV row per measurement. When the model
 does not load (not enough memory, for example), the row gets status `error` and the reason: that is how episode 2
-shows what does not fit. With an NVIDIA GPU, nvidia-smi is sampled during each model's measurement: peak VRAM and
+shows what does not fit. With `fit_target` (MiB), a model that does not fit with every layer on the GPU is measured
+again with llama-bench's --fit-target, which leaves part of it on the CPU as the server's presets do (`fit_target_mib`
+on those rows; empty when every layer is on the GPU). With an NVIDIA GPU, nvidia-smi is sampled during each model's measurement: peak VRAM and
 average power go into the model's rows (empty without a GPU).
 """
 import json
@@ -15,12 +17,21 @@ from aibench import gpu
 from aibench.env import scrub
 
 COLUMNS = ["machine", "gpu", "model", "gguf", "gguf_gib", "metric", "depth", "tok_s", "stddev_tok_s", "repetitions",
-           "status", "reason", "build", "peak_vram_mib", "avg_power_w"]
+           "status", "reason", "build", "peak_vram_mib", "avg_power_w", "fit_target_mib"]
 
 
-def command(gguf, depths, repetitions=3, ngl=99, flash=True, extra=()):
-    cmd = ["llama-bench", "-m", str(gguf), "-p", "512", "-n", "128", "-d", ",".join(map(str, depths)),
-           "-r", str(repetitions), "-ngl", str(ngl), "-o", "json"]
+PROMPT, GEN = 512, 128
+
+
+def command(gguf, depths, repetitions=3, ngl=99, flash=True, extra=(), fit_target=None):
+    """Every layer on the GPU (-ngl), or, with `fit_target`, llama-bench places them itself (--fit-target, no -ngl:
+    an explicit layer count would override the fit), leaving room for the deepest test's context."""
+    cmd = ["llama-bench", "-m", str(gguf), "-p", str(PROMPT), "-n", str(GEN), "-d", ",".join(map(str, depths)),
+           "-r", str(repetitions), "-o", "json"]
+    if fit_target is None:
+        cmd += ["-ngl", str(ngl)]
+    else:
+        cmd += ["-fitt", str(fit_target), "-fitc", str(max(depths) + PROMPT + GEN)]
     if flash:
         cmd += ["-fa", "1"]
     return cmd + list(extra)
@@ -38,20 +49,36 @@ def parse(output_json, machine, model, gguf, repetitions):
     return rows
 
 
-def measure(machine, model, gguf, depths=(0, 16384), repetitions=3, timeout=3600, extra=(), sampler=None):
-    """llama-bench rows for one GGUF; `sampler` (gpu.Sampler) adds peak VRAM and average power to every row."""
+def measure(machine, model, gguf, depths=(0, 16384), repetitions=3, timeout=3600, extra=(), sampler=None,
+            fit_target=None):
+    """llama-bench rows for one GGUF; `sampler` (gpu.Sampler) adds peak VRAM and average power to every row, over
+    each attempt's own time window. With `fit_target`, a model that does not fit on the GPU is measured again
+    fitted."""
     sampler = sampler or gpu.Disabled("no sampler")
-    t0 = time.monotonic()
+    attempts = [None] if fit_target is None else [None, fit_target]
+    rows = []
     sampler.start()
     try:
-        rows = _measure(machine, model, gguf, depths, repetitions, timeout, extra)
+        for fit in attempts:
+            t0 = time.monotonic()
+            got = _measure(machine, model, gguf, depths, repetitions, timeout, extra, fit)
+            rows.append((got, fit, t0, time.monotonic()))
+            if not got or got[0]["reason"] != NO_FIT:
+                break
     finally:
         sampler.stop()
-    power = sampler.window(t0, time.monotonic())
-    return [{**r, "peak_vram_mib": power["peak_vram_mib"], "avg_power_w": power["avg_power_w"]} for r in rows]
+    out = []
+    for got, fit, t0, t1 in rows:
+        power = sampler.window(t0, t1)
+        out += [{**r, "peak_vram_mib": power["peak_vram_mib"], "avg_power_w": power["avg_power_w"],
+                 "fit_target_mib": "" if fit is None else fit} for r in got]
+    return out
 
 
-def _measure(machine, model, gguf, depths, repetitions, timeout, extra):
+NO_FIT = "did not fit in memory"
+
+
+def _measure(machine, model, gguf, depths, repetitions, timeout, extra, fit_target=None):
     if repetitions < 3:
         raise ValueError("the methodology requires at least 3 repetitions")
     if not shutil.which("llama-bench"):
@@ -62,13 +89,14 @@ def _measure(machine, model, gguf, depths, repetitions, timeout, extra):
             "gguf_gib": round(Path(gguf).stat().st_size / 2**30, 2), "tok_s": "", "stddev_tok_s": "",
             "repetitions": repetitions, "build": ""}
     try:
-        r = subprocess.run(command(gguf, depths, repetitions, extra=extra), capture_output=True, text=True,
+        r = subprocess.run(command(gguf, depths, repetitions, extra=extra, fit_target=fit_target),
+                           capture_output=True, text=True,
                            timeout=timeout)
     except subprocess.TimeoutExpired:
         return [{**base, "metric": "", "depth": "", "status": "error", "reason": "timeout"}]
     if r.returncode != 0 or not r.stdout.strip().startswith("["):
         reason = next((l for l in reversed(r.stderr.splitlines()) if l.strip()), "failed")
         if "out of memory" in r.stderr.lower() or "failed to allocate" in r.stderr.lower():
-            reason = "did not fit in memory"
+            reason = NO_FIT
         return [{**base, "metric": "", "depth": "", "status": "error", "reason": scrub(reason)[:200]}]
     return parse(r.stdout, machine, model, gguf, repetitions)

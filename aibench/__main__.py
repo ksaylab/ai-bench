@@ -129,6 +129,10 @@ def main(argv=None):
     p.add_argument("--depths", default="0,16384")
     p.add_argument("--repetitions", type=int, default=3)
     p.add_argument("--label", default="speed")
+    p.add_argument("--timeout", type=int, default=3600, help="seconds per model and attempt (llama-bench)")
+    p.add_argument("--fit-target", type=int, help="MiB: a model that does not fit with every layer on the GPU is "
+                                                  "measured again with llama-bench --fit-target (part on the CPU, "
+                                                  "as the server's --fit presets)")
     p.add_argument("--no-gpu-sampling", action="store_true", help="do not sample nvidia-smi")
 
     p = sub.add_parser("cost", help="episode 1: monthly cost of buying vs renting")
@@ -221,7 +225,8 @@ def main(argv=None):
             for m in targets:
                 print(f"measuring {m['name']}…", file=sys.stderr)
                 sampler = gpu.Disabled("--no-gpu-sampling") if a.no_gpu_sampling else gpu.Sampler()
-                rows += speed.measure(a.machine, m["name"], m["path"], depths, a.repetitions, sampler=sampler)
+                rows += speed.measure(a.machine, m["name"], m["path"], depths, a.repetitions, sampler=sampler,
+                                      fit_target=a.fit_target, timeout=a.timeout)
                 print(f"  GPU sampling: {sampler.status}", file=sys.stderr)
             run_id = f"{start:%Y-%m-%d-%H%M}-{a.machine}-{a.label}"
             path = EPISODES / a.episode / "results" / "runs" / run_id / "speed.csv"
@@ -230,6 +235,7 @@ def main(argv=None):
                 json.dumps(env.capture(a.machine), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             meta = {"run_id": run_id, "kind": "speed", "episode": a.episode, "machine": a.machine,
                     "models": [m["name"] for m in targets], "depths": depths, "repetitions": a.repetitions,
+                    "fit_target_mib": a.fit_target,
                     "start": start.isoformat(timespec="seconds"), "end": datetime.now().isoformat(timespec="seconds"),
                     "smoke": False, "simulated": False, "publishable": True}
             (path.parent / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n",
