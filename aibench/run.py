@@ -230,7 +230,7 @@ def run(episode, machine, models, runs=MIN_RUNS, url=None, use_cases=None, judge
     dest = Path(out) if out else (Path(root) if root else ep / "results") / "runs" / run_id
     dest.mkdir(parents=True, exist_ok=True)
     environment = {"machine": machine, "simulated": True} if simulate else env.capture(
-        machine, model_url, server_host=os.environ.get("AIBENCH_SERVER_HOST"), models=models)
+        machine, model_url, server_host=os.environ.get("AIBENCH_SERVER_HOST"), models=models, key=key)
     hashes = {uc: cases.battery_hash(uc, context_words) for uc in sorted({c["use_case"] for c in battery})}
     meta = {"run_id": run_id, "episode": episode or "", "machine": machine, "models": models, "runs": runs,
             "use_cases": sorted({c["use_case"] for c in battery}), "cases": [c["id"] for c in battery],

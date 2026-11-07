@@ -38,9 +38,19 @@ class Router(BaseHTTPRequestHandler):
         pass
 
 
+class KeyedRouter(Router):
+    """A router started with --api-key (the RunPod pods): without the key, every request is refused."""
+
+    def do_GET(self):
+        if self.headers.get("Authorization") != "Bearer k1":
+            self.send_error(401)
+            return
+        super().do_GET()
+
+
 class TestEnvRemoteServer(unittest.TestCase):
-    def router(self):
-        srv = HTTPServer(("127.0.0.1", 0), Router)
+    def router(self, handler=Router):
+        srv = HTTPServer(("127.0.0.1", 0), handler)
         threading.Thread(target=srv.serve_forever, daemon=True).start()
         self.addCleanup(srv.server_close)
         self.addCleanup(srv.shutdown)
@@ -88,6 +98,14 @@ class TestEnvRemoteServer(unittest.TestCase):
                                                            "reasoning-budget": "8192", "ctx-size": "90112",
                                                            "temperature": "0.6"}})
         self.assertNotIn("/ho" "me/", json.dumps(e))
+
+    def test_a_router_with_a_key_is_read_with_that_key(self):
+        # 2026-11-07: the RunPod router needs AIBENCH_SERVER_KEY; read without it, env.json had an empty server
+        url = self.router(KeyedRouter)
+        self.assertEqual(env.capture("pc-rtx2060", url, models=["small"])["server"], {})
+        e = env.capture("pc-rtx2060", url, models=["small"], key="k1")
+        self.assertEqual((e["server"]["build"], e["server"]["gguf"]), ("b1-abc", {"small": "Small-Q4.gguf"}))
+        self.assertNotIn("k1", json.dumps(e))
 
     def test_the_source_sent_over_ssh_runs_on_its_own(self):
         # the same stdin ssh would get, run by a local isolated interpreter instead of the remote one

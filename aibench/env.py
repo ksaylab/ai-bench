@@ -60,26 +60,28 @@ def gpus():
     return found
 
 
-def _get(url):
+def _get(url, key=None):
+    req = urllib.request.Request(url, headers={"Authorization": f"Bearer {key}"} if key else {})
     try:
-        with urllib.request.urlopen(url, timeout=5) as r:
+        with urllib.request.urlopen(req, timeout=5) as r:
             return json.load(r)
     except Exception:
         return None
 
 
-def server(url, models=()):
+def server(url, models=(), key=None):
     """llama-server build and GGUF file name (/props); empty when the server is not llama-server. In router mode
-    /props has no model, so the GGUF of each of `models` comes from its preset arguments in /v1/models."""
+    /props has no model, so the GGUF of each of `models` comes from its preset arguments in /v1/models. `key`: the
+    server's --api-key (the RunPod router), sent as the client sends it; it never goes into the result."""
     base = url[:-3] if url.endswith("/v1") else url
-    p = _get(base + "/props")
+    p = _get(base + "/props", key)
     if p is None:
         return {}
     model = (p.get("model_path") or "").rsplit("/", 1)[-1]
     presets = {}
     if p.get("role") == "router":
         model = {}
-        for m in (_get(base + "/v1/models") or {}).get("data", []):
+        for m in (_get(base + "/v1/models", key) or {}).get("data", []):
             status = m.get("status") or {}
             args = status.get("args") or []
             if m.get("id") in models and "--model" in args[:-1]:
@@ -142,7 +144,7 @@ def llama_version():
     return ""
 
 
-def capture(machine, url=None, server_host=None, models=()):
+def capture(machine, url=None, server_host=None, models=(), key=None):
     """Environment of the machine that runs the models. When the model server is another machine, its hardware is
     read over ssh from `server_host` (AIBENCH_SERVER_HOST); without it, no hardware is recorded rather than this
     machine's."""
@@ -154,5 +156,5 @@ def capture(machine, url=None, server_host=None, models=()):
     else:
         env.update(local())
     if url and "openrouter.ai" not in url:
-        env["server"] = server(url, models)
+        env["server"] = server(url, models, key)
     return env

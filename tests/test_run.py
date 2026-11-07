@@ -249,7 +249,7 @@ class TestRun(unittest.TestCase):
                 mock.patch.dict(run.os.environ, {"AIBENCH_SERVER_HOST": "gpu-box"}):
             run.run("99-test", "pc-rtx2060", ["m1", "m2"], url=url, use_cases={"agent"}, sampling=pinned("m1", "m2"),
                     **QUIET)
-        capture.assert_called_once_with("pc-rtx2060", url, server_host="gpu-box", models=["m1", "m2"])
+        capture.assert_called_once_with("pc-rtx2060", url, server_host="gpu-box", models=["m1", "m2"], key=None)
 
     def test_pinned_sampling_and_one_seed_per_repeat(self):
         url = self.server()
