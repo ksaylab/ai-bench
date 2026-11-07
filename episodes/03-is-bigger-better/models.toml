@@ -1,4 +1,6 @@
 # Models for "Is a bigger model better?": small x large pairs on the SAME hardware. `pair` groups the comparison.
+# A model may be in several pairs (`pair = ["a", "b"]`); each pair has one model in group "small" and one in "large".
+# `verdict` writes the comparison per pair to results/pairs.md and pairs.csv.
 # `name`: what the server receives in "model" (llama-server preset or Ollama tag).
 
 # `[model.sampling]`: pinned sampling sent on every call (METHODOLOGY.md 8.4); `seed` is the base seed, repeat
@@ -52,7 +54,7 @@ verified = true
 [[model]]
 name = "gemma4-e4b"
 gguf = "gemma-4-E4B_q4_0-it.gguf"
-pair = "e4b-vs-9b"
+pair = ["e4b-vs-9b", "e4b-vs-26b"]
 group = "small"
 machines = ["pc-rtx2060"]
 thinking = 2048
@@ -131,6 +133,7 @@ verified = true
 [[model]]
 name = "gemma4-26b"
 gguf = "gemma-4-26B_q4_0-it.gguf"
+pair = "e4b-vs-26b"
 group = "large"
 machines = ["pc-rtx2060"]
 thinking = 2048

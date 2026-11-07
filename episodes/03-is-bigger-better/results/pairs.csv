@@ -1,0 +1,17 @@
+pair,machine,use_case,small,large,small_pct,large_pct,points,small_verdict,large_verdict,outcome,small_minutes,large_minutes,time_ratio,small_wh,large_wh
+4b-vs-35b,pc-rtx2060,coding,neohorse-4b@think-2048,qwen3.6-35b-a3b@think-2048,55.0,71.7,16.7,Not good for,Not good for,neither Good for,10.75,23.74,2.2,26.5585,27.6022
+4b-vs-35b,pc-rtx2060,rag,neohorse-4b@think-2048,qwen3.6-35b-a3b@think-2048,91.7,93.3,1.6,Good for,Good for,both Good for,3.0,14.48,4.8,7.3955,17.8105
+4b-vs-35b,pc-rtx2060,agent,neohorse-4b@think-2048,qwen3.6-35b-a3b@think-2048,84.4,86.7,2.3,Good for,Good for,both Good for,0.76,3.7,4.9,1.8629,4.5813
+4b-vs-35b,pc-rtx2060,chat_pt,neohorse-4b@think-2048,qwen3.6-35b-a3b@think-2048,84.4,97.8,13.4,Good for,Good for,both Good for,5.25,9.01,1.7,13.0023,10.6187
+e4b-vs-9b,pc-rtx2060,coding,gemma4-e4b@think-2048,ornith1.5-9b@think-2048,53.3,65.0,11.7,Not good for,Not good for,neither Good for,5.15,10.86,2.1,12.7481,26.5538
+e4b-vs-9b,pc-rtx2060,rag,gemma4-e4b@think-2048,ornith1.5-9b@think-2048,78.3,90.0,11.7,Unstable,Good for,unsure (Unstable),1.75,1.72,1.0,4.3162,4.2396
+e4b-vs-9b,pc-rtx2060,agent,gemma4-e4b@think-2048,ornith1.5-9b@think-2048,95.6,97.8,2.2,Good for,Good for,both Good for,0.74,0.77,1.0,1.8249,1.9088
+e4b-vs-9b,pc-rtx2060,chat_pt,gemma4-e4b@think-2048,ornith1.5-9b@think-2048,71.1,82.2,11.1,Unstable,Good for,unsure (Unstable),0.82,1.52,1.9,2.029,3.8057
+e4b-vs-26b,pc-rtx2060,coding,gemma4-e4b@think-2048,gemma4-26b@think-2048,53.3,86.7,33.4,Not good for,Good for,only the large is Good for,5.15,23.63,4.6,12.7481,23.2936
+e4b-vs-26b,pc-rtx2060,rag,gemma4-e4b@think-2048,gemma4-26b@think-2048,78.3,91.7,13.4,Unstable,Good for,unsure (Unstable),1.75,9.58,5.5,4.3162,10.2341
+e4b-vs-26b,pc-rtx2060,agent,gemma4-e4b@think-2048,gemma4-26b@think-2048,95.6,100.0,4.4,Good for,Good for,both Good for,0.74,2.58,3.5,1.8249,2.7514
+e4b-vs-26b,pc-rtx2060,chat_pt,gemma4-e4b@think-2048,gemma4-26b@think-2048,71.1,100.0,28.9,Unstable,Good for,unsure (Unstable),0.82,6.24,7.6,2.029,6.1805
+12b-vs-27b,runpod,coding,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,,,,,,not run yet,,,,,
+12b-vs-27b,runpod,rag,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,,,,,,not run yet,,,,,
+12b-vs-27b,runpod,agent,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,,,,,,not run yet,,,,,
+12b-vs-27b,runpod,chat_pt,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,,,,,,not run yet,,,,,

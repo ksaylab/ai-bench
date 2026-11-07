@@ -202,6 +202,8 @@ Each card's speed comes from `speed` on RunPod (step above), and its verdict fro
 
 ```bash
 python3 -m aibench verdict --episode 02-what-runs-on-8gb
+# episode 03 (pairs in models.toml): verdict also writes the comparison per pair, results/pairs.md and pairs.csv
+python3 -m aibench verdict --episode 03-is-bigger-better
 export PRIVATE_TERMS_FILE=<path to the private list of terms, outside this repository>
 ./scripts/pre-publish-check.sh
 ```

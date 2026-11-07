@@ -8,7 +8,7 @@ import tomllib
 from datetime import datetime
 from pathlib import Path
 
-from aibench import calibration, cases, client, cost, env, gpu, run, speed, thinking
+from aibench import calibration, cases, client, cost, env, gpu, pairs, run, speed, thinking
 
 EPISODES = run.EPISODES
 COST_EPISODE = "01-buy-or-rent-gpu"
@@ -259,6 +259,8 @@ def main(argv=None):
             print(f"{n} publishable executions → {_rel(path)}")
             if v:
                 print((path.parent / "verdicts.md").read_text(encoding="utf-8"))
+            for p in pairs.write(a.episode):  # episode 03: the comparison per pair
+                print(f"wrote {_rel(p)}")
         elif a.cmd == "thinking":
             for path in thinking.write(a.episode):
                 print(f"wrote {_rel(path)}")
