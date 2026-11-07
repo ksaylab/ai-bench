@@ -1,3 +1,4 @@
 machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
 runpod,gemma4-12b@think-2048,86.7,96.7,100.0,95.6,100.0,Coding; RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese,,,,,3,9.36,
 runpod,qwen3.8-27b-q3@think-2048,91.7,98.3,100.0,86.7,96.7,Coding; RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese (easy only),,,,,3,18.37,
+runpod,qwen3.8-27b-q4@think-2048,88.3,98.3,100.0,84.4,100.0,Coding; RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese (easy only) (borderline),,,,,3,17.43,

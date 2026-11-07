@@ -11,7 +11,7 @@ e4b-vs-26b,pc-rtx2060,coding,gemma4-e4b@think-2048,gemma4-26b@think-2048,53.3,86
 e4b-vs-26b,pc-rtx2060,rag,gemma4-e4b@think-2048,gemma4-26b@think-2048,78.3,91.7,13.4,Unstable,Good for,unsure (Unstable),1.75,9.58,5.5,4.3162,10.2341
 e4b-vs-26b,pc-rtx2060,agent,gemma4-e4b@think-2048,gemma4-26b@think-2048,95.6,100.0,4.4,Good for,Good for,both Good for,0.74,2.58,3.5,1.8249,2.7514
 e4b-vs-26b,pc-rtx2060,chat_pt,gemma4-e4b@think-2048,gemma4-26b@think-2048,71.1,100.0,28.9,Unstable,Good for,unsure (Unstable),0.82,6.24,7.6,2.029,6.1805
-12b-vs-27b,runpod,coding,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,86.7,,,Good for,,not run yet,6.04,,,22.3094,
-12b-vs-27b,runpod,rag,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,96.7,,,Good for,,not run yet,2.11,,,7.6226,
-12b-vs-27b,runpod,agent,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,100.0,,,Good for,,not run yet,0.61,,,2.0039,
-12b-vs-27b,runpod,chat_pt,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,95.6,,,Good for,,not run yet,1.58,,,5.6918,
+12b-vs-27b,runpod,coding,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,86.7,88.3,1.6,Good for,Good for,both Good for,6.04,14.66,2.4,22.3094,55.464
+12b-vs-27b,runpod,rag,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,96.7,98.3,1.6,Good for,Good for,both Good for,2.11,2.53,1.2,7.6226,9.2032
+12b-vs-27b,runpod,agent,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,100.0,100.0,0.0,Good for,Good for,both Good for,0.61,1.03,1.7,2.0039,3.605
+12b-vs-27b,runpod,chat_pt,gemma4-12b@think-2048,qwen3.8-27b-q4@think-2048,95.6,84.4,-11.2,Good for,Good for,both Good for,1.58,2.17,1.4,5.6918,7.9568

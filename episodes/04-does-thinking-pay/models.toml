@@ -1,6 +1,6 @@
 # Models for "Does thinking pay?" (PC with an RTX 2060 Super 8 GB): the six models the PC serves, with the same
-# GGUF and pinned sampling as episode 02. Each one runs once per thinking level (`run --thinking off|512|2048|8192|
-# unlimited`, max_tokens 32768 for every level), and each level is its own contestant in the results:
+# GGUF and pinned sampling as episode 02. Each one runs once per thinking level (`run --thinking off|512|2048|8192`,
+# max_tokens 32768 for every level), and each level is its own contestant in the results:
 # model@think-<level>. The question: how much does thinking raise the score, and what does it cost in time?
 # Groups as in episode 02: "small", "medium" and "limit" (larger than 8 GB: part of the model runs on the CPU).
 

@@ -11,6 +11,6 @@ small one does not, and how much slower and more expensive is it?
   outcome, minutes and energy per battery run, generation speed); `pairs.csv` has its numbers.
 - `results/verdicts.md` and `scores.csv`: every model's verdicts and the details (worst and best run, time, tokens
   per second, cost); `speed.csv`: llama-bench per model and depth.
-- Not run yet: the RunPod pair `12b-vs-27b`.
+- The RunPod pair `12b-vs-27b` ran on an RTX A5000; its runs are copies of episode 01's.
 
 Commands: [HOW-TO-RUN.md](../../HOW-TO-RUN.md).

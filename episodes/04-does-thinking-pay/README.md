@@ -3,7 +3,8 @@
 The same six local models as episode 02, on the PC with the RTX 2060 Super, each run once per thinking level: off,
 or a reasoning budget of 512, 2048 or 8192 tokens (`run --thinking`). `max_tokens` is 32768 for every level, so a
 level only differs in how long the model may think. Each level is its own contestant in the results
-(`model@think-<level>`). The unlimited level (`--thinking unlimited`) is not run yet.
+(`model@think-<level>`). There is no unlimited level
+(`--thinking unlimited`): 8192 already gives little over 2048 at about twice the time, so it is not run.
 
 The question: how much does thinking raise the score of each battery, and what does it cost in time?
 

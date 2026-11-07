@@ -45,4 +45,12 @@ Generation speed (llama-bench, depth 0): 79.4 → 30.6 tok/s (2.6× slower).
 
 ## 12b-vs-27b: `gemma4-12b@think-2048` vs `qwen3.8-27b-q4@think-2048` (runpod)
 
-Not run yet.
+| Battery | Small | Large | Points | Outcome | Time per battery run |
+| --- | --- | --- | --- | --- | --- |
+| Coding | 87% ✅ | 88% ✅ | +2 | both Good for | 6.0 → 14.7 min (2.4×) |
+| RAG (answers with sources) | 97% ✅ | 98% ✅ | +2 | both Good for | 2.1 → 2.5 min (1.2×) |
+| Agents / tool calling | 100% ✅ | 100% ✅ | +0 | both Good for | 0.6 → 1.0 min (1.7×) |
+| Chat & summaries in Portuguese | 96% ✅ | 84% ✅ | -11 | both Good for | 1.6 → 2.2 min (1.4×) |
+
+Good for only with the large model: none.
+Energy for these batteries, one run each: 37.6 → 76.2 Wh.

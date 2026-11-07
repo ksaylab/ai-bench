@@ -1,0 +1,2 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+runpod,qwen3.8-27b-q4@think-2048,88.3,98.3,100.0,84.4,100.0,Coding; RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese (easy only) (borderline),,,,,3,17.43,

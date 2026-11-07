@@ -1,0 +1,6 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+runpod,qwen3.8-27b-q4@think-2048,agent,00cdb8195bc8,45,45,15,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,100.0,26.7,100.0,100.0,1,4.11,40.65,1.098,59.72,21795,205.7,3.605,
+runpod,qwen3.8-27b-q4@think-2048,chat_pt,c578c34b848c,38,45,15,3,84.4,80.0,86.7,100.0,77.8,75.0,1,0,80.0,Good for,easy only,1,100.0,37.8,84.4,74.9,1,8.69,46.64,1.059,55.98,21795,216.3,7.9568,
+runpod,qwen3.8-27b-q4@think-2048,coding,9ba2c5db525d,53,60,20,3,88.3,85.0,90.0,100.0,86.1,88.9,5,0,80.0,Good for,,0,100.0,11.7,88.3,86.7,1,43.97,47.95,1.267,49.94,21795,225.4,55.464,
+runpod,qwen3.8-27b-q4@think-2048,coding_public,908376ec7f97,30,30,10,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Reference only,,0,100.0,70.0,100.0,100.0,0,22.8,48.97,1.161,53.37,21585,222.8,14.2936,
+runpod,qwen3.8-27b-q4@think-2048,rag,5263567493a5,59,60,20,3,98.3,95.0,100.0,100.0,95.2,100.0,1,0,80.0,Good for,,0,100.0,26.7,98.3,97.7,1,7.59,38.23,2.025,55.38,21585,214.9,9.2032,
