@@ -34,6 +34,13 @@ class ClientError(Exception):
     pass
 
 
+# A lost connection (refused, reset, no route: not a timeout) is retried every RECONNECT_STEP_S for up to RECONNECT_S
+# seconds before it counts as the server not answering: 07/11, power cuts dropped the ssh tunnel to RunPod mid-run,
+# and the network takes a few minutes to come back. A server error (HTTP 5xx, 429) or a timeout keeps `attempts`.
+RECONNECT_S = 300
+RECONNECT_STEP_S = 10
+
+
 def _http_error(e, limit=300):
     """"HTTP <code>: <the API's message>", cut to `limit` characters: OpenRouter says why routing failed (e.g. which
     filter removed the pinned provider) in the JSON body, which a bare status code would lose."""
@@ -179,9 +186,10 @@ def chat(url, model, messages, key=None, max_tokens=8192, temperature=None, tool
     if key:
         headers["Authorization"] = "Bearer " + key
     data = json.dumps(body).encode()
-    last = None
-    for i in range(attempts):
+    last, tries, waited = None, 0, 0
+    while True:
         start = time.monotonic()
+        lost = False
         try:
             req = urllib.request.Request(url + "/chat/completions", data, headers)
             with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -197,9 +205,15 @@ def chat(url, model, messages, key=None, max_tokens=8192, temperature=None, tool
                 raise ClientError(last) from None
         except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException) as e:
             last = f"connection: {type(e).__name__}"
-        time.sleep(2 * (i + 1))
-    else:
-        raise ClientError(last or "no response")
+            lost = not isinstance(e, TimeoutError) and not isinstance(getattr(e, "reason", None), TimeoutError)
+        if lost and waited < RECONNECT_S:  # the tunnel or the network is coming back: wait for it
+            time.sleep(RECONNECT_STEP_S)
+            waited += RECONNECT_STEP_S
+            continue
+        tries += 1
+        time.sleep(2 * tries)
+        if tries >= attempts:
+            raise ClientError(last or "no response")
     elapsed = time.monotonic() - start
     choice = (resp.get("choices") or [{}])[0]
     msg = choice.get("message") or {}
