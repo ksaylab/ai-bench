@@ -89,6 +89,23 @@ class TestSpeed(unittest.TestCase):
         self.assertEqual(len(calls.read_text().splitlines()), 1)
         self.assertEqual((rows[0]["status"], rows[0]["reason"]), ("error", "unknown model architecture"))
 
+    def test_a_cache_type_sets_the_kv_cache_of_keys_and_values(self):
+        """The server's presets quantize the KV cache (q8_0); llama-bench's default is f16, which needs more VRAM."""
+        cmd = speed.command("m.gguf", [0, 32768], 3, cache_type="q8_0")
+        self.assertEqual((cmd[cmd.index("-ctk") + 1], cmd[cmd.index("-ctv") + 1]), ("q8_0", "q8_0"))
+        self.assertNotIn("-ctk", speed.command("m.gguf", [0], 3))  # llama-bench's default (f16), as before
+
+    def test_the_rows_record_the_cache_type(self):
+        (self.tmp / "out.json").write_text(json.dumps(OUTPUT))
+        calls = self.tmp / "calls"
+        with self.fake(f'echo "$*" >> {calls}\ncat {self.tmp / "out.json"}\n'):
+            rows = speed.measure("pc-rtx2060", "m", self.gguf, [0, 16384], 3, cache_type="q8_0")
+            default = speed.measure("pc-rtx2060", "m", self.gguf, [0, 16384], 3)
+        self.assertIn("cache_type", speed.COLUMNS)
+        self.assertEqual({r["cache_type"] for r in rows}, {"q8_0"})
+        self.assertEqual({r["cache_type"] for r in default}, {""})  # empty = llama-bench's default (f16)
+        self.assertIn("-ctk q8_0", calls.read_text().splitlines()[0])
+
     def test_fewer_than_3_repetitions_is_refused(self):
         with self.assertRaises(ValueError):
             speed.measure("pc-rtx2060", "m", self.gguf, [0], 2)

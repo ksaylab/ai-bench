@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-11-09-1921-pc-rtx2060-speed-qwen3.8-27b-q3",
+  "kind": "speed",
+  "episode": "02-what-runs-on-8gb",
+  "machine": "pc-rtx2060",
+  "models": [
+    "qwen3.8-27b-q3"
+  ],
+  "depths": [
+    0,
+    16384,
+    32768
+  ],
+  "repetitions": 3,
+  "fit_target_mib": 1536,
+  "cache_type": null,
+  "start": "2026-11-09T19:21:15",
+  "end": "2026-11-09T19:39:26",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true
+}

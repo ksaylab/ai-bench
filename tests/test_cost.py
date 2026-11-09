@@ -1,4 +1,5 @@
 import csv
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -32,19 +33,35 @@ class TestCost(unittest.TestCase):
         self.assertEqual({r["option"] for r in rows}, {"buy", "rent_on_demand", "rent_always_on"})
         self.assertTrue(all(r["data_status"] == "EXAMPLE" for r in rows))
 
-    def test_real_prices_still_empty_are_refused_with_the_list(self):
-        with self.assertRaises(cost.CostError) as e:
-            cost.read_prices(EP / "prices.csv")
-        self.assertIn("rtx-3090-used", str(e.exception))
-        with self.assertRaises(cost.CostError) as e:
-            cost.read_assumptions(EP / "assumptions.csv")
-        self.assertIn("brl_per_usd", str(e.exception))
+    def test_empty_prices_are_refused_with_the_list(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            prices, assumptions = Path(tmp) / "prices.csv", Path(tmp) / "assumptions.csv"
+            prices.write_text("id,name,kind,price_brl,price_usd_per_hour,load_watts\n"
+                              "card-a,Card A,buy,,,300\nrental-a,Rental A,rent,,,\n", encoding="utf-8")
+            assumptions.write_text("key,value\nbrl_per_usd,\n", encoding="utf-8")
+            with self.assertRaises(cost.CostError) as e:
+                cost.read_prices(prices)
+            self.assertIn("card-a (price_brl)", str(e.exception))
+            self.assertIn("rental-a (price_usd_per_hour)", str(e.exception))
+            with self.assertRaises(cost.CostError) as e:
+                cost.read_assumptions(assumptions)
+            self.assertIn("brl_per_usd", str(e.exception))
 
-    def test_prices_csv_has_no_made_up_values(self):
+    def test_real_values_have_a_source_and_a_date(self):
+        """prices.csv and assumptions.csv hold real values: each filled one names its source, and each price the
+        day it was checked; a value without both stays FILL_IN (no made-up values)."""
         with open(EP / "prices.csv", encoding="utf-8") as fh:
             for r in csv.DictReader(fh):
-                self.assertEqual((r["price_brl"], r["price_usd_per_hour"], r["status"]), ("", "", "FILL_IN"))
-
+                key = "price_brl" if r["kind"] == "buy" else "price_usd_per_hour"
+                if r["status"] == "FILL_IN":
+                    self.assertEqual(r[key], "", r["id"])
+                else:
+                    self.assertIn(r["status"], ("REVIEW", "CONFIRMED"), r["id"])
+                    self.assertTrue(r[key] and r["source"] and r["checked_on"], r["id"])
+        with open(EP / "assumptions.csv", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                if r["status"] != "FILL_IN":
+                    self.assertTrue(r["value"] and r["source"], r["key"])
 
 if __name__ == "__main__":
     unittest.main()

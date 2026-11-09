@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-11-09-1919-pc-rtx2060-speed-gemma4-12b-q8_0",
+  "kind": "speed",
+  "episode": "02-what-runs-on-8gb",
+  "machine": "pc-rtx2060",
+  "models": [
+    "gemma4-12b"
+  ],
+  "depths": [
+    0,
+    16384,
+    32768
+  ],
+  "repetitions": 3,
+  "fit_target_mib": 1536,
+  "cache_type": "q8_0",
+  "start": "2026-11-09T19:19:13",
+  "end": "2026-11-09T19:21:08",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true
+}

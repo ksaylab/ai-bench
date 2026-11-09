@@ -94,6 +94,8 @@ A model that does not fit with every layer on the card (`-ngl 99`) gets an error
 episode 02 shows) and, with `--fit-target 1536`, is measured again with llama-bench placing the layers itself and
 leaving part of the model on the CPU, with the same 1536 MiB margin as the server's presets (`fit_target_mib` on
 those rows).
+llama-bench's KV cache is f16 by default; `--cache-type q8_0` (or `q4_0`) uses the quantized cache of the server's
+presets (`cache_type` on those rows), for a model that only fits on the card with it.
 The same GGUF in another episode: `copy-run` the speed run there instead of measuring it again
 (`python3 -m aibench copy-run <speed run folder> --episode 03-is-bigger-better`).
 

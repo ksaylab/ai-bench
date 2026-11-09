@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,0,1031.25,17.09,3,ok,,b12070-00f113ece,7674,138.3,,q8_0
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,0,41.45,0.02,3,ok,,b12070-00f113ece,7674,138.3,,q8_0
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,16384,668.79,2.99,3,ok,,b12070-00f113ece,7674,138.3,,q8_0
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,16384,36.74,0.05,3,ok,,b12070-00f113ece,7674,138.3,,q8_0
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,32768,514.77,2.28,3,ok,,b12070-00f113ece,7674,138.3,,q8_0
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,32768,33.65,0.02,3,ok,,b12070-00f113ece,7674,138.3,,q8_0
