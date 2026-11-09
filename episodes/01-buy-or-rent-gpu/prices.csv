@@ -1,10 +1,10 @@
 id,name,kind,price_brl,price_usd_per_hour,needs_new_psu,load_watts,idle_watts,source,checked_on,status
-rtx-3090-used,RTX 3090 24 GB (used),buy,,,yes,350,21,,,FILL_IN
-rtx-4060-ti-16gb,RTX 4060 Ti 16 GB,buy,,,no,165,13,,,FILL_IN
-rtx-5060-ti-16gb,RTX 5060 Ti 16 GB,buy,,,no,180,15,,,FILL_IN
-rtx-4070-ti-super,RTX 4070 Ti Super 16 GB,buy,,,yes,285,13,,,FILL_IN
-rtx-5070-ti,RTX 5070 Ti 16 GB,buy,,,yes,300,17,,,FILL_IN
-runpod-a5000-community,RunPod RTX A5000 24 GB (Community),rent,,,,,,,,FILL_IN
-runpod-a5000-secure,RunPod RTX A5000 24 GB (Secure),rent,,,,,,,,FILL_IN
-runpod-3090-community,RunPod RTX 3090 24 GB (Community),rent,,,,,,,,FILL_IN
-runpod-4090-secure,RunPod RTX 4090 24 GB (Secure),rent,,,,,,,,FILL_IN
+rtx-3090-used,RTX 3090 24 GB (used),buy,5500,,yes,350,21,"Mercado Livre used listings, asking prices R$ 4800-6100 (midpoint) https://lista.mercadolivre.com.br/rtx-3090-usada",2026-11-09,REVIEW
+rtx-4060-ti-16gb,RTX 4060 Ti 16 GB,buy,3120.35,,no,165,13,"Terabyte, Gigabyte RTX 4060 Ti Gaming 16GB, Pix, Black November promo https://www.terabyteshop.com.br/produto/27844",2026-11-09,REVIEW
+rtx-5060-ti-16gb,RTX 5060 Ti 16 GB,buy,4801.90,,no,180,15,"KaBuM, PCyes RTX 5060 Ti 16GB, Pix https://www.kabum.com.br/produto/1064793",2026-11-09,REVIEW
+rtx-4070-ti-super,RTX 4070 Ti Super 16 GB,buy,6099.99,,yes,285,13,"KaBuM, Galax RTX 4070 Ti Super EX, Pix (via melhoraopreco; stock not confirmed, card discontinued) https://www.melhoraopreco.com.br/ofertas/kabum/6223688",2026-11-09,REVIEW
+rtx-5070-ti,RTX 5070 Ti 16 GB,buy,7699.99,,yes,300,17,"Pichau, Gigabyte RTX 5070 Ti Gaming OC, Pix https://www.pichau.com.br/placa-de-video-gigabyte-geforce-rtx-5070-ti-gaming-oc-16gb-gddr7-256-bit-gv-n507tgaming-oc-16gd",2026-11-09,REVIEW
+runpod-a5000-community,RunPod RTX A5000 24 GB (Community),rent,,0.16,,,,RunPod on-demand pricing https://www.runpod.io/pricing (matches the price paid in Oct 2026),2026-11-09,REVIEW
+runpod-a5000-secure,RunPod RTX A5000 24 GB (Secure),rent,,0.27,,,,RunPod on-demand pricing https://www.runpod.io/pricing (matches the price paid in Oct 2026),2026-11-09,REVIEW
+runpod-3090-community,RunPod RTX 3090 24 GB (Community),rent,,0.22,,,,RunPod on-demand pricing https://www.runpod.io/pricing (matches the price paid in Oct 2026),2026-11-09,REVIEW
+runpod-4090-secure,RunPod RTX 4090 24 GB (Secure),rent,,0.89,,,,RunPod on-demand pricing https://www.runpod.io/pricing (paid 0.74 on 2026-10-06),2026-11-09,REVIEW
