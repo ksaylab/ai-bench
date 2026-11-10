@@ -1,4 +1,5 @@
 machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+pc-rtx2060,gemma4-12b@think-2048,81.7,90.0,95.6,95.6,100.0,Coding (easy and medium) (borderline); RAG (answers with sources) (easy only); Agents / tool calling; Chat & summaries in Portuguese,,,,,3,31.04,
 pc-rtx2060,gemma4-26b@think-2048,86.7,91.7,100.0,100.0,100.0,Coding (easy and medium); RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese,,,,,3,36.75,
 pc-rtx2060,gemma4-e4b@think-2048,53.3,78.3,95.6,71.1,90.0,Agents / tool calling,Coding,,RAG (answers with sources) (borderline); Chat & summaries in Portuguese,,3,8.62,
 pc-rtx2060,lfm3-1.7b@think-2048,45.0,91.7,100.0,84.4,100.0,RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese (easy only) (borderline),Coding,,,,3,10.03,

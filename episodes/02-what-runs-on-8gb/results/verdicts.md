@@ -1,5 +1,6 @@
 | Model | Machine | Coding | RAG (answers with sources) | Agents / tool calling | Chat & summaries in Portuguese | Good for | Not good for | Unstable ⚠️ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `gemma4-12b@think-2048` | pc-rtx2060 | 82% ✅ | 90% ✅ | 96% ✅ | 96% ✅ | Coding (easy and medium) (borderline); RAG (answers with sources) (easy only); Agents / tool calling; Chat & summaries in Portuguese | — | — |
 | `gemma4-26b@think-2048` | pc-rtx2060 | 87% ✅ | 92% ✅ | 100% ✅ | 100% ✅ | Coding (easy and medium); RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese | — | — |
 | `gemma4-e4b@think-2048` | pc-rtx2060 | 53% ❌ | 78% ⚠️ | 96% ✅ | 71% ⚠️ | Agents / tool calling | Coding | RAG (answers with sources) (borderline); Chat & summaries in Portuguese |
 | `lfm3-1.7b@think-2048` | pc-rtx2060 | 45% ❌ | 92% ✅ | 100% ✅ | 84% ✅ | RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese (easy only) (borderline) | Coding | — |
