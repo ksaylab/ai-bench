@@ -6,6 +6,7 @@
 | `lfm3-1.7b@think-2048` | pc-rtx2060 | 45% ❌ | 92% ✅ | 100% ✅ | 84% ✅ | RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese (easy only) (borderline) | Coding | — |
 | `neohorse-4b@think-2048` | pc-rtx2060 | 55% ❌ | 92% ✅ | 84% ✅ | 84% ✅ | RAG (answers with sources); Agents / tool calling (mixed tiers) (borderline); Chat & summaries in Portuguese (easy and medium) (borderline) | Coding | — |
 | `ornith1.5-9b@think-2048` | pc-rtx2060 | 65% ❌ | 90% ✅ | 98% ✅ | 82% ✅ | RAG (answers with sources) (mixed tiers); Agents / tool calling; Chat & summaries in Portuguese (easy and medium) (borderline) | Coding | — |
+| `qwen3.5-9b@think-2048` | pc-rtx2060 | 47% ❌ | 87% ⚠️ | 98% ✅ | 82% ✅ | Agents / tool calling; Chat & summaries in Portuguese (easy and medium) (borderline) | Coding | RAG (answers with sources) |
 | `qwen3.6-35b-a3b@think-2048` | pc-rtx2060 | 72% ❌ | 93% ✅ | 87% ✅ | 98% ✅ | RAG (answers with sources); Agents / tool calling (easy only); Chat & summaries in Portuguese | Coding | — |
 
 Good for: Coding ≥ 80%, RAG (answers with sources) ≥ 80%, Agents / tool calling ≥ 80%, Chat & summaries in Portuguese ≥ 80%, over at least 3 runs. Unstable: the repeats fall on both sides of the threshold. See METHODOLOGY.md.

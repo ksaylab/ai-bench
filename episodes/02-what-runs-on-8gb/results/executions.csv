@@ -1679,3 +1679,243 @@ run_id,machine,model,use_case,case,tier,rep,seed,passed,reason,time_s,prompt_tok
 2026-11-09-2024-pc-rtx2060-gemma4-12b,pc-rtx2060,gemma4-12b@think-2048,coding_public,mbpp_9,medium,2,1002,1,,62.823,75,2385,37.96,0.264,38.12,7724,151.9,2.651735,,stop,,,,908376ec7f97
 2026-11-09-2024-pc-rtx2060-gemma4-12b,pc-rtx2060,gemma4-12b@think-2048,coding_public,mbpp_11,easy,2,1002,1,,57.298,72,2179,38.03,0.266,38.21,7724,152.0,2.420794,,stop,,,,908376ec7f97
 2026-11-09-2024-pc-rtx2060-gemma4-12b,pc-rtx2060,gemma4-12b@think-2048,coding_public,mbpp_20,medium,2,1002,1,,56.056,67,2133,38.05,0.27,38.24,7724,152.0,2.368002,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,is_palindrome,easy,0,1000,1,,14.435,50,728,50.43,0.137,50.92,7224,155.9,0.626064,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,word_count,easy,0,1000,1,,43.049,58,2183,50.71,0.125,50.86,7224,153.9,1.842155,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_duration,medium,0,1000,1,,45.845,74,2286,49.86,0.142,50.02,7224,153.2,1.953045,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,split_csv_line,hard,0,1000,0,AssertionError,46.844,93,2321,49.55,0.153,49.71,7224,154.0,2.006359,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_headers,medium,0,1000,0,SyntaxError: unterminated string literal (detected at line 31),53.361,101,2627,49.23,0.179,49.4,7228,153.9,2.284639,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_log_line,medium,0,1000,0,ValueError: Invalid log format,52.167,171,2544,48.77,0.27,49.02,7228,152.2,2.208125,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,compact_number_br,hard,0,1000,0,AssertionError,83.008,157,4058,48.89,0.255,49.04,7228,153.1,3.533245,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,allocate_cents,hard,0,1000,1,,48.661,114,2377,48.85,0.252,49.1,7228,152.7,2.06522,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,reached_threshold,medium,0,1000,0,"AssertionError: reached('1', 1)",44.44,110,2214,49.82,0.189,50.03,7228,153.2,1.894448,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_brl,medium,0,1000,0,"ValueError: Failed to parse 'R$ 1.234,56'",392.236,179,18322,46.71,0.239,46.74,7228,152.9,16.657279,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,add_business_days,medium,0,1000,0,AssertionError,71.133,97,3469,48.77,0.25,48.94,7228,153.3,3.031655,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,semver_compare,hard,0,1000,0,"ValueError: too many values to unpack (expected 2, got 4)",64.455,140,3188,49.46,0.215,49.63,7228,153.2,2.745153,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,build_order,hard,0,1000,1,,48.815,100,2399,49.14,0.175,49.32,7228,153.3,2.080269,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,natural_sort,medium,0,1000,0,"TypeError: list indices must be integers or slices, not str",82.491,97,4086,49.53,0.164,49.63,7228,153.4,3.516769,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,sort_names_br,medium,0,1000,1,,45.782,88,2278,49.76,0.16,49.93,7228,153.5,1.95396,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,wrap_text,medium,0,1000,1,,49.067,107,2433,49.59,0.169,49.76,7228,153.4,2.092326,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,set_ini_value,hard,0,1000,0,NameError: name 'in_target_section_for_replacement' is not defined,65.729,134,3261,49.61,0.202,49.77,7228,153.8,2.810327,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,deep_merge,medium,0,1000,1,,49.493,96,2419,48.88,0.158,49.03,7228,153.1,2.107062,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,latest_by_key,medium,0,1000,1,,46.864,165,2322,49.55,0.223,49.78,7228,153.2,1.995734,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,ip_allowed,medium,0,1000,0,AttributeError: 'IPv4Network' object has no attribute 'issuperset'. Did you mean '.supernet' instead of '.issuperset'?,51.637,132,2536,49.11,0.214,49.32,7228,152.6,2.191785,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,single_passage,easy,0,1000,1,,10.877,310,521,47.9,0.336,49.42,7230,151.8,0.458632,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,password_length,easy,0,1000,1,,20.46,306,1000,48.87,0.328,49.67,7230,152.6,0.867149,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,answer_absent,easy,0,1000,1,,30.484,313,1487,48.78,0.331,49.32,7230,152.9,1.29452,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_two_hops,hard,0,1000,1,,46.863,3976,2075,44.28,3.202,47.53,7232,151.4,1.970717,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,meal_limit_by_date,hard,0,1000,1,,43.939,739,2133,48.55,0.689,49.32,7232,153.6,1.874164,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,meal_domestic_unchanged,medium,0,1000,1,,43.968,716,2128,48.4,0.504,48.96,7232,152.9,1.867261,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,sev3_no_target,medium,0,1000,1,,38.031,716,1838,48.33,0.491,48.96,7232,153.1,1.617478,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,payments_oncall_lead,hard,0,1000,1,,35.748,713,1727,48.31,0.486,48.98,7232,152.2,1.511534,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,purchase_quotes_after_change,hard,0,1000,0,missing: two quotes|2 quotes,43.467,732,2113,48.61,0.497,49.17,7232,153.3,1.851355,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,purchase_cfo,medium,0,1000,1,,39.466,728,1914,48.5,0.504,49.12,7232,153.1,1.678866,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,credential_rotation_date,medium,0,1000,0,extra citation [2],54.896,735,2677,48.76,0.491,49.2,7232,153.3,2.337161,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,vpn_effective_date,medium,0,1000,0,extra citation [7],43.638,737,2135,48.93,0.512,49.51,7232,152.5,1.849026,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,partly_absent,medium,0,1000,1,,43.167,718,2090,48.42,0.492,48.97,7232,153.3,1.838283,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_renamed_room,hard,0,1000,1,,46.617,4012,2090,44.83,3.232,48.17,7232,152.7,1.977063,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,purchase_exact_threshold,hard,0,1000,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,44.225,728,2143,48.46,0.517,49.03,7232,153.2,1.881764,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,sev2_after_midnight,hard,0,1000,1,,43.827,741,2142,48.87,0.526,49.47,7232,153.0,1.863042,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,false_premise_office_hours,medium,0,1000,0,missing: \b8 ?(am|a\.m\.|:00),42.815,717,2073,48.42,0.5,48.99,7232,152.6,1.814891,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,vacation_one_day_short,easy,0,1000,1,,43.041,749,2107,48.95,0.546,49.58,7232,152.9,1.827965,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_three_hops,hard,0,1000,1,,47.469,4050,2097,44.18,3.315,47.49,7232,151.3,1.994989,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_updates_out_of_order,hard,0,1000,1,,35.859,4037,1553,43.31,3.322,47.73,7232,151.0,1.503995,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,weather_call,easy,0,1000,1,,2.935,658,113,38.5,0.75,51.71,7232,151.7,0.123734,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,no_tool_needed,easy,0,1000,1,,1.712,657,80,46.73,0.104,49.75,7232,152.1,0.072338,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,contact_schema,easy,0,1000,1,,29.857,69,1463,49.0,0.153,49.25,7232,151.6,1.257494,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,priority_schema,easy,0,1000,1,,23.321,62,1145,49.1,0.131,49.37,7232,152.5,0.987762,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,meeting_relative_date,hard,0,1000,1,,7.794,1205,337,43.24,0.979,49.45,7232,151.2,0.327434,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,ticket_for_oldest_order,hard,0,1000,1,,4.165,1325,197,47.3,0.222,49.97,7232,152.1,0.176021,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,act_on_result_threshold,medium,0,1000,1,,2.213,1293,100,45.18,0.2,49.66,7232,152.9,0.094005,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,refund_late_orders,hard,0,1000,1,,9.853,1464,472,47.91,0.337,49.6,7232,152.6,0.417748,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,refund_above_total,hard,0,1000,1,,3.168,1268,148,46.71,0.178,49.49,7232,152.9,0.134555,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,priority_from_sum,medium,0,1000,1,,4.119,1317,194,47.1,0.225,49.82,7232,151.9,0.173771,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,meeting_next_week_tuesday,hard,0,1000,1,,7.834,1203,381,48.63,0.131,49.46,7232,152.6,0.332116,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,look_up_before_refund,hard,0,1000,1,,2.788,1176,133,47.7,0.11,49.66,7232,153.2,0.118626,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,refund_some_items,hard,0,1000,1,,2.911,1302,134,46.04,0.206,49.54,7232,150.8,0.121927,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,close_old_resolved,hard,0,1000,1,,6.038,1313,288,47.7,0.225,49.55,7232,152.6,0.2559,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,ask_for_customer_id,hard,0,1000,1,,5.269,1167,254,48.2,0.104,49.18,7232,152.6,0.22334,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,explain_vpn,easy,0,1000,1,,42.89,33,2133,49.73,0.164,49.92,7232,153.3,1.82681,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,email_summary,easy,0,1000,1,,42.938,99,2110,49.14,0.156,49.32,7232,152.6,1.820367,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,formal_rewrite,easy,0,1000,1,,41.906,38,2083,49.71,0.124,49.85,7232,153.4,1.785979,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,incident_summary,easy,0,1000,1,,44.059,132,2156,48.93,0.205,49.16,7232,152.8,1.869526,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,grammar_fix,medium,0,1000,1,,41.705,67,2078,49.83,0.134,49.99,7232,153.3,1.776509,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,false_premise_states,medium,0,1000,1,,42.839,33,2122,49.53,0.116,49.67,7232,153.4,1.825394,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,list_without_words,medium,0,1000,1,,42.86,55,2098,48.95,0.132,49.1,7232,152.7,1.817424,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,dates_in_order,hard,0,1000,1,,21.596,97,1066,49.36,0.153,49.71,7232,153.0,0.918042,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,translate_keep_code,easy,0,1000,1,,41.939,71,2096,49.98,0.139,50.14,7232,154.0,1.79416,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,relative_deadlines_order,hard,0,1000,1,,42.805,87,2107,49.22,0.154,49.4,7232,152.6,1.814247,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,false_premise_holiday,medium,0,1000,0,answer is not in Portuguese,121.074,40,5917,48.87,0.122,48.92,7232,153.7,5.170498,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,yes_no_only,medium,0,1000,1,,7.049,39,344,48.8,0.134,49.74,7232,155.3,0.304182,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,false_premise_capital,medium,0,1000,1,,43.313,33,2146,49.55,0.112,49.67,7232,153.5,1.847023,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,exact_word_count,hard,0,1000,1,,42.109,36,2071,49.18,0.117,49.32,7232,154.8,1.810929,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,weekday_of_date,hard,0,1000,0,missing: sexta,41.61,39,2059,49.48,0.139,49.65,7232,154.0,1.779619,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_0,easy,0,1000,1,,14.134,164,693,49.03,0.202,49.74,7232,154.4,0.608358,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_12,easy,0,1000,1,,11.039,145,539,48.83,0.226,49.84,7232,155.0,0.476693,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_46,medium,0,1000,1,,23.244,215,1147,49.35,0.248,49.88,7232,153.4,0.992105,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_108,medium,0,1000,1,,18.754,169,921,49.11,0.22,49.69,7232,154.1,0.805204,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_129,hard,0,1000,1,,57.603,447,2825,49.04,0.418,49.4,7232,154.0,2.466337,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_3,easy,0,1000,1,,43.671,54,2148,49.19,0.137,49.34,7232,154.3,1.874386,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_4,easy,0,1000,1,,42.256,111,2085,49.34,0.167,49.54,7232,153.6,1.80546,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_9,medium,0,1000,1,,42.747,69,2120,49.59,0.142,49.76,7232,152.9,1.81712,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_11,easy,0,1000,1,,43.452,66,2138,49.2,0.135,49.36,7232,153.2,1.851585,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_20,medium,0,1000,0,NameError: name 'is_woodall' is not defined. Did you mean: 'is_woodball'?,11.221,61,554,49.37,0.132,49.96,7232,154.2,0.483819,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,is_palindrome,easy,1,1001,1,,19.287,50,946,49.05,0.119,49.35,7232,154.0,0.827154,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,word_count,easy,1,1001,0,AssertionError,44.648,58,2219,49.7,0.131,49.85,7232,152.8,1.897705,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_duration,medium,1,1001,1,,46.373,74,2303,49.66,0.142,49.82,7232,153.9,1.98448,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,split_csv_line,hard,1,1001,1,,45.883,93,2259,49.23,0.155,49.4,7232,154.3,1.969588,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_headers,medium,1,1001,1,,46.271,101,2295,49.6,0.168,49.78,7232,153.4,1.974205,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_log_line,medium,1,1001,1,,49.506,171,2422,48.92,0.247,49.17,7232,153.6,2.114894,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,compact_number_br,hard,1,1001,0,TypeError: unsupported operand type(s) for /: 'int' and 'str',129.916,157,6298,48.48,0.221,48.56,7232,153.7,5.551006,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,allocate_cents,hard,1,1001,1,,46.832,114,2310,49.33,0.183,49.52,7232,154.5,2.011775,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,reached_threshold,medium,1,1001,1,,44.349,110,2207,49.76,0.168,49.95,7232,153.6,1.894439,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_brl,medium,1,1001,0,"ValueError: Invalid integer grouping in '1.234,56'",77.156,179,3812,49.41,0.225,49.55,7232,153.5,3.291537,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,add_business_days,medium,1,1001,0,IndentationError: unindent does not match any outer indentation level,139.621,97,6831,48.93,0.16,48.98,7232,153.5,5.957395,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,semver_compare,hard,1,1001,1,,58.568,140,2888,49.31,0.217,49.49,7232,153.4,2.498229,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,build_order,hard,1,1001,0,TypeError: cannot use 'list' as a set element (unhashable type: 'list'),48.56,100,2413,49.69,0.157,49.85,7232,153.5,2.073231,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,natural_sort,medium,1,1001,0,TypeError: '<' not supported between instances of 'int' and 'str',44.135,97,2169,49.15,0.155,49.32,7232,154.3,1.895006,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,sort_names_br,medium,1,1001,0,AssertionError,47.525,88,2358,49.62,0.153,49.78,7232,153.4,2.028403,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,wrap_text,medium,1,1001,1,,48.7,107,2399,49.26,0.168,49.43,7232,153.6,2.080016,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,set_ini_value,hard,1,1001,0,AssertionError,52.687,134,2610,49.54,0.203,49.73,7232,153.8,2.253222,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,deep_merge,medium,1,1001,0,AssertionError,46.666,96,2319,49.69,0.157,49.86,7232,153.1,1.987667,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,latest_by_key,medium,1,1001,1,,51.516,165,2554,49.58,0.224,49.79,7232,152.6,2.186475,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,ip_allowed,medium,1,1001,0,SyntaxError: expected 'except' or 'finally' block,227.712,132,10810,47.47,0.182,47.51,7232,153.5,9.709904,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,single_passage,easy,1,1001,1,,42.471,310,2070,48.74,0.366,49.16,7232,154.4,1.822122,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,password_length,easy,1,1001,1,,42.421,306,2069,48.77,0.334,49.16,7232,154.0,1.815106,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,answer_absent,easy,1,1001,1,,25.132,313,1224,48.7,0.337,49.37,7232,154.5,1.078371,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_two_hops,hard,1,1001,1,,31.489,3976,1350,42.87,3.218,47.75,7232,151.8,1.327572,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,meal_limit_by_date,hard,1,1001,1,,43.716,739,2115,48.38,0.668,49.13,7232,153.6,1.865791,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,meal_domestic_unchanged,medium,1,1001,1,,42.906,716,2083,48.55,0.49,49.11,7232,154.4,1.840633,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,sev3_no_target,medium,1,1001,1,,42.713,716,2069,48.44,0.495,49.01,7232,154.2,1.829694,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,payments_oncall_lead,hard,1,1001,1,,43.038,713,2082,48.38,0.492,48.94,7232,154.2,1.843149,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,purchase_quotes_after_change,hard,1,1001,0,missing: two quotes|2 quotes,43.526,732,2112,48.52,0.494,49.08,7232,153.3,1.853647,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,purchase_cfo,medium,1,1001,1,,43.87,728,2131,48.57,0.585,49.23,7232,153.4,1.868801,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,credential_rotation_date,medium,1,1001,1,,44.021,735,2158,49.02,0.493,49.58,7232,153.0,1.871002,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,vpn_effective_date,medium,1,1001,1,,43.458,737,2127,48.94,0.492,49.5,7232,153.4,1.851938,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,partly_absent,medium,1,1001,1,,43.098,718,2087,48.42,0.491,48.98,7232,154.3,1.847178,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_renamed_room,hard,1,1001,1,,47.912,4012,2126,44.37,3.237,47.59,7232,152.3,2.026923,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,purchase_exact_threshold,hard,1,1001,1,,44.58,728,2159,48.43,0.671,49.17,7232,154.4,1.912283,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,sev2_after_midnight,hard,1,1001,1,,43.956,741,2132,48.5,0.61,49.18,7232,153.1,1.868874,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,false_premise_office_hours,medium,1,1001,1,,43.275,717,2098,48.48,0.498,49.05,7232,154.1,1.852874,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,vacation_one_day_short,easy,1,1001,1,,42.985,749,2085,48.5,0.561,49.15,7234,153.2,1.829846,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_three_hops,hard,1,1001,1,,47.169,4050,2088,44.27,3.323,47.62,7234,153.1,2.005382,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_updates_out_of_order,hard,1,1001,1,,25.678,4037,1074,41.83,3.27,47.93,7234,151.4,1.080033,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,weather_call,easy,1,1001,1,,2.731,658,103,37.72,0.66,49.74,7234,148.9,0.112965,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,no_tool_needed,easy,1,1001,1,,1.871,657,88,47.03,0.107,49.87,7234,155.6,0.080868,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,contact_schema,easy,1,1001,1,,23.746,69,1177,49.57,0.153,49.89,7234,153.3,1.01105,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,priority_schema,easy,1,1001,1,,33.582,62,1654,49.25,0.131,49.44,7234,154.6,1.441774,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,meeting_relative_date,hard,1,1001,1,,7.879,1205,341,43.28,0.979,49.42,7234,151.2,0.331054,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,ticket_for_oldest_order,hard,1,1001,1,,4.211,1325,198,47.02,0.228,49.71,7234,153.4,0.17946,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,act_on_result_threshold,medium,1,1001,1,,2.157,1293,97,44.98,0.205,49.71,7234,151.7,0.090887,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,refund_late_orders,hard,1,1001,1,,8.261,1464,393,47.57,0.339,49.61,7234,150.3,0.344979,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,refund_above_total,hard,1,1001,1,,2.432,1268,112,46.06,0.181,49.75,7234,153.9,0.103984,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,priority_from_sum,medium,1,1001,1,,4.488,1317,212,47.24,0.227,49.76,7234,153.0,0.190751,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,meeting_next_week_tuesday,hard,1,1001,1,,7.062,1203,343,48.57,0.133,49.5,7234,153.0,0.300188,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,look_up_before_refund,hard,1,1001,1,,4.251,1176,205,48.23,0.107,49.48,7234,155.1,0.183162,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,refund_some_items,hard,1,1001,1,,3.709,1302,173,46.64,0.207,49.39,7234,152.8,0.15744,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,close_old_resolved,hard,1,1001,1,,6.321,1313,302,47.78,0.226,49.55,7234,151.2,0.265587,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,ask_for_customer_id,hard,1,1001,1,,4.192,1167,202,48.19,0.107,49.45,7234,155.2,0.180694,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,explain_vpn,easy,1,1001,1,,39.861,33,1979,49.65,0.138,49.82,7234,152.5,1.688973,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,email_summary,easy,1,1001,1,,28.244,99,1391,49.25,0.156,49.52,7234,154.5,1.212041,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,formal_rewrite,easy,1,1001,1,,41.872,38,2078,49.63,0.12,49.77,7234,153.6,1.786452,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,incident_summary,easy,1,1001,0,forbidden: vazamento,43.263,132,2147,49.63,0.199,49.86,7234,153.7,1.846755,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,grammar_fix,medium,1,1001,1,,41.774,67,2078,49.74,0.136,49.91,7234,152.8,1.77366,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,false_premise_states,medium,1,1001,1,,33.447,33,1666,49.81,0.117,49.99,7234,153.6,1.42701,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,list_without_words,medium,1,1001,1,,42.726,55,2094,49.01,0.132,49.16,7234,154.6,1.834867,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,dates_in_order,hard,1,1001,1,,19.741,97,974,49.34,0.156,49.73,7234,152.7,0.837385,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,translate_keep_code,easy,1,1001,1,,42.08,71,2096,49.81,0.141,49.98,7234,153.1,1.789841,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,relative_deadlines_order,hard,1,1001,1,,42.372,87,2103,49.63,0.154,49.81,7234,154.1,1.814067,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,false_premise_holiday,medium,1,1001,0,missing: republica,43.311,40,2148,49.6,0.124,49.74,7234,153.9,1.85109,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,yes_no_only,medium,1,1001,1,,6.467,39,316,48.86,0.121,49.79,7234,155.2,0.278883,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,false_premise_capital,medium,1,1001,1,,38.935,33,1926,49.47,0.111,49.61,7234,154.0,1.665347,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,exact_word_count,hard,1,1001,1,,41.767,36,2070,49.56,0.116,49.7,7234,153.5,1.780989,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,weekday_of_date,hard,1,1001,0,missing: sexta,41.619,39,2060,49.5,0.123,49.64,7234,153.1,1.76999,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_0,easy,1,1001,1,,13.758,164,673,48.92,0.202,49.65,7234,153.6,0.589071,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_12,easy,1,1001,1,,12.7,145,620,48.82,0.226,49.7,7234,153.8,0.544549,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_46,medium,1,1001,1,,15.26,215,750,49.15,0.305,50.15,7234,153.5,0.652621,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_108,medium,1,1001,1,,19.107,169,937,49.04,0.218,49.61,7234,154.5,0.822128,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_129,hard,1,1001,1,,50.586,447,2484,49.1,0.419,49.51,7234,153.6,2.160351,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_3,easy,1,1001,1,,43.683,54,2148,49.17,0.136,49.33,7234,153.1,1.860171,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_4,easy,1,1001,1,,244.83,111,2085,8.52,0.172,8.52,7234,39.9,2.714387,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_9,medium,1,1001,1,,41.793,69,2126,50.87,0.185,51.1,7234,154.5,1.796064,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_11,easy,1,1001,1,,42.59,66,2144,50.34,0.132,50.5,7234,153.9,1.823615,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_20,medium,1,1001,0,NameError: name 'is_woodall' is not defined. Did you mean: 'is_woodball'?,12.3,61,609,49.51,0.134,50.06,7234,153.7,0.528102,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,is_palindrome,easy,2,1002,1,,16.565,50,829,50.05,0.117,50.4,7234,153.8,0.709644,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,word_count,easy,2,1002,0,NameError: name 'sets' is not defined. Did you mean: 'set'?,42.859,58,2137,49.86,0.129,50.01,7234,154.6,1.843144,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_duration,medium,2,1002,1,,50.453,74,2502,49.59,0.141,49.73,7234,153.3,2.149866,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,split_csv_line,hard,2,1002,0,timeout,249.908,93,11998,48.01,0.156,48.04,7234,150.2,10.844888,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_headers,medium,2,1002,0,IndentationError: expected an indented block after 'if' statement on line 13,92.464,101,4580,49.53,0.228,49.66,7234,153.8,3.953465,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_log_line,medium,2,1002,0,ValueError: Invalid timestamp date/time,52.46,171,2591,49.39,0.229,49.61,7234,153.8,2.245074,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,compact_number_br,hard,2,1002,0,AssertionError,50.797,157,2527,49.75,0.206,49.95,7234,153.9,2.175162,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,allocate_cents,hard,2,1002,1,,46.486,114,2314,49.78,0.17,49.96,7234,153.7,1.98654,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,reached_threshold,medium,2,1002,1,,45.871,110,2250,49.05,0.169,49.23,7234,153.7,1.961293,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,parse_brl,medium,2,1002,0,IndentationError: expected an indented block after 'for' statement on line 209,113.433,179,5578,49.17,0.226,49.27,7234,154.2,4.860979,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,add_business_days,medium,2,1002,0,timeout,48.008,97,2387,49.72,0.166,49.89,7234,136.7,2.203204,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,semver_compare,hard,2,1002,1,,54.05,140,2696,49.88,0.231,50.09,7234,154.1,2.316138,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,build_order,hard,2,1002,1,,48.575,100,2422,49.86,0.156,50.02,7234,154.2,2.082402,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,natural_sort,medium,2,1002,0,AssertionError,51.009,97,2510,49.21,0.157,49.36,7234,153.7,2.181462,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,sort_names_br,medium,2,1002,0,SyntaxError: invalid syntax. Perhaps you forgot a comma?,72.676,88,3591,49.41,0.155,49.52,7234,153.4,3.099473,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,wrap_text,medium,2,1002,1,,45.751,107,2277,49.77,0.172,49.96,7234,153.7,1.955936,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,set_ini_value,hard,2,1002,0,AssertionError,50.346,134,2478,49.22,0.201,49.42,7234,153.6,2.150632,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,deep_merge,medium,2,1002,0,KeyError: 'gone',44.347,96,2195,49.5,0.155,49.67,7234,153.4,1.892206,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,latest_by_key,medium,2,1002,1,,49.888,165,2474,49.59,0.222,49.81,7234,153.9,2.135613,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding,ip_allowed,medium,2,1002,1,,50.658,132,2478,48.92,0.182,49.09,7234,153.2,2.157891,,stop,,,,9ba2c5db525d
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,single_passage,easy,2,1002,1,,17.935,310,869,48.45,0.335,49.38,7234,153.3,0.763833,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,password_length,easy,2,1002,1,,21.108,306,1026,48.61,0.329,49.38,7234,153.1,0.89794,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,answer_absent,easy,2,1002,1,,15.392,313,746,48.47,0.33,49.53,7234,153.0,0.65403,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_two_hops,hard,2,1002,1,,33.808,3976,1463,43.27,3.206,47.81,7234,153.1,1.438015,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,meal_limit_by_date,hard,2,1002,1,,43.504,739,2117,48.66,0.739,49.5,7234,153.8,1.858646,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,meal_domestic_unchanged,medium,2,1002,1,,43.1,716,2099,48.7,0.516,49.29,7234,153.8,1.841094,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,sev3_no_target,medium,2,1002,1,,42.703,716,2069,48.45,0.487,49.01,7234,153.6,1.821767,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,payments_oncall_lead,hard,2,1002,1,,18.739,713,900,48.03,0.488,49.31,7234,151.9,0.790733,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,purchase_quotes_after_change,hard,2,1002,1,,43.266,732,2103,48.61,0.52,49.2,7234,153.3,1.842193,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,purchase_cfo,medium,2,1002,1,,44.468,728,2166,48.71,0.49,49.25,7234,153.5,1.896474,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,credential_rotation_date,medium,2,1002,1,,44.499,735,2176,48.9,0.495,49.45,7234,153.6,1.898332,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,vpn_effective_date,medium,2,1002,0,extra citation [7],43.382,737,2127,49.03,0.494,49.59,7234,153.9,1.85422,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,partly_absent,medium,2,1002,1,,43.02,718,2083,48.42,0.549,49.04,7234,153.4,1.83368,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_renamed_room,hard,2,1002,1,,47.579,4012,2124,44.64,3.23,47.89,7234,152.3,2.012299,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,purchase_exact_threshold,hard,2,1002,1,,45.441,728,2209,48.61,0.52,49.17,7234,153.9,1.942922,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,sev2_after_midnight,hard,2,1002,1,,42.786,741,2079,48.59,0.533,49.2,7234,153.9,1.828748,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,false_premise_office_hours,medium,2,1002,0,missing: \b8 ?(am|a\.m\.|:00),42.513,717,2067,48.62,0.498,49.2,7234,153.5,1.812989,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,vacation_one_day_short,easy,2,1002,1,,44.329,749,2150,48.5,0.537,49.09,7234,153.3,1.887844,,stop,,,,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_three_hops,hard,2,1002,1,,47.519,4050,2104,44.28,3.281,47.56,7234,152.3,2.009945,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,rag,long_updates_out_of_order,hard,2,1002,1,,46.804,4037,2075,44.33,3.269,47.66,7234,152.3,1.979951,,stop,,,3000,5263567493a5
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,weather_call,easy,2,1002,1,,2.954,658,114,38.59,0.66,49.7,7234,142.4,0.116894,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,no_tool_needed,easy,2,1002,1,,1.585,657,74,46.67,0.12,50.49,7234,151.8,0.066853,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,contact_schema,easy,2,1002,1,,36.865,69,1806,48.99,0.154,49.2,7234,152.7,1.564191,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,priority_schema,easy,2,1002,1,,19.899,62,979,49.2,0.133,49.53,7234,153.4,0.847973,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,meeting_relative_date,hard,2,1002,1,,8.7,1205,383,44.02,1.024,49.9,7234,152.3,0.368116,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,ticket_for_oldest_order,hard,2,1002,1,,4.387,1325,207,47.19,0.23,49.79,7234,149.2,0.181876,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,act_on_result_threshold,medium,2,1002,1,,2.884,1293,133,46.11,0.205,49.65,7234,151.8,0.121591,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,refund_late_orders,hard,2,1002,0,"1 tool call(s), expected 2",6.679,1464,316,47.32,0.339,49.84,7234,153.6,0.28506,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,refund_above_total,hard,2,1002,1,,2.537,1268,117,46.12,0.179,49.63,7234,152.1,0.107173,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,priority_from_sum,medium,2,1002,1,,3.606,1317,169,46.87,0.226,50.0,7234,152.7,0.152964,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,meeting_next_week_tuesday,hard,2,1002,1,,7.577,1203,369,48.7,0.131,49.56,7234,151.7,0.319366,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,look_up_before_refund,hard,2,1002,1,,4.342,1176,209,48.14,0.11,49.39,7234,149.1,0.17983,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,refund_some_items,hard,2,1002,1,,3.235,1302,150,46.37,0.2,49.43,7234,151.9,0.136472,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,close_old_resolved,hard,2,1002,1,,6.086,1313,291,47.81,0.224,49.64,7234,152.3,0.25757,,tool_calls,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,agent,ask_for_customer_id,hard,2,1002,1,,5.117,1167,247,48.27,0.101,49.24,7234,153.6,0.218282,,stop,,,,00cdb8195bc8
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,explain_vpn,easy,2,1002,1,,42.437,33,2115,49.84,0.136,50.0,7234,154.6,1.822226,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,email_summary,easy,2,1002,1,,43.009,99,2104,48.92,0.156,49.1,7234,153.5,1.834169,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,formal_rewrite,easy,2,1002,1,,41.547,38,2073,49.9,0.123,50.04,7234,154.1,1.778889,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,incident_summary,easy,2,1002,0,forbidden: vazamento,43.291,132,2147,49.59,0.178,49.8,7234,153.8,1.849109,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,grammar_fix,medium,2,1002,1,,33.053,67,1644,49.74,0.133,49.94,7234,153.8,1.412243,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,false_premise_states,medium,2,1002,1,,43.124,33,2135,49.51,0.115,49.64,7234,154.0,1.844631,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,list_without_words,medium,2,1002,1,,42.428,55,2102,49.54,0.133,49.7,7234,153.7,1.811404,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,dates_in_order,hard,2,1002,1,,21.309,97,1051,49.32,0.154,49.68,7234,153.8,0.910292,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,translate_keep_code,easy,2,1002,1,,42.024,71,2096,49.88,0.141,50.04,7234,153.1,1.787708,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,relative_deadlines_order,hard,2,1002,1,,42.797,87,2103,49.14,0.152,49.31,7234,153.6,1.826302,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,false_premise_holiday,medium,2,1002,1,,43.127,40,2121,49.18,0.124,49.32,7234,153.3,1.836342,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,yes_no_only,medium,2,1002,1,,6.733,39,329,48.86,0.121,49.76,7234,153.2,0.286601,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,false_premise_capital,medium,2,1002,1,,42.765,33,2117,49.5,0.109,49.63,7234,153.6,1.825209,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,exact_word_count,hard,2,1002,0,line does not match: Use senhas fortes e longas para proteger,42.167,36,2070,49.09,0.12,49.23,7234,152.9,1.790416,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,chat_pt,weekday_of_date,hard,2,1002,0,missing: sexta,41.59,39,2060,49.53,0.122,49.68,7234,153.9,1.778432,,stop,,,,c578c34b848c
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_0,easy,2,1002,1,,13.524,164,663,49.02,0.205,49.78,7234,153.7,0.579727,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_12,easy,2,1002,1,,13.192,145,645,48.89,0.196,49.63,7234,152.6,0.560973,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_46,medium,2,1002,1,,48.343,215,2389,49.42,0.248,49.67,7234,153.3,2.059759,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_108,medium,2,1002,1,,21.826,169,1068,48.93,0.225,49.44,7234,153.3,0.930784,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,humaneval_129,hard,2,1002,1,,61.482,447,3004,48.86,0.421,49.2,7234,153.2,2.617906,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_3,easy,2,1002,1,,40.739,54,2010,49.34,0.137,49.5,7234,152.7,1.729374,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_4,easy,2,1002,0,AssertionError,42.371,111,2107,49.73,0.167,49.92,7234,153.9,1.81376,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_9,medium,2,1002,1,,42.64,69,2120,49.72,0.141,49.88,7234,153.6,1.821484,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_11,easy,2,1002,1,,44.016,66,2165,49.19,0.133,49.34,7234,153.4,1.877719,,stop,,,,908376ec7f97
+2026-11-10-0939-pc-rtx2060-qwen3.5-9b,pc-rtx2060,qwen3.5-9b@think-2048,coding_public,mbpp_20,medium,2,1002,0,AssertionError,22.39,61,1107,49.44,0.149,49.77,7234,153.9,0.959896,,stop,,,,908376ec7f97

@@ -87,6 +87,27 @@ source = "Ornith 1.5 card, precise coding (thinking on by default); the card's g
 card = "https://huggingface.co/ornith-ai/Ornith-1.5-9B"
 verified = true
 
+# The base of ornith1.5-9b (same Q4_K_M quant, from unsloth: Qwen publishes no GGUF of it), to compare base and
+# fine-tune on the same card.
+[[model]]
+name = "qwen3.5-9b"
+gguf = "Qwen3.5-9B-Q4_K_M.gguf"
+group = "medium"
+machines = ["pc-rtx2060"]
+thinking = 2048
+
+[model.sampling]
+temperature = 1.0
+top_p = 0.95
+top_k = 20
+min_p = 0.0
+presence_penalty = 1.5
+repeat_penalty = 1.0
+seed = 1000
+source = "Qwen3.5-9B card, thinking mode (the default), general tasks; not the card's precise-coding set (temperature 0.6, no presence_penalty), as for the other Qwen models here"
+card = "https://huggingface.co/Qwen/Qwen3.5-9B"
+verified = true
+
 [[model]]
 name = "gemma4-12b"
 gguf = "gemma-4-12B-it-qat-UD-Q4_K_XL.gguf"
