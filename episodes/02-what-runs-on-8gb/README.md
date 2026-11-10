@@ -20,6 +20,6 @@ when part of the model spills to the CPU, how fast it runs and what each model i
   with the q8_0 KV cache of the server's presets (`cache_type` = q8_0, `--cache-type q8_0`): every layer on the
   card, 41.5 tok/s. `qwen3.8-27b-q3` (13 GB) does not fit and runs at 2.8 tok/s with part of it on the CPU.
 - Not run on the PC: `qwen3.8-27b-q3`, too slow there. At 2.8 tok/s, the 240 executions of a run (~1,300 tokens
-  each) would take about 31 hours; its speed rows are the result. Episodes 01 and 03 run it on a rented RTX A5000.
+  each) would take about 31 hours; its speed rows are the result. Episode 01 runs it on a rented RTX A5000.
 
 Commands: [HOW-TO-RUN.md](../../HOW-TO-RUN.md).
