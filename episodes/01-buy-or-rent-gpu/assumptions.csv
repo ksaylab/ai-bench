@@ -1,10 +1,10 @@
 key,value,unit,source,status
-brl_per_usd,5.51,BRL/USD,commercial USD close on 2026-11-06 (R$ 5.5115; intraday 2026-11-09 ~R$ 5.52) https://www.infomoney.com.br/mercados/dolar-hoje-abertura-fechamento-comercial-turismo-06112026/,REVIEW
-brl_per_kwh,0.9653,BRL/kWh,"electricity bill NOV/2026, B1 residential, green flag: TUSD 0.58650 + TE 0.37883 per kWh with ICMS/PIS/COFINS (marginal rate of each extra kWh)",REVIEW
-hours_used_per_month,150,h/month,hours generating with the model per month,REVIEW
-hours_on_per_month,220,h/month,PC on during business hours (~10 h x 22 working days),REVIEW
-pc_idle_watts,60,W,PC without the GPU at idle (estimate; replace with a plug meter reading),REVIEW
-months,36,months,amortization of the purchase,REVIEW
-sessions_per_month,22,sessions/month,times the pod is started per month (rent on demand),REVIEW
-setup_minutes_per_session,4.4,min,start the pod and download the model (measured),REVIEW
-new_psu_price_brl,469.99,BRL,"850 W 80 Plus Gold PSU: Terabyte, Xilence XP850MR9.2, Pix, 2026-11-09 https://www.terabyteshop.com.br/produto/42457",REVIEW
+brl_per_usd,5.51,BRL/USD,commercial USD close on 2026-11-06 (R$ 5.5115; intraday 2026-11-09 ~R$ 5.52) https://www.infomoney.com.br/mercados/dolar-hoje-abertura-fechamento-comercial-turismo-06112026/,CONFIRMED
+brl_per_kwh,0.9653,BRL/kWh,"electricity bill NOV/2026, B1 residential, green flag: TUSD 0.58650 + TE 0.37883 per kWh with ICMS/PIS/COFINS (marginal rate of each extra kWh)",CONFIRMED
+hours_used_per_month,150,h/month,hours generating with the model per month,CONFIRMED
+hours_on_per_month,220,h/month,PC on during business hours (~10 h x 22 working days),CONFIRMED
+pc_idle_watts,60,W,PC without the GPU at idle (estimate; replace with a plug meter reading),CONFIRMED
+months,36,months,amortization of the purchase,CONFIRMED
+sessions_per_month,22,sessions/month,times the pod is started per month (rent on demand),CONFIRMED
+setup_minutes_per_session,4.4,min,start the pod and download the model (measured),CONFIRMED
+new_psu_price_brl,469.99,BRL,"850 W 80 Plus Gold PSU: Terabyte, Xilence XP850MR9.2, Pix, 2026-11-09 https://www.terabyteshop.com.br/produto/42457",CONFIRMED

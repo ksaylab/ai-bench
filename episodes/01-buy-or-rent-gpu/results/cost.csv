@@ -1,14 +1,14 @@
 id,name,option,brl_per_month,break_even_hours_per_month,data_status
-rtx-3090-used,RTX 3090 24 GB (used),buy,230.67,322,REVIEW
-rtx-4060-ti-16gb,RTX 4060 Ti 16 GB,buy,124.19,138,REVIEW
-rtx-5060-ti-16gb,RTX 5060 Ti 16 GB,buy,173.2,205,REVIEW
-rtx-4070-ti-super,RTX 4070 Ti Super 16 GB,buy,237.39,318,REVIEW
-rtx-5070-ti,RTX 5070 Ti 16 GB,buy,284.27,398,REVIEW
-runpod-a5000-community,RunPod RTX A5000 24 GB (Community),rent_on_demand,133.66,,REVIEW
-runpod-a5000-community,RunPod RTX A5000 24 GB (Community),rent_always_on,193.95,,REVIEW
-runpod-a5000-secure,RunPod RTX A5000 24 GB (Secure),rent_on_demand,225.56,,REVIEW
-runpod-a5000-secure,RunPod RTX A5000 24 GB (Secure),rent_always_on,327.29,,REVIEW
-runpod-3090-community,RunPod RTX 3090 24 GB (Community),rent_on_demand,183.79,,REVIEW
-runpod-3090-community,RunPod RTX 3090 24 GB (Community),rent_always_on,266.68,,REVIEW
-runpod-4090-secure,RunPod RTX 4090 24 GB (Secure),rent_on_demand,743.5,,REVIEW
-runpod-4090-secure,RunPod RTX 4090 24 GB (Secure),rent_always_on,1078.86,,REVIEW
+rtx-3090-used,RTX 3090 24 GB (used),buy,230.67,322,CONFIRMED
+rtx-4060-ti-16gb,RTX 4060 Ti 16 GB,buy,124.19,138,CONFIRMED
+rtx-5060-ti-16gb,RTX 5060 Ti 16 GB,buy,173.2,205,CONFIRMED
+rtx-4070-ti-super,RTX 4070 Ti Super 16 GB,buy,237.39,318,CONFIRMED
+rtx-5070-ti,RTX 5070 Ti 16 GB,buy,284.27,398,CONFIRMED
+runpod-a5000-community,RunPod RTX A5000 24 GB (Community),rent_on_demand,133.66,,CONFIRMED
+runpod-a5000-community,RunPod RTX A5000 24 GB (Community),rent_always_on,193.95,,CONFIRMED
+runpod-a5000-secure,RunPod RTX A5000 24 GB (Secure),rent_on_demand,225.56,,CONFIRMED
+runpod-a5000-secure,RunPod RTX A5000 24 GB (Secure),rent_always_on,327.29,,CONFIRMED
+runpod-3090-community,RunPod RTX 3090 24 GB (Community),rent_on_demand,183.79,,CONFIRMED
+runpod-3090-community,RunPod RTX 3090 24 GB (Community),rent_always_on,266.68,,CONFIRMED
+runpod-4090-secure,RunPod RTX 4090 24 GB (Secure),rent_on_demand,743.5,,CONFIRMED
+runpod-4090-secure,RunPod RTX 4090 24 GB (Secure),rent_always_on,1078.86,,CONFIRMED
