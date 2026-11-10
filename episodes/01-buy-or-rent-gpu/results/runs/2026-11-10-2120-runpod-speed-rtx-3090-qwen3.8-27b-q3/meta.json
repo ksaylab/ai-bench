@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-11-10-2120-runpod-speed-rtx-3090-qwen3.8-27b-q3",
+  "kind": "speed",
+  "episode": "01-buy-or-rent-gpu",
+  "machine": "runpod",
+  "models": [
+    "qwen3.8-27b-q3"
+  ],
+  "depths": [
+    0,
+    16384,
+    65536
+  ],
+  "repetitions": 3,
+  "fit_target_mib": null,
+  "cache_type": "q8_0",
+  "start": "2026-11-10T21:20:07",
+  "end": "2026-11-10T21:22:04",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true
+}

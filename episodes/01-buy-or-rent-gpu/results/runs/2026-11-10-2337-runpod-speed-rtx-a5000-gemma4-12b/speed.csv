@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,0,2775.87,4.05,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,0,74.96,0.04,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,16384,2095.88,30.59,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,16384,67.0,0.15,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,65536,1281.38,3.89,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,65536,55.25,0.08,3,ok,,b12098-149f5641b,8091,215.6,,q8_0

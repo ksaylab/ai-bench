@@ -1,1 +1,55 @@
-machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,0,8019.92,212.07,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,0,104.17,0.47,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,16384,5860.01,148.48,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,16384,95.44,0.35,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,65536,3452.49,50.58,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,65536,78.56,0.18,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,0,3507.62,43.65,3,ok,,b12098-149f5641b,15104,390.4,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,0,60.3,0.07,3,ok,,b12098-149f5641b,15104,390.4,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,16384,2937.17,37.81,3,ok,,b12098-149f5641b,15104,390.4,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,16384,56.82,0.1,3,ok,,b12098-149f5641b,15104,390.4,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,65536,1978.74,10.35,3,ok,,b12098-149f5641b,15104,390.4,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,65536,47.87,0.04,3,ok,,b12098-149f5641b,15104,390.4,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,0,3494.77,36.76,3,ok,,b12098-149f5641b,18106,373.0,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,0,50.51,0.03,3,ok,,b12098-149f5641b,18106,373.0,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,16384,2948.59,31.62,3,ok,,b12098-149f5641b,18106,373.0,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,16384,48.04,0.05,3,ok,,b12098-149f5641b,18106,373.0,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,65536,1989.21,21.36,3,ok,,b12098-149f5641b,18106,373.0,,q8_0
+runpod,NVIDIA GeForce RTX 4090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,65536,41.45,0.06,3,ok,,b12098-149f5641b,18106,373.0,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,0,3560.64,21.78,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,0,90.51,0.6,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,16384,2484.04,81.36,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,16384,82.11,0.62,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,65536,1421.21,11.41,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,65536,67.36,0.26,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,0,1576.16,9.25,3,ok,,b12098-149f5641b,14948,326.5,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,0,46.21,0.15,3,ok,,b12098-149f5641b,14948,326.5,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,16384,1269.81,27.21,3,ok,,b12098-149f5641b,14948,326.5,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,16384,41.24,0.29,3,ok,,b12098-149f5641b,14948,326.5,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,65536,831.44,1.56,3,ok,,b12098-149f5641b,14948,326.5,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,65536,31.55,0.14,3,ok,,b12098-149f5641b,14948,326.5,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,0,1597.56,14.86,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,0,43.7,0.1,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,16384,1306.14,3.36,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,16384,39.81,0.03,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,65536,838.29,3.29,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,65536,30.69,0.03,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,0,2775.87,4.05,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,0,74.96,0.04,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,16384,2095.88,30.59,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,16384,67.0,0.15,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,65536,1281.38,3.89,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,65536,55.25,0.08,3,ok,,b12098-149f5641b,8091,215.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,0,1142.19,1.18,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,0,35.41,0.05,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,16384,987.02,8.05,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,16384,31.14,0.06,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,65536,700.16,3.59,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,65536,23.18,0.0,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,0,1176.31,5.06,3,ok,,b12098-149f5641b,17897,221.4,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,0,35.28,0.09,3,ok,,b12098-149f5641b,17897,221.4,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,16384,1002.9,7.15,3,ok,,b12098-149f5641b,17897,221.4,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,16384,31.08,0.04,3,ok,,b12098-149f5641b,17897,221.4,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,65536,705.79,3.15,3,ok,,b12098-149f5641b,17897,221.4,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,65536,23.16,0.03,3,ok,,b12098-149f5641b,17897,221.4,,q8_0

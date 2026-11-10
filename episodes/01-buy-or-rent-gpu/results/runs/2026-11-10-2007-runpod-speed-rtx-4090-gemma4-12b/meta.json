@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-11-10-2007-runpod-speed-rtx-4090-gemma4-12b",
+  "kind": "speed",
+  "episode": "01-buy-or-rent-gpu",
+  "machine": "runpod",
+  "models": [
+    "gemma4-12b"
+  ],
+  "depths": [
+    0,
+    16384,
+    65536
+  ],
+  "repetitions": 3,
+  "fit_target_mib": null,
+  "cache_type": "q8_0",
+  "start": "2026-11-10T20:07:47",
+  "end": "2026-11-10T20:08:21",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true
+}

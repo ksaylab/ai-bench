@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,0,1597.56,14.86,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,0,43.7,0.1,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,16384,1306.14,3.36,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,16384,39.81,0.03,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,pp,65536,838.29,3.29,3,ok,,b12098-149f5641b,17948,324.6,,q8_0
+runpod,NVIDIA GeForce RTX 3090,qwen3.8-27b-q4,Qwen3.8-27B-UD-Q4_K_M.gguf,15.32,tg,65536,30.69,0.03,3,ok,,b12098-149f5641b,17948,324.6,,q8_0

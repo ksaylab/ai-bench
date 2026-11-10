@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-11-10-2337-runpod-speed-rtx-a5000-gemma4-12b",
+  "kind": "speed",
+  "episode": "01-buy-or-rent-gpu",
+  "machine": "runpod",
+  "models": [
+    "gemma4-12b"
+  ],
+  "depths": [
+    0,
+    16384,
+    65536
+  ],
+  "repetitions": 3,
+  "fit_target_mib": null,
+  "cache_type": "q8_0",
+  "start": "2026-11-10T23:37:45",
+  "end": "2026-11-10T23:38:54",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true
+}

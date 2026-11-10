@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,0,1142.19,1.18,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,0,35.41,0.05,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,16384,987.02,8.05,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,16384,31.14,0.06,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,pp,65536,700.16,3.59,3,ok,,b12098-149f5641b,14899,221.6,,q8_0
+runpod,NVIDIA RTX A5000,qwen3.8-27b-q3,Qwen3.8-27B-UD-Q3_K_XL.gguf,12.23,tg,65536,23.18,0.0,3,ok,,b12098-149f5641b,14899,221.6,,q8_0

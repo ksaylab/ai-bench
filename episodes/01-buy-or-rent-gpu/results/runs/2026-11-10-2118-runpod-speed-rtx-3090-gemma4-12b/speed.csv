@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,0,3560.64,21.78,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,0,90.51,0.6,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,16384,2484.04,81.36,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,16384,82.11,0.62,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,65536,1421.21,11.41,3,ok,,b12098-149f5641b,8160,324.3,,q8_0
+runpod,NVIDIA GeForce RTX 3090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,65536,67.36,0.26,3,ok,,b12098-149f5641b,8160,324.3,,q8_0

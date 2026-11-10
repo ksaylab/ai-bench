@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,0,8019.92,212.07,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,0,104.17,0.47,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,16384,5860.01,148.48,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,16384,95.44,0.35,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,pp,65536,3452.49,50.58,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
+runpod,NVIDIA GeForce RTX 4090,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.24,tg,65536,78.56,0.18,3,ok,,b12098-149f5641b,8306,342.2,,q8_0
