@@ -1,0 +1,24 @@
+# Companion of episode 05: neohorse-4b's RAG battery at 24,000 words, 3 more runs. Same GGUF, sampling and thinking
+# budget as episode 05, except the base seed: 1003 instead of 1000, so these are repeats 4 to 6 (seeds 1003-1005),
+# not a copy of episode 05's repeats 1 to 3 (seeds 1000-1002).
+# `[model.sampling]`: pinned sampling sent on every call (METHODOLOGY.md 8.4); repeat n uses seed + n.
+# `thinking = 2048`: reasoning budget of 2048 tokens, sent per request, as in episodes 02 and 05.
+
+[[model]]
+name = "neohorse-4b"
+gguf = "NeoHorse-1-4B.i1-Q4_K_M.gguf"
+group = "small"
+machines = ["pc-rtx2060"]
+thinking = 2048
+
+[model.sampling]
+temperature = 1.0
+top_p = 0.95
+top_k = 20
+min_p = 0.0
+presence_penalty = 1.5
+repeat_penalty = 1.0
+seed = 1003
+source = "NeoHorse-1-4B card: reported evaluation protocol (thinking on), not an explicit recommendation; the author's GGUF card uses the same values in its llama-server example"
+card = "https://huggingface.co/TokenRhythm/NeoHorse-1-4B"
+verified = true

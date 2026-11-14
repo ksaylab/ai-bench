@@ -33,6 +33,8 @@ How to run each episode on each machine, with time and cost estimates: [HOW-TO-R
 | 1 | [`episodes/01-buy-or-rent-gpu`](episodes/01-buy-or-rent-gpu/) | Buy or rent a GPU to run AI? |
 | 2 | [`episodes/02-what-runs-on-8gb`](episodes/02-what-runs-on-8gb/) | What runs on 8 GB? |
 | 3 | [`episodes/03-is-bigger-better`](episodes/03-is-bigger-better/) | Is a bigger model better? |
+| 5 | [`episodes/05-long-rag`](episodes/05-long-rag/) | RAG with a long document: 3,000 or 24,000 words? |
+| 5 | [`episodes/05-long-rag-repeat`](episodes/05-long-rag-repeat/) | 3 more runs of neohorse-4b at 24,000 words |
 
 ## Layout
 

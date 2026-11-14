@@ -1,0 +1,111 @@
+{
+  "run_id": "2026-11-14-1434-pc-rtx2060-neohorse-4b-ctx24k-repeat",
+  "episode": "05-long-rag-repeat",
+  "machine": "pc-rtx2060",
+  "models": [
+    "neohorse-4b"
+  ],
+  "runs": 3,
+  "use_cases": [
+    "rag"
+  ],
+  "cases": [
+    "single_passage",
+    "password_length",
+    "answer_absent",
+    "long_two_hops",
+    "meal_limit_by_date",
+    "meal_domestic_unchanged",
+    "sev3_no_target",
+    "payments_oncall_lead",
+    "purchase_quotes_after_change",
+    "purchase_cfo",
+    "credential_rotation_date",
+    "vpn_effective_date",
+    "partly_absent",
+    "long_renamed_room",
+    "purchase_exact_threshold",
+    "sev2_after_midnight",
+    "false_premise_office_hours",
+    "vacation_one_day_short",
+    "long_three_hops",
+    "long_updates_out_of_order"
+  ],
+  "context_words": 24000,
+  "judge": "",
+  "start": "2026-11-14T14:34:07",
+  "smoke": false,
+  "simulated": false,
+  "max_tokens": 32768,
+  "publishable": true,
+  "thresholds_pct": {
+    "coding": 80.0,
+    "rag": 80.0,
+    "agent": 80.0,
+    "chat_pt": 80.0
+  },
+  "sampling": {
+    "neohorse-4b": {
+      "sent": {
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "repeat_penalty": 1.0
+      },
+      "base_seed": 1003,
+      "seeds": [
+        1003,
+        1004,
+        1005
+      ],
+      "source": "NeoHorse-1-4B card: reported evaluation protocol (thinking on), not an explicit recommendation; the author's GGUF card uses the same values in its llama-server example",
+      "card": "https://huggingface.co/TokenRhythm/NeoHorse-1-4B",
+      "verified": true
+    }
+  },
+  "server_args": "",
+  "battery": {
+    "rag": "6acc3a5c1feb"
+  },
+  "checker_version": 3,
+  "thinking": 2048,
+  "contestants": {
+    "neohorse-4b": "neohorse-4b@think-2048"
+  },
+  "requests": {
+    "single_passage": "176e4cefdd16071b9480df132210922436a8e509c5d4aad35b6be9616f668aca",
+    "password_length": "e7fe528c429e586d3ca47e6b8fa32e8c035176abf61ded4a2ae28c6e75f73e61",
+    "answer_absent": "70e06ec7b3b15c9190701c99a124e0ed733067efb701e0b95ed42ca2ded9e12c",
+    "long_two_hops": "38f8c54531cfbe47bebef509bc85e6ddae326449116bc6cbf6515bfd02d4b2da",
+    "meal_limit_by_date": "4ce5d846daa493be902766919cbbfd05e937e269663da31d050ea8d05424f9e2",
+    "meal_domestic_unchanged": "1814d72f49f5060b8a4c47e557c93852bf3de03d56774d8a3c1e8ec15d6f1f83",
+    "sev3_no_target": "0b146217c36b969dd88fdb52995b64d218848bd8dbd300d38aeeac6148e02e7a",
+    "payments_oncall_lead": "a1c6310583c4d8806ad590aaff7eb6e1fbf472129b8ba7239fe59d6ba2ae28de",
+    "purchase_quotes_after_change": "db92b3163ac197c608cc1567f8f3ade46d4db5502a6a8871d660d782b62f4d73",
+    "purchase_cfo": "4709059f6c6ccb140b6b175b079487579a71bc6366547410a20374853e4c7660",
+    "credential_rotation_date": "ca368c952b63025b969ebcc9f07da6f92df56c91f058831041284b41b40e6791",
+    "vpn_effective_date": "d9961c876032c6eeaec826602c507a8b42187e510cd3db1d906d05c7722a46e9",
+    "partly_absent": "a67ebfced21700892672934fdbd949fc4590e98c9e944e24a71bf9db6ecff073",
+    "long_renamed_room": "1db22bf69f519011e89b490077507df23bafd379e9f5dc5db0057fb2afaffb76",
+    "purchase_exact_threshold": "a6a421d85eb53658506bd5c2a3ecaafd9610522895bedf1b196fcf41083ac53f",
+    "sev2_after_midnight": "258b2e37d0f3b59d562eb00898858ad0ba5e3bb499402efae2c380fa9ceecb03",
+    "false_premise_office_hours": "8ed0494a2a32172a514fe395f07328b6585b46e470947a101ef9fc0765e2601b",
+    "vacation_one_day_short": "dc9d5601c0885964e5371b1c18c05925dbaafb7376ce2585a2fa203e2f246af3",
+    "long_three_hops": "c95ff034078f9d03688e65469eab608c2d4f34e7ebc52c352c76899469145171",
+    "long_updates_out_of_order": "4f6a4dec50ae188134b7b6d7722b1d2545a0121e4ca96fa7035a8e25770dda86"
+  },
+  "stream": true,
+  "gpu_sampling": {
+    "neohorse-4b": {
+      "status": "ok",
+      "interval_ms": 500,
+      "samples": 1789,
+      "peak_vram_mib": 7224,
+      "avg_power_w": 144.4,
+      "peak_power_w": 176.7
+    }
+  },
+  "end": "2026-11-14T14:49:11"
+}

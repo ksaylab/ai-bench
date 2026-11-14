@@ -1,0 +1,8 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+pc-rtx2060,gemma4-12b@think-2048,,93.3,,,,RAG (answers with sources),,,,,3,29.0,
+pc-rtx2060,gemma4-26b@think-2048,,93.3,,,,RAG (answers with sources),,,,,3,40.99,
+pc-rtx2060,gemma4-e4b@think-2048,,76.7,,,,,,,RAG (answers with sources) (borderline),,3,6.96,
+pc-rtx2060,lfm3-1.7b@think-2048,,93.3,,,,RAG (answers with sources),,,,,3,9.58,
+pc-rtx2060,neohorse-4b@think-2048,,81.7,,,,,,,RAG (answers with sources) (borderline),,3,14.92,
+pc-rtx2060,ornith1.5-9b@think-2048,,91.7,,,,RAG (answers with sources) (mixed tiers),,,,,3,11.0,
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,,95.0,,,,RAG (answers with sources),,,,,3,48.53,

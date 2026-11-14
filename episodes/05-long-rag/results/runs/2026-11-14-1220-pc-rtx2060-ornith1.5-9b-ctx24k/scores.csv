@@ -1,0 +1,2 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,ornith1.5-9b@think-2048,rag,6acc3a5c1feb,55,60,20,3,91.7,90.0,95.0,58.3,100.0,100.0,1,0,80.0,Good for,mixed tiers,0,,,,,,11.0,49.72,7.157,70.96,7752,144.2,8.4993,

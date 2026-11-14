@@ -1,0 +1,8 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,gemma4-12b@think-2048,rag,6acc3a5c1feb,56,60,20,3,93.3,90.0,95.0,100.0,81.0,100.0,1,0,80.0,Good for,,0,,,,,,29.0,30.35,10.431,37.33,7724,148.4,23.5014,
+pc-rtx2060,gemma4-26b@think-2048,rag,6acc3a5c1feb,56,60,20,3,93.3,90.0,100.0,100.0,81.0,100.0,2,0,80.0,Good for,,0,,,,,,40.99,25.8,16.282,33.52,7136,70.0,17.4327,
+pc-rtx2060,gemma4-e4b@think-2048,rag,6acc3a5c1feb,46,60,20,3,76.7,70.0,80.0,91.7,71.4,74.1,5,0,80.0,Unstable,,1,,,,,,6.96,92.03,2.505,110.67,5432,146.5,5.5923,
+pc-rtx2060,lfm3-1.7b@think-2048,rag,6acc3a5c1feb,56,60,20,3,93.3,85.0,100.0,91.7,95.2,92.6,4,0,80.0,Good for,,0,,,,,,9.58,123.51,0.57,131.15,3620,148.7,7.9584,
+pc-rtx2060,neohorse-4b@think-2048,rag,6acc3a5c1feb,49,60,20,3,81.7,75.0,90.0,83.3,81.0,81.5,6,0,80.0,Unstable,,1,,,,,,14.92,59.42,4.337,72.64,7224,146.2,12.1172,
+pc-rtx2060,ornith1.5-9b@think-2048,rag,6acc3a5c1feb,55,60,20,3,91.7,90.0,95.0,58.3,100.0,100.0,1,0,80.0,Good for,mixed tiers,0,,,,,,11.0,49.72,7.157,70.96,7752,144.2,8.4993,
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,rag,6acc3a5c1feb,57,60,20,3,95.0,95.0,95.0,100.0,100.0,88.9,0,0,80.0,Good for,,0,,,,,,48.53,26.41,10.25,31.51,7196,81.2,22.3515,
