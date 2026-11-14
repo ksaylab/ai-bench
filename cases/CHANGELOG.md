@@ -3,6 +3,37 @@
 Every change to a battery, with the reason, so the pruning (METHODOLOGY.md 8.3) is public. Each change makes a new
 battery version (`battery` in `meta.json`): runs of different versions are never merged or compared.
 
+## 2026-11-14
+
+- Batteries v3 of `agent`, `chat_pt` and `rag`, after the v2 pruning report. `coding` did not change.
+- Fixed the pruning report: its summary counted the cases of every calibrated battery version, so a battery with two
+  versions looked twice its size. It now counts only the current version (`pruning(..., current=...)`).
+- Too easy (every repeat of the floor passed them). Each battery keeps 2 easy cases, meant to be passed by small
+  models (METHODOLOGY.md 8.3); the others left:
+  - `agent`: `no_tool_needed` and `priority_schema` left; `weather_call` and `contact_schema` stay.
+  - `chat_pt`: `email_summary` and `translate_keep_code` left; `explain_vpn` and `formal_rewrite` stay.
+  - `rag`: `password_length` and `vacation_one_day_short` left; `answer_absent` and `single_passage` stay.
+- New cases, screened on the floor and `z-ai/glm-5.3-flash` before the anchor run (3 repeats each,
+  `calibrate --smoke --cases`, US$0.008 in all; smoke runs are not published). A candidate got in only when the floor
+  failed it and the GLM passed it:
+  - `agent` (4 of 17): `two_matching_orders` (two orders match the request: ask which), `meeting_missing_time`
+    (no start time given: ask), `refund_cheapest_order` (pick the cheapest of four results) and
+    `meeting_first_monday` (the first Monday of next month).
+  - `chat_pt` (3 of 8): `date_plus_45_days`, `raise_then_discount` (a raise and then a discount on the new value) and
+    `words_ending_cao`.
+  - Left out because the floor passed every repeat: `agent` `weather_home_unit`, `currency_european_format`,
+    `meeting_month_rollover`, `ticket_by_title`, `refund_shipping_only`, `split_after_conversion`,
+    `weather_two_cities`, `convert_before_comparing`, `refund_cap_then_ticket`, `retry_currency_code`,
+    `skip_done_step`, `two_matching_tickets`; `chat_pt` `letter_count`, `notice_without_word`, `pronoun_reference`,
+    `false_premise_world_cup`, `false_premise_pluto`.
+  - Left out as ambiguous: `agent` `outage_priority`. The GLM added tags of its own (`outage`, `checkout`) to the
+    one asked for, and nothing in the request forbids that.
+- `rag` `vpn_effective_date`: `cite_only` removed, reversing the review of 2026-11-04. The access starts on the next
+  business day, and [7] says the offices are closed on weekends: a fair source for why 2026-03-14 and 2026-03-15 are
+  not business days, not an unrelated passage. `deepseek/deepseek-v4-pro` failed every repeat for citing it. [1]
+  is still required.
+- Batteries now: `coding` 20, `rag` 18, `agent` 17, `chat_pt` 16 cases.
+
 ## 2026-11-04
 
 - After the anchor run of the grown batteries (`calibration/runs/2026-11-04-0754-openrouter-anchors`, 720 calls,

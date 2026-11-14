@@ -11,9 +11,9 @@ repository (except the `coding_public` reference battery, 8.5), and scored autom
 | Use case | File | Cases | What passes |
 | --- | --- | --- | --- |
 | `coding` | `cases/coding.jsonl` | 20 | The model writes a Python function; hidden assertions run in an isolated subprocess with a timeout. All assertions must pass. |
-| `rag` | `cases/rag.jsonl` + `rag_documents.json` | 20 | The answer is correct **and** cites the source passage as `[n]`. Wrong passage, no citation or extra unrelated citations fail. Includes a question whose answer is not in the document (must say so, with no citation), an outdated vs. newer rule, similar entities and two long generated documents (needle in a haystack). |
-| `agent` | `cases/agent.jsonl` + `agent_tools.json` | 15 | Tool/function calling through the API's `tools` field: the right tool, arguments valid against the tool's JSON Schema and equal to the expected values; several calls in one answer when the task needs them; the next step after a fixed history of earlier calls and their results (filter, add up or compare the results, retry after a tool error, ask when an id is missing, do not act past a limit). Also: not calling a tool when none is needed, and JSON output in an exact schema (types, enums, required keys, no extra keys). |
-| `chat_pt` | `cases/chat_pt.jsonl` | 15 | Chat and summaries in Brazilian Portuguese: required facts present, length limits (words/sentences/lines), answer in Portuguese, false premises corrected. |
+| `rag` | `cases/rag.jsonl` + `rag_documents.json` | 18 | The answer is correct **and** cites the source passage as `[n]`. Wrong passage, no citation or extra unrelated citations fail. Includes a question whose answer is not in the document (must say so, with no citation), an outdated vs. newer rule, similar entities and two long generated documents (needle in a haystack). |
+| `agent` | `cases/agent.jsonl` + `agent_tools.json` | 17 | Tool/function calling through the API's `tools` field: the right tool, arguments valid against the tool's JSON Schema and equal to the expected values; several calls in one answer when the task needs them; the next step after a fixed history of earlier calls and their results (filter, add up or compare the results, retry after a tool error, ask when an id is missing, do not act past a limit). Also: not calling a tool when none is needed, and JSON output in an exact schema (types, enums, required keys, no extra keys). |
+| `chat_pt` | `cases/chat_pt.jsonl` | 16 | Chat and summaries in Brazilian Portuguese: required facts present, length limits (words/sentences/lines), answer in Portuguese, false premises corrected. |
 | `coding_public` | `cases/coding_public/cases.jsonl` | 10 | Reference only (8.5): 5 HumanEval and 5 MBPP problems, scored like `coding`, never part of the verdict. |
 
 - Every case has `example_good` and `example_bad`; the tests check that the checker passes the first and fails the
@@ -105,7 +105,12 @@ points. This section is the plan to fix both. Since 2026-11-03 every item below 
   calls; that rescored run is the baseline (v2);
 - the local contestants ran on the PC with pinned sampling and 32768 tokens (2026-11-04 to 2026-11-06): the six
   PC models of episode 04 at thinking off, 512, 2048 and 8192, 240 calls per run. Episodes 02 and 03 pin thinking
-  2048 (8.4) and use the copies of those 2048 runs.
+  2048 (8.4) and use the copies of those 2048 runs;
+- the v2 pruning report found `agent` and `chat_pt` too easy (4 cases of each passed by every repeat of the floor,
+  leaving 11 useful cases) and `rag` with 4 such cases (2026-11-14). Each battery kept 2 easy cases; the others
+  left, and new candidates were screened on the floor and `z-ai/glm-5.3-flash` (3 repeats, `--smoke --cases`):
+  of 17 `agent` and 8 `chat_pt` candidates, a case got in only when the floor failed it and the GLM passed it
+  (4 and 3 got in). Batteries v3: `coding` 20, `rag` 18, `agent` 17, `chat_pt` 16 cases (`cases/CHANGELOG.md`).
 
 The PC runs before that (2026-11-02 with unpinned sampling, 2026-11-04 with 8192 tokens or no thinking level) stay
 as pilot runs and are not published.
@@ -157,7 +162,7 @@ documents at the default 3000 words): ~45k input tokens per anchor, and 35k to 2
 much the model reasons. At the prices above that is about US$0.10 to 0.80 for `deepseek/deepseek-v4-pro`, under
 US$0.03 for `z-ai/glm-5.3-flash` and about US$0.01 for `mistralai/ministral-3b-2512`: **under US$1 per battery
 version**. The first anchor run, on that battery version, cost US$0.35 (US$0.32 of it `deepseek/deepseek-v4-pro`).
-With `coding` and `rag` at 20 cases and `chat_pt` and `agent` at 15 there are 80 cases (240 calls per anchor, 720
+With `coding` and `rag` at 20 cases and `chat_pt` and `agent` at 15 (v2) there were 80 cases (240 calls per anchor, 720
 in total), harder ones and up to 32768 output tokens per call for the anchors: that run cost US$2.00, US$1.87 of it
 `deepseek/deepseek-v4-pro` (US$1.44 in `coding`, where it reasons up to the 32768-token limit). A new battery version
 needs a new anchor run when a case sends another request (prompt, history, tools); when only the checker, a tier
@@ -206,7 +211,7 @@ that everyone passes is not.
 - Rough meaning: **easy** = a small local model should pass; **medium** = needs real skill (multi-step logic,
   several constraints at once, longer context); **hard** = ceiling anchors pass and small models usually do not
   (edge cases in the hidden tests, distractor passages, ambiguous tool choice, long schemas).
-- **Target: 15 to 20 cases per use case** (`coding` and `rag` have 20, `chat_pt` and `agent` 15), roughly one third per tier. With 18 cases one case is
+- **Target: 15 to 20 cases per use case** (`coding` has 20, `rag` 18, `agent` 17 and `chat_pt` 16), roughly one third per tier. With 18 cases one case is
   worth 5.6 points instead of 12 to 17. All new cases follow section 1: synthetic, written for this repository,
   with `example_good` and `example_bad`.
 - The current 27 cases are tagged (best effort, before any anchor run: 11 easy, 15 medium, 1 hard); new cases go

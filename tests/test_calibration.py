@@ -73,6 +73,21 @@ class TestTiersAndPruning(unittest.TestCase):
         self.assertIn("`broken`", md)
         self.assertNotIn("`good`", md)
 
+    def test_summary_counts_only_the_current_battery_version(self):
+        old = self.rows({("c1", "ceiling"): {"a": [1, 1, 1], "b": [1, 1, 1]}, ("f", "floor"): {"a": [1, 1, 1], "b": [1, 1, 1]}})
+        new = self.rows({("c1", "ceiling"): {"a": [1, 1, 1], "b": [1, 1, 0]}, ("f", "floor"): {"a": [1, 1, 1], "b": [0, 0, 0]}})
+        for r in new:
+            r["battery"] = "b2"
+        battery = [{"use_case": "coding", "id": i, "tier": "easy"} for i in ("a", "b")]
+        per_case, summary = calibration.pruning(old + new, battery, current={"coding": "b2"})
+        s = summary["coding"]
+        self.assertEqual((s["checked"], s["too_easy"], s["kept"]), (2, 1, 1))  # not 4 checked, 3 too easy
+        self.assertEqual({(r["battery"], r["case"]) for r in per_case if r["action"] == "too_easy"},
+                         {("b1", "a"), ("b1", "b"), ("b2", "a")})               # the CSV keeps the history
+        md = calibration.pruning_markdown(per_case, summary, current={"coding": "b2"})
+        self.assertEqual(md.count("| `coding` | `a` |"), 1)                     # act on the current version only
+        self.assertNotIn("| `coding` | `b` |", md)
+
     def test_only_anchor_results_decide(self):
         self.assertEqual(calibration.classify({"local": ("", 3, 3)})[0], "")
 

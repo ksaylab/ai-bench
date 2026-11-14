@@ -112,7 +112,9 @@ def consolidate(root=None, log=None, battery_cases=None):
     rows = read_rows(root, log)
     scores = anchor_scores(rows)
     run.write_csv(root / "anchors.csv", ANCHOR_COLUMNS, scores)
-    write_pruning(rows, cases.load() if battery_cases is None else battery_cases, root)
+    # the real batteries: count only each use case's current version (a test passes its own cases and versions)
+    current = {uc: cases.battery_hash(uc) for uc in cases.USE_CASES} if battery_cases is None else None
+    write_pruning(rows, cases.load() if battery_cases is None else battery_cases, root, current)
     return root / "anchors.csv", len(rows), reference(scores)
 
 
@@ -160,9 +162,10 @@ def _fmt(results):
     return "; ".join(f"{m} {p}/{n}" for m, (p, n) in sorted(results.items()))
 
 
-def pruning(rows, battery_cases=None):
+def pruning(rows, battery_cases=None, current=None):
     """(per-case rows, per-use-case summary). `battery_cases`: the current cases (cases.load()), so the summary also
-    shows the batteries that have no anchor run yet."""
+    shows the batteries that have no anchor run yet. `current`: use case -> current battery version; the summary then
+    counts only that version's anchor results (the per-case rows keep every version, as history)."""
     per_case = []
     for (uc, battery, case), e in sorted(case_results(rows).items()):
         action, reason = classify(e["anchors"])
@@ -176,10 +179,12 @@ def pruning(rows, battery_cases=None):
                                                 "ceilings_disagree": 0, "checked": 0})
         s["cases"] += 1
         s["tiers"][c["tier"]] = s["tiers"].get(c["tier"], 0) + 1
-    current = {(c["use_case"], c["id"]) for c in battery_cases or []}
+    in_battery = {(c["use_case"], c["id"]) for c in battery_cases or []}
     for r in per_case:
-        if battery_cases is not None and (r["use_case"], r["case"]) not in current:
+        if battery_cases is not None and (r["use_case"], r["case"]) not in in_battery:
             continue  # a case already removed from the battery
+        if not _is_current(r, current):
+            continue  # the same case in an older battery version
         s = summary.setdefault(r["use_case"], {"cases": 0, "tiers": {}, "too_easy": 0, "suspect": 0,
                                                 "ceilings_disagree": 0, "checked": 0})
         s["checked"] += 1
@@ -201,7 +206,11 @@ def pruning(rows, battery_cases=None):
     return per_case, summary
 
 
-def pruning_markdown(per_case, summary, reference_note=""):
+def _is_current(r, current):
+    return not current or r["use_case"] not in current or r["battery"] == current[r["use_case"]]
+
+
+def pruning_markdown(per_case, summary, reference_note="", current=None):
     low, high = TARGET_CASES
     lines = ["# Case pruning report", "",
              "Discrimination check of METHODOLOGY.md 8.3, from the anchor runs only (never the local contestants). "
@@ -215,7 +224,8 @@ def pruning_markdown(per_case, summary, reference_note=""):
         lines.append(f"| `{uc}` | {s['cases']} | {tiers} | {s['checked']} | {s['too_easy']} | {s['suspect']} | "
                      f"{s['ceilings_disagree']} | {s['kept']} | {s['advice']} |")
     from aibench.cases import REFERENCE_USE_CASES
-    flagged = [r for r in per_case if r["action"] not in ("keep", "") and r["use_case"] not in REFERENCE_USE_CASES]
+    flagged = [r for r in per_case if r["action"] not in ("keep", "") and r["use_case"] not in REFERENCE_USE_CASES
+               and _is_current(r, current)]
     lines += ["", "## Cases to act on", ""]
     if not flagged:
         lines.append("None (or no anchor run yet)." if not per_case else "None: every checked case discriminates.")
@@ -228,11 +238,11 @@ def pruning_markdown(per_case, summary, reference_note=""):
     return "\n".join(lines) + "\n"
 
 
-def write_pruning(rows, battery_cases, root=None):
+def write_pruning(rows, battery_cases, root=None, current=None):
     from aibench import run
     root = Path(root or CALIBRATION)
-    per_case, summary = pruning(rows, battery_cases)
+    per_case, summary = pruning(rows, battery_cases, current)
     run.write_csv(root / "pruning.csv", PRUNING_COLUMNS, per_case)
     note = "" if rows else "No anchor run yet: only the battery sizes and tiers are shown."
-    (root / "pruning.md").write_text(pruning_markdown(per_case, summary, note), encoding="utf-8")
+    (root / "pruning.md").write_text(pruning_markdown(per_case, summary, note, current), encoding="utf-8")
     return root / "pruning.md", per_case, summary
