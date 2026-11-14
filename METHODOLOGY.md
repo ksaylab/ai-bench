@@ -13,7 +13,7 @@ repository (except the `coding_public` reference battery, 8.5), and scored autom
 | `coding` | `cases/coding.jsonl` | 20 | The model writes a Python function; hidden assertions run in an isolated subprocess with a timeout. All assertions must pass. |
 | `rag` | `cases/rag.jsonl` + `rag_documents.json` | 18 | The answer is correct **and** cites the source passage as `[n]`. Wrong passage, no citation or extra unrelated citations fail. Includes a question whose answer is not in the document (must say so, with no citation), an outdated vs. newer rule, similar entities and two long generated documents (needle in a haystack). |
 | `agent` | `cases/agent.jsonl` + `agent_tools.json` | 17 | Tool/function calling through the API's `tools` field: the right tool, arguments valid against the tool's JSON Schema and equal to the expected values; several calls in one answer when the task needs them; the next step after a fixed history of earlier calls and their results (filter, add up or compare the results, retry after a tool error, ask when an id is missing, do not act past a limit). Also: not calling a tool when none is needed, and JSON output in an exact schema (types, enums, required keys, no extra keys). |
-| `chat_pt` | `cases/chat_pt.jsonl` | 16 | Chat and summaries in Brazilian Portuguese: required facts present, length limits (words/sentences/lines), answer in Portuguese, false premises corrected. |
+| `chat_pt` | `cases/chat_pt.jsonl` | 19 | Chat and summaries in Brazilian Portuguese: required facts present, length limits (words/sentences/lines), answer in Portuguese, false premises corrected. |
 | `coding_public` | `cases/coding_public/cases.jsonl` | 10 | Reference only (8.5): 5 HumanEval and 5 MBPP problems, scored like `coding`, never part of the verdict. |
 
 - Every case has `example_good` and `example_bad`; the tests check that the checker passes the first and fails the
@@ -109,8 +109,9 @@ points. This section is the plan to fix both. Since 2026-11-03 every item below 
 - the v2 pruning report found `agent` and `chat_pt` too easy (4 cases of each passed by every repeat of the floor,
   leaving 11 useful cases) and `rag` with 4 such cases (2026-11-14). Each battery kept 2 easy cases; the others
   left, and new candidates were screened on the floor and `z-ai/glm-5.3-flash` (3 repeats, `--smoke --cases`):
-  of 17 `agent` and 8 `chat_pt` candidates, a case got in only when the floor failed it and the GLM passed it
-  (4 and 3 got in). Batteries v3: `coding` 20, `rag` 18, `agent` 17, `chat_pt` 16 cases (`cases/CHANGELOG.md`).
+  of 17 `agent` and 14 `chat_pt` candidates, a case got in only when the floor did not pass every repeat and the
+  GLM passed every one (4 and 6 got in). After the anchor runs (US$0.54 with the screening, `two_matching_orders`
+  fixed on the way): `coding` 20, `rag` 18, `agent` 17, `chat_pt` 19 cases (`cases/CHANGELOG.md`).
 
 The PC runs before that (2026-11-02 with unpinned sampling, 2026-11-04 with 8192 tokens or no thinking level) stay
 as pilot runs and are not published.
@@ -211,7 +212,7 @@ that everyone passes is not.
 - Rough meaning: **easy** = a small local model should pass; **medium** = needs real skill (multi-step logic,
   several constraints at once, longer context); **hard** = ceiling anchors pass and small models usually do not
   (edge cases in the hidden tests, distractor passages, ambiguous tool choice, long schemas).
-- **Target: 15 to 20 cases per use case** (`coding` has 20, `rag` 18, `agent` 17 and `chat_pt` 16), roughly one third per tier. With 18 cases one case is
+- **Target: 15 to 20 cases per use case** (`coding` has 20, `rag` 18, `agent` 17 and `chat_pt` 19), roughly one third per tier. With 18 cases one case is
   worth 5.6 points instead of 12 to 17. All new cases follow section 1: synthetic, written for this repository,
   with `example_good` and `example_bad`.
 - The current 27 cases are tagged (best effort, before any anchor run: 11 easy, 15 medium, 1 hard); new cases go

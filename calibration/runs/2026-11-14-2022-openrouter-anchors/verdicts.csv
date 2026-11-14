@@ -1,0 +1,4 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+openrouter,deepseek/deepseek-v4-pro,,,98.0,,,Agents / tool calling,,,,,3,4.41,0.10572
+openrouter,mistralai/ministral-3b-2512,,,11.8,,,,Agents / tool calling,,,,3,0.81,0.001445
+openrouter,z-ai/glm-5.3-flash,,,98.0,,,Agents / tool calling,,,,,3,4.29,0.005059

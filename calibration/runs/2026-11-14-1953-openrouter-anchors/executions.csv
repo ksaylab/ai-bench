@@ -1,0 +1,460 @@
+run_id,machine,model,use_case,case,tier,rep,seed,passed,reason,time_s,prompt_tokens,completion_tokens,tok_s,ttft_s,gen_tok_s,peak_vram_mib,avg_power_w,energy_wh,cost_usd,finish,judge_score,judge_cost_usd,context_words,battery
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,single_passage,easy,0,2000,1,,3.131,344,57,18.2,2.239,63.85,,,,0.0007328,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,answer_absent,easy,0,2000,1,,3.317,347,101,30.45,1.674,61.45,,,,0.0008784,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_two_hops,hard,0,2000,1,,4.135,3850,87,21.04,3.114,85.27,,,,0.0064384,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,meal_limit_by_date,hard,0,2000,1,,4.759,738,228,47.91,2.01,82.96,,,,0.0019104,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,meal_domestic_unchanged,medium,0,2000,1,,3.855,721,183,47.47,1.61,81.52,,,,0.0017392,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,sev3_no_target,medium,0,2000,1,,3.651,723,123,33.69,1.998,74.37,,,,0.0015504,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,payments_oncall_lead,hard,0,2000,1,,4.353,721,142,32.62,2.568,79.56,,,,0.001608,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,purchase_quotes_after_change,hard,0,2000,1,,5.13,733,245,47.76,1.735,72.17,,,,0.0019568,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,purchase_cfo,medium,0,2000,1,,4.952,728,239,48.26,1.869,77.52,,,,0.0019296,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,credential_rotation_date,medium,0,2000,1,,6.664,741,376,56.42,2.094,82.28,,,,0.0023888,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,vpn_effective_date,medium,0,2000,1,,6.457,743,300,46.46,2.148,69.62,,,,0.0021488,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,partly_absent,medium,0,2000,1,,4.015,725,192,47.82,1.518,76.91,,,,0.0017744,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_renamed_room,hard,0,2000,1,,6.122,3854,322,52.6,1.935,76.91,,,,0.0071968,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,purchase_exact_threshold,hard,0,2000,1,,7.126,729,439,61.6,1.873,83.56,,,,0.0025712,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,sev2_after_midnight,hard,0,2000,1,,7.579,745,430,56.74,2.085,78.27,,,,0.002568,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,false_premise_office_hours,medium,0,2000,1,,5.686,725,305,53.64,2.006,82.88,,,,0.002136,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_three_hops,hard,0,2000,1,,3.976,3901,108,27.16,2.311,64.88,,,,0.0065872,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_updates_out_of_order,hard,0,2000,1,,3.771,3892,145,38.46,1.779,72.8,,,,0.0066912,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,weather_call,easy,0,2000,1,,2.73,719,81,29.67,1.97,106.55,,,,0.0014096,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,contact_schema,easy,0,2000,1,,3.023,140,84,27.79,1.685,62.82,,,,0.0004928,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_relative_date,hard,0,2000,1,,3.964,1226,204,51.46,2.078,108.14,,,,0.0026144,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,ticket_for_oldest_order,hard,0,2000,1,,3.274,1349,121,36.96,1.87,86.16,,,,0.0025456,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,act_on_result_threshold,medium,0,2000,1,,3.666,1332,117,31.91,2.279,84.32,,,,0.0025056,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_late_orders,hard,0,2000,1,,5.259,1461,323,61.42,2.066,101.17,,,,0.0033712,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_above_total,hard,0,2000,1,,2.952,1298,77,26.08,1.806,67.21,,,,0.0023232,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,priority_from_sum,medium,0,2000,1,,3.134,1345,126,40.21,2.32,154.93,,,,0.00105504,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_next_week_tuesday,hard,0,2000,1,,4.47,1225,240,53.69,1.933,94.59,,,,0.00122784,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,look_up_before_refund,hard,0,2000,1,,2.698,1199,101,37.44,1.625,94.15,,,,0.00074144,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_some_items,hard,0,2000,1,,3.04,1333,115,37.83,1.829,94.96,,,,0.00100064,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,close_old_resolved,hard,0,2000,1,,4.347,1338,200,46.01,2.338,99.56,,,,0.00128064,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,ask_for_customer_id,hard,0,2000,1,,6.323,1192,282,44.6,2.16,67.74,,,,0.0028096,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,two_matching_orders,hard,0,2000,0,called get_order but no tool was needed,5.047,1367,200,39.63,2.534,79.57,,,,0.0028272,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_missing_time,medium,0,2000,1,,5.021,1217,202,40.23,2.194,71.45,,,,0.00109344,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_cheapest_order,hard,0,2000,1,,3.314,1350,135,40.74,1.951,99.01,,,,0.00109184,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_first_monday,hard,0,2000,1,,8.437,1219,640,75.85,1.663,94.48,,,,0.0039984,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,explain_vpn,easy,0,2000,1,,10.023,109,205,20.45,2.724,28.09,,,,0.0008304,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,formal_rewrite,easy,0,2000,1,,5.697,117,300,52.66,1.486,71.25,,,,0.0011472,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,incident_summary,easy,0,2000,1,,4.737,201,180,38.0,2.284,73.37,,,,0.0008976,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,grammar_fix,medium,0,2000,1,,7.941,148,436,54.9,2.118,74.87,,,,0.001632,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,false_premise_states,medium,0,2000,1,,7.091,107,410,57.82,1.95,79.74,,,,0.0014832,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,list_without_words,medium,0,2000,1,,6.211,134,297,47.82,2.271,75.38,,,,0.0011648,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,dates_in_order,hard,0,2000,1,,3.512,174,214,60.93,1.423,102.44,,,,0.0009632,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,relative_deadlines_order,hard,0,2000,1,,17.671,178,1155,65.36,2.269,74.99,,,,0.0039808,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,false_premise_holiday,medium,0,2000,1,,4.955,116,288,58.12,1.684,88.03,,,,0.0011072,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,yes_no_only,medium,0,2000,1,,2.686,112,66,24.57,1.8,74.54,,,,0.0003904,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,false_premise_capital,medium,0,2000,1,,7.647,108,515,67.35,1.673,86.2,,,,0.0018208,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,exact_word_count,hard,0,2000,1,,2.993,113,95,31.74,1.744,76.08,,,,0.0004848,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,weekday_of_date,hard,0,2000,1,,12.286,110,905,73.66,1.838,86.62,,,,0.003072,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,date_plus_45_days,hard,0,2000,1,,7.723,115,423,54.77,2.544,81.67,,,,0.0015376,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,raise_then_discount,hard,0,2000,1,,3.738,135,143,38.26,2.114,88.05,,,,0.0006736,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,words_ending_cao,hard,0,2000,1,,4.222,124,205,48.55,1.713,81.7,,,,0.0008544,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,single_passage,easy,1,2001,1,,2.774,344,56,20.19,2.232,103.33,,,,0.0007296,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,answer_absent,easy,1,2001,1,,3.764,347,81,21.52,2.549,66.66,,,,0.0008144,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_two_hops,hard,1,2001,1,,3.316,3850,92,27.75,2.124,77.24,,,,0.00345408,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,meal_limit_by_date,hard,1,2001,1,,4.651,738,246,52.89,1.904,89.54,,,,0.001968,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,meal_domestic_unchanged,medium,1,2001,1,,3.957,721,136,34.37,2.572,98.17,,,,0.0015888,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,sev3_no_target,medium,1,2001,1,,3.545,723,155,43.73,1.728,85.3,,,,0.0016528,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,payments_oncall_lead,hard,1,2001,1,,2.532,721,114,45.02,1.268,90.17,,,,0.0015184,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,purchase_quotes_after_change,hard,1,2001,1,,5.912,733,298,50.4,2.558,88.84,,,,0.0021264,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,purchase_cfo,medium,1,2001,1,,4.663,728,221,47.4,2.075,85.39,,,,0.001872,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,credential_rotation_date,medium,1,2001,1,,7.869,741,405,51.47,2.836,80.48,,,,0.0024816,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,vpn_effective_date,medium,1,2001,1,,5.929,743,247,41.66,2.789,78.65,,,,0.0019792,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,partly_absent,medium,1,2001,1,,5.758,725,245,42.55,2.222,69.28,,,,0.001944,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_renamed_room,hard,1,2001,1,,5.217,3854,278,53.28,2.11,89.45,,,,0.00405568,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,purchase_exact_threshold,hard,1,2001,1,,7.38,729,464,62.88,1.786,82.95,,,,0.0026512,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,sev2_after_midnight,hard,1,2001,1,,3.363,745,92,27.35,2.263,83.62,,,,0.0014864,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,false_premise_office_hours,medium,1,2001,1,,5.805,725,327,56.33,1.82,82.05,,,,0.0022064,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_three_hops,hard,1,2001,1,,3.854,3901,129,33.47,2.531,97.5,,,,0.00365408,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_updates_out_of_order,hard,1,2001,1,,4.042,3892,169,41.81,2.069,85.69,,,,0.00376768,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,weather_call,easy,1,2001,1,,2.764,719,109,39.43,1.753,107.79,,,,0.0014992,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,contact_schema,easy,1,2001,1,,3.108,140,89,28.63,1.883,72.6,,,,0.0005088,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_relative_date,hard,1,2001,1,,4.977,1226,267,53.65,2.303,99.86,,,,0.002816,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,ticket_for_oldest_order,hard,1,2001,1,,3.042,1349,121,39.77,1.976,113.52,,,,0.0025456,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,act_on_result_threshold,medium,1,2001,1,,2.777,1332,107,38.53,1.785,107.92,,,,0.00097344,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_late_orders,hard,1,2001,1,,4.755,1461,325,68.35,1.801,110.02,,,,0.0033776,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_above_total,hard,1,2001,1,,2.474,1298,81,32.74,1.605,93.13,,,,0.00083584,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,priority_from_sum,medium,1,2001,1,,2.957,1345,140,47.35,1.67,108.8,,,,0.0026,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_next_week_tuesday,hard,1,2001,1,,7.688,1225,259,33.69,5.349,110.75,,,,0.00128864,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,look_up_before_refund,hard,1,2001,1,,3.487,1199,96,27.53,2.571,104.81,,,,0.0022256,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_some_items,hard,1,2001,1,,4.349,1333,112,25.75,3.341,111.02,,,,0.00099104,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,close_old_resolved,hard,1,2001,1,,4.486,1338,221,49.27,2.536,113.33,,,,0.00134784,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,ask_for_customer_id,hard,1,2001,1,,4.213,1192,169,40.12,2.024,77.2,,,,0.002448,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,two_matching_orders,hard,1,2001,0,called get_order but no tool was needed,6.334,1367,326,51.47,2.678,89.16,,,,0.0032304,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_missing_time,medium,1,2001,1,,5.841,1217,262,44.86,2.365,75.39,,,,0.0027856,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_cheapest_order,hard,1,2001,1,,3.565,1350,147,41.24,2.104,100.68,,,,0.0026304,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_first_monday,hard,1,2001,1,,12.154,1219,803,66.07,2.825,86.08,,,,0.00452,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,explain_vpn,easy,1,2001,1,,5.671,109,270,47.61,1.764,69.11,,,,0.0010384,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,formal_rewrite,easy,1,2001,1,,4.085,117,150,36.72,2.183,78.85,,,,0.0006672,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,incident_summary,easy,1,2001,1,,7.733,201,603,77.98,1.936,104.02,,,,0.0022512,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,grammar_fix,medium,1,2001,1,,4.963,148,242,48.76,2.023,82.3,,,,0.0010112,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,false_premise_states,medium,1,2001,1,,7.575,107,419,55.31,2.255,78.76,,,,0.001512,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,list_without_words,medium,1,2001,1,,5.444,134,291,53.45,1.971,83.8,,,,0.0011456,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,dates_in_order,hard,1,2001,1,,4.086,174,149,36.47,2.456,91.39,,,,0.0007552,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,relative_deadlines_order,hard,1,2001,1,,22.227,178,1744,78.46,1.667,84.82,,,,0.0058656,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,false_premise_holiday,medium,1,2001,1,,6.421,116,363,56.53,2.283,87.73,,,,0.0013472,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,yes_no_only,medium,1,2001,1,,2.861,112,66,23.07,1.973,74.33,,,,0.0003904,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,false_premise_capital,medium,1,2001,1,,4.052,108,188,46.4,1.805,83.68,,,,0.0007744,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,exact_word_count,hard,1,2001,1,,3.907,113,134,34.29,2.248,80.75,,,,0.0006096,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,weekday_of_date,hard,1,2001,1,,9.53,110,674,70.73,1.606,85.06,,,,0.0023328,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,date_plus_45_days,hard,1,2001,1,,8.703,115,552,63.43,1.982,82.13,,,,0.0019504,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,raise_then_discount,hard,1,2001,1,,4.283,135,166,38.75,1.947,71.05,,,,0.0007472,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,words_ending_cao,hard,1,2001,1,,5.627,124,286,50.83,1.842,75.57,,,,0.0011136,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,single_passage,easy,2,2002,1,,3.2,344,67,20.94,2.473,92.27,,,,0.0007648,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,answer_absent,easy,2,2002,1,,3.316,347,84,25.33,2.055,66.63,,,,0.000824,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_two_hops,hard,2,2002,1,,2.853,3850,90,31.55,1.897,94.13,,,,0.00344768,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,meal_limit_by_date,hard,2,2002,1,,4.383,738,220,50.2,1.905,88.79,,,,0.0018848,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,meal_domestic_unchanged,medium,2,2002,1,,3.982,721,204,51.23,1.952,100.5,,,,0.0018064,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,sev3_no_target,medium,2,2002,1,,3.086,723,123,39.86,1.47,76.14,,,,0.0015504,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,payments_oncall_lead,hard,2,2002,1,,3.003,721,135,44.96,1.807,112.91,,,,0.0015856,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,purchase_quotes_after_change,hard,2,2002,1,,5.907,733,337,57.05,1.844,82.94,,,,0.0022512,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,purchase_cfo,medium,2,2002,1,,4.454,728,229,51.41,2.017,93.97,,,,0.0018976,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,credential_rotation_date,medium,2,2002,1,,6.493,741,408,62.84,2.055,91.94,,,,0.0024912,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,vpn_effective_date,medium,2,2002,1,,5.139,743,293,57.02,1.466,79.78,,,,0.0021264,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,partly_absent,medium,2,2002,1,,4.544,725,152,33.45,2.637,79.74,,,,0.0016464,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_renamed_room,hard,2,2002,1,,4.814,3854,253,52.56,1.972,89.02,,,,0.00397568,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,purchase_exact_threshold,hard,2,2002,1,,6.232,729,384,61.62,1.947,89.61,,,,0.0023952,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,sev2_after_midnight,hard,2,2002,1,,4.207,745,162,38.51,2.393,89.34,,,,0.0017104,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,false_premise_office_hours,medium,2,2002,1,,5.159,725,292,56.6,1.908,89.82,,,,0.0020944,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_three_hops,hard,2,2002,1,,3.022,3901,123,40.7,1.748,96.49,,,,0.00363488,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,rag,long_updates_out_of_order,hard,2,2002,1,,5.68,3892,272,47.89,2.356,81.81,,,,0.00409728,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,weather_call,easy,2,2002,1,,2.776,719,100,36.02,1.704,93.27,,,,0.0014704,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,contact_schema,easy,2,2002,1,,4.168,140,92,22.07,3.058,82.84,,,,0.0005184,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_relative_date,hard,2,2002,1,,3.683,1226,250,67.88,1.345,106.9,,,,0.0027616,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,ticket_for_oldest_order,hard,2,2002,1,,3.647,1349,160,43.88,2.233,113.22,,,,0.0026704,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,act_on_result_threshold,medium,2,2002,1,,2.869,1332,109,38.0,1.99,124.07,,,,0.00097984,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_late_orders,hard,2,2002,1,,4.057,1461,284,69.99,1.659,118.4,,,,0.0032464,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_above_total,hard,2,2002,1,,2.212,1298,86,38.87,1.286,92.86,,,,0.002352,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,priority_from_sum,medium,2,2002,1,,3.16,1345,136,43.04,1.959,113.23,,,,0.0025872,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_next_week_tuesday,hard,2,2002,1,,4.61,1225,301,65.29,1.835,108.47,,,,0.00142304,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,look_up_before_refund,hard,2,2002,1,,2.82,1199,106,37.59,1.678,92.82,,,,0.00075744,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_some_items,hard,2,2002,1,,2.859,1333,110,38.47,1.861,110.21,,,,0.0024848,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,close_old_resolved,hard,2,2002,1,,3.768,1338,213,56.52,1.777,106.93,,,,0.00132224,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,ask_for_customer_id,hard,2,2002,1,,6.955,1192,222,31.92,3.781,69.93,,,,0.0026176,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,two_matching_orders,hard,2,2002,0,called get_order but no tool was needed,3.782,1367,187,49.44,1.828,95.69,,,,0.00128544,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_missing_time,medium,2,2002,1,,12.613,1217,781,61.92,2.258,75.43,,,,0.00294624,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,refund_cheapest_order,hard,2,2002,1,,3.646,1350,162,44.43,2.045,101.19,,,,0.0026784,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,agent,meeting_first_monday,hard,2,2002,1,,8.995,1219,690,76.71,1.739,95.1,,,,0.0041584,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,explain_vpn,easy,2,2002,1,,3.596,109,107,29.76,1.896,62.97,,,,0.0005168,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,formal_rewrite,easy,2,2002,1,,6.291,117,352,55.95,1.719,76.98,,,,0.0013136,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,incident_summary,easy,2,2002,1,,3.537,201,135,38.17,1.973,86.33,,,,0.0007536,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,grammar_fix,medium,2,2002,1,,5.313,148,286,53.83,2.053,87.74,,,,0.001152,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,false_premise_states,medium,2,2002,1,,7.715,107,422,54.7,2.015,74.04,,,,0.0015216,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,list_without_words,medium,2,2002,1,,5.301,134,244,46.03,2.098,76.17,,,,0.0009952,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,dates_in_order,hard,2,2002,1,,3.502,174,202,57.68,1.632,108.0,,,,0.0009248,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,relative_deadlines_order,hard,2,2002,1,,6.44,178,336,52.17,2.825,92.94,,,,0.00136,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,false_premise_holiday,medium,2,2002,1,,4.039,116,217,53.72,1.746,94.61,,,,0.00088,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,yes_no_only,medium,2,2002,1,,2.219,112,60,27.04,1.38,71.51,,,,0.0003712,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,false_premise_capital,medium,2,2002,1,,3.582,108,193,53.88,1.303,84.69,,,,0.0007904,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,exact_word_count,hard,2,2002,1,,4.066,113,206,50.67,1.614,84.01,,,,0.00084,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,weekday_of_date,hard,2,2002,1,,9.657,110,663,68.66,1.901,85.48,,,,0.0022976,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,date_plus_45_days,hard,2,2002,1,,10.887,115,769,70.64,1.857,85.16,,,,0.0026448,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,raise_then_discount,hard,2,2002,1,,2.96,135,108,36.49,1.675,84.06,,,,0.0005616,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,deepseek/deepseek-v4-pro,chat_pt,words_ending_cao,hard,2,2002,1,,3.488,124,129,36.99,1.861,79.3,,,,0.0006112,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,single_passage,easy,0,2000,1,,1.356,280,58,42.77,0.824,109.01,,,,3.976e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,answer_absent,easy,0,2000,1,,2.127,283,136,63.95,0.985,119.1,,,,4.46488e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_two_hops,hard,0,2000,1,,3.615,3780,125,34.58,1.69,64.95,,,,0.00035252,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,meal_limit_by_date,hard,0,2000,1,,2.756,659,263,95.44,0.912,142.65,,,,0.000128996,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,meal_domestic_unchanged,medium,0,2000,1,,2.604,642,224,86.02,0.795,123.85,,,,8.22416e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,sev3_no_target,medium,0,2000,1,,2.347,644,65,27.69,1.385,67.55,,,,7.2296e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,payments_oncall_lead,hard,0,2000,1,,2.334,641,104,44.57,1.324,102.97,,,,8.2964e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,purchase_quotes_after_change,hard,0,2000,1,,3.973,654,322,81.05,0.954,106.66,,,,0.0001106896,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,purchase_cfo,medium,0,2000,1,,4.634,649,227,48.98,1.295,67.98,,,,0.000118076,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,credential_rotation_date,medium,0,2000,1,,6.329,659,316,49.93,2.202,76.57,,,,0.000143836,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,vpn_effective_date,medium,0,2000,1,,3.694,661,149,40.33,1.491,67.63,,,,9.7244e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,partly_absent,medium,0,2000,1,,6.255,646,165,26.38,3.983,72.62,,,,0.000100464,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_renamed_room,hard,0,2000,1,,7.491,3805,461,61.54,1.362,75.22,,,,0.0004487,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,purchase_exact_threshold,hard,0,2000,1,,15.282,650,947,61.97,1.323,67.84,,,,0.00031976,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,sev2_after_midnight,hard,0,2000,1,,3.501,663,156,44.56,1.944,100.19,,,,9.9372e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,false_premise_office_hours,medium,0,2000,1,,6.525,645,230,35.25,1.305,44.06,,,,0.00011858,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_three_hops,hard,0,2000,1,,1.963,3843,84,42.79,1.345,135.87,,,,0.000346332,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_updates_out_of_order,hard,0,2000,1,,2.93,3822,184,62.79,1.393,119.68,,,,0.000372568,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,weather_call,easy,0,2000,1,,1.253,512,42,33.53,0.923,127.29,,,,5.4768e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,contact_schema,easy,0,2000,1,,3.058,72,131,42.84,1.336,76.09,,,,4.2728e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_relative_date,hard,0,2000,1,,2.865,998,273,95.29,0.869,136.79,,,,0.0001086624,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,ticket_for_oldest_order,hard,0,2000,1,,1.403,1075,86,61.3,0.844,153.96,,,,6.27704e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,act_on_result_threshold,medium,0,2000,1,,1.898,1044,66,34.78,1.278,106.46,,,,5.45664e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_late_orders,hard,0,2000,1,,4.712,1184,500,106.1,0.982,134.03,,,,0.0001878464,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_above_total,hard,0,2000,1,,6.506,1034,121,18.6,5.331,102.99,,,,0.000120736,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,priority_from_sum,medium,0,2000,1,,5.5,1069,84,15.27,4.644,98.19,,,,0.000113316,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_next_week_tuesday,hard,0,2000,1,,5.903,997,114,19.31,4.631,89.66,,,,0.000115668,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,look_up_before_refund,hard,0,2000,1,,1.707,974,107,62.67,0.87,127.85,,,,6.01664e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_some_items,hard,0,2000,1,,1.392,1065,58,41.67,0.954,132.33,,,,5.40904e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,close_old_resolved,hard,0,2000,1,,2.962,1067,303,102.3,1.019,155.93,,,,0.0001228584,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,ask_for_customer_id,hard,0,2000,1,,1.578,966,101,63.99,0.838,136.4,,,,5.78144e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,two_matching_orders,hard,0,2000,0,called get_order but no tool was needed,2.832,1102,175,61.8,1.026,96.91,,,,7.27552e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_missing_time,medium,0,2000,1,,7.158,989,216,30.18,5.047,102.36,,,,0.000143556,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_cheapest_order,hard,0,2000,0,"called get_order, expected refund_order",5.819,1077,74,12.72,4.626,62.03,,,,0.000111188,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_first_monday,hard,0,2000,1,,8.12,992,385,47.42,5.382,140.62,,,,0.000191128,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,explain_vpn,easy,0,2000,1,,9.033,37,535,59.22,2.083,76.98,,,,0.000152908,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,formal_rewrite,easy,0,2000,1,,4.846,44,446,92.03,0.865,112.02,,,,0.000128576,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,incident_summary,easy,0,2000,1,,11.976,130,1287,107.46,0.803,115.18,,,,0.00037128,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,grammar_fix,medium,0,2000,1,,10.846,75,643,59.28,1.593,69.49,,,,0.00018634,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,false_premise_states,medium,0,2000,1,,5.248,36,408,77.75,1.288,103.02,,,,0.000117264,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,list_without_words,medium,0,2000,1,,6.799,63,593,87.22,1.18,105.54,,,,0.000171332,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,dates_in_order,hard,0,2000,1,,2.604,97,256,98.3,0.836,144.73,,,,7.9828e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,relative_deadlines_order,hard,0,2000,1,,5.576,97,532,95.41,0.857,112.73,,,,0.000157108,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,false_premise_holiday,medium,0,2000,1,,7.753,46,476,61.4,1.286,73.61,,,,0.000137144,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,yes_no_only,medium,0,2000,1,,1.642,42,82,49.94,0.879,107.48,,,,2.6488e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,false_premise_capital,medium,0,2000,1,,4.971,37,277,55.72,1.453,78.74,,,,8.0668e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,exact_word_count,hard,0,2000,1,,6.214,43,663,106.69,1.107,129.81,,,,0.000189252,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,weekday_of_date,hard,0,2000,1,,11.313,39,795,70.27,1.363,79.9,,,,0.000225876,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,date_plus_45_days,hard,0,2000,1,,5.166,44,525,101.63,1.044,127.37,,,,0.000150696,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,raise_then_discount,hard,0,2000,1,,1.532,62,78,50.91,0.862,116.44,,,,2.7048e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,words_ending_cao,hard,0,2000,1,,4.116,52,369,89.65,0.845,112.82,,,,0.000107688,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,single_passage,easy,1,2001,1,,2.087,280,51,24.44,1.646,115.69,,,,2.05968e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,answer_absent,easy,1,2001,1,,5.87,283,161,27.43,4.638,130.63,,,,5.16488e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_two_hops,hard,1,2001,1,,2.662,3780,129,48.46,1.451,106.51,,,,9.98928e-05,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,meal_limit_by_date,hard,1,2001,1,,2.676,659,235,87.81,0.918,133.69,,,,8.67496e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,meal_domestic_unchanged,medium,1,2001,1,,2.219,642,205,92.38,0.838,148.39,,,,7.69216e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,sev3_no_target,medium,1,2001,1,,2.937,644,121,41.19,1.327,75.15,,,,8.7976e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,payments_oncall_lead,hard,1,2001,1,,2.413,641,99,41.02,1.368,94.74,,,,8.1564e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,purchase_quotes_after_change,hard,1,2001,1,,3.373,654,324,96.04,0.821,126.96,,,,0.0001112496,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,purchase_cfo,medium,1,2001,1,,5.897,649,212,35.95,3.027,73.85,,,,0.000113876,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,credential_rotation_date,medium,1,2001,1,,6.957,659,422,60.66,1.291,74.47,,,,0.000173516,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,vpn_effective_date,medium,1,2001,1,,5.138,661,255,49.63,1.613,72.35,,,,0.000126924,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,partly_absent,medium,1,2001,1,,4.752,646,221,46.5,1.639,70.98,,,,0.000116144,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_renamed_room,hard,1,2001,1,,12.125,3805,723,59.63,1.439,67.66,,,,0.0002683128,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,purchase_exact_threshold,hard,1,2001,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,14.227,650,1316,92.5,1.334,102.07,,,,0.00042308,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,sev2_after_midnight,hard,1,2001,1,,2.678,663,137,51.15,1.571,123.72,,,,9.4052e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,false_premise_office_hours,medium,1,2001,1,,3.587,645,219,61.06,1.746,118.97,,,,0.0001155,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_three_hops,hard,1,2001,1,,2.879,3843,136,47.24,1.917,141.48,,,,0.000102844,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_updates_out_of_order,hard,1,2001,1,,2.821,3822,268,95.0,0.9,139.51,,,,0.0001552432,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,weather_call,easy,1,2001,1,,1.372,512,56,40.82,0.929,126.48,,,,5.8688e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,contact_schema,easy,1,2001,1,,3.228,72,184,57.0,1.277,94.29,,,,5.7568e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_relative_date,hard,1,2001,1,,4.209,998,397,94.32,0.904,120.12,,,,0.0001433824,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,ticket_for_oldest_order,hard,1,2001,1,,1.343,1075,55,40.96,0.897,123.41,,,,3.68872e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,act_on_result_threshold,medium,1,2001,1,,1.651,1044,96,58.15,0.955,137.87,,,,6.29664e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_late_orders,hard,1,2001,1,,3.134,1184,371,118.39,1.024,175.85,,,,0.0001345232,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_above_total,hard,1,2001,1,,6.056,1034,104,17.17,4.715,77.61,,,,0.000115976,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,priority_from_sum,medium,1,2001,1,,5.559,1069,57,10.25,5.037,109.17,,,,0.000105756,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_next_week_tuesday,hard,1,2001,1,,6.144,997,121,19.69,5.164,123.48,,,,0.000117628,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,look_up_before_refund,hard,1,2001,1,,1.587,974,96,60.48,0.83,126.82,,,,5.70864e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_some_items,hard,1,2001,1,,1.475,1065,56,37.96,0.972,111.23,,,,3.63272e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,close_old_resolved,hard,1,2001,1,,2.533,1067,230,90.79,0.968,146.98,,,,8.52152e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,ask_for_customer_id,hard,1,2001,1,,2.078,966,138,66.4,1.002,128.23,,,,6.81744e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,two_matching_orders,hard,1,2001,1,,2.551,1102,185,72.52,1.056,123.78,,,,7.55552e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_missing_time,medium,1,2001,1,,6.975,989,196,28.1,5.271,115.0,,,,0.000137956,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_cheapest_order,hard,1,2001,1,,5.391,1077,82,15.21,4.558,98.48,,,,0.000113428,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_first_monday,hard,1,2001,1,,16.285,992,856,52.56,4.815,74.63,,,,0.000323008,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,explain_vpn,easy,1,2001,1,,9.525,37,550,57.75,1.473,68.31,,,,0.000157108,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,formal_rewrite,easy,1,2001,1,,7.459,44,766,102.7,0.787,114.82,,,,0.000218176,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,incident_summary,easy,1,2001,1,,11.692,130,1130,96.65,2.017,116.8,,,,0.00032732,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,grammar_fix,medium,1,2001,1,,17.976,75,1087,60.47,2.231,69.04,,,,0.00031066,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,false_premise_states,medium,1,2001,1,,6.184,36,406,65.65,3.003,127.62,,,,0.000116704,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,list_without_words,medium,1,2001,1,,3.541,63,384,108.44,0.863,143.36,,,,0.000112812,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,dates_in_order,hard,1,2001,1,,2.886,97,211,73.1,1.004,112.12,,,,6.7228e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,relative_deadlines_order,hard,1,2001,1,,7.975,97,411,51.54,4.667,124.27,,,,0.000123228,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,false_premise_holiday,medium,1,2001,1,,6.693,46,404,60.36,1.506,77.88,,,,0.000116984,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,yes_no_only,medium,1,2001,1,,2.005,42,110,54.87,1.058,116.17,,,,3.4328e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,false_premise_capital,medium,1,2001,1,,3.792,37,297,78.33,1.511,130.25,,,,8.6268e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,exact_word_count,hard,1,2001,1,,3.435,43,335,97.52,0.855,129.85,,,,9.7412e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,weekday_of_date,hard,1,2001,1,,10.599,39,695,65.57,1.256,74.39,,,,0.000197876,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,date_plus_45_days,hard,1,2001,1,,3.588,44,314,87.5,0.998,121.22,,,,9.1616e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,raise_then_discount,hard,1,2001,1,,1.941,62,81,41.72,1.179,106.23,,,,2.7888e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,words_ending_cao,hard,1,2001,1,,3.184,52,221,69.41,0.939,98.42,,,,6.6248e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,single_passage,easy,2,2002,1,,1.828,280,58,31.73,0.971,67.72,,,,2.25568e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,answer_absent,easy,2,2002,1,,2.019,283,131,64.88,0.879,114.94,,,,4.32488e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_two_hops,hard,2,2002,1,,2.979,3780,141,47.33,1.531,97.4,,,,0.0001032528,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,meal_limit_by_date,hard,2,2002,1,,3.239,659,288,88.91,0.882,122.21,,,,0.0001015896,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,meal_domestic_unchanged,medium,2,2002,1,,3.774,642,391,103.6,0.845,133.5,,,,0.0001290016,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,sev3_no_target,medium,2,2002,1,,2.193,644,54,24.62,1.327,62.38,,,,6.9216e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,payments_oncall_lead,hard,2,2002,1,,2.364,641,96,40.62,1.344,94.15,,,,8.0724e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,purchase_quotes_after_change,hard,2,2002,1,,3.441,654,299,86.9,1.315,140.67,,,,0.0001042496,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,purchase_cfo,medium,2,2002,1,,5.044,649,261,51.75,1.406,71.75,,,,0.000127596,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,credential_rotation_date,medium,2,2002,1,,2.786,659,246,88.3,1.327,168.58,,,,0.000124236,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,vpn_effective_date,medium,2,2002,1,,4.38,661,205,46.8,1.614,74.09,,,,0.000112924,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,partly_absent,medium,2,2002,1,,3.77,646,144,38.19,1.843,74.72,,,,9.4584e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_renamed_room,hard,2,2002,1,,6.374,3805,388,60.87,1.285,76.24,,,,0.0001745128,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,purchase_exact_threshold,hard,2,2002,1,,9.173,650,554,60.39,1.938,76.56,,,,0.00020972,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,sev2_after_midnight,hard,2,2002,1,,2.99,663,166,55.52,1.297,98.05,,,,0.000102172,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,false_premise_office_hours,medium,2,2002,1,,4.059,645,187,46.07,1.444,71.51,,,,0.00010654,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_three_hops,hard,2,2002,1,,2.421,3843,88,36.35,1.624,110.36,,,,8.9404e-05,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,rag,long_updates_out_of_order,hard,2,2002,1,,2.076,3822,141,67.92,0.89,118.91,,,,0.0001196832,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,weather_call,easy,2,2002,1,,1.46,512,44,30.14,1.179,156.33,,,,5.5328e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,contact_schema,easy,2,2002,1,,2.746,72,130,47.34,1.678,121.7,,,,4.2448e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_relative_date,hard,2,2002,1,,3.66,998,280,76.5,0.942,102.99,,,,0.0001106224,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,ticket_for_oldest_order,hard,2,2002,1,,1.693,1075,100,59.06,0.938,132.45,,,,4.94872e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,act_on_result_threshold,medium,2,2002,1,,1.542,1044,101,65.5,0.832,142.35,,,,4.71632e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_late_orders,hard,2,2002,1,,3.002,1184,288,95.93,0.847,133.6,,,,0.0001112832,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_above_total,hard,2,2002,1,,5.988,1034,108,18.04,4.823,92.7,,,,0.000117096,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,priority_from_sum,medium,2,2002,1,,5.646,1069,94,16.65,4.748,104.68,,,,0.000116116,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_next_week_tuesday,hard,2,2002,1,,7.394,997,218,29.48,5.005,91.27,,,,0.000144788,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,look_up_before_refund,hard,2,2002,1,,1.65,974,83,50.3,0.971,122.29,,,,5.34464e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_some_items,hard,2,2002,1,,1.796,1065,84,46.77,1.002,105.79,,,,4.41672e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,close_old_resolved,hard,2,2002,1,,3.137,1067,255,81.28,0.97,117.65,,,,9.22152e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,ask_for_customer_id,hard,2,2002,1,,2.147,966,165,76.84,0.899,132.16,,,,7.57344e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,two_matching_orders,hard,2,2002,0,called get_order but no tool was needed,1.981,1102,94,47.46,0.999,95.76,,,,5.00752e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_missing_time,medium,2,2002,0,called schedule_meeting but no tool was needed,9.571,989,487,50.88,5.153,110.22,,,,0.000219436,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,refund_cheapest_order,hard,2,2002,1,,6.675,1077,85,12.73,5.719,88.91,,,,0.000114268,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,agent,meeting_first_monday,hard,2,2002,1,,10.355,992,470,45.39,4.756,83.95,,,,0.000214928,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,explain_vpn,easy,2,2002,1,,9.578,37,640,66.82,2.563,91.24,,,,0.000182308,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,formal_rewrite,easy,2,2002,1,,7.581,44,738,97.34,0.913,110.67,,,,0.000210336,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,incident_summary,easy,2,2002,1,,8.223,130,1148,139.6,0.944,157.7,,,,0.00033236,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,grammar_fix,medium,2,2002,1,,15.984,75,948,59.31,1.272,64.44,,,,0.00027174,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,false_premise_states,medium,2,2002,1,,4.992,36,263,52.69,1.298,71.2,,,,7.6664e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,list_without_words,medium,2,2002,1,,3.338,63,351,105.17,0.891,143.44,,,,0.000103572,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,dates_in_order,hard,2,2002,1,,2.23,97,244,109.4,0.817,172.66,,,,7.6468e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,relative_deadlines_order,hard,2,2002,1,,4.365,97,366,83.86,1.067,111.0,,,,0.000110628,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,false_premise_holiday,medium,2,2002,1,,7.343,46,603,82.12,1.325,100.21,,,,0.000172704,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,yes_no_only,medium,2,2002,1,,1.604,42,120,74.83,0.817,152.56,,,,3.7128e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,false_premise_capital,medium,2,2002,1,,4.969,37,286,57.56,1.355,79.14,,,,8.3188e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,exact_word_count,hard,2,2002,1,,1.878,43,128,68.15,0.845,123.86,,,,3.9452e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,weekday_of_date,hard,2,2002,1,,13.008,39,869,66.8,1.267,74.01,,,,0.000246596,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,date_plus_45_days,hard,2,2002,1,,2.833,44,242,85.41,1.006,132.45,,,,7.1456e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,raise_then_discount,hard,2,2002,1,,1.648,62,107,64.94,0.893,141.88,,,,3.5168e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,z-ai/glm-5.3-flash,chat_pt,words_ending_cao,hard,2,2002,1,,2.421,52,210,86.72,0.884,136.6,,,,6.3168e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,single_passage,easy,0,2000,1,,0.716,297,16,22.35,0.418,53.72,,,,3.13e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,answer_absent,easy,0,2000,1,,0.527,300,8,15.19,0.474,153.34,,,,3.08e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_two_hops,hard,0,2000,1,,0.83,3991,30,36.14,0.671,188.44,,,,0.0004021,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,meal_limit_by_date,hard,0,2000,0,missing citation [5],1.196,732,203,169.72,0.418,260.82,,,,9.35e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,meal_domestic_unchanged,medium,0,2000,0,missing citation [5],0.505,709,24,47.56,0.4,229.64,,,,1.57e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,sev3_no_target,medium,0,2000,0,missing: no (acknowledgement |acknowledgment )?target|not have (an? )?(acknowledgement |acknowledgment )?target|no (time|deadline|limit),0.489,709,8,16.37,0.441,166.54,,,,7.17e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,payments_oncall_lead,hard,0,2000,0,missing citation [12],0.471,706,9,19.13,0.376,95.0,,,,1.39e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,purchase_quotes_after_change,hard,0,2000,0,missing: two quotes|2 quotes,0.905,726,124,136.99,0.387,239.39,,,,8.5e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,purchase_cfo,medium,0,2000,0,missing: two quotes|2 quotes,0.614,721,57,92.87,0.41,279.28,,,,2.02e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,credential_rotation_date,medium,0,2000,0,missing: 2026-03-16,0.501,730,14,27.93,0.432,201.18,,,,1.68e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,vpn_effective_date,medium,0,2000,0,missing: 2026-03-16,0.694,732,14,20.18,0.454,58.39,,,,1.7e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,partly_absent,medium,0,2000,0,missing: \b40\b,0.589,711,37,62.87,0.447,261.56,,,,1.72e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_renamed_room,hard,0,2000,0,missing: \b7319\b,0.973,4012,8,8.22,0.747,35.43,,,,0.000402,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,purchase_exact_threshold,hard,0,2000,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,0.598,721,25,41.83,0.552,548.84,,,,1.7e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,sev2_after_midnight,hard,0,2000,1,,1.346,736,71,52.76,0.43,77.57,,,,2.31e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,false_premise_office_hours,medium,0,2000,0,missing: \b8 ?(am|a\.m\.|:00),0.501,711,20,39.95,0.461,502.54,,,,1.55e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_three_hops,hard,0,2000,0,missing citation [35],0.827,4051,32,38.68,0.649,179.44,,,,0.0004083,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_updates_out_of_order,hard,0,2000,0,"forbidden: (is|now)\W+(\w+\W+){0,3}(100|150) requests",2.098,4056,159,75.78,1.612,326.77,,,,0.0004215,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,weather_call,easy,0,2000,1,,0.562,457,21,37.38,0.541,986.55,,,,4.78e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,contact_schema,easy,0,2000,1,,0.714,61,41,57.43,0.452,156.38,,,,1.02e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_relative_date,hard,0,2000,0,date: '2026-03-18' != '2026-03-16',0.761,1012,64,84.06,0.739,2921.99,,,,0.0001076,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,ticket_for_oldest_order,hard,0,2000,0,"called get_order, expected create_ticket",0.562,1097,16,28.46,0.551,1498.78,,,,3.066e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,act_on_result_threshold,medium,0,2000,0,"0 tool call(s), expected 1",0.677,1058,65,95.98,0.44,274.45,,,,0.0001123,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_late_orders,hard,0,2000,0,"3 tool call(s), expected 2",0.8,1237,97,121.19,0.788,8083.22,,,,5.276e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_above_total,hard,0,2000,0,called refund_order but no tool was needed,0.553,1045,33,59.71,0.535,1874.08,,,,2.716e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,priority_from_sum,medium,0,2000,0,priority: 'low' != 'high',1.25,1091,32,25.6,1.247,11903.1,,,,3.166e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_next_week_tuesday,hard,0,2000,0,date: '2026-03-16' != '2026-03-17',0.72,1012,58,80.57,0.72,232425.8,,,,7.244e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,look_up_before_refund,hard,0,2000,0,"called refund_order, expected get_order",0.533,983,33,61.88,0.51,1390.84,,,,2.096e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_some_items,hard,0,2000,0,reason: 'wrong_item' != 'damaged',0.801,1080,32,39.97,0.797,10166.4,,,,3.056e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,close_old_resolved,hard,0,2000,0,"3 tool call(s), expected 2",0.667,1096,67,100.52,0.65,4172.05,,,,3.566e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,ask_for_customer_id,hard,0,2000,0,called search_orders but no tool was needed,0.443,974,15,33.87,0.44,5046.61,,,,1.826e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,two_matching_orders,hard,0,2000,0,called refund_order but no tool was needed,0.533,1131,32,60.05,0.499,931.71,,,,3.566e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_missing_time,medium,0,2000,0,called schedule_meeting but no tool was needed,0.6,1007,58,96.67,0.585,3844.55,,,,2.586e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_cheapest_order,hard,0,2000,0,"called get_order, expected refund_order",1.515,1094,16,10.56,1.512,4848.91,,,,3.036e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_first_monday,hard,0,2000,0,date: '2026-04-01' != '2026-04-06',0.647,1008,58,89.7,0.619,2093.11,,,,2.596e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,explain_vpn,easy,0,2000,1,,0.902,26,145,160.77,0.466,332.97,,,,1.71e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,formal_rewrite,easy,0,2000,1,,0.46,33,26,56.57,0.375,308.62,,,,5.9e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,incident_summary,easy,0,2000,1,,0.707,127,103,145.75,0.397,332.51,,,,2.3e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,grammar_fix,medium,0,2000,0,missing: faz dois anos,0.442,63,25,56.51,0.365,322.09,,,,8.8e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,false_premise_states,medium,0,2000,0,missing: \b26\b|vinte e seis,1.017,26,118,115.97,0.366,181.09,,,,1.44e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,list_without_words,medium,0,2000,1,,0.615,50,67,108.87,0.452,410.04,,,,1.17e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,dates_in_order,hard,0,2000,0,missing: (?s)05/01/2026.*03/03/2026.*15/04/2026,0.727,91,33,45.38,0.451,119.44,,,,1.24e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,relative_deadlines_order,hard,0,2000,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,0.675,89,41,60.71,0.431,167.77,,,,1.3e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,false_premise_holiday,medium,0,2000,0,missing: 7 de setembro|07/09|sete de setembro,0.772,34,121,156.68,0.362,294.57,,,,1.55e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,yes_no_only,medium,0,2000,0,missing: ^\W*nao\W*$,0.424,32,2,4.72,0.424,9852.22,,,,3.4e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,false_premise_capital,medium,0,2000,0,missing: brasilia,1.032,26,129,124.97,0.358,191.42,,,,1.55e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,exact_word_count,hard,0,2000,0,line does not match: Usar senhas fortes e longas garante maio,0.462,29,20,43.26,0.386,263.66,,,,4.9e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,weekday_of_date,hard,0,2000,0,missing: sexta,0.473,32,23,48.62,0.399,310.19,,,,5.5e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,date_plus_45_days,hard,0,2000,0,missing: 06/03/2026,0.507,40,11,21.69,0.4,103.0,,,,5.1e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,raise_then_discount,hard,0,2000,0,"missing: \b78[,.]20?\b",0.674,59,32,47.5,0.554,266.86,,,,9.1e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,words_ending_cao,hard,0,2000,0,line does not match: ação,0.81,38,6,7.4,0.592,27.54,,,,4.4e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,single_passage,easy,1,2001,1,,1.731,297,16,9.24,1.463,59.68,,,,3.13e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,answer_absent,easy,1,2001,1,,0.4,300,8,20.01,0.363,219.64,,,,7.76e-06,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_two_hops,hard,1,2001,0,missing: livia prado,1.025,3991,33,32.19,0.857,195.67,,,,0.0004024,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,meal_limit_by_date,hard,1,2001,0,missing citation [5],0.609,732,43,70.66,0.366,177.07,,,,1.99e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,meal_domestic_unchanged,medium,1,2001,0,missing citation [5],0.555,709,45,81.06,0.382,259.54,,,,1.78e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,sev3_no_target,medium,1,2001,0,missing: no (acknowledgement |acknowledgment )?target|not have (an? )?(acknowledgement |acknowledgment )?target|no (time|deadline|limit),0.495,709,8,16.16,0.436,134.31,,,,1.41e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,payments_oncall_lead,hard,1,2001,0,missing citation [12],0.413,706,9,21.77,0.373,220.44,,,,1.39e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,purchase_quotes_after_change,hard,1,2001,0,missing: two quotes|2 quotes,0.971,726,81,83.38,0.533,184.54,,,,2.31e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,purchase_cfo,medium,1,2001,0,missing: two quotes|2 quotes,0.566,721,57,100.72,0.379,304.98,,,,2.02e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,credential_rotation_date,medium,1,2001,0,missing: 2026-03-16,0.418,730,14,33.51,0.359,236.37,,,,1.68e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,vpn_effective_date,medium,1,2001,0,missing: 2026-03-16,0.437,732,14,32.06,0.384,265.87,,,,1.7e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,partly_absent,medium,1,2001,0,missing: \b40\b,0.678,711,37,54.59,0.411,138.59,,,,1.72e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_renamed_room,hard,1,2001,0,missing: \b7319\b,0.927,4012,8,8.63,0.906,381.11,,,,0.000402,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,purchase_exact_threshold,hard,1,2001,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,0.434,721,25,57.59,0.425,2869.32,,,,1.7e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,sev2_after_midnight,hard,1,2001,1,,1.027,736,72,70.11,0.526,143.78,,,,2.32e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,false_premise_office_hours,medium,1,2001,0,missing: \b8 ?(am|a\.m\.|:00),0.493,711,17,34.45,0.392,167.6,,,,1.52e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_three_hops,hard,1,2001,0,missing citation [35],0.675,4051,32,47.43,0.566,294.1,,,,5.118e-05,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_updates_out_of_order,hard,1,2001,1,,1.092,4056,124,113.59,0.635,271.57,,,,0.000418,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,weather_call,easy,1,2001,1,,0.512,457,21,41.03,0.505,3009.33,,,,1.324e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,contact_schema,easy,1,2001,1,,0.483,61,41,84.83,0.357,323.33,,,,1.02e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_relative_date,hard,1,2001,0,date: '2026-03-18' != '2026-03-16',0.599,1012,64,106.76,0.588,5380.73,,,,2.696e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,ticket_for_oldest_order,hard,1,2001,0,"called get_order, expected create_ticket",0.48,1097,16,33.36,0.467,1251.76,,,,3.066e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,act_on_result_threshold,medium,1,2001,0,"0 tool call(s), expected 1",0.579,1058,65,112.22,0.461,551.18,,,,3.166e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_late_orders,hard,1,2001,0,"4 tool call(s), expected 2",0.92,1237,123,133.71,0.905,8257.16,,,,3.232e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_above_total,hard,1,2001,0,called refund_order but no tool was needed,0.582,1045,33,56.72,0.576,5960.62,,,,1.564e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,priority_from_sum,medium,1,2001,0,priority: 'low' != 'high',0.489,1091,32,65.39,0.485,7912.71,,,,3.166e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_next_week_tuesday,hard,1,2001,0,date: '2026-03-16' != '2026-03-17',0.584,1012,58,99.25,0.58,13458.77,,,,2.636e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,look_up_before_refund,hard,1,2001,0,"called refund_order, expected get_order",0.485,983,31,63.85,0.47,1944.92,,,,2.076e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_some_items,hard,1,2001,0,reason: 'wrong_item' != 'damaged',2.05,1080,32,15.61,2.032,1825.77,,,,3.056e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,close_old_resolved,hard,1,2001,0,"3 tool call(s), expected 2",4.444,1096,67,15.08,4.426,3650.87,,,,3.566e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,ask_for_customer_id,hard,1,2001,0,called search_orders but no tool was needed,0.509,974,15,29.49,0.48,528.21,,,,1.826e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,two_matching_orders,hard,1,2001,0,called refund_order but no tool was needed,0.668,1131,32,47.93,0.667,127257.83,,,,3.566e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_missing_time,medium,1,2001,0,called schedule_meeting but no tool was needed,0.587,1007,58,98.89,0.572,3969.2,,,,2.586e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_cheapest_order,hard,1,2001,0,"called get_order, expected refund_order",0.462,1094,16,34.62,0.448,1142.25,,,,1.884e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_first_monday,hard,1,2001,0,date: '2026-04-01' != '2026-04-06',0.689,1008,58,84.2,0.688,94610.31,,,,2.596e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,explain_vpn,easy,1,2001,1,,0.837,26,129,154.15,0.396,292.42,,,,1.55e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,formal_rewrite,easy,1,2001,1,,0.446,33,26,58.33,0.357,294.59,,,,5.9e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,incident_summary,easy,1,2001,1,,0.645,127,94,145.84,0.355,324.22,,,,2.21e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,grammar_fix,medium,1,2001,0,missing: faz dois anos,0.717,63,25,34.89,0.494,112.44,,,,8.8e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,false_premise_states,medium,1,2001,0,missing: \b26\b|vinte e seis,0.765,26,97,126.86,0.528,410.41,,,,1.23e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,list_without_words,medium,1,2001,0,forbidden: \bcasa\b,0.573,50,58,101.19,0.356,267.07,,,,1.08e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,dates_in_order,hard,1,2001,0,missing: (?s)05/01/2026.*03/03/2026.*15/04/2026,0.626,91,33,52.74,0.484,233.07,,,,1.24e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,relative_deadlines_order,hard,1,2001,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,0.543,89,39,71.87,0.416,309.1,,,,1.28e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,false_premise_holiday,medium,1,2001,0,missing: 7 de setembro|07/09|sete de setembro,0.785,34,120,152.85,0.477,389.38,,,,1.54e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,yes_no_only,medium,1,2001,0,missing: ^\W*nao\W*$,0.464,32,2,4.31,0.449,136.48,,,,3.4e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,false_premise_capital,medium,1,2001,0,missing: brasilia,1.315,26,127,96.58,0.443,145.74,,,,1.53e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,exact_word_count,hard,1,2001,0,line does not match: Usar senhas fortes e complexas garante p,0.475,29,23,48.44,0.376,233.25,,,,5.2e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,weekday_of_date,hard,1,2001,0,missing: sexta,0.482,32,23,47.67,0.398,271.1,,,,5.5e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,date_plus_45_days,hard,1,2001,0,missing: 06/03/2026,0.583,40,11,18.88,0.539,251.8,,,,5.1e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,raise_then_discount,hard,1,2001,0,"missing: \b78[,.]20?\b",0.545,59,32,58.75,0.42,256.56,,,,9.1e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,words_ending_cao,hard,1,2001,0,line does not match: ação,0.411,38,6,14.58,0.371,147.89,,,,4.4e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,single_passage,easy,2,2002,1,,0.584,297,16,27.38,0.343,66.37,,,,8.26e-06,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,answer_absent,easy,2,2002,1,,0.459,300,8,17.44,0.458,34513.85,,,,7.76e-06,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_two_hops,hard,2,2002,0,missing citation [25],1.032,3991,26,25.2,0.709,80.42,,,,4.458e-05,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,meal_limit_by_date,hard,2,2002,0,missing citation [5],0.733,732,65,88.7,0.402,196.76,,,,2.21e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,meal_domestic_unchanged,medium,2,2002,0,missing citation [5],0.595,709,45,75.66,0.402,233.41,,,,1.78e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,sev3_no_target,medium,2,2002,0,missing: no (acknowledgement |acknowledgment )?target|not have (an? )?(acknowledgement |acknowledgment )?target|no (time|deadline|limit),0.525,709,8,15.24,0.463,128.85,,,,1.41e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,payments_oncall_lead,hard,2,2002,0,missing citation [12],0.396,706,9,22.75,0.356,227.54,,,,1.39e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,purchase_quotes_after_change,hard,2,2002,0,missing: two quotes|2 quotes,0.892,726,76,85.21,0.453,173.16,,,,2.26e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,purchase_cfo,medium,2,2002,0,missing: two quotes|2 quotes,0.929,721,57,61.36,0.537,145.4,,,,2.02e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,credential_rotation_date,medium,2,2002,0,missing: 2026-03-16,0.528,730,14,26.53,0.527,28032.69,,,,1.68e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,vpn_effective_date,medium,2,2002,0,missing: 2026-03-16,0.461,732,14,30.4,0.407,259.63,,,,1.7e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,partly_absent,medium,2,2002,0,missing: \b40\b,0.542,711,37,68.21,0.429,325.52,,,,1.72e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_renamed_room,hard,2,2002,0,missing: \b7319\b,1.019,4012,8,7.85,0.854,48.25,,,,4.488e-05,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,purchase_exact_threshold,hard,2,2002,0,missing: ^\W*no\b|not need|don't need|do not need|no quotes,0.507,721,25,49.35,0.429,321.95,,,,1.7e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,sev2_after_midnight,hard,2,2002,0,missing: 2026-03-21 00:30,0.598,736,71,118.71,0.349,284.84,,,,2.31e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,false_premise_office_hours,medium,2,2002,0,missing: \b8 ?(am|a\.m\.|:00),0.659,711,17,25.78,0.435,75.7,,,,1.52e-05,stop,,,,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_three_hops,hard,2,2002,0,missing citation [35],0.738,4051,32,43.33,0.618,266.24,,,,5.118e-05,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,rag,long_updates_out_of_order,hard,2,2002,1,,1.254,4056,160,127.58,0.667,272.69,,,,6.448e-05,stop,,,3000,6ec3e5bdd9cb
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,weather_call,easy,2,2002,1,,0.578,457,21,36.36,0.564,1553.75,,,,1.324e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,contact_schema,easy,2,2002,1,,0.536,61,41,76.51,0.363,237.19,,,,1.02e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_relative_date,hard,2,2002,0,date: '2026-03-18' != '2026-03-16',0.642,1012,64,99.63,0.611,2022.45,,,,2.696e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,ticket_for_oldest_order,hard,2,2002,0,"called get_order, expected create_ticket",0.471,1097,16,33.97,0.459,1290.16,,,,1.914e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,act_on_result_threshold,medium,2,2002,0,"0 tool call(s), expected 1",0.638,1058,66,103.39,0.413,292.43,,,,3.176e-05,stop,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_late_orders,hard,2,2002,0,"3 tool call(s), expected 2",0.811,1237,97,119.63,0.791,4917.5,,,,5.276e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_above_total,hard,2,2002,0,called refund_order but no tool was needed,0.49,1045,33,67.35,0.472,1868.56,,,,2.716e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,priority_from_sum,medium,2,2002,0,priority: 'low' != 'high',0.49,1091,32,65.31,0.476,2366.32,,,,3.166e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_next_week_tuesday,hard,2,2002,0,date: '2026-03-16' != '2026-03-17',0.68,1012,58,85.34,0.656,2421.29,,,,2.636e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,look_up_before_refund,hard,2,2002,0,"called refund_order, expected get_order",0.539,983,33,61.27,0.525,2472.4,,,,2.096e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_some_items,hard,2,2002,0,reason: 'wrong_item' != 'damaged',0.514,1080,32,62.21,0.49,1323.55,,,,3.056e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,close_old_resolved,hard,2,2002,0,"3 tool call(s), expected 2",0.753,1096,67,88.94,0.744,6889.28,,,,3.566e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,ask_for_customer_id,hard,2,2002,0,called search_orders but no tool was needed,0.557,974,17,30.5,0.538,890.2,,,,1.846e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,two_matching_orders,hard,2,2002,0,called refund_order but no tool was needed,0.53,1131,32,60.32,0.522,3772.66,,,,2.414e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_missing_time,medium,2,2002,0,called schedule_meeting but no tool was needed,0.723,1007,58,80.24,0.701,2660.79,,,,2.586e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,refund_cheapest_order,hard,2,2002,0,"called get_order, expected refund_order",0.474,1094,16,33.78,0.458,1057.46,,,,3.036e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,agent,meeting_first_monday,hard,2,2002,0,date: '2026-04-01' != '2026-04-06',0.696,1008,58,83.38,0.677,3062.65,,,,2.596e-05,tool_calls,,,,47ed95a18378
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,explain_vpn,easy,2,2002,1,,0.856,26,134,156.45,0.352,265.44,,,,1.6e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,formal_rewrite,easy,2,2002,1,,0.489,33,26,53.2,0.386,253.83,,,,5.9e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,incident_summary,easy,2,2002,1,,0.762,127,94,123.36,0.384,248.48,,,,2.21e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,grammar_fix,medium,2,2002,0,missing: faz dois anos,0.686,63,25,36.43,0.471,116.29,,,,8.8e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,false_premise_states,medium,2,2002,0,missing: \b26\b|vinte e seis,0.81,26,116,143.15,0.426,302.03,,,,1.42e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,list_without_words,medium,2,2002,1,,0.869,50,71,81.67,0.648,320.16,,,,1.21e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,dates_in_order,hard,2,2002,0,missing: (?s)05/01/2026.*03/03/2026.*15/04/2026,0.536,91,33,61.56,0.492,753.47,,,,1.24e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,relative_deadlines_order,hard,2,2002,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,0.564,89,41,72.7,0.435,317.47,,,,1.3e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,false_premise_holiday,medium,2,2002,0,missing: 7 de setembro|07/09|sete de setembro,1.061,34,122,115.02,0.354,172.7,,,,1.56e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,yes_no_only,medium,2,2002,0,missing: ^\W*nao\W*$,0.412,32,2,4.86,0.396,128.33,,,,3.4e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,false_premise_capital,medium,2,2002,0,missing: brasilia,0.828,26,133,160.65,0.475,376.89,,,,1.59e-05,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,exact_word_count,hard,2,2002,0,line does not match: Usar senhas fortes e complexas garante p,0.409,29,23,56.19,0.339,326.67,,,,5.2e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,weekday_of_date,hard,2,2002,0,missing: sexta,0.709,32,23,32.45,0.469,95.94,,,,5.5e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,date_plus_45_days,hard,2,2002,0,missing: 06/03/2026,0.398,40,11,27.67,0.381,664.32,,,,5.1e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,raise_then_discount,hard,2,2002,0,"missing: \b78[,.]20?\b",0.676,59,32,47.37,0.442,136.76,,,,9.1e-06,stop,,,,55b0a2704b00
+2026-11-14-1953-openrouter-anchors,openrouter,mistralai/ministral-3b-2512,chat_pt,words_ending_cao,hard,2,2002,0,line does not match: ação,0.405,38,6,14.81,0.352,113.96,,,,4.4e-06,stop,,,,55b0a2704b00

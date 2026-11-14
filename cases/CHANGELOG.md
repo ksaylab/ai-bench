@@ -3,6 +3,22 @@
 Every change to a battery, with the reason, so the pruning (METHODOLOGY.md 8.3) is public. Each change makes a new
 battery version (`battery` in `meta.json`): runs of different versions are never merged or compared.
 
+## 2026-11-14 (after the anchor run)
+
+- The anchor run of v3 (`calibration/runs/2026-11-14-1953-openrouter-anchors`, US$0.33) left `agent` within the
+  target and `chat_pt` with 13 useful cases (3 easy ones still passed by the floor). Two more changes, each with a
+  new anchor run of its battery only:
+  - `agent` `two_matching_orders`: both ceilings looked up the two orders with `get_order` before answering
+    (`deepseek/deepseek-v4-pro` in every repeat), a fair read-only step that the case failed as an action. The
+    history now has those two lookups, so asking which order is the only right next step. On the new run
+    (`...-2022-openrouter-anchors`, US$0.11) each ceiling fails it once, by refunding one of the orders unasked.
+  - `chat_pt`: a third screening round (6 candidates, US$0.001). In: `business_days_deadline` (5 business days
+    from a Friday), `compound_interest` and `flight_duration` (a flight across midnight); the floor passed none
+    of the 3 repeats of the first two and 1 of `flight_duration`. Out: `split_bill_service` and
+    `weekday_after_100_days` (the floor passed every repeat) and `words_ending_dade` (the floor wrote right words
+    and failed only on numbering and bold, the same skill as `words_ending_cao`).
+- Batteries now: `coding` 20, `rag` 18, `agent` 17, `chat_pt` 19 cases.
+
 ## 2026-11-14
 
 - Batteries v3 of `agent`, `chat_pt` and `rag`, after the v2 pruning report. `coding` did not change.
@@ -32,7 +48,7 @@ battery version (`battery` in `meta.json`): runs of different versions are never
   business day, and [7] says the offices are closed on weekends: a fair source for why 2026-03-14 and 2026-03-15 are
   not business days, not an unrelated passage. `deepseek/deepseek-v4-pro` failed every repeat for citing it. [1]
   is still required.
-- Batteries now: `coding` 20, `rag` 18, `agent` 17, `chat_pt` 16 cases.
+- Batteries then: `coding` 20, `rag` 18, `agent` 17, `chat_pt` 16 cases.
 
 ## 2026-11-04
 

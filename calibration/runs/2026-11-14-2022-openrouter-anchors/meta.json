@@ -1,0 +1,234 @@
+{
+  "run_id": "2026-11-14-2022-openrouter-anchors",
+  "episode": "",
+  "machine": "openrouter",
+  "models": [
+    "deepseek/deepseek-v4-pro",
+    "z-ai/glm-5.3-flash",
+    "mistralai/ministral-3b-2512"
+  ],
+  "runs": 3,
+  "use_cases": [
+    "agent"
+  ],
+  "cases": [
+    "weather_call",
+    "contact_schema",
+    "meeting_relative_date",
+    "ticket_for_oldest_order",
+    "act_on_result_threshold",
+    "refund_late_orders",
+    "refund_above_total",
+    "priority_from_sum",
+    "meeting_next_week_tuesday",
+    "look_up_before_refund",
+    "refund_some_items",
+    "close_old_resolved",
+    "ask_for_customer_id",
+    "two_matching_orders",
+    "meeting_missing_time",
+    "refund_cheapest_order",
+    "meeting_first_monday"
+  ],
+  "context_words": 3000,
+  "judge": "",
+  "start": "2026-11-14T20:22:15",
+  "smoke": false,
+  "simulated": false,
+  "max_tokens": 32768,
+  "publishable": true,
+  "thresholds_pct": {
+    "coding": 80.0,
+    "rag": 80.0,
+    "agent": 80.0,
+    "chat_pt": 80.0
+  },
+  "sampling": {
+    "deepseek/deepseek-v4-pro": {
+      "sent": {
+        "temperature": 1.0,
+        "top_p": 1.0
+      },
+      "base_seed": 2000,
+      "seeds": [
+        2000,
+        2001,
+        2002
+      ],
+      "source": "DeepSeek-V4-Pro card: temperature = 1.0, top_p = 1.0 (same in generation_config.json)",
+      "card": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "verified": true
+    },
+    "z-ai/glm-5.3-flash": {
+      "sent": {
+        "temperature": 1.0,
+        "top_p": 0.95
+      },
+      "base_seed": 2000,
+      "seeds": [
+        2000,
+        2001,
+        2002
+      ],
+      "source": "Z.AI GLM-5.3-Flash doc: temperature 1, top_p 0.95 (same in generation_config.json)",
+      "card": "https://docs.z.ai/guides/llm/glm-5.3-flash",
+      "verified": true
+    },
+    "mistralai/ministral-3b-2512": {
+      "sent": {
+        "temperature": 0.1,
+        "top_p": 1.0
+      },
+      "base_seed": 2000,
+      "seeds": [
+        2000,
+        2001,
+        2002
+      ],
+      "source": "Ministral 3 3B card: start with temperature 0.1 (its code examples use 0.15); top_p not stated, API default 1.0",
+      "card": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512",
+      "verified": true
+    }
+  },
+  "server_args": "",
+  "battery": {
+    "agent": "451ac8f0970b"
+  },
+  "checker_version": 3,
+  "requests": {
+    "weather_call": "555a4e5f72d3e6264612a1c3828902656c33b331cd30e0045ec7cfa832fe4559",
+    "contact_schema": "37567f94526c928e0841e0aae8e2c71f52606b2625408ee059db5c445b2282b1",
+    "meeting_relative_date": "f13efe22de26cf94c819d39d1188b6636b84fe1b39299179c6e94e2f54e91b85",
+    "ticket_for_oldest_order": "e69787706f8826140cbdee9c5f67d5e88695a776ae9b9b077ecedc8546a82fd2",
+    "act_on_result_threshold": "ed9048cbd92f2113e82fc20169b47b8e363a3e2c5bf98a72dd97704d1318347d",
+    "refund_late_orders": "63a86d3847299684fcb32c4de4510a90dd5b56809da21fcb8ef0fe607e243c6e",
+    "refund_above_total": "7a05a26b525230ba39f687b67482d5a6830ce82a8741ab09eebdbf284e23a412",
+    "priority_from_sum": "38939d3089a1436ed5db6edf1d821941bb506ed9b12aa589f74e97b3bb3bee2c",
+    "meeting_next_week_tuesday": "e58ddb1b9c6d6948200b651d3f8a3098cc45db499c40b545c87aa4c2fa1e9d3a",
+    "look_up_before_refund": "2dbab9fe09fdf980f1ed61e3ad27b4ac4b3f576c1fea944b1c4419c187ffe0ba",
+    "refund_some_items": "05e5fb86036a1395ef07c9e44b6459b5ee9b54332d4ca559cc001f8580de528a",
+    "close_old_resolved": "bd0c9b1f1fb986f52a5606e665762ceca400626f44717cdb0dfd94a0af24545a",
+    "ask_for_customer_id": "8a4c6376f6f85442f6c114948efb5703b49891f254117263b5c91e2dd8c183b3",
+    "two_matching_orders": "cc5d9091f5b320cd434ef1f59850173baa49a061b72d75aef28aae8310cca777",
+    "meeting_missing_time": "3f3e14e7b7dff546848ae5153d98f14ea158541b2be69f4d97460892f5f4d312",
+    "refund_cheapest_order": "b81a88122198d2fd86ef42f54bac2c77f91b9d3364d2966ad5fcd472f2ba93fd",
+    "meeting_first_monday": "73821c83985353ebd5c3ffe42599e02a17c28829d055da958dd7223900a68457"
+  },
+  "anchors": {
+    "deepseek/deepseek-v4-pro": {
+      "role": "ceiling",
+      "usd_per_1m_input": 0.9,
+      "usd_per_1m_output": 1.5,
+      "supported_parameters": [
+        "frequency_penalty",
+        "include_reasoning",
+        "logit_bias",
+        "logprobs",
+        "max_completion_tokens",
+        "max_tokens",
+        "min_p",
+        "presence_penalty",
+        "reasoning",
+        "reasoning_effort",
+        "repetition_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p"
+      ],
+      "provider": {
+        "order": [
+          "novita/fp8"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      },
+      "reasoning": {
+        "effort": "high"
+      }
+    },
+    "z-ai/glm-5.3-flash": {
+      "role": "ceiling",
+      "usd_per_1m_input": 0.0399,
+      "usd_per_1m_output": 0.0784,
+      "supported_parameters": [
+        "frequency_penalty",
+        "include_reasoning",
+        "logit_bias",
+        "logprobs",
+        "max_tokens",
+        "min_p",
+        "parallel_tool_calls",
+        "presence_penalty",
+        "reasoning",
+        "reasoning_effort",
+        "repetition_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_k",
+        "top_logprobs",
+        "top_p"
+      ],
+      "provider": {
+        "order": [
+          "novita/fp8"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      },
+      "reasoning": {
+        "effort": "max"
+      }
+    },
+    "mistralai/ministral-3b-2512": {
+      "role": "floor",
+      "usd_per_1m_input": 0.1,
+      "usd_per_1m_output": 0.1,
+      "supported_parameters": [
+        "frequency_penalty",
+        "max_tokens",
+        "presence_penalty",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_p"
+      ],
+      "provider": {
+        "order": [
+          "mistral"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    }
+  },
+  "anchors_checked": "2026-11-14",
+  "stream": true,
+  "gpu_sampling": {
+    "deepseek/deepseek-v4-pro": {
+      "status": "not sampled: cloud model"
+    },
+    "z-ai/glm-5.3-flash": {
+      "status": "not sampled: cloud model"
+    },
+    "mistralai/ministral-3b-2512": {
+      "status": "not sampled: cloud model"
+    }
+  },
+  "end": "2026-11-14T20:30:21"
+}

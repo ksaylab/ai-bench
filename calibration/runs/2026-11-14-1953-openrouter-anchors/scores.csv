@@ -1,0 +1,10 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+openrouter,deepseek/deepseek-v4-pro,agent,47ed95a18378,48,51,17,3,94.1,94.1,94.1,100.0,100.0,91.7,0,0,80.0,Good for,,0,,,,,,4.44,44.55,2.135,97.05,,,,0.105272
+openrouter,deepseek/deepseek-v4-pro,chat_pt,55b0a2704b00,48,48,16,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,,,,,,6.23,50.0,1.94,81.05,,,,0.063086
+openrouter,deepseek/deepseek-v4-pro,rag,6ec3e5bdd9cb,54,54,18,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,,,,,,4.68,43.45,2.072,83.28,,,,0.132941
+openrouter,mistralai/ministral-3b-2512,agent,47ed95a18378,6,51,17,3,11.8,11.8,11.8,100.0,0.0,0.0,0,0,80.0,Not good for,,0,,,,,,0.74,66.56,0.702,12014.75,,,,0.001597
+openrouter,mistralai/ministral-3b-2512,chat_pt,55b0a2704b00,11,48,16,3,22.9,18.8,25.0,100.0,11.1,0.0,1,0,80.0,Not good for,,0,,,,,,0.65,74.6,0.426,461.51,,,,0.000502
+openrouter,mistralai/ministral-3b-2512,rag,6ec3e5bdd9cb,11,54,18,3,20.4,16.7,22.2,100.0,0.0,18.5,3,0,80.0,Not good for,,0,,,,,,0.74,50.52,0.525,1408.06,,,,0.004069
+openrouter,z-ai/glm-5.3-flash,agent,47ed95a18378,47,51,17,3,92.2,88.2,100.0,100.0,88.9,91.7,3,0,80.0,Good for,,0,,,,,,4.05,50.6,2.401,116.24,,,,0.005063
+openrouter,z-ai/glm-5.3-flash,chat_pt,55b0a2704b00,48,48,16,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,,,,,,6.13,77.82,1.288,109.58,,,,0.006574
+openrouter,z-ai/glm-5.3-flash,rag,6ec3e5bdd9cb,53,54,18,3,98.1,94.4,100.0,100.0,100.0,96.3,1,0,80.0,Good for,,0,,,,,,4.26,56.47,1.477,99.17,,,,0.0073

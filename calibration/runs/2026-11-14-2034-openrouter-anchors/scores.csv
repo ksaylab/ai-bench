@@ -1,0 +1,4 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+openrouter,deepseek/deepseek-v4-pro,chat_pt,c44d435a4459,57,57,19,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,,,,,,6.64,52.08,2.059,86.96,,,,0.084461
+openrouter,mistralai/ministral-3b-2512,chat_pt,c44d435a4459,13,57,19,3,22.8,21.1,26.3,100.0,16.7,3.3,3,0,80.0,Not good for,,0,,,,,,0.71,64.72,0.44,2581.01,,,,0.000572
+openrouter,z-ai/glm-5.3-flash,chat_pt,c44d435a4459,57,57,19,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,,,,,,6.14,76.81,1.087,105.56,,,,0.008044
