@@ -79,6 +79,9 @@ python3 -m aibench thinking --episode 04-does-thinking-pay
 # go to their own episode (05), never into an episode that already has default-size RAG runs
 python3 -m aibench run --episode 05-long-rag --machine pc-rtx2060 --models neohorse-4b --use-cases rag \
   --context-words 24000 --label neohorse-4b-ctx24k
+# episode 06: the v3 batteries of agent, chat_pt and rag (cases/CHANGELOG.md, 2026-11-14), compared with episode 02
+python3 -m aibench run --episode 06-harder-battery --machine pc-rtx2060 --models neohorse-4b \
+  --use-cases agent,chat_pt,rag --label neohorse-4b-v3
 ```
 
 With Ollama instead of llama-server: `--url http://localhost:11434/v1` and `--models <ollama tag>`.

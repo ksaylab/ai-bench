@@ -1,0 +1,2 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,,92.6,82.4,98.2,,RAG (answers with sources); Agents / tool calling (easy only) (borderline); Chat & summaries in Portuguese,,,,,3,31.97,

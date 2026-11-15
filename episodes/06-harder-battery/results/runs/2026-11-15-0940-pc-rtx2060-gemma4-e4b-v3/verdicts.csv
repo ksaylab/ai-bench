@@ -1,0 +1,2 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+pc-rtx2060,gemma4-e4b@think-2048,,79.6,98.0,78.9,,Agents / tool calling,Chat & summaries in Portuguese (borderline),,RAG (answers with sources) (borderline),,3,3.74,

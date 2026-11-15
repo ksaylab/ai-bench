@@ -1,0 +1,4 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,neohorse-4b@think-2048,agent,451ac8f0970b,43,51,17,3,84.3,70.6,94.1,100.0,88.9,80.6,5,0,80.0,Unstable,,1,98.0,11.8,86.0,84.1,1,4.26,68.9,0.259,75.07,7224,146.5,2.9461,
+pc-rtx2060,neohorse-4b@think-2048,chat_pt,c44d435a4459,45,57,19,3,78.9,78.9,78.9,100.0,72.2,76.7,4,0,80.0,Not good for,,1,100.0,22.8,78.9,72.7,1,20.08,74.53,0.107,75.26,7224,148.7,15.7705,
+pc-rtx2060,neohorse-4b@think-2048,rag,6ec3e5bdd9cb,48,54,18,3,88.9,88.9,88.9,100.0,90.5,85.2,2,0,80.0,Good for,,0,100.0,20.4,88.9,86.1,1,10.94,67.12,0.687,74.71,7224,147.5,8.1078,

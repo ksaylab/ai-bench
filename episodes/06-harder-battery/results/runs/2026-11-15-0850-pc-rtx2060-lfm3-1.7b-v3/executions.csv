@@ -1,0 +1,163 @@
+run_id,machine,model,use_case,case,tier,rep,seed,passed,reason,time_s,prompt_tokens,completion_tokens,tok_s,ttft_s,gen_tok_s,peak_vram_mib,avg_power_w,energy_wh,cost_usd,finish,judge_score,judge_cost_usd,context_words,battery
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,explain_vpn,easy,0,1000,1,,4.42,34,327,73.98,2.08,139.72,3612,98.6,0.121121,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,formal_rewrite,easy,0,1000,1,,3.444,42,465,135.03,0.036,136.46,3612,146.3,0.139993,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,incident_summary,easy,0,1000,1,,4.362,126,588,134.79,0.048,136.29,3614,149.1,0.180743,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,grammar_fix,medium,0,1000,0,missing: faz dois anos,14.992,74,2082,138.88,0.045,139.29,3614,150.9,0.628559,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,false_premise_states,medium,0,1000,1,,9.311,32,1269,136.3,0.041,136.89,3614,150.8,0.389945,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,list_without_words,medium,0,1000,1,,6.218,61,849,136.54,0.042,137.46,3614,150.9,0.260612,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,dates_in_order,hard,0,1000,1,,5.111,95,686,134.21,0.048,135.47,3614,148.6,0.211052,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,relative_deadlines_order,hard,0,1000,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,15.367,101,2104,136.92,0.047,137.34,3614,150.6,0.643054,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,false_premise_holiday,medium,0,1000,0,missing: 7 de setembro|07/09|sete de setembro,15.814,40,2156,136.34,0.044,136.71,3614,150.7,0.662217,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,yes_no_only,medium,0,1000,1,,1.575,39,208,132.08,0.041,135.57,3614,145.5,0.063657,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,false_premise_capital,medium,0,1000,1,,4.131,33,551,133.38,0.035,134.53,3614,148.2,0.17012,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,exact_word_count,hard,0,1000,1,,3.413,41,465,136.24,0.037,137.72,3614,150.8,0.142986,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,weekday_of_date,hard,0,1000,1,,15.108,34,2072,137.15,0.037,137.49,3614,150.4,0.631031,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,date_plus_45_days,hard,0,1000,0,missing: 06/03/2026,15.17,41,2063,135.99,0.041,136.36,3614,149.7,0.630942,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,raise_then_discount,hard,0,1000,1,,3.36,58,451,134.22,0.044,135.99,3614,150.9,0.140842,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,words_ending_cao,hard,0,1000,1,,15.071,49,2067,137.15,0.039,137.5,3614,150.6,0.630479,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,business_days_deadline,hard,0,1000,1,,15.374,65,2069,134.58,0.044,134.96,3614,150.1,0.641171,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,compound_interest,hard,0,1000,1,,9.723,54,1313,135.04,0.044,135.65,3614,149.2,0.403083,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,flight_duration,hard,0,1000,1,,4.875,61,652,133.75,0.044,134.96,3614,150.3,0.203509,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,single_passage,easy,0,1000,1,,2.201,279,284,129.03,0.074,133.53,3614,150.1,0.091794,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,answer_absent,easy,0,1000,1,,3.466,284,453,130.68,0.075,133.59,3614,149.3,0.143811,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_two_hops,hard,0,1000,1,,3.493,3976,370,105.91,0.665,130.8,3618,147.7,0.143385,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,meal_limit_by_date,hard,0,1000,1,,8.244,676,1086,131.74,0.147,134.12,3618,149.8,0.343132,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,meal_domestic_unchanged,medium,0,1000,1,,6.569,659,856,130.31,0.111,132.55,3618,148.4,0.270718,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,sev3_no_target,medium,0,1000,1,,3.707,661,476,128.41,0.11,132.35,3618,146.2,0.150623,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,payments_oncall_lead,hard,0,1000,1,,4.529,658,588,129.82,0.101,132.78,3618,149.3,0.187915,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,purchase_quotes_after_change,hard,0,1000,1,,8.779,672,1164,132.59,0.101,134.14,3618,149.5,0.364692,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,purchase_cfo,medium,0,1000,1,,10.002,666,1330,132.98,0.111,134.47,3618,150.1,0.417051,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,credential_rotation_date,medium,0,1000,1,,16.685,676,2205,132.16,0.112,133.05,3618,149.8,0.694508,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,vpn_effective_date,medium,0,1000,1,,15.924,678,2134,134.01,0.121,135.04,3618,149.7,0.662295,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,partly_absent,medium,0,1000,1,,4.975,663,644,129.46,0.119,132.62,3618,149.1,0.206064,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_renamed_room,hard,0,1000,1,,16.716,3974,2123,127.01,0.67,132.31,3618,148.3,0.688737,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,purchase_exact_threshold,hard,0,1000,1,,12.44,667,1672,134.41,0.126,135.78,3618,149.3,0.516062,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,sev2_after_midnight,hard,0,1000,1,,7.527,680,1007,133.78,0.118,135.92,3618,148.1,0.309759,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,false_premise_office_hours,medium,0,1000,1,,11.033,663,1442,130.7,0.113,132.05,3618,148.6,0.455476,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_three_hops,hard,0,1000,1,,5.357,4030,612,114.23,0.677,130.76,3618,147.4,0.219451,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_updates_out_of_order,hard,0,1000,1,,7.5,4000,895,119.33,0.681,131.25,3618,149.1,0.310675,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,weather_call,easy,0,1000,1,,0.796,426,90,113.02,0.125,134.1,3618,149.2,0.033017,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,contact_schema,easy,0,1000,1,,2.735,68,361,132.02,0.043,134.12,3618,147.8,0.11225,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_relative_date,hard,0,1000,1,,1.464,914,168,114.77,0.202,133.15,3618,148.6,0.060434,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,ticket_for_oldest_order,hard,0,1000,1,,1.613,1003,195,120.92,0.153,133.55,3618,149.6,0.06702,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,act_on_result_threshold,medium,0,1000,1,,1.012,979,118,116.6,0.126,133.13,3618,150.0,0.042187,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_late_orders,hard,0,1000,1,,2.795,1122,353,126.32,0.155,133.72,3618,149.6,0.116129,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_above_total,hard,0,1000,1,,1.182,962,143,120.98,0.109,133.22,3618,143.0,0.046965,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,priority_from_sum,medium,0,1000,1,,1.552,1001,191,123.03,0.117,133.09,3618,150.2,0.064806,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_next_week_tuesday,hard,0,1000,1,,1.28,913,157,122.68,0.1,133.05,3618,150.7,0.053573,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,look_up_before_refund,hard,0,1000,1,,0.994,888,120,120.72,0.097,133.73,3618,141.9,0.039189,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_some_items,hard,0,1000,1,,1.284,997,155,120.69,0.116,132.7,3618,144.0,0.051402,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,close_old_resolved,hard,0,1000,1,,1.855,993,234,126.13,0.113,134.31,3618,150.5,0.07755,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,ask_for_customer_id,hard,0,1000,1,,4.221,881,544,128.88,0.096,131.87,3618,149.1,0.174874,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,two_matching_orders,hard,0,1000,1,,4.796,1188,620,129.27,0.152,133.51,3618,150.2,0.20016,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_missing_time,medium,0,1000,1,,2.291,905,288,125.71,0.111,132.12,3618,149.8,0.095349,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_cheapest_order,hard,0,1000,0,"called get_order, expected refund_order",1.29,1006,156,120.94,0.118,133.14,3618,148.0,0.05304,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_first_monday,hard,0,1000,0,date: '2026-04-05' != '2026-04-06',1.797,908,226,125.79,0.099,133.15,3618,148.3,0.074021,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,explain_vpn,easy,1,1001,1,,2.474,34,331,133.8,0.042,136.1,3618,149.2,0.102561,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,formal_rewrite,easy,1,1001,1,,9.206,42,1243,135.02,0.035,135.53,3618,149.4,0.381949,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,incident_summary,easy,1,1001,1,,3.887,126,513,131.99,0.052,133.8,3618,147.4,0.15913,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,grammar_fix,medium,1,1001,0,missing: faz dois anos,15.336,74,2082,135.76,0.044,136.16,3618,149.9,0.638482,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,false_premise_states,medium,1,1001,1,,16.279,32,2198,135.02,0.04,135.35,3618,150.0,0.678425,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,list_without_words,medium,1,1001,1,,5.481,61,735,134.09,0.045,135.21,3618,149.4,0.227505,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,dates_in_order,hard,1,1001,1,,5.489,95,732,133.35,0.046,134.49,3618,150.7,0.229845,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,relative_deadlines_order,hard,1,1001,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,15.583,101,2104,135.02,0.048,135.43,3618,149.5,0.647317,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,false_premise_holiday,medium,1,1001,1,,16.345,40,2198,134.48,0.044,134.84,3618,149.8,0.680108,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,yes_no_only,medium,1,1001,1,,1.453,39,191,131.47,0.041,135.28,3618,149.0,0.060138,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,false_premise_capital,medium,1,1001,1,,3.663,33,485,132.41,0.035,133.68,3618,149.6,0.152264,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,exact_word_count,hard,1,1001,1,,4.775,41,648,135.7,0.039,136.82,3618,150.5,0.199631,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,weekday_of_date,hard,1,1001,1,,15.588,34,2072,132.93,0.036,133.24,3618,149.6,0.647741,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,date_plus_45_days,hard,1,1001,1,,12.018,41,1605,133.55,0.042,134.02,3618,149.9,0.500552,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,raise_then_discount,hard,1,1001,1,,5.661,58,755,133.37,0.041,134.35,3618,148.3,0.233182,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,words_ending_cao,hard,1,1001,1,,15.2,49,2067,135.98,0.038,136.33,3618,149.7,0.632298,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,business_days_deadline,hard,1,1001,1,,15.659,65,2070,132.2,0.044,132.57,3618,149.3,0.649586,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,compound_interest,hard,1,1001,1,,12.044,54,1600,132.85,0.044,133.33,3618,149.4,0.499726,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,flight_duration,hard,1,1001,1,,3.465,61,461,133.05,0.044,134.75,3618,150.4,0.144775,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,single_passage,easy,1,1001,1,,2.213,279,284,128.35,0.076,132.91,3618,149.4,0.091844,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,answer_absent,easy,1,1001,1,,2.7,284,350,129.62,0.075,133.31,3618,147.7,0.110828,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_two_hops,hard,1,1001,1,,3.023,3976,378,125.03,0.131,130.71,3618,149.3,0.125365,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,meal_limit_by_date,hard,1,1001,1,,8.885,676,1164,131.01,0.12,132.81,3618,149.1,0.368011,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,meal_domestic_unchanged,medium,1,1001,1,,6.701,659,874,130.43,0.113,132.67,3618,148.3,0.276133,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,sev3_no_target,medium,1,1001,1,,3.656,661,468,128.03,0.113,132.11,3618,145.5,0.147786,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,payments_oncall_lead,hard,1,1001,0,"missing citation [12, 13]",4.843,658,626,129.27,0.1,132.01,3618,148.3,0.199557,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,purchase_quotes_after_change,hard,1,1001,1,,10.664,672,1409,132.13,0.107,133.47,3618,149.0,0.441294,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,purchase_cfo,medium,1,1001,1,,10.539,666,1401,132.93,0.114,134.38,3618,149.2,0.436764,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,credential_rotation_date,medium,1,1001,1,,14.927,676,1972,132.11,0.119,133.17,3618,148.2,0.614671,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,vpn_effective_date,medium,1,1001,1,,15.727,678,2066,131.37,0.119,132.37,3618,148.9,0.650302,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,partly_absent,medium,1,1001,1,,4.734,663,612,129.27,0.115,132.5,3618,147.1,0.193516,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_renamed_room,hard,1,1001,1,,16.109,3974,2123,131.79,0.133,132.89,3618,149.2,0.667485,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,purchase_exact_threshold,hard,1,1001,1,,16.553,667,2192,132.42,0.125,133.43,3618,149.4,0.686918,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,sev2_after_midnight,hard,1,1001,1,,4.822,680,636,131.9,0.141,135.89,3618,149.2,0.199899,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,false_premise_office_hours,medium,1,1001,1,,11.562,663,1513,130.86,0.107,132.09,3618,148.9,0.478223,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_three_hops,hard,1,1001,1,,5.802,4030,740,127.53,0.141,130.7,3618,148.7,0.23968,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_updates_out_of_order,hard,1,1001,1,,5.414,4000,701,129.47,0.142,132.96,3622,150.0,0.22567,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,weather_call,easy,1,1001,1,,0.797,426,90,112.96,0.126,134.15,3622,135.8,0.030064,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,contact_schema,easy,1,1001,1,,2.398,68,314,130.94,0.038,133.05,3622,150.9,0.100568,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_relative_date,hard,1,1001,1,,1.357,914,167,123.05,0.099,132.73,3622,150.2,0.056651,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,ticket_for_oldest_order,hard,1,1001,1,,1.439,1003,176,122.32,0.118,133.24,3622,140.9,0.056325,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,act_on_result_threshold,medium,1,1001,1,,0.99,979,117,118.21,0.112,133.24,3622,141.7,0.038973,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_late_orders,hard,1,1001,1,,2.665,1122,339,127.18,0.13,133.7,3622,151.6,0.112272,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_above_total,hard,1,1001,1,,1.188,962,144,121.17,0.109,133.46,3622,150.5,0.049693,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,priority_from_sum,medium,1,1001,1,,1.538,1001,190,123.54,0.117,133.67,3622,148.9,0.063609,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_next_week_tuesday,hard,1,1001,1,,1.266,913,155,122.48,0.101,133.13,3622,148.4,0.052188,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,look_up_before_refund,hard,1,1001,1,,0.897,888,108,120.38,0.091,133.95,3622,140.2,0.034936,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_some_items,hard,1,1001,1,,1.322,997,160,120.99,0.118,132.85,3622,148.7,0.054636,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,close_old_resolved,hard,1,1001,1,,1.839,993,232,126.12,0.114,134.5,3622,149.2,0.076252,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,ask_for_customer_id,hard,1,1001,1,,3.556,881,458,128.8,0.094,132.31,3622,150.1,0.148318,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,two_matching_orders,hard,1,1001,1,,4.482,1188,573,127.84,0.143,132.07,3622,150.1,0.186917,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_missing_time,medium,1,1001,1,,2.575,905,326,126.6,0.113,132.38,3622,148.1,0.105928,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_cheapest_order,hard,1,1001,1,,1.523,1006,187,122.8,0.114,132.75,3622,148.8,0.062964,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_first_monday,hard,1,1001,1,,7.409,908,973,131.32,0.098,133.09,3622,149.8,0.3083,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,explain_vpn,easy,2,1002,1,,3.053,34,408,133.64,0.044,135.58,3622,146.3,0.124071,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,formal_rewrite,easy,2,1002,1,,3.468,42,457,131.77,0.035,133.11,3622,147.8,0.142365,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,incident_summary,easy,2,1002,1,,4.327,126,582,134.51,0.048,136.01,3622,148.9,0.178965,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,grammar_fix,medium,2,1002,0,missing: faz dois anos,15.338,74,2083,135.8,0.041,136.17,3622,150.0,0.638956,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,false_premise_states,medium,2,1002,1,,16.158,32,2179,134.85,0.039,135.18,3622,149.5,0.670913,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,list_without_words,medium,2,1002,1,,3.521,61,470,133.47,0.044,135.17,3622,150.3,0.147018,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,dates_in_order,hard,2,1002,1,,4.288,95,570,132.94,0.045,134.36,3622,150.1,0.178746,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,relative_deadlines_order,hard,2,1002,1,,15.787,101,2104,133.28,0.046,133.66,3622,149.0,0.65345,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,false_premise_holiday,medium,2,1002,0,missing: 7 de setembro|07/09|sete de setembro,13.749,40,1861,135.36,0.041,135.76,3622,149.5,0.57082,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,yes_no_only,medium,2,1002,1,,1.939,39,255,131.54,0.041,134.36,3622,147.9,0.079623,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,false_premise_capital,medium,2,1002,1,,2.815,33,370,131.42,0.035,133.07,3622,149.6,0.117022,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,exact_word_count,hard,2,1002,1,,15.242,41,2072,135.94,0.037,136.27,3622,150.0,0.635072,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,weekday_of_date,hard,2,1002,1,,15.59,34,2079,133.35,0.041,133.7,3622,149.3,0.646791,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,date_plus_45_days,hard,2,1002,0,missing: 06/03/2026,15.486,41,2063,133.22,0.041,133.57,3622,149.7,0.644086,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,raise_then_discount,hard,2,1002,1,,4.453,58,593,133.16,0.044,134.5,3622,150.0,0.185523,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,words_ending_cao,hard,2,1002,1,,15.206,49,2069,136.06,0.039,136.41,3622,150.2,0.634597,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,business_days_deadline,hard,2,1002,1,,15.447,65,2063,133.56,0.045,133.94,3622,149.8,0.642937,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,compound_interest,hard,2,1002,1,,2.69,54,357,132.7,0.045,134.94,3622,150.0,0.112099,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,chat_pt,flight_duration,hard,2,1002,1,,4.217,61,562,133.26,0.04,134.54,3622,150.1,0.175811,,stop,,,,c44d435a4459
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,single_passage,easy,2,1002,1,,2.007,279,257,128.06,0.076,133.11,3622,147.9,0.082466,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,answer_absent,easy,2,1002,1,,3.27,284,425,129.96,0.074,132.95,3622,147.9,0.134341,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_two_hops,hard,2,1002,1,,3.291,3976,412,125.2,0.127,130.22,3622,148.7,0.135917,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,meal_limit_by_date,hard,2,1002,1,,6.582,676,860,130.65,0.12,133.08,3622,148.0,0.270675,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,meal_domestic_unchanged,medium,2,1002,1,,5.506,659,716,130.05,0.111,132.72,3622,148.5,0.227056,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,sev3_no_target,medium,2,1002,1,,3.247,661,421,129.66,0.109,134.17,3622,147.1,0.132717,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,payments_oncall_lead,hard,2,1002,1,,4.389,658,569,129.64,0.1,132.67,3622,149.5,0.18224,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,purchase_quotes_after_change,hard,2,1002,1,,8.533,672,1127,132.08,0.101,133.66,3622,149.6,0.354525,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,purchase_cfo,medium,2,1002,1,,10.366,666,1380,133.13,0.11,134.56,3622,148.9,0.428624,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,credential_rotation_date,medium,2,1002,1,,13.705,676,1823,133.01,0.111,134.1,3622,149.6,0.569699,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,vpn_effective_date,medium,2,1002,1,,8.97,678,1172,130.66,0.112,132.32,3622,148.6,0.370186,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,partly_absent,medium,2,1002,1,,5.026,663,650,129.34,0.114,132.35,3622,149.5,0.20878,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_renamed_room,hard,2,1002,0,missing: \b7319\b,13.269,3974,1721,129.7,0.136,131.05,3622,149.3,0.550415,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,purchase_exact_threshold,hard,2,1002,1,,16.605,667,2177,131.1,0.128,132.12,3622,149.3,0.688873,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,sev2_after_midnight,hard,2,1002,1,,4.689,680,609,129.87,0.121,133.32,3622,148.4,0.193345,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,false_premise_office_hours,medium,2,1002,0,missing citation [7],9.301,663,1216,130.74,0.109,132.29,3622,149.6,0.386591,,stop,,,,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_three_hops,hard,2,1002,1,,4.061,4030,517,127.32,0.137,131.76,3622,148.8,0.167853,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,rag,long_updates_out_of_order,hard,2,1002,1,,4.985,4000,640,128.39,0.139,132.08,3622,148.5,0.205633,,stop,,,3000,6ec3e5bdd9cb
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,weather_call,easy,2,1002,1,,0.795,426,90,113.22,0.126,134.51,3622,149.8,0.033079,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,contact_schema,easy,2,1002,1,,3.694,68,491,132.91,0.038,134.28,3622,149.2,0.153063,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_relative_date,hard,2,1002,1,,1.362,914,168,123.38,0.1,133.15,3622,148.7,0.056241,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,ticket_for_oldest_order,hard,2,1002,1,,1.757,1003,219,124.66,0.118,133.61,3622,148.8,0.072646,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,act_on_result_threshold,medium,2,1002,1,,0.99,979,117,118.18,0.112,133.31,3622,147.2,0.0405,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_late_orders,hard,2,1002,1,,2.769,1122,353,127.48,0.13,133.77,3622,147.2,0.113216,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_above_total,hard,2,1002,1,,1.183,962,143,120.92,0.109,133.24,3622,147.9,0.048612,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,priority_from_sum,medium,2,1002,1,,1.548,1001,191,123.42,0.116,133.44,3622,149.2,0.06414,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_next_week_tuesday,hard,2,1002,1,,1.273,913,157,123.33,0.093,133.01,3622,148.4,0.052491,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,look_up_before_refund,hard,2,1002,1,,0.903,888,108,119.6,0.091,133.0,3622,145.8,0.036579,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_some_items,hard,2,1002,1,,1.319,997,160,121.35,0.117,133.12,3622,145.9,0.053465,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,close_old_resolved,hard,2,1002,1,,1.839,993,232,126.14,0.113,134.39,3622,150.7,0.077018,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,ask_for_customer_id,hard,2,1002,1,,3.879,881,504,129.92,0.095,133.19,3622,151.2,0.162895,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,two_matching_orders,hard,2,1002,1,,6.027,1188,774,128.43,0.143,131.54,3622,149.6,0.250489,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_missing_time,medium,2,1002,1,,2.467,905,312,126.46,0.107,132.18,3622,150.1,0.102873,,stop,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,refund_cheapest_order,hard,2,1002,1,,1.841,1006,230,124.94,0.111,132.97,3622,148.5,0.075963,,tool_calls,,,,451ac8f0970b
+2026-11-15-0850-pc-rtx2060-lfm3-1.7b-v3,pc-rtx2060,lfm3-1.7b@think-2048,agent,meeting_first_monday,hard,2,1002,0,date: '2026-04-02' != '2026-04-06',16.042,908,2116,131.9,0.099,132.73,3622,149.7,0.667296,,tool_calls,,,,451ac8f0970b

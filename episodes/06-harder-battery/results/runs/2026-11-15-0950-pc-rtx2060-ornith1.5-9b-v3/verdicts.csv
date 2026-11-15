@@ -1,0 +1,2 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+pc-rtx2060,ornith1.5-9b@think-2048,,94.4,96.1,84.2,,RAG (answers with sources) (mixed tiers); Agents / tool calling (easy only),,,Chat & summaries in Portuguese (borderline),,3,4.93,
