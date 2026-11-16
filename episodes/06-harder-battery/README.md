@@ -7,9 +7,10 @@ pinned sampling and thinking budget (2048). Only the three batteries that change
 The question: episode 02 measured these models on batteries where the smallest anchor already passed some cases in
 every repeat. With those cases removed and harder ones screened in, do the verdicts still hold?
 
-- What changed from v2: each battery kept 2 easy cases and lost the other cases the floor always passed; new
-  candidates got in only when the floor anchor failed them and `z-ai/glm-5.3-flash` passed them. `agent` went from
-  15 to 17 cases, `chat_pt` from 15 to 16 and `rag` from 20 to 18. `coding` did not change and does not run here.
+- What changed from v2: each battery lost 2 cases the floor anchor passed in every repeat (a few easy ones stay
+  on purpose); new candidates got in only when the floor anchor failed them and `z-ai/glm-5.3-flash` passed them.
+  `agent` went from 15 to 17 cases (4 new), `chat_pt` from 15 to 19 (6 new) and `rag` from 20 to 18 (none new).
+  `coding` did not change and does not run here.
 - The battery version is part of the results (`battery`), so these runs live in their own episode: episode 02 merges
   only one battery version per use case. The comparison is each model against its own episode 02 score.
 
