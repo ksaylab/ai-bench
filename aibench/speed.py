@@ -4,8 +4,8 @@ Runs `llama-bench -o json` with `-r` repetitions (at least 3) and writes one CSV
 does not load (not enough memory, for example), the row gets status `error` and the reason: that is how episode 2
 shows what does not fit. With `fit_target` (MiB), a model that does not fit with every layer on the GPU is measured
 again with llama-bench's --fit-target, which leaves part of it on the CPU as the server's presets do (`fit_target_mib`
-on those rows; empty when every layer is on the GPU). `cache_type` (q8_0, q4_0) quantizes the KV cache as the server's
-presets do (`-ctk`/`-ctv`; empty = llama-bench's default, f16). With an NVIDIA GPU, nvidia-smi is sampled during each model's measurement: peak VRAM and
+on those rows; empty when every layer is on the GPU). `cache_type` (q8_0, q4_0, or FP8 f8_e4m3 from llama.cpp 1.0.0)
+quantizes the KV cache as the server's presets do (`-ctk`/`-ctv`; empty = llama-bench's default, f16). With an NVIDIA GPU, nvidia-smi is sampled during each model's measurement: peak VRAM and
 average power go into the model's rows (empty without a GPU).
 """
 import json

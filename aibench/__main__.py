@@ -133,8 +133,9 @@ def main(argv=None):
     p.add_argument("--fit-target", type=int, help="MiB: a model that does not fit with every layer on the GPU is "
                                                   "measured again with llama-bench --fit-target (part on the CPU, "
                                                   "as the server's --fit presets)")
-    p.add_argument("--cache-type", choices=["f16", "q8_0", "q4_0"],
-                   help="KV cache type (llama-bench -ctk/-ctv), as the server's presets; default: llama-bench's f16")
+    p.add_argument("--cache-type", choices=["f16", "q8_0", "q4_0", "f8_e4m3"],
+                   help="KV cache type (llama-bench -ctk/-ctv), as the server's presets; default: llama-bench's f16. "
+                        "f8_e4m3 (FP8) needs llama.cpp 1.0.0 or later")
     p.add_argument("--no-gpu-sampling", action="store_true", help="do not sample nvidia-smi")
 
     p = sub.add_parser("cost", help="episode 1: monthly cost of buying vs renting")

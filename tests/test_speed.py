@@ -95,6 +95,15 @@ class TestSpeed(unittest.TestCase):
         self.assertEqual((cmd[cmd.index("-ctk") + 1], cmd[cmd.index("-ctv") + 1]), ("q8_0", "q8_0"))
         self.assertNotIn("-ctk", speed.command("m.gguf", [0], 3))  # llama-bench's default (f16), as before
 
+    def test_the_fp8_cache_of_llama_cpp_1_is_accepted(self):
+        """llama.cpp 1.0.0 added an FP8 KV cache (-ctk/-ctv f8_e4m3); the CLI accepts it like the other types."""
+        import subprocess, sys
+        r = subprocess.run([sys.executable, "-m", "aibench", "speed", "--episode", "no-such-episode", "--machine",
+                            "pc-rtx2060", "--cache-type", "f8_e4m3"], capture_output=True, text=True)
+        self.assertNotIn("invalid choice", r.stderr)
+        cmd = speed.command("m.gguf", [0], 3, cache_type="f8_e4m3")
+        self.assertEqual((cmd[cmd.index("-ctk") + 1], cmd[cmd.index("-ctv") + 1]), ("f8_e4m3", "f8_e4m3"))
+
     def test_the_rows_record_the_cache_type(self):
         (self.tmp / "out.json").write_text(json.dumps(OUTPUT))
         calls = self.tmp / "calls"

@@ -100,6 +100,7 @@ leaving part of the model on the CPU, with the same 1536 MiB margin as the serve
 those rows).
 llama-bench's KV cache is f16 by default; `--cache-type q8_0` (or `q4_0`) uses the quantized cache of the server's
 presets (`cache_type` on those rows), for a model that only fits on the card with it.
+`--cache-type f8_e4m3` is the FP8 cache of llama.cpp 1.0.0 (older builds refuse it).
 The same GGUF in another episode: `copy-run` the speed run there instead of measuring it again
 (`python3 -m aibench copy-run <speed run folder> --episode 03-is-bigger-better`).
 
