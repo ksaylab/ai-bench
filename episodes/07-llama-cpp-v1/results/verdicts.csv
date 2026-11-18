@@ -1,0 +1,10 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+pc-rtx2060,gemma4-12b@think-2048,,,,91.2,,Chat & summaries in Portuguese (easy only),,,,,3,18.74,
+pc-rtx2060,gemma4-26b-moecache@think-2048,,,,98.2,,Chat & summaries in Portuguese,,,,,3,20.61,
+pc-rtx2060,gemma4-26b@think-2048,,,,100.0,,Chat & summaries in Portuguese,,,,,3,24.63,
+pc-rtx2060,gemma4-e4b@think-2048,,,,78.9,,,Chat & summaries in Portuguese (borderline),,,,3,3.48,
+pc-rtx2060,lfm3-1.7b@think-2048,,,,84.2,,,,,Chat & summaries in Portuguese (borderline),,3,9.12,
+pc-rtx2060,neohorse-4b@think-2048,,,,78.9,,,Chat & summaries in Portuguese (borderline),,,,3,20.19,
+pc-rtx2060,ornith1.5-9b@think-2048,,,,84.2,,,,,Chat & summaries in Portuguese (borderline),,3,6.08,
+pc-rtx2060,qwen3.6-35b-a3b-moecache@think-2048,,,,96.5,,Chat & summaries in Portuguese,,,,,3,31.26,
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,,,,98.2,,Chat & summaries in Portuguese,,,,,3,33.68,

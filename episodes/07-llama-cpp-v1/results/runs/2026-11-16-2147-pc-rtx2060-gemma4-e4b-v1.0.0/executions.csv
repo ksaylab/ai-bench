@@ -1,0 +1,58 @@
+run_id,machine,model,use_case,case,tier,rep,seed,passed,reason,time_s,prompt_tokens,completion_tokens,tok_s,ttft_s,gen_tok_s,peak_vram_mib,avg_power_w,energy_wh,cost_usd,finish,judge_score,judge_cost_usd,context_words,battery
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,explain_vpn,easy,0,1000,1,,9.423,39,446,47.33,5.114,103.5,5406,101.9,0.266736,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,formal_rewrite,easy,0,1000,1,,7.052,43,732,103.8,0.113,105.48,5406,148.3,0.290552,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,incident_summary,easy,0,1000,0,"113 words, max 60",6.43,140,689,107.15,0.139,109.53,5406,147.5,0.263424,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,grammar_fix,medium,0,1000,1,,0.295,73,22,74.69,0.086,105.33,5406,148.7,0.01219,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,false_premise_states,medium,0,1000,0,missing: \b26\b|vinte e seis,4.741,39,477,100.6,0.093,102.62,5406,149.3,0.196677,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,list_without_words,medium,0,1000,1,,0.443,58,35,78.92,0.081,96.63,5408,150.6,0.018589,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,dates_in_order,hard,0,1000,1,,0.349,104,33,94.66,0.077,121.6,5408,148.7,0.014424,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,relative_deadlines_order,hard,0,1000,1,,5.101,95,587,115.07,0.112,117.66,5408,148.3,0.210143,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,false_premise_holiday,medium,0,1000,1,,4.864,47,498,102.39,0.115,104.87,5408,149.2,0.201563,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,yes_no_only,medium,0,1000,1,,1.976,46,217,109.82,0.113,116.48,5408,141.1,0.077459,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,false_premise_capital,medium,0,1000,1,,2.871,39,309,107.64,0.101,111.56,5408,145.5,0.116048,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,exact_word_count,hard,0,1000,0,line does not match: Use senhas fortes e únicas para proteger,0.212,41,14,66.14,0.066,96.08,5408,150.0,0.008843,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,weekday_of_date,hard,0,1000,1,,3.215,45,354,110.09,0.092,113.34,5408,147.2,0.13151,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,date_plus_45_days,hard,0,1000,1,,3.433,53,393,114.47,0.11,118.26,5408,148.7,0.141828,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,raise_then_discount,hard,0,1000,1,,3.531,68,415,117.52,0.117,121.54,5408,149.2,0.14639,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,words_ending_cao,hard,0,1000,1,,2.641,49,295,111.7,0.112,116.67,5408,148.5,0.108978,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,business_days_deadline,hard,0,1000,1,,3.181,73,362,113.79,0.115,118.05,5408,148.9,0.131559,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,compound_interest,hard,0,1000,1,,4.094,63,469,114.56,0.115,117.88,5408,149.7,0.17021,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,flight_duration,hard,0,1000,0,missing: \b7\s*h(oras)?\s*(e\s*)?35\b|\b7:35\b,2.793,70,321,114.93,0.122,120.17,5408,143.1,0.111039,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,explain_vpn,easy,1,1001,1,,5.367,39,556,103.59,0.106,105.67,5408,149.1,0.222256,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,formal_rewrite,easy,1,1001,1,,7.154,43,762,106.51,0.113,108.22,5408,149.6,0.297351,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,incident_summary,easy,1,1001,1,,5.721,140,611,106.8,0.144,109.56,5408,149.1,0.236974,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,grammar_fix,medium,1,1001,0,missing: novos horarios,0.259,73,21,81.23,0.068,110.16,5408,150.4,0.010816,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,false_premise_states,medium,1,1001,1,,4.837,39,476,98.4,0.095,100.37,5416,149.8,0.201269,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,list_without_words,medium,1,1001,1,,0.359,58,26,72.43,0.061,87.26,5416,156.7,0.015645,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,dates_in_order,hard,1,1001,1,,0.311,104,33,105.98,0.042,122.35,5416,156.7,0.013566,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,relative_deadlines_order,hard,1,1001,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,4.936,95,564,114.27,0.113,116.95,5416,149.3,0.204676,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,false_premise_holiday,medium,1,1001,1,,5.16,47,544,105.42,0.118,107.89,5416,145.6,0.208769,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,yes_no_only,medium,1,1001,1,,2.246,46,243,108.2,0.115,114.04,5416,148.0,0.092314,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,false_premise_capital,medium,1,1001,1,,4.097,39,443,108.14,0.102,110.91,5416,149.7,0.170335,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,exact_word_count,hard,1,1001,1,,0.204,41,13,63.84,0.06,90.77,5416,149.6,0.008478,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,weekday_of_date,hard,1,1001,0,missing: sexta,4.952,45,541,109.24,0.092,111.31,5416,149.2,0.205192,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,date_plus_45_days,hard,1,1001,1,,5.63,53,644,114.38,0.116,116.77,5416,146.0,0.228362,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,raise_then_discount,hard,1,1001,1,,7.872,68,924,117.38,0.123,119.25,5416,148.9,0.325603,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,words_ending_cao,hard,1,1001,0,line does not match: Conexão,4.383,49,465,106.08,0.12,109.08,5416,148.7,0.181059,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,business_days_deadline,hard,1,1001,1,,3.938,73,438,111.22,0.122,114.77,5416,148.9,0.162841,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,compound_interest,hard,1,1001,1,,3.221,63,366,113.63,0.128,118.31,5416,149.0,0.133289,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,flight_duration,hard,1,1001,1,,2.87,70,338,117.77,0.119,122.85,5416,149.7,0.119378,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,explain_vpn,easy,2,1002,1,,3.898,39,400,102.61,0.109,105.56,5416,150.0,0.162404,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,formal_rewrite,easy,2,1002,1,,6.707,43,713,106.31,0.116,108.17,5416,149.5,0.278634,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,incident_summary,easy,2,1002,0,missing: \b40\b|quarenta,5.055,140,518,102.48,0.306,109.07,5416,148.6,0.208673,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,grammar_fix,medium,2,1002,1,,0.264,73,22,83.44,0.058,107.22,5416,149.4,0.010956,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,false_premise_states,medium,2,1002,1,,3.772,39,367,97.3,0.089,99.65,5416,147.9,0.154938,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,list_without_words,medium,2,1002,1,,0.366,58,31,84.68,0.053,98.92,5416,148.5,0.015117,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,dates_in_order,hard,2,1002,1,,0.312,104,33,105.82,0.042,122.32,5416,148.5,0.012875,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,relative_deadlines_order,hard,2,1002,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,5.149,95,599,116.34,0.107,118.82,5416,147.6,0.211036,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,false_premise_holiday,medium,2,1002,1,,5.094,47,524,102.87,0.108,105.1,5416,149.2,0.211074,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,yes_no_only,medium,2,1002,1,,1.161,46,119,102.46,0.108,112.98,5416,150.0,0.048409,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,false_premise_capital,medium,2,1002,1,,2.562,39,259,101.1,0.094,104.94,5416,149.7,0.106509,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,exact_word_count,hard,2,1002,0,line does not match: Use senhas complexas e nunca as reutiliz,0.222,41,15,67.68,0.046,85.49,5416,151.7,0.009347,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,weekday_of_date,hard,2,1002,1,,4.979,45,554,111.26,0.091,113.32,5416,147.3,0.203751,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,date_plus_45_days,hard,2,1002,1,,3.346,53,383,114.45,0.11,118.36,5416,145.7,0.135487,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,raise_then_discount,hard,2,1002,1,,3.197,68,373,116.69,0.11,120.85,5416,149.2,0.132472,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,words_ending_cao,hard,2,1002,0,line does not match: Paixão,4.056,49,466,114.9,0.107,118.02,5416,145.1,0.16348,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,business_days_deadline,hard,2,1002,1,,3.573,73,405,113.35,0.114,117.1,5416,144.9,0.14385,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,compound_interest,hard,2,1002,1,,2.172,63,247,113.71,0.115,120.09,5416,149.1,0.089985,,stop,,,,c44d435a4459
+2026-11-16-2147-pc-rtx2060-gemma4-e4b-v1.0.0,pc-rtx2060,gemma4-e4b@think-2048,chat_pt,flight_duration,hard,2,1002,1,,2.221,70,252,113.47,0.115,119.66,5416,149.8,0.092394,,stop,,,,c44d435a4459

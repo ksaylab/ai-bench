@@ -1,0 +1,7 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,pp,0,2348.35,16.12,3,ok,,b12110-cd959bae9,4338,141.8,,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,tg,0,90.15,0.1,3,ok,,b12110-cd959bae9,4338,141.8,,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,pp,16384,1586.86,3.07,3,ok,,b12110-cd959bae9,4338,141.8,,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,tg,16384,80.57,0.04,3,ok,,b12110-cd959bae9,4338,141.8,,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,pp,32768,1225.08,6.87,3,ok,,b12110-cd959bae9,4338,141.8,,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,neohorse-4b,NeoHorse-1-4B.i1-Q4_K_M.gguf,2.51,tg,32768,72.77,0.13,3,ok,,b12110-cd959bae9,4338,141.8,,

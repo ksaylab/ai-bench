@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-11-16-2042-pc-rtx2060-speed-qwen3.6-35b-a3b-v0.9.0",
+  "kind": "speed",
+  "episode": "07-llama-cpp-v1",
+  "machine": "pc-rtx2060",
+  "models": [
+    "qwen3.6-35b-a3b"
+  ],
+  "depths": [
+    0,
+    16384,
+    32768
+  ],
+  "repetitions": 3,
+  "fit_target_mib": 1536,
+  "cache_type": null,
+  "start": "2026-11-16T20:42:53",
+  "end": "2026-11-16T20:48:07",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true
+}

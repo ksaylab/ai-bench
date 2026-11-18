@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-11-16-2035-pc-rtx2060-speed-gemma4-26b-v1.0.0",
+  "kind": "speed",
+  "episode": "07-llama-cpp-v1",
+  "machine": "pc-rtx2060",
+  "models": [
+    "gemma4-26b"
+  ],
+  "depths": [
+    0,
+    16384,
+    32768
+  ],
+  "repetitions": 3,
+  "fit_target_mib": 1536,
+  "cache_type": null,
+  "start": "2026-11-16T20:35:53",
+  "end": "2026-11-16T20:39:28",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true
+}

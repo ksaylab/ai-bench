@@ -1,0 +1,109 @@
+{
+  "run_id": "2026-11-18-1401-pc-rtx2060-qwen3.6-35b-a3b-moecache-v1.0.0",
+  "episode": "07-llama-cpp-v1",
+  "machine": "pc-rtx2060",
+  "models": [
+    "qwen3.6-35b-a3b-moecache"
+  ],
+  "runs": 3,
+  "use_cases": [
+    "chat_pt"
+  ],
+  "cases": [
+    "explain_vpn",
+    "formal_rewrite",
+    "incident_summary",
+    "grammar_fix",
+    "false_premise_states",
+    "list_without_words",
+    "dates_in_order",
+    "relative_deadlines_order",
+    "false_premise_holiday",
+    "yes_no_only",
+    "false_premise_capital",
+    "exact_word_count",
+    "weekday_of_date",
+    "date_plus_45_days",
+    "raise_then_discount",
+    "words_ending_cao",
+    "business_days_deadline",
+    "compound_interest",
+    "flight_duration"
+  ],
+  "context_words": 3000,
+  "judge": "",
+  "start": "2026-11-18T14:01:11",
+  "smoke": false,
+  "simulated": false,
+  "max_tokens": 32768,
+  "publishable": true,
+  "thresholds_pct": {
+    "coding": 80.0,
+    "rag": 80.0,
+    "agent": 80.0,
+    "chat_pt": 80.0
+  },
+  "sampling": {
+    "qwen3.6-35b-a3b-moecache": {
+      "sent": {
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "top_k": 20,
+        "min_p": 0.0,
+        "presence_penalty": 1.5,
+        "repeat_penalty": 1.0
+      },
+      "base_seed": 1000,
+      "seeds": [
+        1000,
+        1001,
+        1002
+      ],
+      "source": "Qwen3.6 card, thinking mode, general tasks: temperature=1.0, top_p=0.95, top_k=20, min_p=0.0, presence_penalty=1.5, repetition_penalty=1.0. Not the card's precise-coding set (temperature 0.6, no presence_penalty): with it the model looped and ran out of tokens on trivial prompts on the PC",
+      "card": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "verified": true
+    }
+  },
+  "server_args": "",
+  "battery": {
+    "chat_pt": "c44d435a4459"
+  },
+  "checker_version": 3,
+  "thinking": 2048,
+  "contestants": {
+    "qwen3.6-35b-a3b-moecache": "qwen3.6-35b-a3b-moecache@think-2048"
+  },
+  "requests": {
+    "explain_vpn": "456ac280d33f3a4b58be2a4af20372f9742e7b46ed851b210014757999108a48",
+    "formal_rewrite": "15fc4f12db5e033e97cd0790b36f4117a8a941bf313540b818ce6afd409c78c9",
+    "incident_summary": "4ecfb2caf34013740f89a74e2bf155c32f34432adf2f57eff241946335075204",
+    "grammar_fix": "cf5dba53b320f0c4c11d18546e9e0d72561148b4e5fa15a3b71d06fb968e380e",
+    "false_premise_states": "bf77c783e65ac4cdfd02d455ff3c20946e0d48654196697544f5e8d6cc3892c4",
+    "list_without_words": "9bcdfedd07ae49c5181a79a05634f45b9d0076a28321063a85c037999ad65b85",
+    "dates_in_order": "1be1f99ee6978b95fdf4d87c62dd74adefc80c924e18c770e2b590c7bec59fff",
+    "relative_deadlines_order": "e5ae93ea68252f2e90d7911fcbdd03eceb3f55f6b927cb28786fe06a9df6b558",
+    "false_premise_holiday": "740f0db186d27109ac6fb60921d0d17d58ae68982697d59a52b634eddedb83cc",
+    "yes_no_only": "bdfba6379cd5d3100e0b219493947a91ce6225b7bb56a3e2761fae8bb91c6fe2",
+    "false_premise_capital": "c0f061c63c7499fcfd2dfa0dcc57ce2aa994d3e564090e595947dcaf8a3d4802",
+    "exact_word_count": "e6562003c78d443f8d762da44d2ac3a26499d42d2915de84e47d617f875fc3eb",
+    "weekday_of_date": "d6e0763475fcc6bcfe05646ec4908d02328244acbc885fe19dc14fb5e5163c14",
+    "date_plus_45_days": "30edfda4c5e937aa457179054440fe97e4c952184a60c0695c967102a3aebd4e",
+    "raise_then_discount": "dfb72d44498b69bab206cd9ea90d62468f70e71c47abfd0f1f7b79dca2422c93",
+    "words_ending_cao": "f8fbd7f0ab442a1fda69f625564d81352ed2bf423fef1225c2d803ac42f16d66",
+    "business_days_deadline": "a40e0a961e55f8b6e8ced248381030fa7afd782abdb67aea9be7fb2d52efe69c",
+    "compound_interest": "df8940f4baac4f9acdbb59c772215832f90e6b67aa3b7005c7d8852774350d43",
+    "flight_duration": "bf88a39d28ceb4ceec94068c3b06cc66152237909cf127686e1f86d521f0ec4d"
+  },
+  "stream": true,
+  "gpu_sampling": {
+    "qwen3.6-35b-a3b-moecache": {
+      "status": "ok",
+      "interval_ms": 500,
+      "samples": 3532,
+      "peak_vram_mib": 7296,
+      "avg_power_w": 113.8,
+      "peak_power_w": 141.2
+    }
+  },
+  "end": "2026-11-18T14:30:54"
+}

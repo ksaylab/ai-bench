@@ -1,0 +1,2 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+pc-rtx2060,,gemma4-12b,gemma-4-12B-it-qat-UD-Q4_K_XL.gguf,6.26,,,,,3,error,error: invalid parameter for argument: -ctk,,13,65.8,,f8_e4m3

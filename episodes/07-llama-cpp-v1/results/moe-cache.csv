@@ -1,0 +1,11 @@
+model,llama_cpp,experts,moe_cache_mib,moe_cache_cpu_share,tg_tok_s,tg_runs,pp_tok_s,peak_vram_mib
+qwen3.6-35b-a3b,v0.9.0,experts of 33 of 40 layers in RAM (-ncmoe 33),,,29.12,27.79 29.31 30.27,639.1,7190
+qwen3.6-35b-a3b,v1.0.0,experts of 33 of 40 layers in RAM (-ncmoe 33),,,28.5,27.91 27.91 29.68,728.0,7192
+qwen3.6-35b-a3b,v1.0.0,all experts in RAM,0,,26.57,25.98 26.47 27.27,612.0,4616
+gemma4-26b,v0.9.0,"--fit-target 1536 (part of the experts in RAM), MTP draft",,,29.86,29.17 30.04 30.38,505.6,7140
+gemma4-26b,v1.0.0,"--fit-target 1536 (part of the experts in RAM), MTP draft",,,30.01,29.56 30.11 30.36,498.8,7126
+gemma4-26b,v1.0.0,all experts in RAM,0,,26.41,26.4 25.67 27.17,453.9,4940
+qwen3.6-35b-a3b,v1.0.0,all experts in RAM,2688,0.95,43.8,42.38 45.48 43.55,829.7,7356
+qwen3.6-35b-a3b,v1.0.0,all experts in RAM,1344,0.95,36.95,35.01 39.42 36.42,463.1,6012
+gemma4-26b,v1.0.0,all experts in RAM,1216,0.95,46.59,41.36 47.59 50.83,489.4,6180
+gemma4-26b,v1.0.0,all experts in RAM,1216,0,18.98,19.14 19.16 18.63,497.5,6158

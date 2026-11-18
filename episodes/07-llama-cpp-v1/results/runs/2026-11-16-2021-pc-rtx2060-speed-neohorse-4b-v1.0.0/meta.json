@@ -1,0 +1,22 @@
+{
+  "run_id": "2026-11-16-2021-pc-rtx2060-speed-neohorse-4b-v1.0.0",
+  "kind": "speed",
+  "episode": "07-llama-cpp-v1",
+  "machine": "pc-rtx2060",
+  "models": [
+    "neohorse-4b"
+  ],
+  "depths": [
+    0,
+    16384,
+    32768
+  ],
+  "repetitions": 3,
+  "fit_target_mib": 1536,
+  "cache_type": null,
+  "start": "2026-11-16T20:21:24",
+  "end": "2026-11-16T20:22:15",
+  "smoke": false,
+  "simulated": false,
+  "publishable": true
+}

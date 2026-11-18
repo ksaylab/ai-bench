@@ -1,0 +1,8 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+pc-rtx2060,,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.04,,,,,3,error,did not fit in memory,,106,45.2,,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,pp,0,239.58,82.39,3,ok,,b12359-b1b770d90,6188,68.6,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,tg,0,25.95,5.91,3,ok,,b12359-b1b770d90,6188,68.6,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,pp,16384,401.04,12.19,3,ok,,b12359-b1b770d90,6188,68.6,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,tg,16384,25.01,6.5,3,ok,,b12359-b1b770d90,6188,68.6,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,pp,32768,365.39,15.91,3,ok,,b12359-b1b770d90,6188,68.6,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,qwen3.6-35b-a3b,Qwen3.6-35B-A3B-UD-Q3_K_XL.gguf,16.03,tg,32768,22.88,5.83,3,ok,,b12359-b1b770d90,6188,68.6,1536,

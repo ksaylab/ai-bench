@@ -1,0 +1,16 @@
+model,moe_cache,target_tokens,rep,prompt_tokens,expected,answer,correct,pp_tok_s,wall_s,peak_vram_mib
+qwen3.6-35b-a3b,yes,24000,1,23970,Aracaju,Aracaju,True,794.0,31.1,7312
+qwen3.6-35b-a3b,yes,24000,2,23980,Campo Grande,Campo Grande,True,904.9,27.1,7318
+qwen3.6-35b-a3b,yes,24000,3,23958,Cuiabá,Cuiabá,True,901.2,27.2,7318
+qwen3.6-35b-a3b,yes,75000,1,74922,Florianópolis,Florianópolis,True,625.8,120.5,7318
+qwen3.6-35b-a3b,yes,75000,2,74805,Natal,Natal,True,689.9,109.4,7318
+qwen3.6-35b-a3b,yes,75000,3,74846,Boa Vista,Boa Vista,True,687.1,110.0,7318
+gemma4-26b,yes,24000,1,23927,Curitiba,Curitiba,True,419.9,57.7,6160
+gemma4-26b,yes,24000,2,23921,Florianópolis,Florianópolis,True,412.9,59.1,6160
+gemma4-26b,yes,24000,3,23895,Recife,Recife,True,424.9,56.8,6166
+gemma4-26b,yes,75000,1,74799,Teresina,Salvador,False,358.7,209.1,6166
+gemma4-26b,yes,75000,2,74754,Natal,Recife,False,361.3,207.8,6168
+gemma4-26b,yes,75000,3,74819,Goiânia,Curitiba,False,361.6,207.8,6168
+gemma4-26b,no,75000,1,74799,Teresina,Salvador,False,386.8,194.3,7126
+gemma4-26b,no,75000,2,74754,Natal,Recife,False,382.8,197.6,7128
+gemma4-26b,no,75000,3,74819,Goiânia,Curitiba,False,385.4,195.0,7126

@@ -1,0 +1,2 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,gemma4-12b@think-2048,chat_pt,c44d435a4459,52,57,19,3,91.2,84.2,94.7,100.0,77.8,96.7,2,0,80.0,Good for,easy only,0,100.0,22.8,91.2,88.6,1,18.74,38.21,0.38,39.19,7718,152.5,15.0706,

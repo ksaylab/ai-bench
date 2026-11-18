@@ -1,0 +1,8 @@
+machine,gpu,model,gguf,gguf_gib,metric,depth,tok_s,stddev_tok_s,repetitions,status,reason,build,peak_vram_mib,avg_power_w,fit_target_mib,cache_type
+pc-rtx2060,,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.45,,,,,3,error,did not fit in memory,,106,46.6,,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,pp,0,536.65,11.49,3,ok,,b12359-b1b770d90,6038,84.2,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,tg,0,30.57,0.32,3,ok,,b12359-b1b770d90,6038,84.2,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,pp,16384,468.22,7.22,3,ok,,b12359-b1b770d90,6038,84.2,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,tg,16384,29.75,0.48,3,ok,,b12359-b1b770d90,6038,84.2,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,pp,32768,387.77,47.16,3,ok,,b12359-b1b770d90,6038,84.2,1536,
+pc-rtx2060,NVIDIA GeForce RTX 2060 SUPER,gemma4-26b,gemma-4-26B_q4_0-it.gguf,13.43,tg,32768,29.13,0.16,3,ok,,b12359-b1b770d90,6038,84.2,1536,
