@@ -228,7 +228,9 @@ class TestEnglishOnly(unittest.TestCase):
     def test_no_portuguese_outside_chat_pt(self):
         from pathlib import Path
         root = Path(__file__).resolve().parents[1]
-        allowed = {"cases/chat_pt.jsonl", "tests/test_cases.py"}
+        # the two episode 07 scripts keep the Portuguese prompts they measured (the language of chat_pt)
+        allowed = {"cases/chat_pt.jsonl", "tests/test_cases.py", "episodes/07-llama-cpp-v1/scripts/moe_bench.py",
+                   "episodes/07-llama-cpp-v1/scripts/longprompt_test.py"}
         found = []
         for p in root.rglob("*"):
             rel = p.relative_to(root).as_posix()
