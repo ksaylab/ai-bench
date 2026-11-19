@@ -165,6 +165,12 @@ def _read_stream(r, start):
     return message, finish, usage, ttft, extra
 
 
+class StreamCut(ConnectionError):
+    """A stream that ended before any finish_reason: the server dropped the request (llama-server's model process
+    died, e.g. out of GPU memory, and the router restarted it). Retried like a lost connection, never read as an
+    empty answer from the model."""
+
+
 def chat(url, model, messages, key=None, max_tokens=8192, temperature=None, tools=None, timeout=900, attempts=3,
          extra=None, sampling=None, stream=False):
     """One chat call. Returns text, reasoning, tool calls, tokens, cost (when the provider reports it), time and
@@ -195,6 +201,8 @@ def chat(url, model, messages, key=None, max_tokens=8192, temperature=None, tool
             with urllib.request.urlopen(req, timeout=timeout) as r:
                 if stream and "text/event-stream" in (r.headers.get("Content-Type") or ""):
                     msg, finish, usage, ttft, more = _read_stream(r, start)
+                    if not finish:
+                        raise StreamCut("stream ended without a finish reason")
                     resp = {"choices": [{"message": msg, "finish_reason": finish}], "usage": usage, **more}
                 else:
                     resp, ttft = json.load(r), None
@@ -204,7 +212,7 @@ def chat(url, model, messages, key=None, max_tokens=8192, temperature=None, tool
             if e.code < 500 and e.code != 429:
                 raise ClientError(last) from None
         except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException) as e:
-            last = f"connection: {type(e).__name__}"
+            last = f"connection: {e}" if isinstance(e, StreamCut) else f"connection: {type(e).__name__}"
             lost = not isinstance(e, TimeoutError) and not isinstance(getattr(e, "reason", None), TimeoutError)
         if lost and waited < RECONNECT_S:  # the tunnel or the network is coming back: wait for it
             time.sleep(RECONNECT_STEP_S)

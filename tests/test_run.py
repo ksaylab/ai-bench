@@ -116,6 +116,56 @@ def read(path):
         return list(csv.DictReader(f))
 
 
+class CutStream(BaseHTTPRequestHandler):
+    """A llama-server whose model process dies mid-answer (CUDA out of memory): the stream starts, then the
+    connection closes with no finish_reason and no [DONE]. `cuts` answers are cut before a whole one."""
+    cuts, calls = 1, 0
+
+    def do_POST(self):
+        self.rfile.read(int(self.headers["Content-Length"]))
+        CutStream.calls += 1
+        self.send_response(200)
+        self.send_header("Content-Type", "text/event-stream")
+        self.end_headers()
+        chunk = {"choices": [{"index": 0, "delta": {"role": "assistant", "content": None}, "finish_reason": None}]}
+        self.wfile.write(b"data: " + json.dumps(chunk).encode() + b"\n\n")
+        if CutStream.calls <= CutStream.cuts:
+            return
+        for delta, finish in (({"content": "ok"}, None), ({}, "stop")):
+            chunk = {"choices": [{"index": 0, "delta": delta, "finish_reason": finish}]}
+            self.wfile.write(b"data: " + json.dumps(chunk).encode() + b"\n\n")
+        self.wfile.write(b"data: [DONE]\n\n")
+
+    def log_message(self, *a):
+        pass
+
+
+class TestCutStream(unittest.TestCase):
+    """A stream cut before its finish_reason is the server failing, not the model answering nothing (episode 08:
+    three "empty answers" of ornith1.5-9b were its process dying out of GPU memory)."""
+    def url(self, cuts):
+        CutStream.cuts, CutStream.calls = cuts, 0
+        srv = HTTPServer(("127.0.0.1", 0), CutStream)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        self.addCleanup(srv.server_close)
+        self.addCleanup(srv.shutdown)
+        return f"http://127.0.0.1:{srv.server_port}/v1"
+
+    def test_a_cut_stream_is_asked_again(self):
+        url = self.url(cuts=1)
+        with mock.patch.object(client, "RECONNECT_STEP_S", 0):
+            r = client.chat(url, "m", [{"role": "user", "content": "hi"}], stream=True)
+        self.assertEqual((r["text"], r["finish"], CutStream.calls), ("ok", "stop", 2))
+
+    def test_a_stream_that_is_always_cut_is_an_error_not_an_empty_answer(self):
+        url = self.url(cuts=99)
+        with mock.patch.object(client, "RECONNECT_STEP_S", 0), mock.patch.object(client, "RECONNECT_S", 0), \
+                mock.patch.object(client.time, "sleep"):
+            with self.assertRaises(client.ClientError) as e:
+                client.chat(url, "m", [{"role": "user", "content": "hi"}], stream=True)
+        self.assertIn("stream ended", str(e.exception))
+
+
 class TestRun(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp())
