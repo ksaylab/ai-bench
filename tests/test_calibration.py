@@ -33,6 +33,32 @@ class TestRelativeScores(unittest.TestCase):
         ref = calibration.reference(rows)
         self.assertEqual(ref, {("coding", "b1"): {"ceiling": 96.0, "ceiling_model": "b", "floor": 30.0}})
 
+    def test_a_reference_anchor_is_shown_but_does_not_move_the_ruler(self):
+        rows = [{"use_case": "coding", "battery": "b1", "model": "a", "role": "ceiling", "score_pct": 90.0},
+                {"use_case": "coding", "battery": "b1", "model": "f", "role": "floor", "score_pct": 30.0},
+                {"use_case": "coding", "battery": "b1", "model": "r", "role": "reference", "score_pct": 10.0},
+                {"use_case": "coding", "battery": "b1", "model": "r2", "role": "reference", "score_pct": 99.0}]
+        self.assertEqual(calibration.reference(rows),
+                         {("coding", "b1"): {"ceiling": 90.0, "ceiling_model": "a", "floor": 30.0}})
+
+    def test_scores_and_anchors_carry_the_battery_version_next_to_the_hash(self):
+        self.assertEqual(verdict.SCORE_COLUMNS[3:5], ["battery", "battery_version"])
+        self.assertEqual(calibration.ANCHOR_COLUMNS[1:3], ["battery", "battery_version"])
+        rows = [{"run_id": "r", "machine": "m", "model": "x", "use_case": "chat_pt", "case": f"c{i}", "rep": rep,
+                 "passed": 1, "reason": "", "time_s": 1, "tok_s": 1, "cost_usd": "", "battery": "c44d435a4459"}
+                for rep in range(3) for i in range(5)]
+        self.assertEqual(verdict.scores(rows, {})[0]["battery_version"], "v3")
+        a = calibration.anchor_scores([{**r, "model": "f", "role": "floor"} for r in rows])
+        self.assertEqual(a[0]["battery_version"], "v3")
+
+    def test_the_verdict_table_names_the_battery_versions(self):
+        rows = [{"run_id": "r", "machine": "m", "model": "x", "use_case": "chat_pt", "case": f"c{i}", "rep": rep,
+                 "passed": 1, "reason": "", "time_s": 1, "tok_s": 1, "cost_usd": "", "battery": "c44d435a4459"}
+                for rep in range(3) for i in range(5)]
+        s = verdict.scores(rows, {})
+        md = verdict.markdown(verdict.verdicts(s), s)
+        self.assertIn("Batteries: Chat & summaries in Portuguese v3 (`c44d435a4459`).", md)
+
     def test_not_calibrated_battery_has_no_verdict(self):
         rows = [{"run_id": "r", "machine": "m", "model": "x", "use_case": "coding", "case": f"c{i}", "rep": rep,
                  "passed": 1, "reason": "", "time_s": 1, "tok_s": 1, "cost_usd": "", "battery": "b1"}
@@ -87,6 +113,16 @@ class TestTiersAndPruning(unittest.TestCase):
         md = calibration.pruning_markdown(per_case, summary, current={"coding": "b2"})
         self.assertEqual(md.count("| `coding` | `a` |"), 1)                     # act on the current version only
         self.assertNotIn("| `coding` | `b` |", md)
+
+    def test_a_reference_anchor_does_not_decide_the_pruning_but_is_reported(self):
+        rows = self.rows({("c1", "ceiling"): {"easy": [1, 1, 1], "hard": [1, 1, 1]},
+                          ("f", "floor"): {"easy": [1, 1, 1], "hard": [0, 0, 0]},
+                          ("r", "reference"): {"easy": [0, 0, 0], "hard": [1, 1, 1]}})
+        per_case, _ = calibration.pruning(rows, [{"use_case": "coding", "id": i, "tier": "easy"} for i in ("easy", "hard")])
+        by = {r["case"]: r for r in per_case}
+        self.assertEqual((by["easy"]["action"], by["hard"]["action"]), ("too_easy", "keep"))
+        self.assertEqual((by["easy"]["reference"], by["hard"]["reference"]), ("r 0/3", "r 3/3"))
+        self.assertIn("reference", calibration.PRUNING_COLUMNS)
 
     def test_only_anchor_results_decide(self):
         self.assertEqual(calibration.classify({"local": ("", 3, 3)})[0], "")
@@ -155,17 +191,19 @@ class TestAnchorRuns(unittest.TestCase):
         self.addCleanup(srv.shutdown)
         return f"http://127.0.0.1:{srv.server_port}/v1"
 
-    def test_anchors_toml_has_two_ceilings_and_the_floor(self):
+    def test_anchors_toml_has_two_ceilings_the_floor_and_a_reference(self):
         a = {x["name"]: x for x in calibration.anchors()}
         self.assertEqual({n: x["role"] for n, x in a.items()},
                          {"deepseek/deepseek-v4-pro": "ceiling", "z-ai/glm-5.3-flash": "ceiling",
-                          "mistralai/ministral-3b-2512": "floor"})
+                          "mistralai/ministral-3b-2512": "floor", "ibm-granite/granite-4.2-8b": "reference"})
         run.check_sampling(list(a), {n: x["sampling"] for n, x in a.items()})
         run.check_provider(list(a), {n: x.get("provider") for n, x in a.items()})
         run.check_reasoning(list(a), {n: x.get("reasoning") for n, x in a.items()})
         self.assertEqual({n: (x.get("reasoning") or {}).get("effort") for n, x in a.items()},
                          {"deepseek/deepseek-v4-pro": "high", "z-ai/glm-5.3-flash": "max",
-                          "mistralai/ministral-3b-2512": None})  # the floor's only endpoint has no reasoning
+                          "mistralai/ministral-3b-2512": None,  # the floor's only endpoint has no reasoning
+                          "ibm-granite/granite-4.2-8b": None})   # thinking modes, no effort levels
+        self.assertEqual(a["ibm-granite/granite-4.2-8b"]["reasoning"], {"enabled": True})
 
     def test_prices_come_from_the_public_model_list(self):
         info = client.models_info(["ceil-a", "gone"], url=self.serve(Models))

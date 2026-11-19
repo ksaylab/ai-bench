@@ -1,0 +1,5 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+openrouter,deepseek/deepseek-v4-pro,,100.0,96.7,100.0,,RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese,,,,,3,4.93,0.29976
+openrouter,ibm-granite/granite-4.2-8b,,82.5,65.0,92.4,,Chat & summaries in Portuguese,Agents / tool calling,,RAG (answers with sources) (borderline),,3,21.27,0.074251
+openrouter,mistralai/ministral-3b-2512,,31.6,18.3,19.7,,,RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese,,,,3,0.65,0.00735
+openrouter,z-ai/glm-5.3-flash,,98.2,100.0,95.5,,RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese,,,,,3,6.66,0.024269

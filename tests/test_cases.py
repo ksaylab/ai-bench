@@ -255,3 +255,30 @@ class TestEnglishOnly(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestBatteryVersions(unittest.TestCase):
+    """Every battery keeps its hash and also gets a human version (v1, v2, v3...) in cases/versions.csv, so results
+    and videos can say which version ran."""
+
+    def test_the_current_batteries_have_a_version(self):
+        for uc in cases.USE_CASES:
+            self.assertTrue(cases.battery_version(uc, cases.battery_hash(uc)), uc)
+
+    def test_every_published_run_has_a_version(self):
+        import json
+        from pathlib import Path
+        root = Path(__file__).resolve().parents[1]
+        missing = set()
+        for p in list(root.glob("calibration/runs/*/meta.json")) + list(root.glob("episodes/*/results/runs/*/meta.json")):
+            if "smoke" in p.parent.name:
+                continue
+            for uc, h in (json.loads(p.read_text(encoding="utf-8")).get("battery") or {}).items():
+                if not cases.battery_version(uc, h):
+                    missing.add((uc, h, p.parent.name))
+        self.assertEqual(missing, set())
+
+    def test_versions_are_known_and_unknown_hashes_are_empty(self):
+        self.assertEqual(cases.battery_version("chat_pt", "c44d435a4459"), "v3")
+        self.assertEqual(cases.battery_version("rag", "6acc3a5c1feb"), "v2 24k")
+        self.assertEqual(cases.battery_version("chat_pt", "000000000000"), "")

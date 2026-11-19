@@ -24,6 +24,8 @@ borderline = the score is less than one case's worth (100 / cases in the battery
 """
 from collections import defaultdict
 
+from aibench.cases import battery_version
+
 GOOD_THRESHOLD = {"coding": 80.0, "rag": 80.0, "agent": 80.0, "chat_pt": 80.0}
 MIN_RUNS = 3
 MAX_ERROR_RATE = 0.10
@@ -33,7 +35,7 @@ LABELS = {"coding": "Coding", "rag": "RAG (answers with sources)", "agent": "Age
           "chat_pt": "Chat & summaries in Portuguese", "coding_public": "Coding, public sets (reference)"}
 # Batteries that are scored but never get a verdict (METHODOLOGY.md 8.5): their verdict column says so.
 REFERENCE = {"coding_public"}
-SCORE_COLUMNS = ["machine", "model", "use_case", "battery", "passed", "executions", "cases", "runs", "score_pct",
+SCORE_COLUMNS = ["machine", "model", "use_case", "battery", "battery_version", "passed", "executions", "cases", "runs", "score_pct",
                  "min_run_pct", "max_run_pct", "easy_pct", "medium_pct", "hard_pct", "unstable_cases", "errors",
                  "threshold_pct", "verdict", "tier_qualifier", "borderline",
                  "ceiling_pct", "floor_pct", "pct_of_ceiling", "normalized", "calibrated", "avg_time_s", "avg_tok_s",
@@ -130,7 +132,8 @@ def scores(rows, reference=None):
                                                          "energy_wh"))
         costs = [c for c in (_f(r["cost_usd"]) for r in rs) if c is not None]
         costs += [c for c in (_f(r.get("judge_cost_usd")) for r in rs) if c is not None]
-        out.append({"machine": machine, "model": model, "use_case": uc, "battery": battery, "passed": passed,
+        out.append({"machine": machine, "model": model, "use_case": uc, "battery": battery,
+                    "battery_version": battery_version(uc, battery) if battery else "", "passed": passed,
                     "executions": n,
                     "cases": cases, "runs": len(per_run), "score_pct": score,
                     "min_run_pct": round(min(run_scores), 1), "max_run_pct": round(max(run_scores), 1),
@@ -179,8 +182,8 @@ def verdicts(score_rows):
     return out
 
 
-def markdown(verdict_rows):
-    """The table the video shows."""
+def markdown(verdict_rows, score_rows=None):
+    """The table the video shows; with the score rows, a line names each battery's version and hash."""
     any_unsure = any(r.get("inconclusive") for r in verdict_rows)
     any_unstable = any(r.get("unstable") for r in verdict_rows)
     any_uncal = any(r.get("not_calibrated") for r in verdict_rows)
@@ -204,5 +207,13 @@ def markdown(verdict_rows):
             cells.append(r["not_calibrated"] or "—")
         lines.append("| " + " | ".join(cells) + " |")
     rules = ", ".join(f"{LABELS[uc]} ≥ {t:.0f}%" for uc, t in GOOD_THRESHOLD.items())
-    return ("\n".join(lines) + f"\n\nGood for: {rules}, over at least {MIN_RUNS} runs. Unstable: the repeats fall on "
-            "both sides of the threshold. See METHODOLOGY.md.\n")
+    out = ("\n".join(lines) + f"\n\nGood for: {rules}, over at least {MIN_RUNS} runs. Unstable: the repeats fall on "
+           "both sides of the threshold. See METHODOLOGY.md.\n")
+    seen = {}
+    for r in score_rows or []:
+        if r.get("battery"):
+            seen.setdefault((r["use_case"], r["battery"]), r.get("battery_version") or "no version yet")
+    if seen:
+        out += "\nBatteries: " + "; ".join(f"{LABELS.get(uc, uc)} {v} (`{h}`)" for (uc, h), v in sorted(
+            seen.items(), key=lambda kv: list(LABELS).index(kv[0][0]) if kv[0][0] in LABELS else 99)) + ".\n"
+    return out

@@ -1,0 +1,4 @@
+machine,model,use_case,battery,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+openrouter,ibm-granite/granite-4.2-8b,agent,451ac8f0970b,40,51,17,3,78.4,76.5,82.4,100.0,88.9,72.2,2,0,80.0,Unstable,,1,,,,,,8.55,110.93,0.542,128.14,,,,0.008654
+openrouter,ibm-granite/granite-4.2-8b,chat_pt,c44d435a4459,53,57,19,3,93.0,89.5,100.0,100.0,94.4,90.0,3,0,80.0,Good for,,0,,,,,,30.32,97.48,0.578,104.38,,,,0.023723
+openrouter,ibm-granite/granite-4.2-8b,rag,6ec3e5bdd9cb,51,54,18,3,94.4,88.9,100.0,83.3,90.5,100.0,3,0,80.0,Good for,,0,,,,,,19.76,108.24,0.552,116.85,,,,0.01933

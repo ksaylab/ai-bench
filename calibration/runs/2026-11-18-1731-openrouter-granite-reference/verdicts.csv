@@ -1,0 +1,2 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+openrouter,ibm-granite/granite-4.2-8b,,94.4,78.4,93.0,,RAG (answers with sources); Chat & summaries in Portuguese,,,Agents / tool calling (borderline),,3,19.54,0.051707

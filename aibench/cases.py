@@ -51,6 +51,20 @@ CHECKER_VERSION = 3
 BATTERY_FILES = {"agent": ["agent_tools.json"], "rag": ["rag_documents.json"]}
 
 
+_VERSIONS = {}
+
+
+def battery_version(use_case, battery, folder=CASES):
+    """The human version of a battery hash (v1, v2, v3...; cases/versions.csv), or "" when it has none yet. The hash
+    stays the identity of a battery; the version is the name results and videos use."""
+    path = Path(folder) / "versions.csv"
+    if path not in _VERSIONS:
+        import csv
+        with open(path, encoding="utf-8") as f:
+            _VERSIONS[path] = {(r["use_case"], r["battery"]): r["version"] for r in csv.DictReader(f)}
+    return _VERSIONS[path].get((use_case, battery), "")
+
+
 def battery_file(use_case):
     return FILES.get(use_case, f"{use_case}.jsonl")
 

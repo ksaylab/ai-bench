@@ -9,3 +9,5 @@
 | `qwen3.6-35b-a3b@think-2048` | pc-rtx2060 | — | 93% ✅ | 82% ✅ | 98% ✅ | RAG (answers with sources); Agents / tool calling (easy only) (borderline); Chat & summaries in Portuguese | — | — |
 
 Good for: Coding ≥ 80%, RAG (answers with sources) ≥ 80%, Agents / tool calling ≥ 80%, Chat & summaries in Portuguese ≥ 80%, over at least 3 runs. Unstable: the repeats fall on both sides of the threshold. See METHODOLOGY.md.
+
+Batteries: RAG (answers with sources) v3 (`6ec3e5bdd9cb`); Agents / tool calling v3 (`451ac8f0970b`); Chat & summaries in Portuguese v3 (`c44d435a4459`).

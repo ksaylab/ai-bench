@@ -41,6 +41,10 @@ score = passed executions / all executions of the battery, over all runs   (in %
 - A run whose server stops answering (connection lost or HTTP 5xx on 3 cases in a row, `MAX_SERVER_ERRORS` in
   [`aibench/run.py`](aibench/run.py)) stops unfinished, with no `meta.json`: it is never merged, so a lost server is
   not scored as the model's failures. Isolated errors stay in the run and count toward Inconclusive.
+- A streamed answer that ends before any `finish_reason` is the server dropping the request, not the model answering
+  nothing: it is asked again like a lost connection, and if it never completes it is an error, not an empty answer
+  (`StreamCut` in [`aibench/client.py`](aibench/client.py)). Episode 08 found it: `ornith1.5-9b`'s process ran out
+  of GPU memory three times under llama.cpp 1.0, and its run was redone.
 - The thresholds are in [`aibench/verdict.py`](aibench/verdict.py) (`GOOD_THRESHOLD`, `MIN_RUNS`, `MAX_ERROR_RATE`).
   80% means the model gets at least 4 out of 5 tasks right, on every run: below that, you would have to double-check
   everything it does in that use case.
@@ -146,6 +150,10 @@ Every battery is run, with the same prompts, the same `cases/` version and pinne
   scores today. Expensive closed frontier models are deliberately left out to keep anchor runs cheap.
 - **Floor anchor:** one deliberately small, weak model through OpenRouter. It shows what a model with almost no
   skill in the use case scores (format luck, trivial cases).
+- **Reference anchors** (optional): models shown next to the ruler, in `calibration/anchors.csv` and in the
+  `reference` column of the pruning report, that never enter `ceiling`, `floor` or the pruning decision. Added on
+  2026-11-18 because the floor answers without reasoning, so a case it fails can still be easy for a model that
+  reasons with the local models' budget (episode 06).
 
 Anchors, in [`anchors.toml`](anchors.toml) (role and pinned sampling), with ids checked on
 `https://openrouter.ai/api/v1/models` on 2026-11-03 (price in USD per 1M input / output tokens on that date):
@@ -155,6 +163,7 @@ Anchors, in [`anchors.toml`](anchors.toml) (role and pinned sampling), with ids 
 | Ceiling | `deepseek/deepseek-v4-pro` | 1.60 / 3.20 | Approved |
 | Ceiling | `z-ai/glm-5.3-flash` | 0.0313 / 0.0846 | Approved |
 | Floor | `mistralai/ministral-3b-2512` | 0.10 / 0.10 | Approved |
+| Reference | `ibm-granite/granite-4.2-8b` (full thinking mode; it has no token budget) | 0.06 / 0.15 (2026-11-18) | Approved |
 
 All three accept `temperature`, `top_p`, `seed` and tool calling, so every anchor runs with pinned parameters (8.4).
 

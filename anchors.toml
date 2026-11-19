@@ -1,7 +1,8 @@
 # Calibration anchors (METHODOLOGY.md 8.2): OpenRouter models that only serve as the ruler for every battery. They
 # never get a verdict in an episode table. Ids checked on https://openrouter.ai/api/v1/models on 2026-11-03; every
 # anchor run records the id, the date and the price read at run time in meta.json.
-# role: "ceiling" (strong, low-cost) or "floor" (deliberately small and weak, with tool calling).
+# role: "ceiling" (strong, low-cost) or "floor" (deliberately small and weak, with tool calling); the ruler uses only
+# these. "reference": a model shown next to the ruler (anchors.csv, pruning report) that never moves it.
 # [anchor.sampling]: pinned like the local models (8.4).
 # [anchor.provider]: OpenRouter's provider routing object, sent as given. One provider endpoint (`order`, a slug from
 # https://openrouter.ai/api/v1/models/<id>/endpoints), no fallback, and require_parameters = true so a provider that
@@ -65,3 +66,30 @@ verified = true
 order = ["mistral"]
 allow_fallbacks = false
 require_parameters = true
+
+# A small model that reasons, shown next to the ruler (episode 08 of ai-bench, 2026-11-18): the floor above answers
+# without reasoning, so cases screened on it are not hard for models that reason (episode 06). Not one of the local
+# models nor a fine-tune of one. Endpoint chosen on 2026-11-18: bf16, with seed, tools and reasoning, uptime 100%
+# over the last 30 minutes, the cheaper of the two providers.
+[[anchor]]
+name = "ibm-granite/granite-4.2-8b"
+role = "reference"
+
+[anchor.sampling]
+temperature = 1.0
+top_p = 0.95
+seed = 2000
+source = "Granite-4.2-8B card: temperature=1.0 and top_p=0.95 for all tasks and backends (same in generation_config.json)"
+card = "https://huggingface.co/ibm-granite/granite-4.2-8b"
+verified = true
+
+[anchor.provider]
+order = ["coreweave/bf16"]
+allow_fallbacks = false
+require_parameters = true
+
+# Full thinking, the card's default mode. The model has modes, not a token budget: on 2026-11-18 OpenRouter turned
+# reasoning.max_tokens = 2048 into its low-effort mode (one line of reasoning, a RAG case lost), so the budget of the
+# local models cannot be matched; the length of its reasoning is in each run's responses.jsonl.
+[anchor.reasoning]
+enabled = true

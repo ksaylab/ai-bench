@@ -1,0 +1,13 @@
+machine,model,use_case,battery,battery_version,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+openrouter,deepseek/deepseek-v4-pro,agent,28178aaf6f13,v4,58,60,20,3,96.7,95.0,100.0,100.0,100.0,95.6,1,0,80.0,Good for,,0,,,,,,4.56,52.18,1.92,105.39,,,,0.120634
+openrouter,deepseek/deepseek-v4-pro,chat_pt,bcaa947ab167,v4,66,66,22,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,,,,,,5.68,53.06,1.867,87.27,,,,0.067122
+openrouter,deepseek/deepseek-v4-pro,rag,df0f60dedfec,v4,57,57,19,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,,,,,,4.56,45.7,2.018,89.36,,,,0.112004
+openrouter,ibm-granite/granite-4.2-8b,agent,28178aaf6f13,v4,39,60,20,3,65.0,60.0,70.0,100.0,77.8,57.8,3,0,80.0,Not good for,,0,,,,,,11.93,113.64,0.573,128.42,,,,0.014162
+openrouter,ibm-granite/granite-4.2-8b,chat_pt,bcaa947ab167,v4,61,66,22,3,92.4,90.9,95.5,100.0,85.7,94.4,4,0,80.0,Good for,,0,,,,,,30.9,114.8,0.545,122.54,,,,0.035629
+openrouter,ibm-granite/granite-4.2-8b,rag,df0f60dedfec,v4,47,57,19,3,82.5,78.9,84.2,100.0,85.7,76.7,6,0,80.0,Unstable,,1,,,,,,20.98,113.88,0.847,124.69,,,,0.02446
+openrouter,mistralai/ministral-3b-2512,agent,28178aaf6f13,v4,11,60,20,3,18.3,15.0,20.0,100.0,0.0,11.1,1,0,80.0,Not good for,,0,,,,,,0.66,81.73,0.619,30505.71,,,,0.002185
+openrouter,mistralai/ministral-3b-2512,chat_pt,bcaa947ab167,v4,13,66,22,3,19.7,18.2,22.7,66.7,33.3,0.0,2,0,80.0,Not good for,,0,,,,,,0.61,61.43,0.46,2370.32,,,,0.000603
+openrouter,mistralai/ministral-3b-2512,rag,df0f60dedfec,v4,18,57,19,3,31.6,21.1,36.8,100.0,19.0,26.7,5,0,80.0,Not good for,,0,,,,,,0.68,63.05,0.496,1112.66,,,,0.004562
+openrouter,z-ai/glm-5.3-flash,agent,28178aaf6f13,v4,60,60,20,3,100.0,100.0,100.0,100.0,100.0,100.0,0,0,80.0,Good for,,0,,,,,,8.26,25.54,5.202,88.31,,,,0.00914
+openrouter,z-ai/glm-5.3-flash,chat_pt,bcaa947ab167,v4,63,66,22,3,95.5,90.9,100.0,88.9,100.0,94.4,3,0,80.0,Good for,,0,,,,,,7.16,51.38,1.766,75.85,,,,0.007468
+openrouter,z-ai/glm-5.3-flash,rag,df0f60dedfec,v4,56,57,19,3,98.2,94.7,100.0,100.0,100.0,96.7,1,0,80.0,Good for,,0,,,,,,4.56,46.96,1.627,81.47,,,,0.007661

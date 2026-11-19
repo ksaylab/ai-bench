@@ -1,0 +1,8 @@
+machine,model,coding_pct,rag_pct,agent_pct,chat_pt_pct,coding_public_pct,good_for,not_good_for,inconclusive,unstable,not_calibrated,runs,avg_time_s,cost_usd
+pc-rtx2060,gemma4-12b@think-2048,,93.0,96.7,90.9,,RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese,,,,,3,16.87,
+pc-rtx2060,gemma4-26b@think-2048,,94.7,98.3,100.0,,RAG (answers with sources); Agents / tool calling; Chat & summaries in Portuguese,,,,,3,20.7,
+pc-rtx2060,gemma4-e4b@think-2048,,73.7,95.0,80.3,,Agents / tool calling,RAG (answers with sources),,Chat & summaries in Portuguese (borderline),,3,4.25,
+pc-rtx2060,lfm3-1.7b@think-2048,,91.2,88.3,78.8,,RAG (answers with sources); Agents / tool calling,,,Chat & summaries in Portuguese (borderline),,3,7.06,
+pc-rtx2060,neohorse-4b@think-2048,,87.7,85.0,72.7,,RAG (answers with sources),Chat & summaries in Portuguese,,Agents / tool calling,,3,13.59,
+pc-rtx2060,ornith1.5-9b@think-2048,,93.0,95.0,86.4,,RAG (answers with sources) (mixed tiers); Agents / tool calling (easy only),,,Chat & summaries in Portuguese,,3,5.99,
+pc-rtx2060,qwen3.6-35b-a3b@think-2048,,93.0,80.0,93.9,,RAG (answers with sources); Chat & summaries in Portuguese,,,Agents / tool calling (borderline),,3,30.39,

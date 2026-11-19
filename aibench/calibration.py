@@ -1,6 +1,8 @@
 """Calibration anchors (METHODOLOGY.md 8.2): OpenRouter models that are the ruler for every battery.
 
-- anchors.toml lists them, each with a role (`ceiling` or `floor`) and pinned sampling.
+- anchors.toml lists them, each with a role and pinned sampling: `ceiling` and `floor` make the ruler; a `reference`
+  anchor runs the same batteries and is reported (anchors.csv, the reference column of the pruning report), but never
+  enters the ruler or the pruning decision.
 - `python3 -m aibench calibrate` runs the batteries on them into calibration/runs/.
 - `python3 -m aibench calibration` merges the publishable anchor runs into calibration/anchors.csv and writes the
   case pruning report (calibration/pruning.csv and pruning.md, METHODOLOGY.md 8.3).
@@ -19,8 +21,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ANCHORS_FILE = ROOT / "anchors.toml"
 CALIBRATION = ROOT / "calibration"
-ROLES = ("ceiling", "floor")
-ANCHOR_COLUMNS = ["use_case", "battery", "model", "role", "passed", "executions", "runs", "score_pct", "min_run_pct",
+ROLES = ("ceiling", "floor", "reference")
+ANCHOR_COLUMNS = ["use_case", "battery", "battery_version", "model", "role", "passed", "executions", "runs", "score_pct", "min_run_pct",
                   "max_run_pct", "cost_usd"]
 
 
@@ -78,7 +80,9 @@ def anchor_scores(rows):
         run_scores = [100 * sum(v) / len(v) for v in per_run.values()]
         passed = sum(int(r["passed"]) for r in rs)
         costs = [float(r["cost_usd"]) for r in rs if r.get("cost_usd") not in ("", None)]
-        out.append({"use_case": uc, "battery": battery, "model": model, "role": role, "passed": passed,
+        from aibench.cases import battery_version
+        out.append({"use_case": uc, "battery": battery, "battery_version": battery_version(uc, battery) if battery else "",
+                    "model": model, "role": role, "passed": passed,
                     "executions": len(rs), "runs": len(per_run), "score_pct": round(100 * passed / len(rs), 1),
                     "min_run_pct": round(min(run_scores), 1), "max_run_pct": round(max(run_scores), 1),
                     "cost_usd": round(sum(costs), 6) if costs else ""})
@@ -121,7 +125,7 @@ def consolidate(root=None, log=None, battery_cases=None):
 # ---------- discrimination check (case pruning, METHODOLOGY.md 8.3) ----------
 
 TARGET_CASES = (15, 20)
-PRUNING_COLUMNS = ["use_case", "battery", "case", "tier", "ceilings", "floor", "action", "reason"]
+PRUNING_COLUMNS = ["use_case", "battery", "case", "tier", "ceilings", "floor", "reference", "action", "reason"]
 ACTIONS = {
     "too_easy": "remove or rewrite harder",
     "suspect": "review: wrong expected value, too strict checker or ambiguous prompt",
@@ -172,6 +176,7 @@ def pruning(rows, battery_cases=None, current=None):
         per_case.append({"use_case": uc, "battery": battery, "case": case, "tier": e["tier"],
                          "ceilings": _fmt({m: (p, n) for m, (role, p, n) in e["anchors"].items() if role == "ceiling"}),
                          "floor": _fmt({m: (p, n) for m, (role, p, n) in e["anchors"].items() if role == "floor"}),
+                         "reference": _fmt({m: (p, n) for m, (role, p, n) in e["anchors"].items() if role == "reference"}),
                          "action": action, "reason": reason or ACTIONS.get(action, "")})
     summary = {}
     for c in battery_cases or []:

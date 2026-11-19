@@ -1,0 +1,25 @@
+use_case,battery,version,date,note
+agent,ad5a4bd8d1b7,v1,2026-11-03,first battery (7 cases)
+agent,8ebe1ff0c139,v2 draft,2026-11-04,v2 as first run on the anchors; reviewed and rescored the same day
+agent,00cdb8195bc8,v2,2026-11-04,15 cases; episodes 01 to 04
+agent,47ed95a18378,v3 draft,2026-11-14,first anchor run of v3; two_matching_orders fixed after it
+agent,451ac8f0970b,v3,2026-11-14,17 cases; episodes 06 and later
+chat_pt,e266eed67933,v1,2026-11-03,first battery (6 cases)
+chat_pt,e8fb05c5d489,v2 draft,2026-11-04,v2 as first run on the anchors; reviewed and rescored the same day
+chat_pt,c578c34b848c,v2,2026-11-04,15 cases; episodes 01 to 04
+chat_pt,55b0a2704b00,v3 draft,2026-11-14,first anchor run of v3 (16 cases); a third screening round followed
+chat_pt,c44d435a4459,v3,2026-11-14,19 cases; episodes 06 and later
+coding,0ad3ef9d9ace,v1,2026-11-03,first battery (6 cases)
+coding,66284a5f4396,v2 draft,2026-11-04,v2 as first run on the anchors; reviewed and rescored the same day
+coding,9ba2c5db525d,v2,2026-11-04,20 cases; unchanged since
+coding_public,0c6092d78c55,v1,2026-11-03,first set
+coding_public,6cb9235891e5,v2 draft,2026-11-04,v2 as first run on the anchors; reviewed and rescored the same day
+coding_public,908376ec7f97,v2,2026-11-04,10 public problems; unchanged since
+rag,b1d9f31df0ca,v1,2026-11-03,first battery (8 cases)
+rag,2e9d3264451f,v2 draft,2026-11-04,v2 as first run on the anchors; reviewed and rescored the same day
+rag,5263567493a5,v2,2026-11-04,20 cases; episodes 01 to 04
+rag,6acc3a5c1feb,v2 24k,2026-11-14,v2 with 24000-word documents (--context-words 24000); episode 05
+rag,6ec3e5bdd9cb,v3,2026-11-14,18 cases; episodes 06 and later
+agent,28178aaf6f13,v4,2026-11-19,v3 plus 3 case(s) a reasoning model fails (20 cases); episode 08 and later
+chat_pt,bcaa947ab167,v4,2026-11-19,v3 plus 3 case(s) a reasoning model fails (22 cases); episode 08 and later
+rag,df0f60dedfec,v4,2026-11-19,v3 plus 1 case(s) a reasoning model fails (19 cases); episode 08 and later

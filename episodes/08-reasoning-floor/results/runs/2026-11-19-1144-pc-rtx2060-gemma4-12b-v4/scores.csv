@@ -1,0 +1,4 @@
+machine,model,use_case,battery,battery_version,passed,executions,cases,runs,score_pct,min_run_pct,max_run_pct,easy_pct,medium_pct,hard_pct,unstable_cases,errors,threshold_pct,verdict,tier_qualifier,borderline,ceiling_pct,floor_pct,pct_of_ceiling,normalized,calibrated,avg_time_s,avg_tok_s,avg_ttft_s,avg_gen_tok_s,peak_vram_mib,avg_power_w,wh_per_run,cost_usd
+pc-rtx2060,gemma4-12b@think-2048,agent,28178aaf6f13,v4,58,60,20,3,96.7,95.0,100.0,100.0,100.0,95.6,1,0,80.0,Good for,,0,100.0,18.3,96.7,96.0,1,11.23,35.96,0.476,38.35,7724,151.4,9.4728,
+pc-rtx2060,gemma4-12b@think-2048,chat_pt,bcaa947ab167,v4,60,66,22,3,90.9,81.8,95.5,100.0,85.7,91.7,3,0,80.0,Good for,,0,100.0,19.7,90.9,88.7,1,17.31,38.32,0.257,39.07,7724,152.6,16.154,
+pc-rtx2060,gemma4-12b@think-2048,rag,df0f60dedfec,v4,53,57,19,3,93.0,89.5,94.7,100.0,85.7,96.7,1,0,80.0,Good for,,0,100.0,31.6,93.0,89.8,1,22.08,33.51,1.705,38.11,7724,150.8,17.6718,

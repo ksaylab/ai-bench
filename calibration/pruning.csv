@@ -1,205 +1,266 @@
-use_case,battery,case,tier,ceilings,floor,action,reason
-agent,00cdb8195bc8,act_on_result_threshold,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,ask_for_customer_id,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,close_old_resolved,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,contact_schema,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,00cdb8195bc8,look_up_before_refund,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,meeting_next_week_tuesday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,meeting_relative_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,no_tool_needed,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,00cdb8195bc8,priority_from_sum,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,priority_schema,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,00cdb8195bc8,refund_above_total,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,refund_late_orders,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,refund_some_items,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,ticket_for_oldest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,00cdb8195bc8,weather_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,451ac8f0970b,act_on_result_threshold,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,ask_for_customer_id,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,close_old_resolved,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,contact_schema,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,451ac8f0970b,look_up_before_refund,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,meeting_first_monday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,meeting_missing_time,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,meeting_next_week_tuesday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,meeting_relative_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,priority_from_sum,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,refund_above_total,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,refund_cheapest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,refund_late_orders,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,refund_some_items,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,ticket_for_oldest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,two_matching_orders,hard,deepseek/deepseek-v4-pro 2/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,451ac8f0970b,weather_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,47ed95a18378,act_on_result_threshold,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,ask_for_customer_id,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,close_old_resolved,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,contact_schema,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,47ed95a18378,look_up_before_refund,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,meeting_first_monday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,meeting_missing_time,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,meeting_next_week_tuesday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,meeting_relative_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,priority_from_sum,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,refund_above_total,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,refund_cheapest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,refund_late_orders,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,refund_some_items,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,ticket_for_oldest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,two_matching_orders,hard,deepseek/deepseek-v4-pro 0/3; z-ai/glm-5.3-flash 1/3,mistralai/ministral-3b-2512 0/3,keep,keep
-agent,47ed95a18378,weather_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,ad5a4bd8d1b7,contact_schema,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,ad5a4bd8d1b7,currency_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,ad5a4bd8d1b7,no_tool_needed,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,ad5a4bd8d1b7,orders_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,ad5a4bd8d1b7,priority_schema,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,ad5a4bd8d1b7,ticket_call,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-agent,ad5a4bd8d1b7,weather_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,55b0a2704b00,date_plus_45_days,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,dates_in_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,exact_word_count,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,explain_vpn,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,55b0a2704b00,false_premise_capital,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,false_premise_holiday,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,false_premise_states,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,formal_rewrite,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,55b0a2704b00,grammar_fix,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,incident_summary,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,55b0a2704b00,list_without_words,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,keep,keep
-chat_pt,55b0a2704b00,raise_then_discount,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,relative_deadlines_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,weekday_of_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,words_ending_cao,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,55b0a2704b00,yes_no_only,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,business_days_deadline,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,compound_interest,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,date_plus_45_days,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,dates_in_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,exact_word_count,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,explain_vpn,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,c44d435a4459,false_premise_capital,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,keep,keep
-chat_pt,c44d435a4459,false_premise_holiday,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,false_premise_states,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,flight_duration,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,keep,keep
-chat_pt,c44d435a4459,formal_rewrite,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,c44d435a4459,grammar_fix,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,incident_summary,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,c44d435a4459,list_without_words,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,keep,keep
-chat_pt,c44d435a4459,raise_then_discount,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,relative_deadlines_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,weekday_of_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,words_ending_cao,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c44d435a4459,yes_no_only,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c578c34b848c,dates_in_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c578c34b848c,email_summary,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,c578c34b848c,exact_word_count,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c578c34b848c,explain_vpn,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,c578c34b848c,false_premise_capital,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c578c34b848c,false_premise_holiday,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c578c34b848c,false_premise_states,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c578c34b848c,formal_rewrite,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,c578c34b848c,grammar_fix,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c578c34b848c,incident_summary,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 1/3,mistralai/ministral-3b-2512 3/3,keep,keep
-chat_pt,c578c34b848c,list_without_words,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,keep,keep
-chat_pt,c578c34b848c,relative_deadlines_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c578c34b848c,translate_keep_code,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,c578c34b848c,weekday_of_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,c578c34b848c,yes_no_only,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-chat_pt,e266eed67933,email_summary,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,e266eed67933,explain_vpn,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,e266eed67933,false_premise_pt,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-chat_pt,e266eed67933,formal_rewrite,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,keep,keep
-chat_pt,e266eed67933,incident_summary,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 3/3,keep,keep
-chat_pt,e266eed67933,meeting_owners,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding,0ad3ef9d9ace,fizzbuzz,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding,0ad3ef9d9ace,is_palindrome,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding,0ad3ef9d9ace,merge_intervals,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding,0ad3ef9d9ace,parse_duration,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,0ad3ef9d9ace,top_k_frequent,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding,0ad3ef9d9ace,word_count,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding,9ba2c5db525d,add_business_days,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,allocate_cents,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,build_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,compact_number_br,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,deep_merge,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,ip_allowed,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,is_palindrome,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding,9ba2c5db525d,latest_by_key,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,natural_sort,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,keep,keep
-coding,9ba2c5db525d,parse_brl,medium,deepseek/deepseek-v4-pro 2/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,parse_duration,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,parse_headers,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,parse_log_line,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,reached_threshold,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,semver_compare,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,set_ini_value,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,sort_names_br,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,split_csv_line,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding,9ba2c5db525d,word_count,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding,9ba2c5db525d,wrap_text,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding_public,0c6092d78c55,humaneval_0,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,0c6092d78c55,humaneval_108,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,keep,keep
-coding_public,0c6092d78c55,humaneval_12,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,0c6092d78c55,humaneval_129,hard,deepseek/deepseek-v4-pro 1/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding_public,0c6092d78c55,humaneval_46,medium,deepseek/deepseek-v4-pro 2/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,keep,keep
-coding_public,0c6092d78c55,mbpp_11,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,0c6092d78c55,mbpp_20,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding_public,0c6092d78c55,mbpp_3,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,0c6092d78c55,mbpp_4,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,0c6092d78c55,mbpp_9,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding_public,908376ec7f97,humaneval_0,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,908376ec7f97,humaneval_108,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,908376ec7f97,humaneval_12,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,908376ec7f97,humaneval_129,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding_public,908376ec7f97,humaneval_46,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,908376ec7f97,mbpp_11,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,908376ec7f97,mbpp_20,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-coding_public,908376ec7f97,mbpp_3,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,908376ec7f97,mbpp_4,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-coding_public,908376ec7f97,mbpp_9,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,answer_absent,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,5263567493a5,credential_rotation_date,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,false_premise_office_hours,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,keep,keep
-rag,5263567493a5,long_renamed_room,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,long_three_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,long_two_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,keep,keep
-rag,5263567493a5,long_updates_out_of_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,keep,keep
-rag,5263567493a5,meal_domestic_unchanged,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,meal_limit_by_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,partly_absent,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,keep,keep
-rag,5263567493a5,password_length,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,5263567493a5,payments_oncall_lead,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,purchase_cfo,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,purchase_exact_threshold,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,purchase_quotes_after_change,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,sev2_after_midnight,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,sev3_no_target,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,5263567493a5,single_passage,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,5263567493a5,vacation_one_day_short,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,5263567493a5,vpn_effective_date,medium,deepseek/deepseek-v4-pro 0/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ceilings_disagree,one ceiling passed every repeat and another failed every repeat
-rag,6ec3e5bdd9cb,answer_absent,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,6ec3e5bdd9cb,credential_rotation_date,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,false_premise_office_hours,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,long_renamed_room,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,long_three_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,long_two_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,keep,keep
-rag,6ec3e5bdd9cb,long_updates_out_of_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,keep,keep
-rag,6ec3e5bdd9cb,meal_domestic_unchanged,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,meal_limit_by_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,partly_absent,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,payments_oncall_lead,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,purchase_cfo,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,purchase_exact_threshold,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,purchase_quotes_after_change,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,sev2_after_midnight,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,keep,keep
-rag,6ec3e5bdd9cb,sev3_no_target,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,6ec3e5bdd9cb,single_passage,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,6ec3e5bdd9cb,vpn_effective_date,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,b1d9f31df0ca,answer_absent,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 0/3,mistralai/ministral-3b-2512 3/3,ceilings_disagree,one ceiling passed every repeat and another failed every repeat
-rag,b1d9f31df0ca,long_needle,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,b1d9f31df0ca,long_two_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,keep,keep
-rag,b1d9f31df0ca,newer_rule_wins,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,b1d9f31df0ca,password_length,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,b1d9f31df0ca,similar_entity,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,b1d9f31df0ca,single_passage,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
-rag,b1d9f31df0ca,two_facts,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+use_case,battery,case,tier,ceilings,floor,reference,action,reason
+agent,00cdb8195bc8,act_on_result_threshold,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,ask_for_customer_id,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,close_old_resolved,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,contact_schema,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,00cdb8195bc8,look_up_before_refund,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,meeting_next_week_tuesday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,meeting_relative_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,no_tool_needed,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,00cdb8195bc8,priority_from_sum,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,priority_schema,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,00cdb8195bc8,refund_above_total,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,refund_late_orders,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,refund_some_items,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,ticket_for_oldest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,00cdb8195bc8,weather_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,28178aaf6f13,act_on_result_threshold,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,28178aaf6f13,ask_for_customer_id,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,28178aaf6f13,close_after_business_days,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+agent,28178aaf6f13,close_old_resolved,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+agent,28178aaf6f13,contact_schema,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+agent,28178aaf6f13,look_up_before_refund,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,28178aaf6f13,meeting_first_monday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+agent,28178aaf6f13,meeting_missing_time,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+agent,28178aaf6f13,meeting_next_week_tuesday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,28178aaf6f13,meeting_relative_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,28178aaf6f13,priority_from_sum,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+agent,28178aaf6f13,refund_above_total,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,28178aaf6f13,refund_budget_skip,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+agent,28178aaf6f13,refund_cheapest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,28178aaf6f13,refund_half_late_over_50,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+agent,28178aaf6f13,refund_late_orders,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+agent,28178aaf6f13,refund_some_items,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+agent,28178aaf6f13,ticket_for_oldest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,28178aaf6f13,two_matching_orders,hard,deepseek/deepseek-v4-pro 1/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+agent,28178aaf6f13,weather_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+agent,451ac8f0970b,act_on_result_threshold,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,ask_for_customer_id,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,close_old_resolved,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+agent,451ac8f0970b,contact_schema,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+agent,451ac8f0970b,look_up_before_refund,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,meeting_first_monday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,meeting_missing_time,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+agent,451ac8f0970b,meeting_next_week_tuesday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+agent,451ac8f0970b,meeting_relative_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,priority_from_sum,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,refund_above_total,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,refund_cheapest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,refund_late_orders,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+agent,451ac8f0970b,refund_some_items,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,ticket_for_oldest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+agent,451ac8f0970b,two_matching_orders,hard,deepseek/deepseek-v4-pro 2/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+agent,451ac8f0970b,weather_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+agent,47ed95a18378,act_on_result_threshold,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,ask_for_customer_id,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,close_old_resolved,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,contact_schema,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,47ed95a18378,look_up_before_refund,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,meeting_first_monday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,meeting_missing_time,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,meeting_next_week_tuesday,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,meeting_relative_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,priority_from_sum,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,refund_above_total,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,refund_cheapest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,refund_late_orders,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,refund_some_items,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,ticket_for_oldest_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,two_matching_orders,hard,deepseek/deepseek-v4-pro 0/3; z-ai/glm-5.3-flash 1/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+agent,47ed95a18378,weather_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,ad5a4bd8d1b7,contact_schema,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,ad5a4bd8d1b7,currency_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,ad5a4bd8d1b7,no_tool_needed,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,ad5a4bd8d1b7,orders_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,ad5a4bd8d1b7,priority_schema,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,ad5a4bd8d1b7,ticket_call,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+agent,ad5a4bd8d1b7,weather_call,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,55b0a2704b00,date_plus_45_days,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,dates_in_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,exact_word_count,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,explain_vpn,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,55b0a2704b00,false_premise_capital,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,false_premise_holiday,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,false_premise_states,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,formal_rewrite,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,55b0a2704b00,grammar_fix,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,incident_summary,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,55b0a2704b00,list_without_words,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,,keep,keep
+chat_pt,55b0a2704b00,raise_then_discount,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,relative_deadlines_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,weekday_of_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,words_ending_cao,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,55b0a2704b00,yes_no_only,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,bcaa947ab167,business_days_deadline,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,compound_interest,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,date_plus_45_days,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,dates_in_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,deadline_tiradentes,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,exact_word_count,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,explain_vpn,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,bcaa947ab167,false_premise_capital,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,false_premise_holiday,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+chat_pt,bcaa947ab167,false_premise_states,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,flight_duration,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,formal_rewrite,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,grammar_fix,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,incident_summary,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,lisbon_time_summer,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,list_without_words,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+chat_pt,bcaa947ab167,raise_then_discount,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,relative_deadlines_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 1/3,keep,keep
+chat_pt,bcaa947ab167,weekday_new_year_2027,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 2/3,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,bcaa947ab167,weekday_of_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,words_ending_cao,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,bcaa947ab167,yes_no_only,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,business_days_deadline,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,compound_interest,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,date_plus_45_days,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,dates_in_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,exact_word_count,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,explain_vpn,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,c44d435a4459,false_premise_capital,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,false_premise_holiday,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+chat_pt,c44d435a4459,false_premise_states,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,flight_duration,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,formal_rewrite,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,c44d435a4459,grammar_fix,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,incident_summary,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,c44d435a4459,list_without_words,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,raise_then_discount,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,relative_deadlines_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 1/3,keep,keep
+chat_pt,c44d435a4459,weekday_of_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c44d435a4459,words_ending_cao,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+chat_pt,c44d435a4459,yes_no_only,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+chat_pt,c578c34b848c,dates_in_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,c578c34b848c,email_summary,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,c578c34b848c,exact_word_count,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,c578c34b848c,explain_vpn,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,c578c34b848c,false_premise_capital,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,c578c34b848c,false_premise_holiday,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,c578c34b848c,false_premise_states,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,c578c34b848c,formal_rewrite,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,c578c34b848c,grammar_fix,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,c578c34b848c,incident_summary,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 1/3,mistralai/ministral-3b-2512 3/3,,keep,keep
+chat_pt,c578c34b848c,list_without_words,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,,keep,keep
+chat_pt,c578c34b848c,relative_deadlines_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,c578c34b848c,translate_keep_code,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,c578c34b848c,weekday_of_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,c578c34b848c,yes_no_only,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+chat_pt,e266eed67933,email_summary,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,e266eed67933,explain_vpn,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,e266eed67933,false_premise_pt,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+chat_pt,e266eed67933,formal_rewrite,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,,keep,keep
+chat_pt,e266eed67933,incident_summary,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 3/3,,keep,keep
+chat_pt,e266eed67933,meeting_owners,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding,0ad3ef9d9ace,fizzbuzz,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding,0ad3ef9d9ace,is_palindrome,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding,0ad3ef9d9ace,merge_intervals,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding,0ad3ef9d9ace,parse_duration,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,0ad3ef9d9ace,top_k_frequent,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding,0ad3ef9d9ace,word_count,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding,9ba2c5db525d,add_business_days,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,allocate_cents,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,build_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,compact_number_br,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,deep_merge,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,ip_allowed,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,is_palindrome,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding,9ba2c5db525d,latest_by_key,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,natural_sort,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,,keep,keep
+coding,9ba2c5db525d,parse_brl,medium,deepseek/deepseek-v4-pro 2/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,parse_duration,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,parse_headers,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,parse_log_line,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,reached_threshold,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,semver_compare,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,set_ini_value,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,sort_names_br,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,split_csv_line,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding,9ba2c5db525d,word_count,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding,9ba2c5db525d,wrap_text,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding_public,0c6092d78c55,humaneval_0,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,0c6092d78c55,humaneval_108,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,,keep,keep
+coding_public,0c6092d78c55,humaneval_12,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,0c6092d78c55,humaneval_129,hard,deepseek/deepseek-v4-pro 1/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding_public,0c6092d78c55,humaneval_46,medium,deepseek/deepseek-v4-pro 2/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,keep,keep
+coding_public,0c6092d78c55,mbpp_11,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,0c6092d78c55,mbpp_20,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding_public,0c6092d78c55,mbpp_3,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,0c6092d78c55,mbpp_4,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,0c6092d78c55,mbpp_9,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding_public,908376ec7f97,humaneval_0,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,908376ec7f97,humaneval_108,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,908376ec7f97,humaneval_12,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,908376ec7f97,humaneval_129,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding_public,908376ec7f97,humaneval_46,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,908376ec7f97,mbpp_11,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,908376ec7f97,mbpp_20,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+coding_public,908376ec7f97,mbpp_3,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,908376ec7f97,mbpp_4,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+coding_public,908376ec7f97,mbpp_9,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,answer_absent,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,5263567493a5,credential_rotation_date,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,false_premise_office_hours,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,,keep,keep
+rag,5263567493a5,long_renamed_room,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,long_three_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,long_two_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,,keep,keep
+rag,5263567493a5,long_updates_out_of_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,,keep,keep
+rag,5263567493a5,meal_domestic_unchanged,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,meal_limit_by_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,partly_absent,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,,keep,keep
+rag,5263567493a5,password_length,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,5263567493a5,payments_oncall_lead,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,purchase_cfo,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,purchase_exact_threshold,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,purchase_quotes_after_change,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,sev2_after_midnight,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,sev3_no_target,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,5263567493a5,single_passage,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,5263567493a5,vacation_one_day_short,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,5263567493a5,vpn_effective_date,medium,deepseek/deepseek-v4-pro 0/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,ceilings_disagree,one ceiling passed every repeat and another failed every repeat
+rag,6ec3e5bdd9cb,answer_absent,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+rag,6ec3e5bdd9cb,credential_rotation_date,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,false_premise_office_hours,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+rag,6ec3e5bdd9cb,long_renamed_room,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,long_three_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,long_two_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,long_updates_out_of_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,meal_domestic_unchanged,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,meal_limit_by_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,partly_absent,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,payments_oncall_lead,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,purchase_cfo,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,purchase_exact_threshold,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,purchase_quotes_after_change,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,sev2_after_midnight,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,sev3_no_target,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,6ec3e5bdd9cb,single_passage,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 2/3,too_easy,"every anchor, the floor included, passed every repeat"
+rag,6ec3e5bdd9cb,vpn_effective_date,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+rag,b1d9f31df0ca,answer_absent,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 0/3,mistralai/ministral-3b-2512 3/3,,ceilings_disagree,one ceiling passed every repeat and another failed every repeat
+rag,b1d9f31df0ca,long_needle,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,b1d9f31df0ca,long_two_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,,keep,keep
+rag,b1d9f31df0ca,newer_rule_wins,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,b1d9f31df0ca,password_length,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,b1d9f31df0ca,similar_entity,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,b1d9f31df0ca,single_passage,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,b1d9f31df0ca,two_facts,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,,too_easy,"every anchor, the floor included, passed every repeat"
+rag,df0f60dedfec,answer_absent,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+rag,df0f60dedfec,credential_rotation_date,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,df0f60dedfec,false_premise_office_hours,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+rag,df0f60dedfec,long_renamed_room,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+rag,df0f60dedfec,long_three_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 1/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+rag,df0f60dedfec,long_two_hops,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+rag,df0f60dedfec,long_updates_out_of_order,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,df0f60dedfec,meal_domestic_unchanged,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,df0f60dedfec,meal_limit_by_date,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,df0f60dedfec,partly_absent,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,df0f60dedfec,payments_oncall_lead,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,df0f60dedfec,purchase_cfo,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,df0f60dedfec,purchase_exact_threshold,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+rag,df0f60dedfec,purchase_quotes_after_change,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,df0f60dedfec,sev2_after_midnight,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 2/3,ibm-granite/granite-4.2-8b 2/3,keep,keep
+rag,df0f60dedfec,sev3_no_target,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 3/3,keep,keep
+rag,df0f60dedfec,single_passage,easy,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 3/3,ibm-granite/granite-4.2-8b 3/3,too_easy,"every anchor, the floor included, passed every repeat"
+rag,df0f60dedfec,vacation_accrued_may,hard,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 2/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 0/3,keep,keep
+rag,df0f60dedfec,vpn_effective_date,medium,deepseek/deepseek-v4-pro 3/3; z-ai/glm-5.3-flash 3/3,mistralai/ministral-3b-2512 0/3,ibm-granite/granite-4.2-8b 1/3,keep,keep

@@ -166,7 +166,7 @@ def write_results(folder, rows, reference=None):
     v = verdict.verdicts(s)
     write_csv(folder / "scores.csv", verdict.SCORE_COLUMNS, s)
     write_csv(folder / "verdicts.csv", verdict.VERDICT_COLUMNS, v)
-    (folder / "verdicts.md").write_text(verdict.markdown(v), encoding="utf-8")
+    (folder / "verdicts.md").write_text(verdict.markdown(v, s), encoding="utf-8")
     return v
 
 

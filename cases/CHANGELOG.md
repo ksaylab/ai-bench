@@ -3,6 +3,36 @@
 Every change to a battery, with the reason, so the pruning (METHODOLOGY.md 8.3) is public. Each change makes a new
 battery version (`battery` in `meta.json`): runs of different versions are never merged or compared.
 
+The hash stays the identity of a battery version. Since 2026-11-18 each one also has a name (v1, v2, v3...) in
+[`versions.csv`](versions.csv), shown next to the hash in `scores.csv` and `calibration/anchors.csv`
+(`battery_version`) and under every `verdicts.md` table. A battery without a name fails the tests: name it when it
+changes. "draft" marks a version that ran once on the anchors and was fixed the same day.
+
+## 2026-11-19
+
+- Batteries v4 of `agent`, `chat_pt` and `rag`: v3 plus 7 cases that a small model that reasons fails. v3 was
+  screened on the floor, which answers without reasoning; the reference anchor `ibm-granite/granite-4.2-8b` (full
+  thinking mode, METHODOLOGY.md 8.2) passed v3 at 78.4% in `agent`, 93.0% in `chat_pt` and 94.4% in `rag`
+  (`calibration/runs/2026-11-18-1731-openrouter-granite-reference`, US$0.05). No v3 case was removed, so v3 and v4
+  scores stay close and comparable.
+- 21 candidates screened on the reference anchor and `z-ai/glm-5.3-flash` (3 repeats each, `calibrate --smoke --cases`,
+  US$0.058; smoke runs are not published). A candidate got in only when the reference anchor failed at least one
+  repeat and the GLM passed every repeat:
+  - `agent` (3): `refund_half_late_over_50` (half the total, two conditions), `close_after_business_days` (business
+    days, with a ticket resolved on a Saturday) and `refund_budget_skip` (skip the order that would pass the cap). The
+    reference anchor acted on one order of the two in every repeat.
+  - `chat_pt` (3): `deadline_tiradentes` (3 business days across a national holiday), `lisbon_time_summer` (Lisbon
+    in summer time to São Paulo) and `weekday_new_year_2027`. In the last one the reference anchor named the right day
+    in English ("Friday") in every repeat: it fails on answering in Portuguese, not on the date.
+  - `rag` (1): `vacation_accrued_may` (full months worked and the 3-month wait, [3]).
+  - Left out as ambiguous: `installments_extra_pct` (the reference anchor answered "10" without "%") and
+    `contractor_vpn_expiry` (2026-07-04 or 2026-07-05 depending on whether the first day of access counts).
+  - Left out because the reference anchor passed every repeat, or a ceiling failed: `agent`
+    `meeting_three_business_days`, `refund_converted_capped`, `refund_cancelled_order`; `chat_pt` `count_letter_r`,
+    `fewest_coins`, `five_letters_no_a`, `reverse_long_word`; `rag` `meal_trip_across_change`, `room_last_booking_day`,
+    `lost_laptop_two_deadlines`, `payments_deputy_lead`, `carryover_plus_accrual`.
+- Batteries now: `coding` 20 (v2), `rag` 19, `agent` 20, `chat_pt` 22 cases (v4).
+
 ## 2026-11-14 (after the anchor run)
 
 - The anchor run of v3 (`calibration/runs/2026-11-14-1953-openrouter-anchors`, US$0.33) left `agent` within the

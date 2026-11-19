@@ -1,0 +1,163 @@
+run_id,machine,model,use_case,case,tier,rep,seed,passed,reason,time_s,prompt_tokens,completion_tokens,tok_s,ttft_s,gen_tok_s,peak_vram_mib,avg_power_w,energy_wh,cost_usd,finish,judge_score,judge_cost_usd,context_words,battery
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,weather_call,easy,0,2000,1,,1.687,639,172,101.95,0.423,136.1,,,,3.606e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,contact_schema,easy,0,2000,1,,4.097,77,499,121.8,0.495,138.55,,,,7.947e-05,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_relative_date,hard,0,2000,1,,5.141,1154,599,116.52,0.75,136.43,,,,0.00014037,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,ticket_for_oldest_order,hard,0,2000,1,,4.372,1263,534,122.14,0.444,135.94,,,,0.00010692,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,act_on_result_threshold,medium,0,2000,1,,3.353,1239,397,118.39,0.448,136.64,,,,8.493e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_late_orders,hard,0,2000,0,"1 tool call(s), expected 2",10.452,1376,1355,129.65,0.473,135.8,,,,0.00023685,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_above_total,hard,0,2000,1,,2.142,1214,227,105.99,0.538,141.54,,,,5.793e-05,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,priority_from_sum,medium,0,2000,1,,4.062,1259,476,117.18,0.564,136.07,,,,9.798e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_next_week_tuesday,hard,0,2000,1,,12.236,1151,1605,131.17,0.414,135.77,,,,0.00026085,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,look_up_before_refund,hard,0,2000,1,,2.901,1124,291,100.3,0.803,138.65,,,,6.213e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_some_items,hard,0,2000,1,,4.252,1250,440,103.47,1.047,137.27,,,,9.204e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,close_old_resolved,hard,0,2000,0,"1 tool call(s), expected 2",21.236,1251,2787,131.24,0.569,134.86,,,,0.00044415,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,ask_for_customer_id,hard,0,2000,1,,2.838,1117,297,104.65,0.65,135.71,,,,6.261e-05,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,two_matching_orders,hard,0,2000,0,called refund_order but no tool was needed,6.818,1472,855,125.4,0.519,135.73,,,,0.00016761,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_missing_time,medium,0,2000,0,called schedule_meeting but no tool was needed,5.907,1144,706,119.51,0.731,136.38,,,,0.00012486,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_cheapest_order,hard,0,2000,1,,3.503,1265,402,114.76,0.635,140.15,,,,8.652e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_first_monday,hard,0,2000,1,,38.47,1146,5032,130.8,0.529,132.63,,,,0.00077388,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,explain_vpn,easy,0,2000,1,,12.017,41,1505,125.24,0.452,130.12,,,,0.00022677,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,formal_rewrite,easy,0,2000,1,,6.274,49,755,120.33,0.811,138.19,,,,0.00011619,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,incident_summary,easy,0,2000,1,,9.942,136,1305,131.26,0.578,139.35,,,,0.00020391,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,grammar_fix,medium,0,2000,1,,9.907,85,1255,126.68,0.874,138.94,,,,0.00019335,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,false_premise_states,medium,0,2000,1,,5.305,40,670,126.3,0.428,137.39,,,,0.0001029,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,list_without_words,medium,0,2000,1,,8.332,67,1057,126.86,0.713,138.73,,,,0.00016257,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,dates_in_order,hard,0,2000,1,,4.939,107,616,124.72,0.468,137.77,,,,9.882e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,relative_deadlines_order,hard,0,2000,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,14.027,112,1856,132.32,0.514,137.35,,,,0.00028512,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,false_premise_holiday,medium,0,2000,0,missing: republica,15.84,50,2059,129.99,0.775,136.68,,,,0.00031185,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,yes_no_only,medium,0,2000,1,,2.831,45,330,116.56,0.477,140.17,,,,5.22e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,false_premise_capital,medium,0,2000,1,,4.929,41,618,125.39,0.412,136.81,,,,9.516e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,exact_word_count,hard,0,2000,1,,8.628,48,1125,130.39,0.425,137.14,,,,0.00017163,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,weekday_of_date,hard,0,2000,1,,61.548,43,8141,132.27,0.551,133.46,,,,0.00122373,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,date_plus_45_days,hard,0,2000,1,,107.03,48,13889,129.77,0.599,130.5,,,,0.00208623,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,raise_then_discount,hard,0,2000,1,,6.071,66,747,123.04,0.634,137.39,,,,0.00011601,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,words_ending_cao,hard,0,2000,1,,111.24,56,14418,129.61,0.418,130.1,,,,0.00216606,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,business_days_deadline,hard,0,2000,1,,21.965,75,2885,131.35,0.787,136.23,,,,0.00043725,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,compound_interest,hard,0,2000,1,,11.374,62,1504,132.24,0.42,137.3,,,,0.00022932,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,flight_duration,hard,0,2000,1,,27.383,76,3654,133.44,0.542,136.13,,,,0.00055266,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,single_passage,easy,0,2000,1,,2.675,295,301,112.52,0.481,137.19,,,,4.989e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,answer_absent,easy,0,2000,1,,2.004,298,212,105.81,0.524,143.24,,,,3.744e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_two_hops,hard,0,2000,1,,8.473,3889,1050,123.93,0.498,131.67,,,,0.00038868,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,meal_limit_by_date,hard,0,2000,1,,5.926,686,743,125.37,0.468,136.13,,,,0.00015045,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,meal_domestic_unchanged,medium,0,2000,1,,4.876,669,573,117.51,0.54,132.13,,,,9.729e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,sev3_no_target,medium,0,2000,1,,5.406,671,681,125.97,0.438,137.07,,,,0.00011361,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,payments_oncall_lead,hard,0,2000,1,,24.02,669,3181,132.43,0.431,134.85,,,,0.00048849,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,purchase_quotes_after_change,hard,0,2000,1,,8.097,681,1007,124.37,0.711,136.34,,,,0.00016311,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,purchase_cfo,medium,0,2000,1,,19.668,676,2618,133.11,0.398,135.86,,,,0.00040374,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,credential_rotation_date,medium,0,2000,1,,188.151,688,20738,110.22,0.523,110.53,,,,0.00312318,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,vpn_effective_date,medium,0,2000,0,missing: 2026-03-16,5.129,690,494,96.32,0.691,111.32,,,,0.00011334,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,partly_absent,medium,0,2000,1,,12.915,673,1480,114.59,0.57,119.88,,,,0.00023358,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_renamed_room,hard,0,2000,1,,9.473,3913,1080,114.01,0.884,125.75,,,,0.00039462,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,purchase_exact_threshold,hard,0,2000,1,,16.649,677,2209,132.68,0.409,136.02,,,,0.00034317,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,sev2_after_midnight,hard,0,2000,1,,7.22,692,910,126.03,0.59,137.25,,,,0.00014922,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,false_premise_office_hours,medium,0,2000,1,,5.774,672,724,125.39,0.443,135.81,,,,0.00012012,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_three_hops,hard,0,2000,1,,9.353,3955,1132,121.03,0.83,132.83,,,,0.00040494,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_updates_out_of_order,hard,0,2000,1,,5.169,3932,616,119.18,0.523,132.59,,,,0.00032616,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,weather_call,easy,1,2001,1,,1.759,639,180,102.31,0.441,136.52,,,,3.726e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,contact_schema,easy,1,2001,1,,4.031,77,427,105.93,0.653,126.4,,,,6.579e-05,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_relative_date,hard,1,2001,1,,4.103,1154,476,116.01,0.614,136.42,,,,8.88e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,ticket_for_oldest_order,hard,1,2001,1,,4.073,1263,496,121.78,0.419,135.76,,,,9.402e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,act_on_result_threshold,medium,1,2001,1,,2.632,1239,282,107.15,0.628,140.75,,,,6.12e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_late_orders,hard,1,2001,0,"1 tool call(s), expected 2",15.425,1376,2014,130.57,0.526,135.18,,,,0.00032346,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_above_total,hard,1,2001,1,,2.654,1214,185,69.71,1.29,135.68,,,,4.659e-05,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,priority_from_sum,medium,1,2001,1,,3.651,1259,427,116.95,0.506,135.76,,,,8.343e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_next_week_tuesday,hard,1,2001,1,,11.049,1151,1399,126.62,0.76,135.97,,,,0.00022779,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,look_up_before_refund,hard,1,2001,1,,2.675,1124,280,104.69,0.605,135.3,,,,5.904e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_some_items,hard,1,2001,1,,3.288,1250,392,119.22,0.406,136.03,,,,7.764e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,close_old_resolved,hard,1,2001,0,"1 tool call(s), expected 2",10.728,1251,1375,128.17,0.426,133.46,,,,0.00022515,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,ask_for_customer_id,hard,1,2001,1,,3.115,1117,245,78.66,0.468,92.57,,,,5.409e-05,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,two_matching_orders,hard,1,2001,0,called refund_order but no tool was needed,12.15,1472,1068,87.9,0.872,94.7,,,,0.000183,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_missing_time,medium,1,2001,1,,10.272,1144,845,82.26,0.446,86.0,,,,0.00014427,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_cheapest_order,hard,1,2001,1,,3.877,1265,277,71.44,0.497,81.94,,,,6.057e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_first_monday,hard,1,2001,1,,48.405,1146,3313,68.44,0.439,69.07,,,,0.00051459,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,explain_vpn,easy,1,2001,1,,9.952,41,552,55.47,0.951,61.32,,,,8.382e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,formal_rewrite,easy,1,2001,1,,13.895,49,769,55.34,0.453,57.21,,,,0.00011829,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,incident_summary,easy,1,2001,1,,13.689,136,796,58.15,0.482,60.27,,,,0.00012756,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,grammar_fix,medium,1,2001,1,,23.442,85,1322,56.4,0.481,57.58,,,,0.0002034,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,false_premise_states,medium,1,2001,1,,11.057,40,632,57.16,1.058,63.21,,,,9.72e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,list_without_words,medium,1,2001,1,,16.292,67,963,59.11,0.479,60.9,,,,0.00014847,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,dates_in_order,hard,1,2001,1,,18.158,107,929,51.16,0.523,52.68,,,,0.00014577,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,relative_deadlines_order,hard,1,2001,0,missing: (?s)fornecedor.*10/03.*proposta.*12/03.*contrato.*20/03,26.919,112,1507,55.98,0.451,56.94,,,,0.00023277,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,false_premise_holiday,medium,1,2001,1,,12.351,50,706,57.16,0.485,59.5,,,,0.0001089,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,yes_no_only,medium,1,2001,1,,7.21,45,404,56.04,0.453,59.79,,,,6.33e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,false_premise_capital,medium,1,2001,1,,6.635,41,352,53.05,0.456,56.97,,,,5.526e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,exact_word_count,hard,1,2001,1,,21.325,48,1147,53.79,0.575,55.28,,,,0.00017493,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,weekday_of_date,hard,1,2001,1,,79.276,43,4756,59.99,0.861,60.65,,,,0.00071598,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,date_plus_45_days,hard,1,2001,1,,110.624,48,5833,52.73,0.839,53.13,,,,0.00087783,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,raise_then_discount,hard,1,2001,1,,13.487,66,661,49.01,0.642,51.46,,,,0.00010311,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,words_ending_cao,hard,1,2001,0,line does not match: combustão,341.416,56,16831,49.3,0.586,49.38,,,,0.00252801,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,business_days_deadline,hard,1,2001,1,,29.796,75,1436,48.19,0.652,49.27,,,,0.0002199,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,compound_interest,hard,1,2001,1,,10.096,62,453,44.87,0.614,47.78,,,,7.167e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,flight_duration,hard,1,2001,1,,35.261,76,1582,44.87,0.455,45.45,,,,0.00024186,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,single_passage,easy,1,2001,0,missing: \b5\b|\bfive\b,5.136,295,214,41.67,0.438,45.55,,,,4.98e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,answer_absent,easy,1,2001,1,,8.268,298,385,46.57,0.501,49.57,,,,7.563e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_two_hops,hard,1,2001,1,,9.102,3889,420,46.15,0.55,49.12,,,,0.00029418,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,meal_limit_by_date,hard,1,2001,1,,11.085,686,732,66.04,0.637,70.06,,,,0.0001488,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,meal_domestic_unchanged,medium,1,2001,1,,13.064,669,965,73.87,0.514,76.9,,,,0.00015609,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,sev3_no_target,medium,1,2001,1,,6.318,671,391,61.89,0.918,72.41,,,,7.011e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,payments_oncall_lead,hard,1,2001,1,,10.945,669,715,65.32,0.485,68.35,,,,0.00011859,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,purchase_quotes_after_change,hard,1,2001,1,,21.806,681,1345,61.68,0.547,63.27,,,,0.00021381,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,purchase_cfo,medium,1,2001,1,,46.332,676,2625,56.66,0.426,57.18,,,,0.00040479,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,credential_rotation_date,medium,1,2001,1,,215.739,688,13621,63.14,0.657,63.33,,,,0.00205563,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,vpn_effective_date,medium,1,2001,1,,11.118,690,1171,105.32,0.937,115.01,,,,0.00021705,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,partly_absent,medium,1,2001,1,,7.464,673,834,111.73,0.517,120.04,,,,0.00013668,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_renamed_room,hard,1,2001,1,,5.42,3913,542,100.0,0.554,111.39,,,,0.00031392,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,purchase_exact_threshold,hard,1,2001,1,,14.049,677,1780,126.7,0.504,131.41,,,,0.0002781,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,sev2_after_midnight,hard,1,2001,1,,7.273,692,804,110.55,1.404,137.0,,,,0.00013332,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,false_premise_office_hours,medium,1,2001,0,missing: \b8 ?(am|a\.m\.|:00),4.047,672,499,123.3,0.394,136.59,,,,8.637e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_three_hops,hard,1,2001,1,,30.26,3955,3837,126.8,0.487,128.88,,,,0.00081069,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_updates_out_of_order,hard,1,2001,1,,12.674,3932,1506,118.83,0.854,127.41,,,,0.00045966,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,weather_call,easy,2,2002,1,,1.689,639,167,98.85,0.414,130.89,,,,6.339e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,contact_schema,easy,2,2002,1,,4.86,77,482,99.19,0.422,108.61,,,,7.692e-05,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_relative_date,hard,2,2002,1,,5.95,1154,711,119.5,0.422,128.61,,,,0.00015717,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,ticket_for_oldest_order,hard,2,2002,1,,3.554,1263,401,112.84,0.421,128.0,,,,8.697e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,act_on_result_threshold,medium,2,2002,1,,3.171,1239,348,109.73,0.422,126.58,,,,7.758e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_late_orders,hard,2,2002,0,"1 tool call(s), expected 2",12.552,1376,1498,119.34,0.449,123.77,,,,0.0002583,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_above_total,hard,2,2002,1,,1.855,1214,167,90.03,0.466,120.28,,,,4.893e-05,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,priority_from_sum,medium,2,2002,1,,4.809,1259,539,112.08,0.416,122.68,,,,0.00010743,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_next_week_tuesday,hard,2,2002,0,date: '2026-03-11' != '2026-03-17',8.434,1151,963,114.18,0.481,121.08,,,,0.00016455,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,look_up_before_refund,hard,2,2002,1,,3.101,1124,326,105.13,0.437,122.37,,,,6.738e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_some_items,hard,2,2002,1,,4.005,1250,416,103.88,0.605,122.38,,,,8.844e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,close_old_resolved,hard,2,2002,0,"1 tool call(s), expected 2",25.454,1251,3373,132.52,0.428,134.78,,,,0.00053205,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,ask_for_customer_id,hard,2,2002,1,,1.699,1117,178,104.8,0.427,140.01,,,,4.476e-05,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,two_matching_orders,hard,2,2002,0,called refund_order but no tool was needed,12.767,1472,1651,129.32,0.482,134.39,,,,0.00028701,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_missing_time,medium,2,2002,1,,10.482,1144,1342,128.03,0.424,133.43,,,,0.00022026,stop,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,refund_cheapest_order,hard,2,2002,1,,3.029,1265,343,113.23,0.441,132.54,,,,7.767e-05,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,agent,meeting_first_monday,hard,2,2002,1,,51.214,1146,6760,132.0,0.453,133.17,,,,0.00103308,tool_calls,,,,451ac8f0970b
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,explain_vpn,easy,2,2002,1,,3.122,41,331,106.01,0.719,137.71,,,,5.211e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,formal_rewrite,easy,2,2002,1,,17.825,49,2369,132.9,0.434,136.22,,,,0.00035829,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,incident_summary,easy,2,2002,1,,12.398,136,1088,87.76,0.43,90.91,,,,0.00017136,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,grammar_fix,medium,2,2002,1,,16.884,85,2190,129.71,0.473,133.45,,,,0.0003336,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,false_premise_states,medium,2,2002,1,,5.179,40,508,98.1,0.694,113.28,,,,7.86e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,list_without_words,medium,2,2002,1,,9.098,67,1060,116.51,0.44,122.43,,,,0.00016302,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,dates_in_order,hard,2,2002,1,,8.075,107,675,83.59,0.421,88.19,,,,0.00010767,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,relative_deadlines_order,hard,2,2002,1,,40.366,112,4649,115.17,0.395,116.31,,,,0.00070407,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,false_premise_holiday,medium,2,2002,1,,7.915,50,872,110.16,0.613,119.42,,,,0.0001338,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,yes_no_only,medium,2,2002,1,,1.579,45,159,100.72,0.469,143.28,,,,2.655e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,false_premise_capital,medium,2,2002,1,,2.987,41,236,79.01,0.439,92.62,,,,3.786e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,exact_word_count,hard,2,2002,1,,2.452,48,248,101.14,0.509,127.62,,,,4.008e-05,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,weekday_of_date,hard,2,2002,1,,123.473,43,14663,118.76,0.393,119.13,,,,0.00220203,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,date_plus_45_days,hard,2,2002,1,,89.925,48,9999,111.19,0.958,112.39,,,,0.00150273,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,raise_then_discount,hard,2,2002,1,,9.14,66,882,96.49,0.618,103.49,,,,0.00013626,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,words_ending_cao,hard,2,2002,1,,83.779,56,11003,131.33,0.406,131.97,,,,0.00165381,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,business_days_deadline,hard,2,2002,1,,15.797,75,2039,129.07,0.902,136.89,,,,0.00031035,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,compound_interest,hard,2,2002,1,,9.78,62,1287,131.6,0.543,139.34,,,,0.00019677,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,chat_pt,flight_duration,hard,2,2002,1,,18.247,76,2397,131.36,0.721,136.77,,,,0.00036411,stop,,,,c44d435a4459
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,single_passage,easy,2,2002,1,,12.666,295,1677,132.4,0.426,137.01,,,,0.00026709,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,answer_absent,easy,2,2002,1,,3.863,298,472,122.2,0.416,136.93,,,,7.644e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_two_hops,hard,2,2002,1,,5.442,3889,640,117.6,0.492,129.28,,,,0.00032718,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,meal_limit_by_date,hard,2,2002,1,,4.446,686,553,124.37,0.412,137.07,,,,9.531e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,meal_domestic_unchanged,medium,2,2002,1,,7.115,669,876,123.12,0.714,136.84,,,,0.00014274,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,sev3_no_target,medium,2,2002,1,,4.021,671,495,123.1,0.391,136.35,,,,8.571e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,payments_oncall_lead,hard,2,2002,1,,3.691,669,453,122.73,0.389,137.18,,,,7.929e-05,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,purchase_quotes_after_change,hard,2,2002,1,,12.617,681,1644,130.3,0.423,134.82,,,,0.00025866,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,purchase_cfo,medium,2,2002,1,,15.57,676,2062,132.43,0.427,136.17,,,,0.00032034,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,credential_rotation_date,medium,2,2002,1,,106.962,688,11706,109.44,0.402,109.85,,,,0.00176838,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,vpn_effective_date,medium,2,2002,1,,13.093,690,1469,112.2,0.726,118.78,,,,0.00023295,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,partly_absent,medium,2,2002,1,,6.966,673,809,116.14,0.437,123.92,,,,0.00013293,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_renamed_room,hard,2,2002,1,,8.311,3913,810,97.46,0.535,104.17,,,,0.00035628,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,purchase_exact_threshold,hard,2,2002,1,,22.797,677,2949,129.36,0.452,131.97,,,,0.00045345,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,sev2_after_midnight,hard,2,2002,1,,13.733,692,1595,116.14,0.408,119.7,,,,0.00025197,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,false_premise_office_hours,medium,2,2002,1,,8.326,672,990,118.91,0.429,125.37,,,,0.00018666,stop,,,,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_three_hops,hard,2,2002,1,,30.845,3955,3983,129.13,0.522,131.35,,,,0.00083259,stop,,,3000,6ec3e5bdd9cb
+2026-11-18-1731-openrouter-granite-reference,openrouter,ibm-granite/granite-4.2-8b,rag,long_updates_out_of_order,hard,2,2002,1,,5.714,3932,692,121.1,0.515,133.1,,,,0.00033756,stop,,,3000,6ec3e5bdd9cb
